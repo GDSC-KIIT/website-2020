@@ -1,77 +1,73 @@
-.navbar {
- width: 100%;
- height: 90px;
- position: fixed;
- top: 0;
- background: #ffffff;
- z-index: 1;
- box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+.actionButton{
+    margin-right: 1em;
 }
 
-.navbar__container {
- display: flex;
- height: 100px;
- align-items: center;
- justify-content: space-between;
-}
-.navbar__left__logo img {
- width: 90px;
-}
 
-.navbar__right {
- display: flex;
- list-style-type: none;
-}
-.navbar__right li a {
- text-decoration: none;
- color: #000;
- font-weight: 500;
- font-size: 18px;
- padding: 0 15px;
-}
- .toggle {
-  position: fixed;
-  top: 20px;
-  right: 25px;
-  background:#fff;
-  color: #000;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  display: none;
-}
-@media (max-width: 765px) {
-  .container {
-    width: 100%;
-    padding: 0 50px;
-  }
-  .col-6 {
-    width: 100%;
-  }
-  .col-3 {
-    width: 100%;
-  }
-  .col-4 {
-    width: 100%;
-  }
-  .navbar__right {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    background: #ffffff;
+
+.bottomNav{
     position: fixed;
-    top: 0;
-    left: 0;
-  }
-  .navbar__right li a {
-    display: block;
-    padding: 20px 0;
-    font-size: 14px;
-  }
-  .toggle {
-    display: flex;
-  }
+    bottom: 0px;
+    width: 100%;
+    display: none;
 }
+
+.navToggle{
+    display: none;
+    position: relative;
+}
+
+.navToolbar {
+    padding : '0px 4em';
+}
+
+.bottomNav:nth-child(4){
+    display: none;
+}
+
+.bottomNav nav div{
+    min-width: 0px;
+}
+
+.nav a{
+    text-decoration: none;
+    color: black;
+}
+.nav a:hover{
+    color : var(--default-color);
+}
+
+.simpleContainer{
+    padding: '2em';
+}
+
+@media screen and (max-width: 960px) {
+    .simpleContainer{
+        padding: '2em 1em';
+    }
+    .header div{
+        text-align: center;
+    }
+    .navToggle{
+        display: block;
+    }
+
+    .footer{
+        display: none;
+    }
+
+    .nav:nth-child(2){
+        display: none;
+    }
+    .bottomNav{
+        display: block;
+    }
+
+    .eventsCard button{
+        display: none;
+    }
+    .navToolbar{
+        padding : '0px';
+    }
+
+  }

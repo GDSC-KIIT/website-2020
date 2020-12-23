@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
+import Landing from "../components/Landing/Landing";
 import ReadyToTalk from "../components/ReadyToTalk/ReadyToTalk";
 
 
@@ -22,6 +23,7 @@ export default function Home() {
       </Head>
 
       <Navbar />
+        <Landing/>
 
       <ReadyToTalk />
       <Footer />
