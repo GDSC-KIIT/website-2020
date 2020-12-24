@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
-// import ReadyToTalk from "../components/ReadyToTalk/ReadyToTalk";
-// import TeamIntro from "../components/Intro/Intro";
+import Landing from "../components/Landing/Landing";
+import ReadyToTalk from "../components/ReadyToTalk/ReadyToTalk";
 
 import Navbar from "../components/Navbar/Navbar";
 export default function Home() {
@@ -22,8 +22,9 @@ export default function Home() {
       </Head>
 
       <Navbar />
-      {/* <TeamIntro />
-      <ReadyToTalk /> */}
+        <Landing/>
+
+      <ReadyToTalk />
       <Footer />
     </>
   );

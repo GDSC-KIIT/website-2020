@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "@/components/*": [ "src/containers/*" ],
+      "@/lib/*": ["src/lib/*"],
+      "@/pages/*": [ "src/pages/*" ],
+      "@/styles/*": [ "src/styles/*" ]
+    },
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
@@ -35,7 +41,8 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "cms"
   ],
   "include": [
     "next-env.d.ts",
