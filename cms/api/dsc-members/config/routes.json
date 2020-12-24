@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/dsc-members",
+      "handler": "dsc-members.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/dsc-members/count",
+      "handler": "dsc-members.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/dsc-members/:id",
+      "handler": "dsc-members.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/dsc-members",
+      "handler": "dsc-members.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/dsc-members/:id",
+      "handler": "dsc-members.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/dsc-members/:id",
+      "handler": "dsc-members.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

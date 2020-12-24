@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dsc_members",
+  "info": {
+    "name": "dsc-members"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "unique": false,
+      "private": false,
+      "required": true
+    },
+    "ProfileImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}
