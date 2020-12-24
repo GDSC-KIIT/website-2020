@@ -1,18 +1,18 @@
 const dbUriParse = require('pg-connection-string').parse;
-const config = dbUriParse(process.env.DATABASE_URL);
+const dbConfig = dbUriParse(process.env.DATABASE_URL);
 
-module.exports = ({ env }) => ({
+const productionConfig = ({ env }) => ({
     defaultConnection: 'default',
     connections: {
         default: {
             connector: 'bookshelf',
             settings: {
                 client: 'postgres',
-                database: config.database,
-                host: config.host,
-                port: config.port,
-                username: config.user,
-                password: config.password,
+                database: dbConfig.database,
+                host: dbConfig.host,
+                port: dbConfig.port,
+                username: dbConfig.user,
+                password: dbConfig.password,
                 ssl: {
                     rejectUnauthorized: false
                 }
@@ -24,18 +24,23 @@ module.exports = ({ env }) => ({
     },
 });
 
-//module.exports = ({ env }) => ({
-//    defaultConnection: 'default',
-//    connections: {
-//        default: {
-//            connector: 'bookshelf',
-//            settings: {
-//                client: 'sqlite',
-//                filename: env('DATABASE_FILENAME', '.tmp/data.db'),
-//            },
-//            options: {
-//                useNullAsDefault: true,
-//            },
-//        },
-//    },
-//});
+const testingConfig = ({ env }) => ({
+    defaultConnection: 'default',
+    connections: {
+        default: {
+            connector: 'bookshelf',
+            settings: {
+                client: 'sqlite',
+                filename: env('DATABASE_FILENAME', '.tmp/data.db'),
+            },
+            options: {
+                useNullAsDefault: true,
+            },
+        },
+    },
+});
+
+
+const config = process.env.TESTING === "TRUE" ? testingConfig : productionConfig;
+
+module.exports = config;
