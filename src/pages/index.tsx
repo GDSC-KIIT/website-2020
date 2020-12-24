@@ -3,7 +3,6 @@ import Footer from "../components/Footer/Footer";
 import Landing from "../components/Landing/Landing";
 import ReadyToTalk from "../components/ReadyToTalk/ReadyToTalk";
 
-
 import Navbar from "../components/Navbar/Navbar";
 export default function Home() {
   return (
