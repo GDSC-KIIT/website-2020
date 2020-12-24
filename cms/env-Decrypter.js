@@ -8,12 +8,14 @@ const rl = require('readline').createInterface({
 var cryptoSecret = "";
 
 function getPassword() {
-    console.log("\x1b[31m",'Now, trying to decrypt backend.env for env variables',
-        "\x1b[0m \n");
-    if(process.env.NODE_ENV!=='production'){
-        rl.question('enter password = ', pass=>{
+    console.log("\x1b[31m", 'Now, trying to decrypt backend.env for env variables', "\x1b[0m \n");
+
+    if (process.env.TESTING === "TRUE") {
+        console.log('skipping env variables in production env');
+    } else if (process.env.NODE_ENV !== 'production') {
+        rl.question('enter password = ', pass => {
             cryptoSecret = pass;
-            console.log("\x1b[34m","\x1b[45m", 'trying now to DECRYPT .env with given passphrase',"\x1b[0m \n");
+            console.log("\n \x1b[34m", "\x1b[45m", 'trying now to DECRYPT .env with given passphrase', "\x1b[0m \n");
             rl.close();
             decrypter();
         });

@@ -8,11 +8,12 @@ const rl = require('readline').createInterface({
 var cryptSecret = "";
 
 function setPassword() {
-    console.log("\x1b[31m",'You are setting new for env variables\n You will be prompted to enter a password for the encryption', "\x1b[0m \n");
-    if(process.env.NODE_ENV!=='production'){
-        rl.question('enter password = ', pass=>{
+    console.log("\x1b[31m", 'You are setting new for env variables\n You will be prompted to enter a password for the encryption', "\x1b[0m \n");
+
+    if (process.env.NODE_ENV !== 'production') {
+        rl.question('enter password = ', pass => {
             cryptSecret = pass;
-            console.log("\x1b[34m","\x1b[45m", 'trying now to ENCRYPT .env with given passphrase',"\x1b[0m \n");
+            console.log("\n \x1b[34m", "\x1b[45m", 'trying now to ENCRYPT .env with given passphrase', "\x1b[0m \n");
             rl.close();
             encrypter();
         });
