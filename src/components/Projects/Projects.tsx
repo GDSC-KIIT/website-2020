@@ -27,9 +27,9 @@ export default function Projects() {
               src="https://normat.com.pe/img/otros/trabajando.gif"
               className={styles.intro_image}
             />
-          </div> 
+          </div>
           <div className={`col-12 col-lg-6 ${styles.container}  pb-5`}>
-            <img src ="/logo.png" className={`${styles.header}`}/>
+        <h1 className={`${styles.header}`}>OUR PROJECTS</h1>
 
             <p className={styles.dsc_description}>
               Google collaborates with university students who are enthusiastic

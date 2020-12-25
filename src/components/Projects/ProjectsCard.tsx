@@ -5,8 +5,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
+import GitHubIcon from "@material-ui/icons/GitHub";
+import IconButton from "@material-ui/core/IconButton";
 import Typography from '@material-ui/core/Typography';
+import PersonIcon from "@material-ui/icons/Person";
 
 const useStyles = makeStyles({
   root: {
@@ -32,15 +34,27 @@ export default function ProjectsCard() {
           <Typography gutterBottom variant="h5" component="h2">
             Project
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec ante erat. Nulla augue ipsum, pretium eget dui at, malesuada.
-          </Typography>
+          <div
+                                     style={{
+                                       display: "flex",
+                                       justifyContent: "flex-start",
+                                       alignItems: "center",
+                                       marginTop: 10
+                                     }}
+                                   >
+                                   //contributers names with their icon
+                                     <PersonIcon
+
+                                       style={{ marginRight: 10 }}
+                                       />
+                                   </div>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+
+                         <IconButton aria-label="Github" color="primary">
+                           <GitHubIcon fill="#fff" />
+                         </IconButton>
       </CardActions>
     </Card>
   );
