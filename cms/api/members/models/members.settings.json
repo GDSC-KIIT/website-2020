@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "members",
+  "info": {
+    "name": "members"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "github": {
+      "type": "string"
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "linkedIn": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "image_path": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}
