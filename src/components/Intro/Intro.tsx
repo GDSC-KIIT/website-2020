@@ -2,10 +2,6 @@ import styles from "./intro.module.css";
 export default function Intro() {
   return (
     <>
-      {/* <img
-        src="https://i.imgur.com/tzzAJeX.png"
-        className={styles.background_img}
-      /> */}
       <div className={`container my-5`}>
         <div className="row">
           <div className={`col-12 col-lg-6 ${styles.welcome_team}  pb-5`}>
@@ -22,7 +18,7 @@ export default function Intro() {
           </div>
           <div className={`col-lg-6 ${styles.introImg}`}>
             <img
-              src="https://ik.imagekit.io/xvvhd5ujib/undraw_work_chat_erdt_lwh6N8gXZ.svg"
+              src="https://i.imgur.com/lgc8yo3.png"
               className={styles.intro_image}
             />
           </div>
