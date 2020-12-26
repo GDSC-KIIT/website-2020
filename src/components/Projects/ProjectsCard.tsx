@@ -42,11 +42,12 @@ export default function ProjectsCard() {
                                        marginTop: 10
                                      }}
                                    >
-                                   //contributers names with their icon
+
                                      <PersonIcon
 
-                                       style={{ marginRight: 10 }}
-                                       />
+                                       style={{ marginRight: 10 }}/>
+
+                                    <Typography>Project Members Name</Typography>
                                    </div>
         </CardContent>
       </CardActionArea>

@@ -68,7 +68,7 @@ const Navbar = () => {
                     <Link href="/events"><Typography variant="body2" style={{cursor : 'pointer'}}>Events</Typography></Link>
                 </Grid>
                 <Grid item>
-                    <Link href="/blogs"><Typography variant="body2" style={{cursor : 'pointer'}}>Blogs</Typography></Link>
+                    <Link href="https://medium.com/dsckiit"><Typography variant="body2" style={{cursor : 'pointer'}}>Blogs</Typography></Link>
                 </Grid>
                 <Grid item>
                     <Link href="/mentors"><Typography variant="body2" style={{cursor : 'pointer'}}>Mentors</Typography></Link>
