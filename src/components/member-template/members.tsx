@@ -27,7 +27,6 @@ function Members({ memberInfo, displayHeader }: any) {
   const imageUrl = getStrapiMedia(memberInfo.image_path);
   return (
     <>
-      {console.log(memberInfo, displayHeader)}
       {displayHeader ? (
         <center className={styles.techDesc}>
           <h3>{positionHeading[memberInfo.order]}</h3>

@@ -9,12 +9,5 @@ export function getStrapiURL(path = "") {
     const requestUrl:string = getStrapiURL(path);
     const response = await fetch(requestUrl);
     const data = await response.json();
-  
-    return data.sort((a:any, b:any) => {
-        if (a.order > b.order) {
-          return 1
-        } else {
-          return -1
-        }
-      })
+    return data;
   }

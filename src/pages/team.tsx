@@ -57,16 +57,13 @@ export default function Team({
       <section>
         <div className={styles.container}>
           {allMembersData.map(({ ...member }) => {
-            {
-              console.log(order);
-            }
             if (member.order > order) {
               order = member.order;
               displayHeader = true;
             } else {
               displayHeader = false;
             }
-            // console.log(displayHeader)
+
             return (
               <Member
                 memberInfo={member}
@@ -85,7 +82,16 @@ export default function Team({
 export const getStaticProps: GetStaticProps = async () => {
   // Run API calls in parallel
   const allMembersData = await fetchAPI("/members");
+  allMembersData.sort((a: any, b: any) => {
+    if (a.order > b.order) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
   return {
-    props: { allMembersData },
+    props: {
+      allMembersData,
+    },
   };
 };
