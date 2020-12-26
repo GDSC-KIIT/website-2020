@@ -1,10 +1,11 @@
 import Member from "../components/member-template/members";
-import { getMembersData } from "../lib/members";
 import ReadyToTalk from "../components/ReadyToTalk/ReadyToTalk";
 import TeamIntro from "../components/Intro/Intro";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 import { GetStaticProps } from "next";
+import { fetchAPI } from "../lib/api";
+import { useEffect } from "react";
 import Head from "next/head";
 import styles from "../components/member-template/members.module.css";
 let order = -1;
@@ -24,6 +25,10 @@ export default function Team({
     order: number;
   }[];
 }) {
+  useEffect(() => {
+    order = -1;
+  });
+
   return (
     <>
       <Head>
@@ -44,7 +49,7 @@ export default function Team({
       </Head>
       <img
         src="https://i.imgur.com/tzzAJeX.png"
-        style={{ position: "fixed", opacity: 0.1 }}
+        style={{ position: "fixed", opacity: 0.1, top: 0 }}
       />
 
       <Navbar />
@@ -52,14 +57,23 @@ export default function Team({
       <section>
         <div className={styles.container}>
           {allMembersData.map(({ ...member }) => {
+            {
+              console.log(order);
+            }
             if (member.order > order) {
-              order++;
+              order = member.order;
               displayHeader = true;
             } else {
               displayHeader = false;
             }
             // console.log(displayHeader)
-            return <Member memberInfo={member} displayHeader={displayHeader} />;
+            return (
+              <Member
+                memberInfo={member}
+                key={member.id}
+                displayHeader={displayHeader}
+              />
+            );
           })}
         </div>
       </section>
@@ -69,10 +83,9 @@ export default function Team({
   );
 }
 export const getStaticProps: GetStaticProps = async () => {
-  const allMembersData = getMembersData();
+  // Run API calls in parallel
+  const allMembersData = await fetchAPI("/members");
   return {
-    props: {
-      allMembersData,
-    },
+    props: { allMembersData },
   };
 };
