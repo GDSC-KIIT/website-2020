@@ -17,14 +17,14 @@ export function fetchMediumBlogPosts() {
 		.then((data) => {
 			const blogposts: Array<IBlogPost> = [];
 			if (!data || !data.items) return [];
-			for (const medmitem of data.items) {
+			for (const medm of data.items) {
 				blogposts.push({
-					author: medmitem.author,
-					categories: medmitem.categories,
-					link: medmitem.link,
-					image: medmitem.thumbnail,
-					title: medmitem.title,
-					date: medmitem.pubDate,
+					author: medm.author,
+					categories: medm.categories,
+					link: medm.link,
+					image: medm.thumbnail,
+					title: medm.title,
+					date: medm.pubDate,
 				});
 			}
 			return blogposts;

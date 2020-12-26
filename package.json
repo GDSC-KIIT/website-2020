@@ -9,7 +9,7 @@
 		"dev": "next dev --port=3333",
 		"build": "next build",
 		"start": "next start",
-		"format:pretty": "pretty-quick --ignore-path=.prettierignore --verbose --no-restage"
+		"format:prettier": "prettier --write ."
 	},
 	"dependencies": {
 		"@material-ui/core": "^4.11.2",
@@ -31,7 +31,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "pretty-quick --staged"
+			"pre-commit": "pretty-quick --staged --ignore-path=.prettierignore --verbose"
 		}
 	}
 }
