@@ -2,19 +2,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [ "src/containers/*" ],
+      "@/components/*": ["src/containers/*"],
       "@/lib/*": ["src/lib/*"],
-      "@/pages/*": [ "src/pages/*" ],
-      "@/styles/*": [ "src/styles/*" ]
+      "@/pages/*": ["src/pages/*"],
+      "@/styles/*": ["src/styles/*"]
     },
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
-    "lib": [
-      "es6",
-      "dom",
-      "esnext.asynciterable"
-    ],
+    "lib": ["es6", "dom", "esnext.asynciterable"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "preserve",
@@ -44,9 +40,5 @@
     "src/setupTests.ts",
     "cms"
   ],
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

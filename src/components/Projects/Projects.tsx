@@ -1,22 +1,21 @@
-import styles from './projects.module.css';
-import ProjectsCard from './ProjectsCard';
-import {Grid} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import styles from "./projects.module.css";
+import ProjectsCard from "./ProjectsCard";
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   gridContainer: {
-      paddingLeft: "40 px",
-      paddingRight: "40 px"
-  }
+    paddingLeft: "40 px",
+    paddingRight: "40 px",
+  },
 });
 
 export default function Projects() {
-    const classes = useStyles();
-
+  const classes = useStyles();
 
   return (
     <>
-       <img
+      <img
         src="https://i.imgur.com/tzzAJeX.png"
         className={styles.background_img}
       />
@@ -29,7 +28,7 @@ export default function Projects() {
             />
           </div>
           <div className={`col-12 col-lg-6 ${styles.container}  pb-5`}>
-        <h1 className={`${styles.header}`}>OUR PROJECTS</h1>
+            <h1 className={`${styles.header}`}>OUR PROJECTS</h1>
 
             <p className={styles.dsc_description}>
               Google collaborates with university students who are enthusiastic
@@ -42,26 +41,26 @@ export default function Projects() {
           </div>
         </div>
         <div className="row margin">
-            <Grid container spacing={4} className={classes.gridContainer}>
-                <Grid item xs={12} sm={6} md={4}>
-                    <ProjectsCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <ProjectsCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <ProjectsCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <ProjectsCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <ProjectsCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <ProjectsCard />
-                </Grid>
+          <Grid container spacing={4} className={classes.gridContainer}>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProjectsCard />
             </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProjectsCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProjectsCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProjectsCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProjectsCard />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4}>
+              <ProjectsCard />
+            </Grid>
+          </Grid>
         </div>
       </div>
     </>

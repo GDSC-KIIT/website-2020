@@ -22,7 +22,7 @@ export default function Home() {
       </Head>
 
       <Navbar />
-        <Events/>
+      <Events />
 
       <ReadyToTalk />
       <Footer />
