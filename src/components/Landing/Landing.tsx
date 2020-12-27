@@ -1,5 +1,32 @@
 import styles from './landing.module.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles((theme) => ({
+	eventContainer: {
+		paddingTop: theme.spacing(3),
+		paddingBottom: theme.spacing(3),
+	},
+	card: {
+		maxWidth: '100%',
+	},
+
+	cardActions: {
+		display: 'flex',
+		margin: '0 10px',
+		justifyContent: 'space-between',
+	},
+	date: {
+		display: 'flex',
+	},
+}));
 export default function Landing() {
+	const classes = useStyles();
 	return (
 		<>
 			<img
@@ -27,6 +54,77 @@ export default function Landing() {
 						/>
 					</div>
 				</div>
+			</div>
+			<div className={`container my-5`}>
+				<h1 className={`${styles.about}`}>ABOUT DSC</h1>
+			</div>
+			<div className="App">
+				<Container maxWidth="lg" className={classes.eventContainer}>
+					<Grid container spacing={3}>
+						<Grid item xs={12} sm={6} md={4}>
+							<Card className={classes.card}>
+								<CardActionArea>
+									<CardContent>
+										<Typography gutterBottom variant="h5" component="h2">
+											Concept of DSC ?
+										</Typography>
+										<Typography
+											variant="body2"
+											color="textSecondary"
+											component="p">
+											The DSC program is a grassroots channel through which
+											Google provides development skills, mobile and web
+											development skills for students, towards employability.
+										</Typography>
+									</CardContent>
+								</CardActionArea>
+							</Card>
+						</Grid>
+						<Grid item xs={12} sm={6} md={4}>
+							<Card className={classes.card}>
+								<CardActionArea>
+									<CardContent>
+										<Typography gutterBottom variant="h5" component="h2">
+											Why DSC ?
+										</Typography>
+										<Typography
+											variant="body2"
+											color="textSecondary"
+											component="p">
+											The DSC program is focused with a vision to inculcate
+											individual’s with skills and knowledge, who are
+											intrigued about the possibilities that developer
+											technologies can bring changes to this world.
+										</Typography>
+									</CardContent>
+								</CardActionArea>
+							</Card>
+						</Grid>
+						<Grid item xs={12} sm={6} md={4}>
+							<Card className={classes.card}>
+								<CardActionArea>
+									<CardContent>
+										<Typography gutterBottom variant="h5" component="h2">
+											Target Audiences :
+										</Typography>
+										<Typography
+											variant="body2"
+											color="textSecondary"
+											component="p">
+											Anyone who wants to build products,students from all
+											undergraduate or graduate programs inquisitive about
+											developer technologies and able to gain his/her skills
+											and gain interest towards development.
+										</Typography>
+									</CardContent>
+								</CardActionArea>
+							</Card>
+						</Grid>
+					</Grid>
+				</Container>
+			</div>
+			<div className={`container my-5`}>
+				<h1 className={`${styles.about}`}>TECH STACKS</h1>
 			</div>
 		</>
 	);
