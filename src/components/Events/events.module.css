@@ -1,16 +1,9 @@
-.background_img {
-  position: fixed;
-  opacity: 0.1;
-  width: 100%;
-  max-height: 100%;
-  background-size: contain;
-}
 .intro {
   margin-top: 200px;
 }
 .header {
-  width: 100%;
   font-family: serif;
+  text-align: center;
   color: #0e1c81;
 }
 .intro_image {
@@ -24,13 +17,11 @@
   color: #576877;
 }
 
-.margin {
-  margin-top: 5px;
-}
-
 .container {
   margin-top: 80px;
 }
+
+/* Our Team */
 
 .wrapper {
   display: flex;
@@ -81,12 +72,6 @@
 .introImg {
   padding-top: 90px;
 }
-
-/* .indexcard :hover {
-    background-color: darkslategray;
-    color: white;
-} */
-
 @media only screen and (max-width: 993px) {
   .introImg {
     display: none;

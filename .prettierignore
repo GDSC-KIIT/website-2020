@@ -1,0 +1,11 @@
+# Ignore artifacts:
+build
+coverage
+"node_modules",
+"build",
+"scripts",
+"acceptance-tests",
+"webpack",
+"jest",
+"src/setupTests.ts",
+"cms"

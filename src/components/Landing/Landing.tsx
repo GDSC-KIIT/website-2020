@@ -2,14 +2,14 @@ import styles from "./landing.module.css";
 export default function Landing() {
   return (
     <>
-       <img
+      <img
         src="https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-012.jpg"
         className={styles.background_img}
       />
       <div className={`container my-5`}>
         <div className="row">
           <div className={`col-12 col-lg-6 ${styles.container}  pb-5`}>
-            <img src ="/logo.png" className={`${styles.header}`}/>
+            <img src="/logo.png" className={`${styles.header}`} />
 
             <p className={styles.dsc_description}>
               Google collaborates with university students who are enthusiastic

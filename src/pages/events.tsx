@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Footer from "../components/Footer/Footer";
-import Project from "../components/Projects/Projects";
+import Events from "../components/Events/Events";
 import ReadyToTalk from "../components/ReadyToTalk/ReadyToTalk";
 
 import Navbar from "../components/Navbar/Navbar";
@@ -22,9 +22,9 @@ export default function Home() {
       </Head>
 
       <Navbar />
-      <Project />
-      <ReadyToTalk />
+      <Events />
 
+      <ReadyToTalk />
       <Footer />
     </>
   );
