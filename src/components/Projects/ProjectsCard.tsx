@@ -6,9 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import PersonIcon from '@material-ui/icons/Person';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
 	root: {
@@ -48,9 +48,14 @@ export default function ProjectsCard() {
 				</CardContent>
 			</CardActionArea>
 			<CardActions>
-				<IconButton aria-label="Github" color="primary">
-					<GitHubIcon fill="#fff" />
-				</IconButton>
+				<Button
+					variant="outlined"
+					color="primary"
+					startIcon={<GitHubIcon />}
+					href="https://github.com
+				">
+					GitHub
+				</Button>
 			</CardActions>
 		</Card>
 	);

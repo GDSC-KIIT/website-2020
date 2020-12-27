@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "projects",
   "info": {
-    "name": "projects"
+    "name": "projects",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -27,6 +28,17 @@
     },
     "members": {
       "type": "json"
+    },
+    "project_logo": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }
