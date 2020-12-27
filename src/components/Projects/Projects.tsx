@@ -25,7 +25,7 @@ export default function Projects() {
 						/>
 					</div>
 					<div className={`col-12 col-lg-6 ${styles.container}  pb-5`}>
-						<h1 className={`${styles.header}`}>OUR PROJECTS</h1>
+						<h1 className={`${styles.header}`}>PROJECTS BY DSC KIIT</h1>
 
 						<p className={styles.dsc_description}>
 							Google collaborates with university students who are enthusiastic about
@@ -37,6 +37,22 @@ export default function Projects() {
 						</p>
 					</div>
 				</div>
+
+				<div className={`${styles.our_team} mt-5`}>
+					<h1 className={styles.header}>Our Projects</h1>
+				</div>
+
+				<div className={styles.wrapper}>
+					<div className={`${styles.blue} ${styles.ball}`}></div>
+					<div className={`${styles.red} ${styles.ball}`}></div>
+					<div className={`${styles.yellow} ${styles.ball}`}></div>
+					<div className={`${styles.green} ${styles.ball}`}></div>
+				</div>
+
+				<h5 style={{ textAlign: 'center', color: 'grey' }}>
+					These are the amazing projects made by DSC KIIT Team
+				</h5>
+
 				<div className="row margin">
 					<Grid container spacing={4} className={classes.gridContainer}>
 						<Grid item xs={12} sm={6} md={4}>
