@@ -1,34 +1,14 @@
-import Member from "../components/member-template/members";
 import ReadyToTalk from "../components/ReadyToTalk/ReadyToTalk";
-import TeamIntro from "../components/Intro/Intro";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import Blogpost from "../components/Blog/Blog";
+import BlogIntro from "../components/Intro/Blog-intro";
 import { GetStaticProps } from "next";
 import { fetchAPI } from "../lib/api";
-import { useEffect } from "react";
 import Head from "next/head";
-import styles from "../components/member-template/members.module.css";
-let order = -1;
-let displayHeader = false;
 const siteTitle = "DSC Team";
-export default function Team({
-  allMembersData,
-}: {
-  allMembersData: {
-    id: string;
-    name: string;
-    position: string;
-    image_path: string;
-    twitter: string;
-    github: string;
-    linkedIn: string;
-    order: number;
-  }[];
-}) {
-  useEffect(() => {
-    order = -1;
-  });
-
+export default function Blog({ blogs }: any) {
+  console.log(blogs);
   return (
     <>
       <Head>
@@ -47,32 +27,17 @@ export default function Team({
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         />
       </Head>
+
       <img
-        src="https://i.imgur.com/tzzAJeX.png"
+        src="https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-012.jpg"
         style={{ position: "fixed", opacity: 0.1, top: 0 }}
       />
-
       <Navbar />
-      <TeamIntro />
+      <BlogIntro />
       <section>
-        <div className={styles.container}>
-          {allMembersData.map(({ ...member }) => {
-            if (member.order > order) {
-              order = member.order;
-              displayHeader = true;
-            } else {
-              displayHeader = false;
-            }
-
-            return (
-              <Member
-                memberInfo={member}
-                key={member.id}
-                displayHeader={displayHeader}
-              />
-            );
-          })}
-        </div>
+        {blogs.map(({ ...blog }, id: number) => {
+          return <Blogpost blog={blog} key={id} layout={id} />;
+        })}
       </section>
       <ReadyToTalk />
       <Footer />
@@ -81,9 +46,9 @@ export default function Team({
 }
 export const getStaticProps: GetStaticProps = async () => {
   // Run API calls in parallel
-  const allMembersData = await fetchAPI("/members");
-  allMembersData.sort((a: any, b: any) => {
-    if (a.order > b.order) {
+  const blogs = await fetchAPI("/blogs");
+  blogs.sort((a: any, b: any) => {
+    if (a.published_date < b.published_date) {
       return 1;
     } else {
       return -1;
@@ -91,7 +56,7 @@ export const getStaticProps: GetStaticProps = async () => {
   });
   return {
     props: {
-      allMembersData,
+      blogs,
     },
   };
 };
