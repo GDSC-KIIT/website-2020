@@ -1,69 +1,69 @@
 .actionButton {
-  margin-right: 1em;
+	margin-right: 1em;
 }
 
 .bottomNav {
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  display: none;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	display: none;
 }
 
 .navToggle {
-  display: none;
-  position: relative;
+	display: none;
+	position: relative;
 }
 
 .navToolbar {
-  padding: "0px 4em";
+	padding: '0px 4em';
 }
 
 .bottomNav:nth-child(4) {
-  display: none;
+	display: none;
 }
 
 .bottomNav nav div {
-  min-width: 0px;
+	min-width: 0px;
 }
 
 .nav a {
-  text-decoration: none;
-  color: black;
+	text-decoration: none;
+	color: black;
 }
 .nav a:hover {
-  color: var(--default-color);
+	color: var(--default-color);
 }
 
 .simpleContainer {
-  padding: "2em";
+	padding: '2em';
 }
 
 @media screen and (max-width: 960px) {
-  .simpleContainer {
-    padding: "2em 1em";
-  }
-  .header div {
-    text-align: center;
-  }
-  .navToggle {
-    display: block;
-  }
+	.simpleContainer {
+		padding: '2em 1em';
+	}
+	.header div {
+		text-align: center;
+	}
+	.navToggle {
+		display: block;
+	}
 
-  .footer {
-    display: none;
-  }
+	.footer {
+		display: none;
+	}
 
-  .nav:nth-child(2) {
-    display: none;
-  }
-  .bottomNav {
-    display: block;
-  }
+	.nav:nth-child(2) {
+		display: none;
+	}
+	.bottomNav {
+		display: block;
+	}
 
-  .eventsCard button {
-    display: none;
-  }
-  .navToolbar {
-    padding: "0px";
-  }
+	.eventsCard button {
+		display: none;
+	}
+	.navToolbar {
+		padding: '0px';
+	}
 }

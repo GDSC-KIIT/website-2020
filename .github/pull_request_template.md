@@ -2,19 +2,19 @@
 
 ## Proposed changes
 
-Summarize your changes here
+<!--  Summarizing your changes here
+    would help understand the changes you made
+
+    This is a comment. You don't need to delete these lines
+ -->
 
 ## Types of changes
 
 Put an `x` in the boxes that apply.
 
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Bugfix (non-breaking change which fixes an issue)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Documentation Update (if none of the other choices applies)
-
-## Pertaining Issues and PRs
-
-- Please add the links to the dependent PR/issue need to be merged before this (if any).
+-   [ ] New feature
+-   [ ] Change in cms/backend
+-   [ ] Changed existing code
+-   [ ] Added dependencies
 
 ## Notes for maintainer:

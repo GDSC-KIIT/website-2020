@@ -1,11 +1,5 @@
-# Ignore artifacts:
-build
+.next/
 coverage
-"node_modules",
-"build",
-"scripts",
-"acceptance-tests",
-"webpack",
-"jest",
-"src/setupTests.ts",
-"cms"
+node_modules
+cms
+package-lock.json
