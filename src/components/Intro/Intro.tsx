@@ -8,12 +8,11 @@ export default function Intro() {
 						<h1 className={`${styles.header}`}>MEET OUR TEAM</h1>
 
 						<p className={styles.dsc_description}>
-							Google collaborates with university students who are enthusiastic about
-							growing developer communities and supports them with commencing student
-							clubs on their campuses. Developer Student Clubs is a program that
-							recognizes and supports university students who are excited about
-							growing developer communities that cultivate learning, sharing, and
-							collaboration.
+							We are the team behind DSC KIIT. We are a proud community of passionate
+							programmers who continuously strive to both improve ourselves and also
+							help others in their programming endavours. We aim to foster an
+							inclusive society wherein our beloved members have an opportunity to
+							Network, Learn and Grow as both individuals and a team.
 						</p>
 					</div>
 					<div className={`col-lg-6 ${styles.introImg}`}>
