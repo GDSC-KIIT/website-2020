@@ -26,11 +26,13 @@
 	text-align: center;
 	color: #0e1c81;
 }
+.d {
+	text-align: center;
+}
 
 .container {
 	margin-top: 80px;
 }
-
 /* Our Team */
 
 .wrapper {

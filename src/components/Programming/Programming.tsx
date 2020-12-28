@@ -148,7 +148,7 @@ export default function Programming() {
 									</ul>
 								</li>
 								<li>
-									/<span className={classes.html_1}>&lt;html&gt;</span>
+									<span className={classes.html_1}>&lt;/html&gt;</span>
 								</li>
 							</ul>
 						</div>
