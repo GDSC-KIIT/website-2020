@@ -2,7 +2,7 @@
 	position: fixed;
 	opacity: 0.1;
 	width: auto;
-	max-height: 100%;
+	max-height: 200%;
 	background-size: contain;
 }
 .intro {
@@ -82,7 +82,13 @@
 .introImg {
 	padding-top: 90px;
 }
-@media only screen and (max-width: 993px) {
+.discord {
+	background-color: black;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 900px) {
 	.introImg {
 		display: none;
 	}

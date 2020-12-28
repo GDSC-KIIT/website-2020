@@ -1,11 +1,10 @@
 .terminalWindow {
 	text-align: left;
 	width: 50rem;
-	height: 33rem;
+	height: 31rem;
 	border-radius: 10px;
 	margin: auto;
 	position: relative;
-	margin-bottom: 50px;
 }
 
 .terminalWindow header {
@@ -78,4 +77,10 @@
 
 .terminalWindow .green {
 	color: green;
+}
+@media only screen and (max-width: 900px) {
+	.terminalWindow {
+		width: 20rem;
+		height: 35rem;
+	}
 }

@@ -6,6 +6,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import Programming from '../Programming/Programming';
+import WidgetBot from '@widgetbot/react-embed';
 
 const useStyles = makeStyles((theme) => ({
 	eventContainer: {
@@ -126,6 +128,16 @@ export default function Landing() {
 			<div className={`container my-5`}>
 				<h1 className={`${styles.about}`}>TECH STACKS</h1>
 			</div>
+			<Programming />
+			<div className={`container my-5`}>
+				<h1 className={`${styles.about}`}>JOIN OUR DISCORD </h1>
+
+				<iframe
+					className={`${styles.discord}`}
+					src="https://e.widgetbot.io/channels/743870317738328067/768057468055978014"
+					height="600"
+					width="800"></iframe>
+			</div>{' '}
 		</>
 	);
 }

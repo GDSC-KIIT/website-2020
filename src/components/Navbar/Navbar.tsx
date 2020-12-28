@@ -62,7 +62,7 @@ const Navbar = () => {
 								icon={<LibraryBooksIcon />}
 								link="/projects"
 							/>
-							<DrawerItem label="Blogs" icon={<BookIcon />} link="/blogs" />
+							<DrawerItem label="Blogs" icon={<BookIcon />} link="/blog" />
 							<DrawerItem label="Events" icon={<EmojiEventsIcon />} link="/events" />
 							<DrawerItem label="Teams" icon={<GroupIcon />} link="/team" />
 							<DrawerItem label="Mentors" icon={<ContactsIcon />} link="/mentors" />
