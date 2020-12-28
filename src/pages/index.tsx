@@ -4,19 +4,6 @@ import Landing from '../components/Landing/Landing';
 import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
 import Navbar from '../components/Navbar/Navbar';
 
-import nookies from 'nookies';
-
-export function getServerSideProps(ctx: any) {
-	const cookies = nookies.get(ctx);
-	console.log(cookies, 'are got from server in index page');
-	console.log(ctx.req.headers.cookie, 'check header', ctx.req.headers);
-	return {
-		props: {
-			done: true,
-		},
-	};
-}
-
 export default function Home() {
 	return (
 		<>

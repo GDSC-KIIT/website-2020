@@ -1,5 +1,5 @@
-import { GetServerSidePropsContext } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import type { GetServerSidePropsContext } from 'next';
+import type { ParsedUrlQuery } from 'querystring';
 
 import { setCookie } from 'nookies';
 
