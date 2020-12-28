@@ -27,7 +27,6 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import BookIcon from '@material-ui/icons/Book';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 
-import { getUser } from '@/lib/user/getUser';
 import { GoogleAuthLogin } from '@/components/AuthProvider';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,10 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
 	const [navState, navToggle] = useState(false);
-
-	useEffect(() => {
-		getUser();
-	}, []);
 
 	const classes = useStyles();
 

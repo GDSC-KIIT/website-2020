@@ -1,21 +1,23 @@
 import axios from 'axios';
 
-const token: string =
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjA5MTU4OTkyLCJleHAiOjE2MTE3NTA5OTJ9.Zu7x7SiDPCfL2-gK4lM4eQm8K9vjfW0RXZEiukxHY4I';
+import { backendUrls } from '@/lib/backendUrls';
 
-export function getUser() {
-	return axios({
-		method: 'GET',
-		url: 'http://localhost:9000/sample-authenticated-views',
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	})
+interface IData {
+	jwt: string;
+	user: {
+		username: string;
+		email: string;
+		provider: 'google' | string;
+	};
+}
+
+export function getUserToken(access_token: string | string[] | undefined) {
+	return axios
+		.get(backendUrls['auth_callback'] + access_token)
 		.then((response) => response.data)
-		.then((data) => {
-			console.log('the data recieved was ', data);
-		})
+		.then((data: IData) => data.jwt)
 		.catch((err) => {
-			console.info(err);
+			console.log(err, 'while fetching user token');
+			return null;
 		});
 }
