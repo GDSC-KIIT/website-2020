@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Footer from '../components/Footer/Footer';
 import Landing from '../components/Landing/Landing';
 import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
-import Programming from '../components/Programming/Programming';
 import Navbar from '../components/Navbar/Navbar';
 export default function Home() {
 	return (
@@ -23,7 +22,6 @@ export default function Home() {
 
 			<Navbar />
 			<Landing />
-			<Programming />
 			<ReadyToTalk />
 			<Footer />
 		</>

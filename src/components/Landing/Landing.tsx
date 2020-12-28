@@ -6,6 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import Programming from '../Programming/Programming';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
 	eventContainer: {
@@ -23,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	date: {
 		display: 'flex',
+		button: {
+			backgroundColor: '#746B6B',
+			color: 'white',
+		},
 	},
 }));
 export default function Landing() {
@@ -125,6 +132,24 @@ export default function Landing() {
 			</div>
 			<div className={`container my-5`}>
 				<h1 className={`${styles.about}`}>TECH STACKS</h1>
+			</div>
+			<Programming />
+			<div className={`container my-5`}>
+				<h1 className={`${styles.about}`}>JOIN OUR DISCORD</h1>
+				<p className={styles.d}>
+					Join our Discord Channel to know more about the Activities, Sessions and other
+					fun stuff.
+				</p>
+				<Box textAlign="center">
+					<Button
+						variant="contained"
+						style={{ backgroundColor: '#313B86', color: 'white' }}
+						onClick={() => {
+							window.open('https://discord.com/invite/nYQCMKF');
+						}}>
+						Join us on <img src="/discord.png" height="30px" alt="discord" />
+					</Button>
+				</Box>
 			</div>
 		</>
 	);
