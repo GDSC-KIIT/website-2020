@@ -21,6 +21,11 @@
 	margin-top: 20px;
 	color: #576877;
 }
+.about {
+	font-family: serif;
+	text-align: center;
+	color: #0e1c81;
+}
 
 .container {
 	margin-top: 80px;

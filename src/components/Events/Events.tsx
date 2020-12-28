@@ -9,19 +9,30 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import EventIcon from '@material-ui/icons/Event';
 
-const useStyles = makeStyles({
-	root: {
-		maxWidth: 340,
-		marginLeft: 50,
-		marginButtom: 50,
+const useStyles = makeStyles((theme) => ({
+	eventContainer: {
+		paddingTop: theme.spacing(3),
+		paddingBottom: theme.spacing(3),
+	},
+	card: {
+		maxWidth: '100%',
 	},
 	media: {
-		height: 200,
+		height: 240,
 	},
-});
+	cardActions: {
+		display: 'flex',
+		margin: '0 10px',
+		justifyContent: 'space-between',
+	},
+	date: {
+		display: 'flex',
+	},
+}));
 
 export default function Events() {
 	const classes = useStyles();
@@ -37,32 +48,52 @@ export default function Events() {
 					host more events Stay tuned for future events!
 				</p>
 			</div>
-			<Grid item>
-				<Card className={classes.root}>
-					<CardActionArea>
-						<CardMedia className={classes.media} image="" title="DSC KIIT Events" />
-						<CardContent>
-							<Typography gutterBottom variant="h5" component="h2">
-								Event
-							</Typography>
-							<Typography variant="body2" color="textSecondary" component="p">
-								description about the event
-							</Typography>
-						</CardContent>
-					</CardActionArea>
-					<Grid style={{ padding: 3 }}>
-						<Typography>
-							<EventIcon />
-							DD/MM/YY
-						</Typography>
+			<div className="App">
+				<Container maxWidth="lg" className={classes.eventContainer}>
+					<Grid container spacing={3}>
+						<Grid item xs={12} sm={6} md={4}>
+							<Card className={classes.card}>
+								<CardActionArea>
+									<CardMedia
+										className={classes.media}
+										image="https://th.bing.com/th/id/OIP.-IrELnNl4M2yJPk6PlelYAHaE7?pid=Api&rs=1"
+										title="Event Image"
+									/>
+									<CardContent>
+										<Typography gutterBottom variant="h5" component="h2">
+											Event 1
+										</Typography>
+										<Typography
+											variant="body2"
+											color="textSecondary"
+											component="p">
+											The description of the event is given here
+										</Typography>
+									</CardContent>
+								</CardActionArea>
+								<CardActions className={classes.cardActions}>
+									<Box className={classes.date}>
+										<EventIcon />
+										<Box ml={2}>
+											<Typography
+												variant="subtitle2"
+												color="textSecondary"
+												component="p">
+												Date
+											</Typography>
+										</Box>
+									</Box>
+								</CardActions>
+								<CardActions>
+									<Button size="small" color="primary">
+										Learn More
+									</Button>
+								</CardActions>
+							</Card>
+						</Grid>
 					</Grid>
-					<CardActions>
-						<Button size="small" color="primary">
-							Learn More
-						</Button>
-					</CardActions>
-				</Card>
-			</Grid>
+				</Container>
+			</div>
 		</>
 	);
 }

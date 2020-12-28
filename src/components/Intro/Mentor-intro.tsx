@@ -17,7 +17,10 @@ export default function Intro() {
 						</p>
 					</div>
 					<div className={`col-lg-6 ${styles.introImg}`}>
-						<img src="https://i.imgur.com/lgc8yo3.png" className={styles.intro_image} />
+						<img
+							src="https://image.freepik.com/free-vector/internship-job-illustration_52683-50829.jpg"
+							className={styles.intro_image}
+						/>
 					</div>
 				</div>
 			</div>

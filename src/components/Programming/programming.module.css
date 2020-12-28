@@ -1,0 +1,81 @@
+.terminalWindow {
+	text-align: left;
+	width: 50rem;
+	height: 33rem;
+	border-radius: 10px;
+	margin: auto;
+	position: relative;
+	margin-bottom: 50px;
+}
+
+.terminalWindow header {
+	background: #e0e8f0;
+	height: 30px;
+	border-radius: 8px 8px 0 0;
+	padding-left: 10px;
+}
+.html_1 {
+	color: #0e1c81;
+}
+.x {
+	list-style: none;
+	color: white;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.no_top_padding {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 10px;
+	padding-right: 0px;
+}
+.html_2 {
+	color: BLACK;
+}
+.terminalWindow header .button {
+	width: 12px;
+	height: 12px;
+	margin: 10px 4px 0 0;
+	display: inline-block;
+	border-radius: 8px;
+}
+
+.terminalWindow header .button.green {
+	background: #3bb662;
+}
+
+.terminalWindow header .button.yellow {
+	background: #e5c30f;
+}
+
+.terminalWindow header .button.red {
+	background: #e75448;
+}
+
+.terminalWindow section.terminal {
+	color: white;
+	font-family: Menlo, Monaco, 'Consolas', 'Courier New', 'Courier';
+	font-size: 11pt;
+	background: white;
+	padding: 10px;
+	box-sizing: border-box;
+	position: absolute;
+	width: 100%;
+	top: 30px;
+	bottom: 0;
+	overflow: auto;
+}
+
+.terminalData {
+	display: block;
+}
+
+.terminalWindow .gray {
+	color: gray;
+}
+
+.terminalWindow .green {
+	color: green;
+}
