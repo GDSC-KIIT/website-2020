@@ -1,13 +1,14 @@
 import Head from 'next/head';
-import Footer from '../components/Footer/Footer';
-import Landing from '../components/Landing/Landing';
-import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
-import Navbar from '../components/Navbar/Navbar';
+
+import Landing from '@/components/Landing/Landing';
+import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
+import Layout from '@/components/Layout';
 
 export default function Home() {
+	// TODO: Remove the cdns
 	return (
 		<>
-			<Head>
+			<Head key="link">
 				<link
 					rel="stylesheet"
 					href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -21,10 +22,10 @@ export default function Home() {
 				<link rel="stylesheet" href="./index.css" />
 			</Head>
 
-			<Navbar />
-			<Landing />
-			<ReadyToTalk />
-			<Footer />
+			<Layout pageName="Home">
+				<Landing />
+				<ReadyToTalk />
+			</Layout>
 		</>
 	);
 }
