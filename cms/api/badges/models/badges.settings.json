@@ -1,23 +1,23 @@
 {
-  "kind": "collectionType",
-  "collectionName": "badges",
-  "info": {
-    "name": "badges",
-    "description": ""
-  },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": true
-  },
-  "attributes": {
-    "users_permissions_user": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "badges"
-    },
-    "name": {
-      "type": "string"
-    }
-  }
+	"kind": "collectionType",
+	"collectionName": "badges",
+	"info": {
+		"name": "badges",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"attributes": {
+		"users_permissions_user": {
+			"plugin": "users-permissions",
+			"model": "user",
+			"via": "badges"
+		},
+		"name": {
+			"type": "string"
+		}
+	}
 }

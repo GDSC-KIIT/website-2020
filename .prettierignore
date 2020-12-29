@@ -1,5 +1,11 @@
+
 .next/
+build/
 coverage
 node_modules
-cms
 package-lock.json
+
+cms/.cache
+cms/.env
+cms/.strapi-updater.json
+cms/package-lock.json

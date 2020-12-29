@@ -1,43 +1,43 @@
 {
-  "name": "dsc-kiit-website-backend",
-  "private": true,
-  "version": "2.1.1",
-  "description": "A Strapi application",
-  "scripts": {
-    "dev": "strapi develop",
-    "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi",
-    "postinstall": "node env-Decrypter.js"
-  },
-  "devDependencies": {},
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "find-config": "^1.0.0",
-    "knex": "<0.20.0",
-    "pg": "^8.5.1",
-    "pg-connection-string": "^2.4.0",
-    "sqlite3": "latest",
-    "strapi": "3.4.1",
-    "strapi-admin": "3.4.1",
-    "strapi-connector-bookshelf": "3.4.1",
-    "strapi-plugin-content-manager": "3.4.1",
-    "strapi-plugin-content-type-builder": "3.4.1",
-    "strapi-plugin-email": "3.4.1",
-    "strapi-plugin-upload": "3.4.1",
-    "strapi-plugin-users-permissions": "3.4.1",
-    "strapi-provider-upload-firebase": "0.0.4",
-    "strapi-utils": "3.4.1"
-  },
-  "author": {
-    "name": "aditya-mitra"
-  },
-  "strapi": {
-    "uuid": "417122e4-7fac-4269-8eef-024b017dc879"
-  },
-  "engines": {
-    "node": ">=10.16.0 <=14.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+	"name": "dsc-kiit-website-backend",
+	"private": true,
+	"version": "2.1.1",
+	"description": "A Strapi application",
+	"scripts": {
+		"dev": "strapi develop",
+		"start": "strapi start",
+		"build": "strapi build",
+		"strapi": "strapi",
+		"postinstall": "node env-Decrypter.js"
+	},
+	"devDependencies": {},
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"find-config": "^1.0.0",
+		"knex": "<0.20.0",
+		"pg": "^8.5.1",
+		"pg-connection-string": "^2.4.0",
+		"sqlite3": "latest",
+		"strapi": "3.4.1",
+		"strapi-admin": "3.4.1",
+		"strapi-connector-bookshelf": "3.4.1",
+		"strapi-plugin-content-manager": "3.4.1",
+		"strapi-plugin-content-type-builder": "3.4.1",
+		"strapi-plugin-email": "3.4.1",
+		"strapi-plugin-upload": "3.4.1",
+		"strapi-plugin-users-permissions": "3.4.1",
+		"strapi-provider-upload-firebase": "0.0.4",
+		"strapi-utils": "3.4.1"
+	},
+	"author": {
+		"name": "aditya-mitra"
+	},
+	"strapi": {
+		"uuid": "417122e4-7fac-4269-8eef-024b017dc879"
+	},
+	"engines": {
+		"node": ">=10.16.0 <=14.x.x",
+		"npm": ">=6.0.0"
+	},
+	"license": "MIT"
 }
