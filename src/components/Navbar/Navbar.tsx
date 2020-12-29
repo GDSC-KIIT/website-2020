@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import styles from './navbar.module.css';
@@ -18,14 +18,16 @@ import {
 	Box,
 } from '@material-ui/core';
 
-import GroupIcon from '@material-ui/icons/Group';
-import MenuIcon from '@material-ui/icons/Menu';
+import { Group as GroupIcon, Menu as MenuIcon } from '@material-ui/icons';
+
 import HomeIcon from '@material-ui/icons/Home';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import InfoIcon from '@material-ui/icons/Info';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import BookIcon from '@material-ui/icons/Book';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
+
+import { GoogleAuthLogin } from '@/components/AuthProvider';
 
 const useStyles = makeStyles((theme) => ({
 	navToggle: {
@@ -40,6 +42,7 @@ const Navbar = () => {
 	const [navState, navToggle] = useState(false);
 
 	const classes = useStyles();
+
 	return (
 		<AppBar position="sticky" color="default">
 			<Toolbar
@@ -49,6 +52,7 @@ const Navbar = () => {
 					<IconButton onClick={() => navToggle(true)} className={classes.navToggle}>
 						<MenuIcon />
 					</IconButton>
+					<GoogleAuthLogin />
 					<Drawer anchor="left" open={navState} onClose={() => navToggle(false)}>
 						<List>
 							<ListItem>
@@ -56,6 +60,7 @@ const Navbar = () => {
 									DSC KIIT
 								</Typography>
 							</ListItem>
+
 							<DrawerItem label="Home" icon={<HomeIcon />} link="/" />
 							<DrawerItem
 								label="Projects"
