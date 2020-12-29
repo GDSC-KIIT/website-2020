@@ -3,9 +3,11 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/components/*": ["src/components/*"],
+			"@/hooks/*": ["src/hooks/*"],
 			"@/lib/*": ["src/lib/*"],
 			"@/pages/*": ["src/pages/*"],
-			"@/styles/*": ["src/styles/*"]
+			"@/styles/*": ["src/styles/*"],
+			"@/types/*": ["src/types/*"]
 		},
 		"outDir": "build/dist",
 		"module": "esnext",
