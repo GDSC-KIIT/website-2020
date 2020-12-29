@@ -1,10 +1,8 @@
 import Head from 'next/head';
-import Footer from '../components/Footer/Footer';
 import Events from '../components/Events/Events';
 import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
-
-import Navbar from '../components/Navbar/Navbar';
-export default function Home() {
+import Layout from '@/components/Layout';
+export default function Event() {
 	return (
 		<>
 			<Head>
@@ -20,12 +18,11 @@ export default function Home() {
 				/>
 				<link rel="stylesheet" href="./index.css" />
 			</Head>
+			<Layout pageName="Events">
+				<Events />
 
-			<Navbar />
-			<Events />
-
-			<ReadyToTalk />
-			<Footer />
+				<ReadyToTalk />
+			</Layout>
 		</>
 	);
 }

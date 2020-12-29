@@ -52,12 +52,12 @@ const Navbar = () => {
 					<IconButton onClick={() => navToggle(true)} className={classes.navToggle}>
 						<MenuIcon />
 					</IconButton>
-					<GoogleAuthLogin />
 					<Drawer anchor="left" open={navState} onClose={() => navToggle(false)}>
 						<List>
 							<ListItem>
 								<Typography variant="h6" style={{ fontWeight: 'bolder' }}>
 									DSC KIIT
+									<GoogleAuthLogin />
 								</Typography>
 							</ListItem>
 
@@ -146,6 +146,9 @@ const Navbar = () => {
 									Contact
 								</Typography>
 							</Link>
+						</Grid>
+						<Grid item>
+							<GoogleAuthLogin />
 						</Grid>
 					</Grid>
 				</Grid>
