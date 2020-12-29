@@ -18,14 +18,16 @@ import {
 	Box,
 } from '@material-ui/core';
 
-import { Group as GroupIcon, Menu as MenuIcon } from '@material-ui/icons';
-
-import HomeIcon from '@material-ui/icons/Home';
-import ContactsIcon from '@material-ui/icons/Contacts';
-import InfoIcon from '@material-ui/icons/Info';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import BookIcon from '@material-ui/icons/Book';
-import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
+import {
+	Group as GroupIcon,
+	Menu as MenuIcon,
+	Home as HomeIcon,
+	Contacts as ContactsIcon,
+	Info as InfoIcon,
+	LibraryBooks as LibraryBooksIcon,
+	Book as BookIcon,
+	EmojiEvents as EmojiEventsIcon,
+} from '@material-ui/icons';
 
 import { GoogleAuthLogin } from '@/components/AuthProvider';
 
@@ -52,12 +54,12 @@ const Navbar = () => {
 					<IconButton onClick={() => navToggle(true)} className={classes.navToggle}>
 						<MenuIcon />
 					</IconButton>
-					<GoogleAuthLogin />
 					<Drawer anchor="left" open={navState} onClose={() => navToggle(false)}>
 						<List>
 							<ListItem>
 								<Typography variant="h6" style={{ fontWeight: 'bolder' }}>
 									DSC KIIT
+									<GoogleAuthLogin />
 								</Typography>
 							</ListItem>
 
@@ -146,6 +148,9 @@ const Navbar = () => {
 									Contact
 								</Typography>
 							</Link>
+						</Grid>
+						<Grid item>
+							<GoogleAuthLogin />
 						</Grid>
 					</Grid>
 				</Grid>

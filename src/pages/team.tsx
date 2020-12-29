@@ -1,13 +1,12 @@
-import Member from '../components/member-template/members';
-import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
-import TeamIntro from '../components/Intro/Intro';
-import Footer from '../components/Footer/Footer';
-import Navbar from '../components/Navbar/Navbar';
+import Member from '@/components/member-template/members';
+import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
+import TeamIntro from '@/components/Intro/Intro';
+import Layout from '@/components/Layout';
 import { GetStaticProps } from 'next';
 import { fetchAPI } from '../lib/api';
 import { useEffect } from 'react';
 import Head from 'next/head';
-import styles from '../components/member-template/members.module.css';
+import styles from '@/components/member-template/members.module.css';
 let order = -1;
 let displayHeader = false;
 const siteTitle = 'DSC Team';
@@ -52,33 +51,33 @@ export default function Team({
 				style={{ position: 'fixed', opacity: 0.1, top: 0 }}
 			/>
 
-			<Navbar />
-			<TeamIntro />
-			<section>
-				<div className={styles.container}>
-					{allMembersData.map(({ ...member }) => {
-						{
-							console.log(order);
-						}
-						if (member.order > order) {
-							order = member.order;
-							displayHeader = true;
-						} else {
-							displayHeader = false;
-						}
-						// console.log(displayHeader)
-						return (
-							<Member
-								memberInfo={member}
-								key={member.id}
-								displayHeader={displayHeader}
-							/>
-						);
-					})}
-				</div>
-			</section>
-			<ReadyToTalk />
-			<Footer />
+			<Layout pageName="Team">
+				<TeamIntro />
+				<section>
+					<div className={styles.container}>
+						{allMembersData.map(({ ...member }) => {
+							{
+								console.log(order);
+							}
+							if (member.order > order) {
+								order = member.order;
+								displayHeader = true;
+							} else {
+								displayHeader = false;
+							}
+							// console.log(displayHeader)
+							return (
+								<Member
+									memberInfo={member}
+									key={member.id}
+									displayHeader={displayHeader}
+								/>
+							);
+						})}
+					</div>
+				</section>
+				<ReadyToTalk />
+			</Layout>
 		</>
 	);
 }

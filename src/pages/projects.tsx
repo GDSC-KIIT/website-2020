@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import Footer from '../components/Footer/Footer';
-import Project from '../components/Projects/Projects';
-import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
 
-import Navbar from '../components/Navbar/Navbar';
+import Project from '@/components/Projects/Projects';
+import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
+import Layout from '@/components/Layout';
 export default function Home() {
 	return (
 		<>
@@ -21,11 +20,10 @@ export default function Home() {
 				<link rel="stylesheet" href="./index.css" />
 			</Head>
 
-			<Navbar />
-			<Project />
-			<ReadyToTalk />
-
-			<Footer />
+			<Layout pageName="PROJECTS">
+				<Project />
+				<ReadyToTalk />
+			</Layout>
 		</>
 	);
 }
