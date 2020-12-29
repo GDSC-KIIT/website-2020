@@ -1,6 +1,18 @@
 import axios from 'axios';
 
+import type { UserInfoType } from '@/types/index';
 import { backendUrls } from '@/lib/backendUrls';
+
+function _getSessionAuthToken() {
+	return axios
+		.get('/api/session')
+		.then((response) => response.data)
+		.then((data) => data.auth_token)
+		.catch((err) => {
+			console.log(err, 'while fetching user session');
+			return null;
+		});
+}
 
 interface IData {
 	jwt: string;
@@ -22,25 +34,10 @@ export function getUserToken(access_token: string | string[] | undefined) {
 		});
 }
 
-interface IUserInfo {
-	username: string;
-	email: string;
-	id: number;
-	provider: string;
-	created_at: string;
-}
-
 export async function getUserInfo() {
-	const authToken: string = await axios
-		.get('/api/session')
-		.then((response) => response.data)
-		.then((data) => data.auth_token)
-		.catch((err) => {
-			console.log(err, 'while fetching user session');
-			return null;
-		});
+	const authToken: string = await _getSessionAuthToken();
 
-	const userInfo: IUserInfo = await axios
+	const userInfo: UserInfoType = await axios
 		.get(backendUrls['user_info'], {
 			headers: {
 				Authorization: `Bearer ${authToken}`,
