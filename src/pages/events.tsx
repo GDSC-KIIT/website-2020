@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Events from '@/components/Events/Events';
-import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
+import Events from '@/components/Events';
+import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
 export default function Event() {
 	return (

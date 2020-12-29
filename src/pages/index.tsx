@@ -1,7 +1,6 @@
 import Head from 'next/head';
-
-import Landing from '@/components/Landing/Landing';
-import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
+import Landing from '@/components/Landing';
+import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
 
 export default function Home() {
