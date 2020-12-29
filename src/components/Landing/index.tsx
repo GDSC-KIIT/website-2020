@@ -1,6 +1,6 @@
 import styles from './landing.module.css';
 import { makeStyles } from '@material-ui/core/styles';
-import Programming from '../Programming/Programming';
+import Programming from '../Programming';
 import {
 	Card,
 	CardActionArea,

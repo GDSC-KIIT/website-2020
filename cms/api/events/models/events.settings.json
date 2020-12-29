@@ -1,36 +1,36 @@
 {
-  "kind": "collectionType",
-  "collectionName": "events",
-  "info": {
-    "name": "events"
-  },
-  "options": {
-    "increments": true,
-    "timestamps": true,
-    "draftAndPublish": true
-  },
-  "attributes": {
-    "name": {
-      "type": "string",
-      "required": true,
-      "unique": false
-    },
-    "media": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": ["images", "files", "videos"],
-      "plugin": "upload",
-      "required": false
-    },
-    "description": {
-      "type": "richtext",
-      "required": true
-    },
-    "date": {
-      "type": "date"
-    },
-    "relevant_links": {
-      "type": "json"
-    }
-  }
+	"kind": "collectionType",
+	"collectionName": "events",
+	"info": {
+		"name": "events"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"attributes": {
+		"name": {
+			"type": "string",
+			"required": true,
+			"unique": false
+		},
+		"media": {
+			"collection": "file",
+			"via": "related",
+			"allowedTypes": ["images", "files", "videos"],
+			"plugin": "upload",
+			"required": false
+		},
+		"description": {
+			"type": "richtext",
+			"required": true
+		},
+		"date": {
+			"type": "date"
+		},
+		"relevant_links": {
+			"type": "json"
+		}
+	}
 }

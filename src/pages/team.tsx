@@ -1,6 +1,6 @@
 import Member from '@/components/member-template/members';
-import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
-import TeamIntro from '@/components/Intro/Intro';
+import ReadyToTalk from '@/components/ReadyToTalk';
+import TeamIntro from '@/components/Intro';
 import Layout from '@/components/Layout';
 import { GetStaticProps } from 'next';
 import { fetchAPI } from '../lib/api';

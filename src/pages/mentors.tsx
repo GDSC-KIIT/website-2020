@@ -1,5 +1,5 @@
 import Mentors from '@/components/member-template/mentors';
-import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
+import ReadyToTalk from '@/components/ReadyToTalk';
 import MentorIntro from '@/components/Intro/Mentor-intro';
 import Layout from '@/components/Layout';
 import Head from 'next/head';
