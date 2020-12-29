@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
-import Project from '../components/Projects/Projects';
-import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
+import Project from '@/components/Projects/Projects';
+import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
 import Layout from '@/components/Layout';
 export default function Home() {
 	return (

@@ -1,4 +1,4 @@
-import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
+import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
 import Layout from '@/components/Layout';
 import Head from 'next/head';
 <Head>

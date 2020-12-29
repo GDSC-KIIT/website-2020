@@ -1,12 +1,12 @@
-import Member from '../components/member-template/members';
-import ReadyToTalk from '../components/ReadyToTalk/ReadyToTalk';
-import TeamIntro from '../components/Intro/Intro';
+import Member from '@/components/member-template/members';
+import ReadyToTalk from '@/components/ReadyToTalk/ReadyToTalk';
+import TeamIntro from '@/components/Intro/Intro';
 import Layout from '@/components/Layout';
 import { GetStaticProps } from 'next';
 import { fetchAPI } from '../lib/api';
 import { useEffect } from 'react';
 import Head from 'next/head';
-import styles from '../components/member-template/members.module.css';
+import styles from '@/components/member-template/members.module.css';
 let order = -1;
 let displayHeader = false;
 const siteTitle = 'DSC Team';
