@@ -35,6 +35,9 @@
 			"allowedTypes": ["images", "files", "videos"],
 			"plugin": "upload",
 			"required": false
+		},
+		"order": {
+			"type": "integer"
 		}
 	}
 }
