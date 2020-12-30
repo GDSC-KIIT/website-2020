@@ -1,6 +1,7 @@
 import styles from './landing.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Programming from '../Programming';
+import Faq from '../Faq';
 import {
 	Card,
 	CardActionArea,
@@ -135,6 +136,11 @@ export default function Landing() {
 				<h1 className={`${styles.about}`}>TECH STACKS</h1>
 			</div>
 			<Programming />
+
+			<div className={`container my-5`}>
+				<h1 className={`${styles.about}`}>FAQ SECTION</h1>
+			</div>
+			<Faq />
 			<div className={`container my-5`}>
 				<h1 className={`${styles.about}`}>JOIN OUR DISCORD</h1>
 				<p className={styles.d}>
