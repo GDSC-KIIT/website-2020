@@ -2,6 +2,11 @@ import styles from './projects.module.css';
 import ProjectsCard from './ProjectsCard';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { GetStaticProps } from 'next';
+import { fetchAPI } from '../../lib/api';
+import { useEffect } from 'react';
+let order = -1;
+let displayHeader = false;
 
 const useStyles = makeStyles({
 	gridContainer: {
@@ -10,7 +15,23 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function Projects() {
+export default function Projects({
+	allProjectsData,
+}: {
+	allProjectsData: {
+		id: string;
+		name: string;
+		description: string;
+		project_logo: string;
+		ongoing: boolean;
+		date: any;
+		members: any;
+		order: number;
+	}[];
+}) {
+	useEffect(() => {
+		order = -1;
+	});
 	const classes = useStyles();
 
 	return (
@@ -56,22 +77,27 @@ export default function Projects() {
 				<div className="row margin">
 					<Grid container spacing={4} className={classes.gridContainer}>
 						<Grid item xs={12} sm={6} md={4}>
-							<ProjectsCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4}>
-							<ProjectsCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4}>
-							<ProjectsCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4}>
-							<ProjectsCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4}>
-							<ProjectsCard />
-						</Grid>
-						<Grid item xs={12} sm={6} md={4}>
-							<ProjectsCard />
+							{/* <ProjectsCard /> */}
+							{allProjectsData &&
+								allProjectsData.map(({ ...project }) => {
+									{
+										console.log(order);
+									}
+									if (project.order > order) {
+										order = project.order;
+										displayHeader = true;
+									} else {
+										displayHeader = false;
+									}
+									// console.log(displayHeader)
+									return (
+										<ProjectsCard
+											projectInfo={project}
+											key={project.id}
+											displayHeader={displayHeader}
+										/>
+									);
+								})}
 						</Grid>
 					</Grid>
 				</div>
@@ -79,3 +105,11 @@ export default function Projects() {
 		</>
 	);
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+	// Run API calls in parallel
+	const allProjectsData = await fetchAPI('/projects');
+	return {
+		props: { allProjectsData },
+	};
+};
