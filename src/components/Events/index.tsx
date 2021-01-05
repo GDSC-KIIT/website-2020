@@ -1,7 +1,13 @@
+import { fetchAllEvents } from '@/lib/staticData/events';
+
 import styles from './events.module.css';
 import Card from './card';
 
 export default function Events() {
+	// fetchAllEvents().then(f=>{
+	// 	f.forEach(t=>console.log(t.id,t.description))
+	// })
+
 	return (
 		<>
 			<div className={`container my-5`}>

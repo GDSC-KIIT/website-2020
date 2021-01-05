@@ -10,7 +10,7 @@ export interface IBlogPost {
 	date: string;
 }
 
-export function fetchMediumBlogPosts() {
+export function fetchMediumBlogPosts(): Promise<Array<IBlogPost>> {
 	return axios
 		.get(externalUrls['blogs_medium'])
 		.then((response) => response.data)
@@ -35,7 +35,7 @@ export function fetchMediumBlogPosts() {
 		});
 }
 
-export function fetchDevtoBlogPosts() {
+export function fetchDevtoBlogPosts(): Promise<Array<IBlogPost>> {
 	return axios
 		.get(externalUrls['blogs_devto'])
 		.then((response) => response.data)
