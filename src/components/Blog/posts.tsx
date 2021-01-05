@@ -1,4 +1,4 @@
-import { IBlogPost } from '@/lib/staticData/blogPosts';
+import type { IBlogPost } from '@/lib/staticData/blogPosts';
 
 export default function Posts({ blogPosts }: { blogPosts: Array<IBlogPost> }) {
 	const posts = blogPosts.map((post) => (

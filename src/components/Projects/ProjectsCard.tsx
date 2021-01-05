@@ -10,7 +10,7 @@ import {
 	Button,
 } from '@material-ui/core';
 import { GitHub as GitHubIcon, Person as PersonIcon } from '@material-ui/icons';
-import { getStrapiMedia } from '../../lib/media';
+// import { getStrapiMedia } from '../../lib/media';
 declare global {
 	namespace JSX {
 		interface IntrinsicElements {
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 });
 
 export default function ProjectsCard({ projectInfo, displayHeader }: any) {
-	const imageUrl = getStrapiMedia(projectInfo.image_path);
+	// const imageUrl = getStrapiMedia(projectInfo.image_path);
 	const classes = useStyles();
 
 	return (

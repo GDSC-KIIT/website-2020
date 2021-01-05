@@ -2,7 +2,8 @@
 	"kind": "collectionType",
 	"collectionName": "events",
 	"info": {
-		"name": "events"
+		"name": "events",
+		"description": ""
 	},
 	"options": {
 		"increments": true,
@@ -16,21 +17,20 @@
 			"unique": false
 		},
 		"media": {
-			"collection": "file",
+			"model": "file",
 			"via": "related",
 			"allowedTypes": ["images", "files", "videos"],
 			"plugin": "upload",
 			"required": false
 		},
-		"description": {
-			"type": "richtext",
-			"required": true
-		},
 		"date": {
 			"type": "date"
 		},
-		"relevant_links": {
-			"type": "json"
+		"links": {
+			"type": "string"
+		},
+		"description": {
+			"type": "text"
 		}
 	}
 }

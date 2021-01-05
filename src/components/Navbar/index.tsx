@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import styles from './navbar.module.css';
@@ -100,13 +100,6 @@ const Navbar = () => {
 						spacing={3}
 						justify="flex-end"
 						className={styles.nav}>
-						<Grid item>
-							<Link href="/">
-								<Typography variant="body2" style={{ cursor: 'pointer' }}>
-									Home
-								</Typography>
-							</Link>
-						</Grid>
 						<Grid item>
 							<Link href="/team">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>

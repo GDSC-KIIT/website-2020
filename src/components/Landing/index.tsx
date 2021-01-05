@@ -1,8 +1,12 @@
+import dynamic from 'next/dynamic';
+
 import styles from './landing.module.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Programming from '../Programming';
-import Faq from '../Faq';
+
+import Programming from '@/components/Programming';
+import Faq from '@/components/Faq';
+
 import {
+	makeStyles,
 	Card,
 	CardActionArea,
 	CardContent,
@@ -12,6 +16,7 @@ import {
 	Button,
 	Box,
 } from '@material-ui/core';
+
 const useStyles = makeStyles((theme) => ({
 	eventContainer: {
 		paddingTop: theme.spacing(3),
@@ -34,10 +39,15 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 }));
+
+const Banners = dynamic(() => import('@/components/Banner'));
+
 export default function Landing() {
+	// TODO: Replace images with next/image for a faster landing
 	const classes = useStyles();
 	return (
 		<>
+			<Banners />
 			<img
 				src="https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-012.jpg"
 				className={styles.background_img}
