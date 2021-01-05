@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
-import { fetchAllEvents, IEvent } from '@/lib/staticData/events';
+import type { EventType } from '@/types/index';
+import { fetchAllEvents } from '@/lib/staticData/events';
 
 import Events from '@/components/Events';
 import ReadyToTalk from '@/components/ReadyToTalk';
@@ -15,7 +16,7 @@ export async function getStaticProps() {
 	};
 }
 
-export default function Event(props: { events: Array<IEvent> }) {
+export default function Event(props: { events: Array<EventType> }) {
 	return (
 		<>
 			<Head>

@@ -9,7 +9,7 @@ export function storeUserWithToken(
 ) {
 	if (jwt) {
 		setCookie(ctx, 'auth_token', jwt, {
-			maxAge: 30 * 24 * 60 * 60,
+			maxAge: 30 * 24 * 60 * 60, // TODO: Change the maxAge in both here and in the cms
 			path: '/',
 		});
 	}

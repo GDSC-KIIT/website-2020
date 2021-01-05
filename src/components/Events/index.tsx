@@ -1,9 +1,9 @@
-import type { IEvent } from '@/lib/staticData/events';
+import type { EventType } from '@/types/index';
 
 import styles from './events.module.css';
 import Card from './card';
 
-export default function Events({ events }: { events: Array<IEvent> }) {
+export default function Events({ events }: { events: Array<EventType> }) {
 	const EventCards = events.map((event) => (
 		<Card
 			key={event.id}

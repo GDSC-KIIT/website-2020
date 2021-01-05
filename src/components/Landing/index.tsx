@@ -12,6 +12,7 @@ import {
 	Button,
 	Box,
 } from '@material-ui/core';
+import Banners from '../Banner';
 const useStyles = makeStyles((theme) => ({
 	eventContainer: {
 		paddingTop: theme.spacing(3),
@@ -35,9 +36,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 export default function Landing() {
+	// TODO: Replace images with next/image for a faster landing
 	const classes = useStyles();
 	return (
 		<>
+			<Banners />
 			<img
 				src="https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-012.jpg"
 				className={styles.background_img}

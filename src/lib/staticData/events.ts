@@ -1,24 +1,15 @@
 import axios from 'axios';
 import marked from 'marked';
 
+import { EventType } from '@/types/index';
 import { backendUrls } from '@/lib/backendUrls';
-
-export interface IEvent {
-	name: string;
-	id: number;
-	description: string;
-	date: string;
-	links: string;
-	image: string;
-}
-
-interface IEventData extends IEvent {
+interface IEventData extends EventType {
 	media: {
 		url: string;
 	};
 }
 
-export function fetchAllEvents(): Promise<Array<IEvent>> {
+export function fetchAllEvents(): Promise<Array<EventType>> {
 	return axios
 		.get(backendUrls['all_events'])
 		.then((response) => response.data)
