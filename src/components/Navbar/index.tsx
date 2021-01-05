@@ -101,13 +101,6 @@ const Navbar = () => {
 						justify="flex-end"
 						className={styles.nav}>
 						<Grid item>
-							<Link href="/">
-								<Typography variant="body2" style={{ cursor: 'pointer' }}>
-									Home
-								</Typography>
-							</Link>
-						</Grid>
-						<Grid item>
 							<Link href="/team">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Team

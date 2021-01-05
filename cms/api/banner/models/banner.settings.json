@@ -1,0 +1,20 @@
+{
+	"kind": "collectionType",
+	"collectionName": "banners",
+	"info": {
+		"name": "banner"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"attributes": {
+		"event": {
+			"model": "events"
+		},
+		"eye_catcher": {
+			"type": "string"
+		}
+	}
+}

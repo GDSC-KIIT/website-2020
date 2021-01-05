@@ -6,7 +6,7 @@ export default function ProfilePage() {
 
 	let userInfo: ReactNode = {};
 
-	if (!loading && 'username' in user) {
+	if (!loading && user && 'username' in user) {
 		console.info(user);
 		userInfo = (
 			<>
