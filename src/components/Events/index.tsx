@@ -1,13 +1,19 @@
-import { fetchAllEvents } from '@/lib/staticData/events';
+import type { IEvent } from '@/lib/staticData/events';
 
 import styles from './events.module.css';
 import Card from './card';
 
-export default function Events() {
-	// fetchAllEvents().then(f=>{
-	// 	f.forEach(t=>console.log(t.id,t.description))
-	// })
-
+export default function Events({ events }: { events: Array<IEvent> }) {
+	const EventCards = events.map((event) => (
+		<Card
+			key={event.id}
+			title={event.name}
+			desc={event.description}
+			image={event.image}
+			link={event.links}
+			date={event.date}
+		/>
+	));
 	return (
 		<>
 			<div className={`container my-5`}>
@@ -20,7 +26,8 @@ export default function Events() {
 					host more events Stay tuned for future events!
 				</p>
 			</div>
-			<Card />
+			{/* TODO: grid layout the card images (just add a grid layout parent component here) */}
+			{EventCards}
 		</>
 	);
 }

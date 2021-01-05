@@ -8,9 +8,10 @@ import {
 	Typography,
 	Grid,
 	Container,
-	Button,
+	Link,
 	Box,
 	makeStyles,
+	Button,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +43,7 @@ interface IProps {
 	desc: string;
 }
 
+/*the card image may not be sometimes visible during `npm run dev`*/
 export default function CardLayout({ title, image, date, link, desc }: IProps) {
 	const classes = useStyles();
 
@@ -52,17 +54,13 @@ export default function CardLayout({ title, image, date, link, desc }: IProps) {
 					<Grid item xs={12} sm={6} md={4}>
 						<Card className={classes.card}>
 							<CardActionArea>
-								<CardMedia
-									className={classes.media}
-									image="https://th.bing.com/th/id/OIP.-IrELnNl4M2yJPk6PlelYAHaE7?pid=Api&rs=1"
-									title="Event Image"
-								/>
+								<CardMedia className={classes.media} image={image} title={title} />
 								<CardContent>
 									<Typography gutterBottom variant="h5" component="h2">
-										Event 1
+										{title}
 									</Typography>
 									<Typography variant="body2" color="textSecondary" component="p">
-										The description of the event is given here
+										<div dangerouslySetInnerHTML={{ __html: desc }} />
 									</Typography>
 								</CardContent>
 							</CardActionArea>
@@ -74,14 +72,16 @@ export default function CardLayout({ title, image, date, link, desc }: IProps) {
 											variant="subtitle2"
 											color="textSecondary"
 											component="p">
-											Date
+											{date}
 										</Typography>
 									</Box>
 								</Box>
 							</CardActions>
 							<CardActions>
-								<Button size="small" color="primary">
-									Learn More
+								<Button color="primary" size="small">
+									<Link href={link} underline="none" color="primary">
+										Find Out More
+									</Link>
 								</Button>
 							</CardActions>
 						</Card>

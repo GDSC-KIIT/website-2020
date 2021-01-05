@@ -23,15 +23,14 @@
 			"plugin": "upload",
 			"required": false
 		},
-		"description": {
-			"type": "richtext",
-			"required": true
-		},
 		"date": {
 			"type": "date"
 		},
 		"links": {
 			"type": "string"
+		},
+		"description": {
+			"type": "text"
 		}
 	}
 }

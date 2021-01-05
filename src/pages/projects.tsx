@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Project from '@/components/Projects';
+// import Project from '@/components/Projects';
 import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
 			</Head>
 
 			<Layout pageName="PROJECTS">
-				<Project />
+				{/* <Project /> */}
 				<ReadyToTalk />
 			</Layout>
 		</>

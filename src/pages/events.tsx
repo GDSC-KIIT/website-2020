@@ -1,8 +1,21 @@
 import Head from 'next/head';
+
+import { fetchAllEvents, IEvent } from '@/lib/staticData/events';
+
 import Events from '@/components/Events';
 import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
-export default function Event() {
+
+export async function getStaticProps() {
+	const events = await fetchAllEvents();
+	return {
+		props: {
+			events,
+		},
+	};
+}
+
+export default function Event(props: { events: Array<IEvent> }) {
 	return (
 		<>
 			<Head>
@@ -19,8 +32,7 @@ export default function Event() {
 				<link rel="stylesheet" href="./index.css" />
 			</Head>
 			<Layout pageName="Events">
-				<Events />
-
+				<Events events={props.events} />
 				<ReadyToTalk />
 			</Layout>
 		</>
