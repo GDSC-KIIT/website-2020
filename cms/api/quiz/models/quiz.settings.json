@@ -1,0 +1,23 @@
+{
+	"kind": "collectionType",
+	"collectionName": "quizzes",
+	"info": {
+		"name": "quiz"
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"attributes": {
+		"question": {
+			"type": "richtext"
+		},
+		"options": {
+			"type": "richtext"
+		},
+		"answer": {
+			"type": "integer"
+		}
+	}
+}
