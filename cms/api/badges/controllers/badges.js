@@ -5,11 +5,4 @@
  * to customize this controller
  */
 
-module.exports = {
-	async find() {
-		const temp = await strapi.services.badges.find(1);
-
-		console.log('found one', temp);
-		return temp;
-	},
-};
+module.exports = {};

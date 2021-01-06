@@ -5,7 +5,7 @@ import { backendUrls } from '@/lib/backendUrls';
 
 function _getSessionAuthToken() {
 	return axios
-		.get('/api/session')
+		.get('/api/setSession')
 		.then((response) => response.data)
 		.then((data) => data.auth_token)
 		.catch((err) => {
