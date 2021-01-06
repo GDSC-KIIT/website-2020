@@ -18,10 +18,6 @@
 		},
 		"name": {
 			"type": "string"
-		},
-		"dyna": {
-			"type": "dynamiczone",
-			"components": ["compons.asjx", "compons.wdv"]
 		}
 	}
 }
