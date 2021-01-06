@@ -7,6 +7,9 @@
 
 module.exports = {
 	async find() {
-		return 'custom response instinct';
+		const temp = await strapi.services.badges.find(1);
+
+		console.log('found one', temp);
+		return temp;
 	},
 };

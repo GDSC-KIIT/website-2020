@@ -2,12 +2,13 @@
 	"kind": "collectionType",
 	"collectionName": "quizzes",
 	"info": {
-		"name": "quiz"
+		"name": "quiz",
+		"description": ""
 	},
 	"options": {
 		"increments": true,
 		"timestamps": true,
-		"draftAndPublish": true
+		"draftAndPublish": false
 	},
 	"attributes": {
 		"question": {
