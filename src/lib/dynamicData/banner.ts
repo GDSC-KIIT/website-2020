@@ -1,14 +1,6 @@
 import axios from 'axios';
 
-import type { EventType } from '@/types/index';
 import { backendUrls } from '@/lib/backendUrls';
-
-interface IBannerData {
-	event: EventType & { media: { url: string } };
-	id: number;
-	eye_catcher: string;
-}
-
 export interface IBanner {
 	id: number;
 	eye_catcher: string;
@@ -17,7 +9,17 @@ export interface IBanner {
 	link: string;
 }
 
-export function fetchAllBanners(): Promise<Array<IBanner>> {
+export interface IBannerData {
+	id: number;
+	eye_catcher: string;
+	title: string;
+	link: string;
+	image: {
+		url: string;
+	};
+}
+
+export function fetchAllBanners(): Promise<IBanner[]> {
 	return axios
 		.get(backendUrls['all_banners'])
 		.then((response) => response.data)
@@ -25,12 +27,12 @@ export function fetchAllBanners(): Promise<Array<IBanner>> {
 			if (Array.isArray(data) === false) {
 				return [];
 			}
-			const banners: Array<IBanner> = data.map((d) => ({
+			const banners: IBanner[] = data.map((d) => ({
 				id: d.id,
 				eye_catcher: d.eye_catcher,
-				title: d.event.name,
-				image: 'http://localhost:9000' + d.event.media.url,
-				link: d.event.links,
+				title: d.title,
+				image: 'http://localhost:9000' + d.image.url,
+				link: d.link,
 			}));
 			return banners;
 		})
