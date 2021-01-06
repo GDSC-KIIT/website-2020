@@ -1,8 +1,8 @@
 {
 	"kind": "collectionType",
-	"collectionName": "badges",
+	"collectionName": "scores",
 	"info": {
-		"name": "badges",
+		"name": "score",
 		"description": ""
 	},
 	"options": {
@@ -11,17 +11,13 @@
 		"draftAndPublish": true
 	},
 	"attributes": {
+		"points": {
+			"type": "integer"
+		},
 		"users_permissions_user": {
 			"plugin": "users-permissions",
 			"model": "user",
-			"via": "badges"
-		},
-		"name": {
-			"type": "string"
-		},
-		"dyna": {
-			"type": "dynamiczone",
-			"components": ["compons.asjx", "compons.wdv"]
+			"via": "score"
 		}
 	}
 }

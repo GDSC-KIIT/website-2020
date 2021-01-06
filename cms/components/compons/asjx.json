@@ -1,0 +1,13 @@
+{
+	"collectionName": "components_compons_asjxes",
+	"info": {
+		"name": "asjx",
+		"icon": "robot"
+	},
+	"options": {},
+	"attributes": {
+		"points": {
+			"type": "string"
+		}
+	}
+}
