@@ -115,7 +115,7 @@ const Navbar = () => {
 							</Link>
 						</Grid>
 						<Grid item>
-							<Link href="/events">
+							<Link href="https://dsc.community.dev/kalinga-institute-of-industrial-technology-bhubaneswar/">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Events
 								</Typography>
