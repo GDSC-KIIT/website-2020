@@ -39,10 +39,6 @@ function checkRequest(ctx, response) {
 
 module.exports = {
 	async create(ctx) {
-		/**
-		 * @type {user}
-		 */
-
 		const response = {
 			points: 0,
 			updated: false,
@@ -57,7 +53,11 @@ module.exports = {
 			return;
 		}
 
+		/**@type {user} */
 		const user = ctx.state.user;
+
+		/**@type {number} */
+		const qid = ctx.request.body.qid;
 
 		if (user.score) {
 			// update the user's score
