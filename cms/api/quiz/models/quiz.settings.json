@@ -46,6 +46,10 @@
 		},
 		"option_6": {
 			"type": "string"
+		},
+		"score": {
+			"via": "quizzes",
+			"model": "score"
 		}
 	}
 }
