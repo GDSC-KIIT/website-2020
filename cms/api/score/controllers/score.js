@@ -16,10 +16,10 @@
  * @typedef score
  * @type {object}
  * @property {number} id
- * @property {number} points
+ * @property {Array<object>} quizzes
  */
 
-const INCREMENT = 10;
+const EACHPOINT = 10;
 
 function checkRequest(ctx, response) {
 	response.status = 400;
@@ -37,12 +37,12 @@ function checkRequest(ctx, response) {
 		return false;
 	}
 
+	response.status = 200;
 	return true;
 }
 
 async function checkCorrectAnswer(qid, ans, response) {
 	const quiz = await strapi.query('quiz').findOne({ id: qid });
-	console.log('found that as', quiz);
 
 	if (!quiz.accepting) {
 		response.status = 406;
@@ -50,7 +50,6 @@ async function checkCorrectAnswer(qid, ans, response) {
 		return false;
 	}
 	if (quiz.answer === ans) {
-		console.log('reached here');
 		response.correct = true;
 		return true;
 	}
@@ -58,21 +57,26 @@ async function checkCorrectAnswer(qid, ans, response) {
 	return false;
 }
 
-async function updateUserScore(user, response) {
+async function updateUserScore(user, qid, response) {
 	if (user.score) {
 		// update the user's score
 
 		/**@type {score} */
 		const foundScore = await strapi.query('score').findOne({ id: user.score });
 
+		const newAnsweredQuizzesArray = [qid];
+		for (const q of foundScore.quizzes) {
+			newAnsweredQuizzesArray.push(q.id);
+		}
+
 		/**@type {score} */
 		const updatedScore = await strapi.services.score.update(
 			{ id: foundScore.id },
-			{ points: foundScore.points + INCREMENT }
+			{ quizzes: newAnsweredQuizzesArray }
 		);
 
 		response.updated = true;
-		response.points = updatedScore.points;
+		response.points = updatedScore.quizzes.length * EACHPOINT;
 		response.message = 'correct answer!';
 		response.status = 202;
 	} else {
@@ -81,11 +85,11 @@ async function updateUserScore(user, response) {
 		/**@type {score} */
 		const newScore = await strapi.services.score.create({
 			users_permissions_user: user.id,
-			points: INCREMENT,
+			quizzes: [qid],
 		});
 
 		response.created = true;
-		response.points = newScore.points;
+		response.points = newScore.quizzes.length * EACHPOINT;
 		response.message = 'correct answer!';
 		response.status = 201;
 	}
@@ -94,7 +98,7 @@ async function updateUserScore(user, response) {
 module.exports = {
 	async create(ctx) {
 		const response = {
-			points: 0,
+			points: 0, // can remove this field
 			updated: false,
 			created: false,
 			status: 200,
@@ -108,9 +112,6 @@ module.exports = {
 			return;
 		}
 
-		/**@type {user} */
-		const user = ctx.state.user;
-
 		/**@type {number} */
 		const qid = ctx.request.body.qid;
 
@@ -123,7 +124,10 @@ module.exports = {
 			return;
 		}
 
-		await updateUserScore(user, response);
+		/**@type {user} */
+		const user = ctx.state.user;
+
+		await updateUserScore(user, qid, response);
 
 		ctx.status = response.status;
 		ctx.body = response;

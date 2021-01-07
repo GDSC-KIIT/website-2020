@@ -11,12 +11,13 @@
 		"draftAndPublish": false
 	},
 	"attributes": {
-		"points": {
-			"type": "integer"
-		},
 		"users_permissions_user": {
 			"plugin": "users-permissions",
 			"model": "user",
+			"via": "score"
+		},
+		"quizzes": {
+			"collection": "quiz",
 			"via": "score"
 		}
 	}
