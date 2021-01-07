@@ -12,17 +12,38 @@
 	},
 	"attributes": {
 		"question": {
-			"type": "richtext"
-		},
-		"options": {
-			"type": "richtext"
+			"type": "richtext",
+			"required": true
 		},
 		"answer": {
-			"type": "integer"
+			"type": "integer",
+			"required": true
 		},
 		"accepting": {
 			"type": "boolean",
-			"default": false
+			"default": true,
+			"required": true
+		},
+		"option_1": {
+			"type": "string",
+			"required": true
+		},
+		"option_2": {
+			"type": "string",
+			"private": false,
+			"required": true
+		},
+		"option_3": {
+			"type": "string"
+		},
+		"option_4": {
+			"type": "string"
+		},
+		"option_5": {
+			"type": "string"
+		},
+		"option_6": {
+			"type": "string"
 		}
 	}
 }
