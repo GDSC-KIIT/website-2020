@@ -21,12 +21,27 @@
 
 const INCREMENT = 10;
 
+function checkRequest(ctx, response) {
+	response.status = 400;
+
+	if (!ctx.state || !ctx.state.user) {
+		response.message = 'user not logged in';
+		return false;
+	}
+
+	if (!ctx.request.body || !ctx.request.body.qid) {
+		response.message = 'did not find the question!';
+		return false;
+	}
+
+	return true;
+}
+
 module.exports = {
 	async create(ctx) {
 		/**
 		 * @type {user}
 		 */
-		const user = ctx.state.user;
 
 		const response = {
 			points: 0,
@@ -36,10 +51,13 @@ module.exports = {
 			message: '',
 		};
 
-		if (!user) {
-			response.status = 400;
-			response.message = 'user not logged in';
+		if (checkRequest(ctx, response) === false) {
+			ctx.status = response.status;
+			ctx.body = response;
+			return;
 		}
+
+		const user = ctx.state.user;
 
 		if (user.score) {
 			// update the user's score
