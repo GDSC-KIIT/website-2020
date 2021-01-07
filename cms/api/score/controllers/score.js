@@ -31,7 +31,7 @@ module.exports = {
 		const response = {
 			points: 0,
 			updated: false,
-			created: true,
+			created: false,
 			status: 200,
 			message: '',
 		};
@@ -43,6 +43,7 @@ module.exports = {
 
 		if (user.score) {
 			// update the user's score
+
 			const foundScoresArray = await strapi.services.score.find({ id: user.score });
 
 			/**@type {score} */
@@ -55,6 +56,7 @@ module.exports = {
 				{ points: foundScore.points + INCREMENT }
 			);
 
+			response.updated = true;
 			response.points = updatedScore.points;
 			response.message = 'correct answer!';
 			response.status = 202;
