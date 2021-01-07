@@ -1,11 +1,6 @@
 'use strict';
 
 /**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/concepts/controllers.html#core-controllers)
- * to customize this controller
- */
-
-/**
  * contains the information about the authenticated user
  * @typedef user
  * @type {object}
@@ -27,37 +22,58 @@
 const INCREMENT = 10;
 
 module.exports = {
-	async find(ctx) {
+	async create(ctx) {
 		/**
 		 * @type {user}
 		 */
 		const user = ctx.state.user;
 
+		const response = {
+			points: 0,
+			updated: false,
+			created: true,
+			status: 200,
+			message: '',
+		};
+
 		if (!user) {
-			ctx.send('no user found');
+			response.status = 400;
+			response.message = 'user not logged in';
 		}
 
 		if (user.score) {
 			// update the user's score
 			const foundScoresArray = await strapi.services.score.find({ id: user.score });
 
-			/**
-			 * @type {score}
-			 */
+			/**@type {score} */
 			const foundScore = foundScoresArray[0];
 			// const newScore = await strapi.sever
 
-			const upd = await strapi.services.score.update(
+			/**@type {score} */
+			const updatedScore = await strapi.services.score.update(
 				{ id: foundScore.id },
 				{ points: foundScore.points + INCREMENT }
 			);
-			console.log('tweaked changes', upd);
+
+			response.points = updatedScore.points;
+			response.message = 'correct answer!';
+			response.status = 202;
 		} else {
 			// create a new score for the user
-			console.log('no one foudn');
-			ctx.send('create a new score for the user');
+
+			/**@type {score} */
+			const newScore = await strapi.services.score.create({
+				users_permissions_user: user.id,
+				points: INCREMENT,
+			});
+
+			response.created = true;
+			response.points = newScore.points;
+			response.message = 'correct answer!';
+			response.status = 201;
 		}
 
-		ctx.send('done');
+		ctx.status = response.status;
+		ctx.body = response;
 	},
 };

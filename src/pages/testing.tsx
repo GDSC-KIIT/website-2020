@@ -9,18 +9,17 @@ export default function Testing() {
 
 	useEffect(() => {
 		const fetchCall = async () => {
-			await axios
-				.get('http://localhost:9000/scores', {
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-					data: {
-						username: 'gamersinstinct1',
-					},
-				})
+			await axios({
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				url: 'http://localhost:9000/scores',
+				method: 'POST',
+			})
 				.then((response) => response.data)
 				.then((d) => {
-					setData(data);
+					console.log(d);
+					setData(d);
 				})
 				.catch((error) => {
 					console.log('got this error', error);
