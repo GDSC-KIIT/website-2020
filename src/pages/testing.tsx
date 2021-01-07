@@ -16,7 +16,8 @@ export default function Testing() {
 				url: 'http://localhost:9000/scores',
 				method: 'POST',
 				data: {
-					qid: 2,
+					qid: 5,
+					ans: 2,
 				},
 			})
 				.then((response) => response.data)
