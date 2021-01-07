@@ -44,11 +44,8 @@ module.exports = {
 		if (user.score) {
 			// update the user's score
 
-			const foundScoresArray = await strapi.services.score.find({ id: user.score });
-
 			/**@type {score} */
-			const foundScore = foundScoresArray[0];
-			// const newScore = await strapi.sever
+			const foundScore = await strapi.query('score').findOne({ id: user.score });
 
 			/**@type {score} */
 			const updatedScore = await strapi.services.score.update(

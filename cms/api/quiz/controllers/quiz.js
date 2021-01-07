@@ -5,4 +5,12 @@
  * to customize this controller
  */
 
-module.exports = {};
+module.exports = {
+	async find(ctx) {
+		const filteredQuizzes = await strapi.services.quiz.find({
+			accepting: true,
+			_sort: 'id:desc',
+		});
+		return filteredQuizzes;
+	},
+};
