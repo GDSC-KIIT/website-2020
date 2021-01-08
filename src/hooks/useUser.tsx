@@ -1,23 +1,15 @@
-import { useEffect, useState } from 'react';
+import useSWR from 'swr';
 
 import { getUserInfo } from '@/lib/user/getUser';
-import type { UserInfoType } from '@/types/index';
 
 export default function useUser() {
-	const [loading, setLoading] = useState(true);
-	const [user, setUser] = useState<UserInfoType | null>(null);
+	const { data, error } = useSWR('user_info', getUserInfo);
 
-	useEffect(() => {
-		const FetchUserInfo = async () => {
-			const userInfo = await getUserInfo();
-			setUser(userInfo);
-			setLoading(false);
-		};
-		FetchUserInfo();
-	}, []);
+	const user = data ?? null;
+	const loading = !error && data === undefined;
 
 	return {
-		loading,
 		user,
+		loading,
 	};
 }

@@ -1,12 +1,24 @@
 import type { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import axios from 'axios';
 
-import { getUserToken } from '@/lib/user/getUser';
-import { storeUserWithToken } from '@/lib/user/storeUser';
+import { backendUrls } from '@/lib/backendUrls';
+import { storeUserWithToken } from '@/lib/user/session';
 import performLogout from '@/lib/user/performLogout';
 
 import { CircularProgress, Grid } from '@material-ui/core';
+
+function _getUserToken(access_token: string | string[] | undefined) {
+	return axios
+		.get(backendUrls['auth_callback'] + access_token)
+		.then((response) => response.data)
+		.then((data: IData) => data.jwt)
+		.catch((err) => {
+			console.log(err, 'while fetching user token');
+			return null;
+		});
+}
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const { query, params } = ctx;
@@ -20,8 +32,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		};
 	}
 
-	const jwt = await getUserToken(query.access_token);
-	console.log(jwt, 'is the auth token'); // TODO: REMOVE THIS LINE
+	const jwt = await _getUserToken(query.access_token);
+	console.log(jwt, 'is the auth token'); // TODO: REMOVE THIS LINE before production
 	storeUserWithToken(ctx, jwt);
 
 	return {
@@ -51,4 +63,13 @@ export default function AuthCallback() {
 			<CircularProgress color="secondary" size={100} />
 		</Grid>
 	);
+}
+
+interface IData {
+	jwt: string;
+	user: {
+		username: string;
+		email: string;
+		provider: 'google' | string;
+	};
 }

@@ -24,13 +24,6 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-interface IProps {
-	image: string;
-	title: string;
-	eye_catcher: string;
-	link: string;
-}
-
 export default function Banner({ title, image, eye_catcher, link }: IProps) {
 	const classes = useStyles();
 
@@ -54,4 +47,10 @@ export default function Banner({ title, image, eye_catcher, link }: IProps) {
 			</Grid>
 		</Paper>
 	);
+}
+interface IProps {
+	image: string;
+	title: string;
+	eye_catcher: string;
+	link: string;
 }

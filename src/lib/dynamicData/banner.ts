@@ -1,23 +1,6 @@
 import axios from 'axios';
 
 import { backendUrls } from '@/lib/backendUrls';
-export interface IBanner {
-	id: number;
-	eye_catcher: string;
-	title: string;
-	image: string;
-	link: string;
-}
-
-export interface IBannerData {
-	id: number;
-	eye_catcher: string;
-	title: string;
-	link: string;
-	image: {
-		url: string;
-	};
-}
 
 export function fetchAllBanners(): Promise<IBanner[]> {
 	return axios
@@ -40,4 +23,21 @@ export function fetchAllBanners(): Promise<IBanner[]> {
 			console.log(error, 'during fetching the banners');
 			return [];
 		});
+}
+export interface IBanner {
+	id: number;
+	eye_catcher: string;
+	title: string;
+	image: string;
+	link: string;
+}
+
+export interface IBannerData {
+	id: number;
+	eye_catcher: string;
+	title: string;
+	link: string;
+	image: {
+		url: string;
+	};
 }
