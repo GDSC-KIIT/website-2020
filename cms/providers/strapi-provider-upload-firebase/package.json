@@ -1,0 +1,11 @@
+{
+	"name": "strapi-provider-upload-firebase",
+	"version": "2.0.0",
+	"description": "configuration for uploading files to firebase storage",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "aditya-mitra",
+	"license": "MIT"
+}

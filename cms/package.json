@@ -14,6 +14,7 @@
 	"dependencies": {
 		"dotenv": "^8.2.0",
 		"find-config": "^1.0.0",
+		"firebase-admin": "^9.4.2",
 		"knex": "<0.20.0",
 		"pg": "^8.5.1",
 		"pg-connection-string": "^2.4.0",
@@ -26,7 +27,7 @@
 		"strapi-plugin-email": "3.4.1",
 		"strapi-plugin-upload": "3.4.1",
 		"strapi-plugin-users-permissions": "3.4.1",
-		"strapi-provider-upload-firebase": "0.0.4",
+		"strapi-provider-upload-firebase": "file:providers/strapi-provider-upload-firebase",
 		"strapi-utils": "3.4.1"
 	},
 	"author": {

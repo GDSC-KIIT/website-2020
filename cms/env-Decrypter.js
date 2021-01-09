@@ -10,9 +10,9 @@ var cryptoSecret = '';
 function getPassword() {
 	console.log('\x1b[31m', 'Now, trying to decrypt backend.env for env variables', '\x1b[0m \n');
 
-	if (process.env.TESTING === 'TRUE') {
+	if (process.env.NODE_ENV === 'production') {
 		console.log('skipping env variables in production env');
-	} else if (process.env.NODE_ENV !== 'production') {
+	} else if (process.env.NODE_ENV === 'development') {
 		rl.question('enter password = ', (pass) => {
 			cryptoSecret = pass;
 			console.log(
