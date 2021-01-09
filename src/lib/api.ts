@@ -16,3 +16,11 @@ export async function fetchAPI(path: string) {
 		}
 	});
 }
+
+export async function fetchAPIProjects(path: string) {
+	const requestUrl: string = getStrapiURL(path);
+	const response = await fetch(requestUrl);
+	const data = await response.json();
+
+	return data;
+}
