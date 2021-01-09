@@ -2,7 +2,7 @@
 	"name": "dsc-kiit-website-backend",
 	"private": true,
 	"version": "2.1.1",
-	"description": "A Strapi application",
+	"description": "Strapi supported CMS and Backend",
 	"scripts": {
 		"dev": "strapi develop",
 		"start": "strapi start",
@@ -10,7 +10,9 @@
 		"strapi": "strapi",
 		"postinstall": "node env-Decrypter.js"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"sqlite3": "latest"
+	},
 	"dependencies": {
 		"dotenv": "^8.2.0",
 		"find-config": "^1.0.0",
@@ -18,7 +20,6 @@
 		"knex": "<0.20.0",
 		"pg": "^8.5.1",
 		"pg-connection-string": "^2.4.0",
-		"sqlite3": "latest",
 		"strapi": "3.4.1",
 		"strapi-admin": "3.4.1",
 		"strapi-connector-bookshelf": "3.4.1",
