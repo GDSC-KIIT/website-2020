@@ -10,7 +10,6 @@ const serviceAccount = require('../../firebase-env.json');
 
 module.exports = {
 	init(providerOptions) {
-		console.log('the provided opitons were', providerOptions);
 		admin.initializeApp({
 			credential: admin.credential.cert(serviceAccount),
 			storageBucket: providerOptions.storageBucket,

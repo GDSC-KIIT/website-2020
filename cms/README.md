@@ -3,6 +3,10 @@
 CMS - Strapi
 Database - PostgreSQL
 
+# Production
+
+Set **`PROD_DECR`** to the correct env secret.
+
 ### Authenticated Endpoints
 
 -   **score**
