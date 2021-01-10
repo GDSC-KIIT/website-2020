@@ -8,7 +8,7 @@ const admin = require('firebase-admin');
 
 const serviceAccount = require('../../firebase-env.json');
 
-module.exports = {
+const config = {
 	init(providerOptions) {
 		admin.initializeApp({
 			credential: admin.credential.cert(serviceAccount),
@@ -57,3 +57,22 @@ module.exports = {
 		};
 	},
 };
+
+if (process.env.TESTING === 'TRUE') {
+	module.exports = {
+		init() {
+			console.info('skipping firebase config during tests');
+
+			return {
+				upload(file) {
+					return Promise.resolve();
+				},
+				delete(file) {
+					return Promise.resolve();
+				},
+			};
+		},
+	};
+} else {
+	module.exports = config;
+}
