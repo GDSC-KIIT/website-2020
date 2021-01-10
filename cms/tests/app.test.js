@@ -19,6 +19,7 @@ describe('utils for the test are bootstrapped', () => {
 				fs.unlinkSync(tmpDbFile);
 			}
 		}
+
 		done();
 	});
 
