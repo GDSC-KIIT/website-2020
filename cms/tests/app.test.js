@@ -15,6 +15,7 @@ describe('utils for the test are bootstrapped', () => {
 
 		if (dbSettings && dbSettings.filename) {
 			const tmpDbFile = `${__dirname}/../${dbSettings.filename}`;
+
 			if (fs.existsSync(tmpDbFile)) {
 				fs.unlinkSync(tmpDbFile);
 			}
