@@ -63,8 +63,10 @@ const testingConfig = () => ({
 	},
 });
 
+console.log(process.env.FAST, 'is the fast var');
+
 const config =
-	process.env.FAST === 'TRUE'
+	process.env.FAST === 'YES'
 		? fastConfig
 		: process.env.TESTING === 'TRUE'
 		? testingConfig
