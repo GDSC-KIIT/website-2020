@@ -33,7 +33,9 @@ jobs:
               id: cache-p
               with:
                   path: ./*
-                  key: ${{runner.os}}-cms
+                  key: ${{runner.os}}-cms-${{github.sha}}
+            - name: create firebase-env file
+              run: touch firebase-env.json
             - name: run test
               run: npm run test
 
@@ -47,7 +49,7 @@ jobs:
               id: restore-p
               with:
                   path: ./*
-                  key: ${{runner.os}}-cms
+                  key: ${{runner.os}}-cms-${{github.sha}}
 
             - name: test using mocha
               run: npm run test
