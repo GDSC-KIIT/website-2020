@@ -61,7 +61,7 @@ const config = {
 if (process.env.TESTING === 'TRUE') {
 	module.exports = {
 		init() {
-			console.info('skipping firebase config during tests');
+			// console.info('\x1b[34m skipping firebase config during tests \x1b[0m');
 
 			return {
 				upload(file) {

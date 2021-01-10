@@ -9,7 +9,7 @@
 		"build": "strapi build",
 		"strapi": "strapi",
 		"postinstall": "node env-Decrypter.js",
-		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000"
+		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"
 	},
 	"devDependencies": {
 		"chai": "^4.2.0",
