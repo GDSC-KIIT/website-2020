@@ -11,7 +11,7 @@ jobs:
         env:
             NODE_ENV: PRODUCTION
             SKIP_DECR: 'TRUE'
-            FAST: 'TRUE'
+            FAST: 'YES'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -33,7 +33,7 @@ jobs:
               id: cache-p
               with:
                   path: ./*
-                  key: ${{github.sha}}
+                  key: ${{runner.os}}-cms
 
     # github_pages_deploy:
     #   runs-on: ubuntu-latest
