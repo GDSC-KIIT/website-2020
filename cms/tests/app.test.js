@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { setupStrapi } = require('./helpers/strapi');
+const { setupStrapi } = require('./helpers');
 const chai = require('chai');
 const expect = chai.expect;
 
@@ -10,7 +10,7 @@ describe('utils for the test are bootstrapped', () => {
 		});
 	});
 
-	after(async (done) => {
+	after((done) => {
 		const dbSettings = strapi.config.get('database.connections.default.settings');
 
 		if (dbSettings && dbSettings.filename) {
@@ -25,11 +25,6 @@ describe('utils for the test are bootstrapped', () => {
 
 	it('strapi is defined', (done) => {
 		expect(strapi).to.exist;
-		done();
-	});
-
-	it('2 should be 2', (done) => {
-		expect(5).not.to.equal(2);
 		done();
 	});
 });
