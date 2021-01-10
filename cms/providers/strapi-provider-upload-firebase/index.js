@@ -6,10 +6,10 @@
 
 const admin = require('firebase-admin');
 
-const serviceAccount = require('../../firebase-env.json');
-
 const config = {
 	init(providerOptions) {
+		const serviceAccount = require('../../firebase-env.json');
+
 		admin.initializeApp({
 			credential: admin.credential.cert(serviceAccount),
 			storageBucket: providerOptions.storageBucket,
