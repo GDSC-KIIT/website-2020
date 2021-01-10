@@ -27,24 +27,21 @@ const productionConfig = ({ env }) => {
 	};
 };
 
-const fastConfig = ({ env }) => {
-	console.log('using fast config');
-	return {
-		defaultConnection: 'default',
-		connections: {
-			default: {
-				connector: 'bookshelf',
-				settings: {
-					client: 'sqlite',
-					filename: '.tmp/data.db',
-				},
-				options: {
-					useNullAsDefault: true,
-				},
+const fastConfig = () => ({
+	defaultConnection: 'default',
+	connections: {
+		default: {
+			connector: 'bookshelf',
+			settings: {
+				client: 'sqlite',
+				filename: '.tmp/data.db',
+			},
+			options: {
+				useNullAsDefault: true,
 			},
 		},
-	};
-};
+	},
+});
 
 const testingConfig = () => ({
 	defaultConnection: 'default',
@@ -66,10 +63,8 @@ const testingConfig = () => ({
 	},
 });
 
-console.log(process.env.FAST, 'is the fast var');
-
 const config =
-	process.env.FAST === 'YES'
+	process.env.FAST === 'TRUE'
 		? fastConfig
 		: process.env.TESTING === 'TRUE'
 		? testingConfig
