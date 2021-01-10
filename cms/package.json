@@ -8,8 +8,9 @@
 		"start": "strapi start",
 		"build": "strapi build",
 		"strapi": "strapi",
-		"devf": "cross-env FAST=TRUE strapi develop",
 		"postinstall": "node env-Decrypter.js",
+		"devf": "cross-env FAST=TRUE strapi develop",
+		"ci:build": "cross-env FAST=TRUE strapi build",
 		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"
 	},
 	"devDependencies": {
