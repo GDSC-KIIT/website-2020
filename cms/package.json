@@ -8,9 +8,14 @@
 		"start": "strapi start",
 		"build": "strapi build",
 		"strapi": "strapi",
-		"postinstall": "node env-Decrypter.js"
+		"postinstall": "node env-Decrypter.js",
+		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000"
 	},
 	"devDependencies": {
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
+		"cross-env": "^7.0.3",
+		"mocha": "^8.2.1",
 		"sqlite3": "latest"
 	},
 	"dependencies": {
