@@ -10,8 +10,8 @@ jobs:
     setup_build:
         env:
             NODE_ENV: PRODUCTION
-            SKIP_DECR: TRUE
-            FAST: TRUE
+            SKIP_DECR: 'TRUE'
+            FAST: 'TRUE'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
