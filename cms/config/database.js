@@ -24,7 +24,7 @@ const productionConfig = ({ env }) => ({
 	},
 });
 
-const testingConfig = ({ env }) => ({
+const fastConfig = ({ env }) => ({
 	defaultConnection: 'default',
 	connections: {
 		default: {
@@ -40,6 +40,31 @@ const testingConfig = ({ env }) => ({
 	},
 });
 
-const config = process.env.TESTING === 'TRUE' ? testingConfig : productionConfig;
+const testingConfig = () => ({
+	defaultConnection: 'default',
+	connections: {
+		default: {
+			connector: 'bookshelf',
+			settings: {
+				client: 'sqlite',
+				filename: '.tmp/test.db',
+			},
+			options: {
+				useNullAsDefault: true,
+				pool: {
+					min: 0,
+					max: 1,
+				},
+			},
+		},
+	},
+});
+
+const config =
+	process.env.FAST === 'TRUE'
+		? fastConfig
+		: process.env.TESTING === 'TRUE'
+		? testingConfig
+		: productionConfig;
 
 module.exports = config;
