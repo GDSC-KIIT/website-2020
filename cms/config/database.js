@@ -24,21 +24,24 @@ const productionConfig = ({ env }) => ({
 	},
 });
 
-const fastConfig = ({ env }) => ({
-	defaultConnection: 'default',
-	connections: {
-		default: {
-			connector: 'bookshelf',
-			settings: {
-				client: 'sqlite',
-				filename: env('DATABASE_FILENAME', '.tmp/data.db'),
-			},
-			options: {
-				useNullAsDefault: true,
+const fastConfig = ({ env }) => {
+	console.log('using fast config');
+	return {
+		defaultConnection: 'default',
+		connections: {
+			default: {
+				connector: 'bookshelf',
+				settings: {
+					client: 'sqlite',
+					filename: '.tmp/data.db',
+				},
+				options: {
+					useNullAsDefault: true,
+				},
 			},
 		},
-	},
-});
+	};
+};
 
 const testingConfig = () => ({
 	defaultConnection: 'default',
