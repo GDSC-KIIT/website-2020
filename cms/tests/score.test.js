@@ -10,24 +10,25 @@ describe('score endpoints work', () => {
 	let app = null;
 
 	before((done) => {
-		setupStrapi().then((instance) => {
-			app = instance;
-			done();
-		});
+		setupStrapi()
+			.then((instance) => {
+				app = instance;
+			})
+			.then(done);
 	});
 
-	after((done) => {
-		const dbSettings = strapi.config.get('database.connections.default.settings');
+	// afterEach((done) => {
+	// 	const dbSettings = strapi.config.get('database.connections.default.settings');
 
-		if (dbSettings && dbSettings.filename) {
-			const tmpDbFile = `${__dirname}/../${dbSettings.filename}`;
-			if (fs.existsSync(tmpDbFile)) {
-				fs.unlinkSync(tmpDbFile);
-			}
-		}
+	// 	if (dbSettings && dbSettings.filename) {
+	// 		const tmpDbFile = `${__dirname}/../${dbSettings.filename}`;
+	// 		if (fs.existsSync(tmpDbFile)) {
+	// 			fs.rmSync(tmpDbFile);
+	// 		}
+	// 	}
 
-		done();
-	});
+	// 	done();
+	// });
 
 	it('GET the score endpoint', (done) => {
 		chai.request(app.server)

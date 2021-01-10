@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { setupStrapi } = require('./helpers');
+const { setupStrapi, userData, deleteDB } = require('./helpers');
 const chai = require('chai');
 const expect = chai.expect;
 
@@ -11,21 +11,21 @@ describe('utils for the test are bootstrapped', () => {
 	});
 
 	after((done) => {
-		const dbSettings = strapi.config.get('database.connections.default.settings');
-
-		if (dbSettings && dbSettings.filename) {
-			const tmpDbFile = `${__dirname}/../${dbSettings.filename}`;
-
-			if (fs.existsSync(tmpDbFile)) {
-				fs.unlinkSync(tmpDbFile);
-			}
-		}
-
+		deleteDB();
 		done();
 	});
 
-	it('strapi is defined', (done) => {
+	it('strapi is defined', () => {
 		expect(strapi).to.exist;
-		done();
+	});
+
+	it('a strapi user can be created', (done) => {
+		strapi.plugins['users-permissions'].services.user
+			.add({
+				...userData,
+			})
+			.then(() => {
+				done();
+			});
 	});
 });

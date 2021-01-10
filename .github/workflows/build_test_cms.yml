@@ -34,10 +34,6 @@ jobs:
               with:
                   path: ./*
                   key: ${{runner.os}}-cms-${{github.sha}}
-            - name: create firebase-env file
-              run: touch firebase-env.json
-            - name: run test
-              run: npm run test
 
     test_cms:
         runs-on: ubuntu-latest
@@ -50,7 +46,8 @@ jobs:
               with:
                   path: ./*
                   key: ${{runner.os}}-cms-${{github.sha}}
-
+            - name: create firebase-env file
+              run: touch firebase-env.json
             - name: test using mocha
               run: npm run test
 
