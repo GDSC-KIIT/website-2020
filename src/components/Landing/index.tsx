@@ -14,7 +14,6 @@ import {
 	Grid,
 	Container,
 	Button,
-	Box,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -157,7 +156,7 @@ export default function Landing() {
 					Join our Discord Channel to know more about the Activities, Sessions and other
 					fun stuff.
 				</p>
-				<Box textAlign="center">
+				<Grid container spacing={0} justify="center">
 					<Button
 						variant="contained"
 						style={{ backgroundColor: '#313B86', color: 'white' }}
@@ -166,7 +165,7 @@ export default function Landing() {
 						}}>
 						Join us on <img src="/discord.png" height="30px" alt="discord" />
 					</Button>
-				</Box>
+				</Grid>
 			</div>
 		</>
 	);
