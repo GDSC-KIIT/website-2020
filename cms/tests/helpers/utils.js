@@ -9,13 +9,13 @@ module.exports = {
 
 		const tmpDbFile = `${__dirname}/../../${dbSettings.filename}`;
 
-		const p = path.resolve(tmpDbFile);
+		const loc = path.resolve(tmpDbFile);
 
 		if (dbSettings && dbSettings.filename) {
-			if (fs.existsSync(p)) {
-				console.log('does file exist', fs.existsSync(p));
-				fs.unlinkSync(p);
-				console.log('does file exist', fs.existsSync(p));
+			if (fs.existsSync(loc)) {
+				// console.log('does file exist', fs.existsSync(loc));
+				fs.unlinkSync(loc);
+				// console.log('does file exist', fs.existsSync(loc));
 			}
 		}
 	},
