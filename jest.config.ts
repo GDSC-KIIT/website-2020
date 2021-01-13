@@ -6,6 +6,7 @@ const config: Config.InitialOptions = {
 	errorOnDeprecated: true,
 	testTimeout: 7000,
 	verbose: false,
+	collectCoverage: true,
 	moduleNameMapper: {
 		'^@/(.*)$': '<rootDir>/src/$1',
 	},
