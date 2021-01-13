@@ -1,13 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import {
+	makeStyles,
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	FormControl,
+	FormLabel,
+	Button,
+	Grid,
+	Paper,
+} from '@material-ui/core';
+
 const useStyles = makeStyles((theme) => ({
 	paper1: {
 		padding: theme.spacing(10),

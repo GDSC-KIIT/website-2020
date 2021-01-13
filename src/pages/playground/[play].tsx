@@ -1,4 +1,4 @@
-import Question from '@/components/Playground/Question';
+import Question from '@/playground/components/question';
 export default function Quiz() {
 	return (
 		<>
