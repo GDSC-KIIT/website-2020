@@ -1,9 +1,12 @@
 name: Remaining to Do
 
-on: push
+on:
+    push:
+        branches:
+            - 'todos'
 
 jobs:
-    build:
+    todos:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -11,6 +14,9 @@ jobs:
               uses: alstr/todo-to-issue-action@v2.4.1
               id: v2-todos
               with:
-                  TOKEN: ${{secrets.GITHUB_TOKEN}}
-                  LABEL: '// TODO:'
+                  REPO: ${{ github.repository }}
+                  BEFORE: ${{ github.event.before }}
+                  SHA: ${{ github.sha }}
+                  TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  LABEL: '// TODO'
                   COMMENT_MARKER: '//'

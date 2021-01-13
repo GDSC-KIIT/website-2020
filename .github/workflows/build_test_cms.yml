@@ -1,6 +1,9 @@
 name: Build_Test_CMS
 
-on: push
+on:
+    push:
+        branches:
+            - 'ci'
 
 defaults:
     run:
