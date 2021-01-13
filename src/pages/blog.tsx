@@ -9,7 +9,7 @@ export async function getStaticProps() {
 	]).then((arr) => [...arr[0], ...arr[1]]);
 	// TODO sort all by published date
 	//  labels: enhance
-
+	//  assignees: aditya-mitra
 	return {
 		props: {
 			blogPosts,
