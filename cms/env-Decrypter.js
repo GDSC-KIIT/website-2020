@@ -4,7 +4,11 @@ const crypto = require('crypto');
 var cryptoSecret = '';
 
 function getPassword() {
-	console.log('\x1b[31m', 'Now, trying to decrypt backend.env for env variables', '\x1b[0m \n');
+	console.log(
+		'\x1b[31m',
+		'Now, trying to decrypt backend.env and firebase-env for env variables',
+		'\x1b[0m \n'
+	);
 
 	if (process.env.SKIP_DECR === 'TRUE') {
 		console.log('\x1b[45m skipping env variables \x1b[0m');
