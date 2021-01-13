@@ -6,7 +6,6 @@ import Layout from '@/components/Layout';
 export default function Home() {
 	// TODO Remove the cdns
 	//  labels: landing
-	//  assignees: aditya-mitra
 	return (
 		<>
 			<Head key="link">
