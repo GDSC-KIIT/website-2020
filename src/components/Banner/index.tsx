@@ -9,7 +9,8 @@ export default function Banners() {
 	let banners: IBanner[] = data ?? [];
 
 	if (banners.length > 0) {
-		// TODO: Change the banner style
+		// TODO Change the banner style
+		//  labels: styling, landing
 		return (
 			<>
 				<span style={{ marginTop: '2rem' }} />

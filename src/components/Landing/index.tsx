@@ -42,7 +42,8 @@ const useStyles = makeStyles((theme) => ({
 const Banners = dynamic(() => import('@/components/Banner'));
 
 export default function Landing() {
-	// TODO: Replace images with next/image for a faster landing
+	// TODO Replace images with next/image for a faster landing
+	//  labels: enhance, landing
 	const classes = useStyles();
 	return (
 		<>
