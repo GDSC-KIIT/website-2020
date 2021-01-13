@@ -20,13 +20,15 @@ const CurrentUser = ({ href, text }: IPropsCurrentUser) => (
 export function GoogleAuthLogin() {
 	const { loading, user } = useUser();
 
+	// TODO style this in a dropdown menu
+	//  labels: styling
+	//  button not necessary
 	return (
 		<div>
 			{loading ? (
 				<CircularProgress />
 			) : user ? (
 				<>
-					{/* TODO: style this in a dropdown menu (button not necessary) */}
 					<CurrentUser href="" text={`Hi, ${user.username}`} />
 					<NextLink href="/auth/logout">
 						<Button>log out</Button>

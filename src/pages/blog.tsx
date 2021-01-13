@@ -7,7 +7,8 @@ export async function getStaticProps() {
 		fetchDevtoBlogPosts(),
 		fetchMediumBlogPosts(),
 	]).then((arr) => [...arr[0], ...arr[1]]);
-	// TODO: sort all by published date
+	// TODO sort all by published date
+	//  labels: enhance
 
 	return {
 		props: {
