@@ -1,18 +1,16 @@
-const fs = require('fs');
 const { setupStrapi, userData, deleteDB } = require('./helpers');
 const chai = require('chai');
 const expect = chai.expect;
 
-describe('utils for the test are bootstrapped', () => {
+describe.skip('utils for the test are bootstrapped', () => {
 	before((done) => {
 		setupStrapi().then(() => {
 			done();
 		});
 	});
 
-	after((done) => {
+	after(() => {
 		deleteDB();
-		done();
 	});
 
 	it('strapi is defined', () => {
