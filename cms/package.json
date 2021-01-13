@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "strapi develop",
 		"start": "strapi start",
-		"build": "strapi build",
+		"build": "strapi build --clean",
 		"strapi": "strapi",
 		"postinstall": "node env-Decrypter.js",
 		"devf": "cross-env FAST=TRUE strapi develop",
@@ -27,16 +27,16 @@
 		"knex": "<0.20.0",
 		"pg": "^8.5.1",
 		"pg-connection-string": "^2.4.0",
-		"strapi": "3.4.1",
-		"strapi-admin": "3.4.1",
-		"strapi-connector-bookshelf": "3.4.1",
-		"strapi-plugin-content-manager": "3.4.1",
-		"strapi-plugin-content-type-builder": "3.4.1",
-		"strapi-plugin-email": "3.4.1",
-		"strapi-plugin-upload": "3.4.1",
-		"strapi-plugin-users-permissions": "3.4.1",
+		"strapi": "3.4.2",
+		"strapi-admin": "3.4.2",
+		"strapi-connector-bookshelf": "3.4.2",
+		"strapi-plugin-content-manager": "3.4.2",
+		"strapi-plugin-content-type-builder": "3.4.2",
+		"strapi-plugin-email": "3.4.2",
+		"strapi-plugin-upload": "3.4.2",
+		"strapi-plugin-users-permissions": "3.4.2",
 		"strapi-provider-upload-firebase": "file:providers/strapi-provider-upload-firebase",
-		"strapi-utils": "3.4.1"
+		"strapi-utils": "3.4.2"
 	},
 	"author": {
 		"name": "aditya-mitra"
