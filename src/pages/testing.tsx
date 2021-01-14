@@ -40,22 +40,73 @@ const token =
 // 	return <div>{data === 'loading' ? 'LOADING' : JSON.stringify(data, null, 4)}</div>;
 // }
 
+// a user was registerd
+
+const token2 =
+	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjEwNjM5MDg5LCJleHAiOjE2MTMyMzEwODl9.yyw21N8-I2KCcwyBht76f7xTy75LpDVPnHSrFKKvRzU';
+
+/*
+a user was registerd 
+{…}
+​
+jwt: 
+​
+user: Object { id: 1, username: "testuser2", email: "test2@users.com", … }
+​
+<prototype>: Object { … }
+testing.tsx:81:12
+
+*/
+
 export default function LoginTesting() {
+	// useEffect(() => {
+	// 	axios
+	// 		.post('http://localhost:9000/auth/local/register', {
+	// 			username: 'testuser2',
+	// 			email: 'test2@users.com',
+	// 			password: 'testStrongPass123',
+	// 		})
+	// 		.then((response) => response.data)
+	// 		.then((data) => {
+	// 			console.info('a user was registerd', data);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.info('could register a user', err);
+	// 		});
+	// }, []);
+
+	// useEffect(() => {
+	// 	//login
+	// 	axios
+	// 		.post('http://localhost:9000/auth/local', {
+	// 			indentifier: 'test2@users.com',
+	// 			password: 'testStrongPass123',
+	// 		})
+	// 		.then((response) => console.info('login data', response.data))
+	// 		.catch((err) => console.log('err', err));
+	// }, []);
+
 	useEffect(() => {
-		axios
-			.post('http://localhost:9000/auth/local/register', {
-				username: 'testuser1',
-				email: 'test@users.com',
-				password: 'testStrongPass123',
-			})
+		axios({
+			data: {
+				id: 4,
+				eye_catcher: 'eye catcher from test',
+				title: 'test title',
+				link: 'http://nextjs.com',
+			},
+			url: 'http://localhost:9000/banners',
+			headers: {
+				Authorization: `Bearer ${token2}`,
+			},
+			method: 'post',
+		})
 			.then((response) => response.data)
 			.then((data) => {
-				console.info('a user was registerd', data);
+				console.info('the created banner is ', data);
 			})
 			.catch((err) => {
-				console.info('could register a user', err);
+				console.info('it failded ', err);
 			});
 	}, []);
-
 	return <>check console</>;
 }
