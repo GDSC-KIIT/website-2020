@@ -57,12 +57,13 @@ export default function AllQs() {
 			//  assignees: yashvi2001, aditya-mitra
 			return questions.map((question) => (
 				<Grid item xs={10} key={question.id}>
-					<NextLink href="/">
+					<NextLink href={question.accepting ? `/playground/${question.id}` : '#'}>
 						<Paper
+							data-testid={`question-${question.id}`}
 							className={classes.paper}
 							elevation={3}
 							style={{ backgroundColor: question.accepting ? 'green' : 'orangered' }}>
-							<Typography variant="h5">{question.id}</Typography>
+							<Typography variant="h5">THE QUESTION IS {question.id}</Typography>
 						</Paper>
 					</NextLink>
 				</Grid>
