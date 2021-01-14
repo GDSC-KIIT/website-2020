@@ -12,6 +12,35 @@
 
 require('dotenv').config({ path: require('find-config')('.env') });
 
+async function updatePermissionTestConfig() {
+	const orm = strapi.query('permission', 'users-permissions');
+	const perms = await orm.find({ type: 'application' });
+
+	for (const perm of perms) {
+		const isReadEndpoint = ['find', 'findone', 'count'].includes(perm.action);
+		const restrictedToPublic = ['quiz', 'score'].includes(perm.controller);
+		const isAuthRole = perm.role.type === 'authenticated';
+
+		// authenticated permission
+		if (isReadEndpoint && isAuthRole) {
+			strapi.log.info(`Allowing authenticated to call ${perm.controller}.${perm.action}`);
+			orm.update({ id: perm.id }, { ...perm, enabled: true });
+		}
+
+		// public permissions
+		// in testing all CRUD operation are allowed
+		else if (!restrictedToPublic) {
+			strapi.log.info(`Allowing public to call ${perm.controller}.${perm.action}`);
+			orm.update({ id: perm.id }, { ...perm, enabled: true });
+		}
+		// handle creating of scores for authenticated users
+		else if (perm.controller === 'score' && perm.action === 'create' && isAuthRole) {
+			strapi.log.info('Allowing authenticated to create scores');
+			orm.update({ id: perm.id }, { ...perm, enabled: true });
+		}
+	}
+}
+
 async function updatePermissions() {
 	const orm = strapi.query('permission', 'users-permissions');
 	const perms = await orm.find({ type: 'application' });
@@ -28,7 +57,7 @@ async function updatePermissions() {
 		}
 
 		// public permissions
-		else if (isReadEndpoint && !restrictedToPublic && perm.controller !== 'quiz') {
+		else if (isReadEndpoint && !restrictedToPublic) {
 			strapi.log.info(`Allowing public to call ${perm.controller}.${perm.action}`);
 			orm.update({ id: perm.id }, { ...perm, enabled: true });
 		}
@@ -41,5 +70,9 @@ async function updatePermissions() {
 }
 
 module.exports = async () => {
-	await updatePermissions();
+	if (process.env.TESTING === 'TRUE') {
+		await updatePermissionTestConfig();
+	} else {
+		await updatePermissions();
+	}
 };
