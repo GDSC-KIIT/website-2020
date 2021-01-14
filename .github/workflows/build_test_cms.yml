@@ -23,7 +23,7 @@ jobs:
                   persist-credentials: false
 
             - name: Get Node
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v2
 
             - name: Install dependencies
               run: |
@@ -53,29 +53,57 @@ jobs:
               run: touch firebase-env.json
             - name: test using mocha
               run: npm run test
+#       name: Test Reporting # works only on pr
 
-    # netlify_deploy:
-    #   runs-on: ubuntu-latest
-    #   needs: setup_build
-    #   steps:
-    #     - name: restore cache
-    #       id: restore-p
-    #       uses: actions/cache@v2
-    #       with:
-    #         path: ./*
-    #         key: ${{github.sha}}
+# on: pull_request
 
-    #     - name: Deploy to Netlify
-    #       uses: nwtgck/actions-netlify@v1.1
-    #       with:
-    #         publish-dir: './portfolio'
-    #         production-branch: main
-    #         github-token: ${{ secrets.GITHUB_TOKEN }}
-    #         deploy-message: "Deploying at aditya-mitra.netlify.app - ${{ github.event.head_commit.message }}"
-    #         enable-pull-request-comment: false
-    #         enable-commit-comment: true
-    #         overwrites-pull-request-comment: true
-    #       env:
-    #         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN_V2 }}
-    #         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_V2 }}
-    #       timeout-minutes: 1
+# jobs:
+#     test:
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Checkout
+#               uses: actions/checkout@v2
+#               with:
+#                   persist-credentials: false
+
+#             - name: Get Node
+#               uses: actions/setup-node@v2
+
+#             - name: Install dependencies
+#               run: |
+#                   npm install
+
+#             - name: test frontend without report
+#               run: |
+#                   npm test
+
+#             - name: test frontend with report
+#               uses: mattallty/jest-github-action@v1
+#               env:
+#                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# netlify_deploy:
+#   runs-on: ubuntu-latest
+#   needs: setup_build
+#   steps:
+#     - name: restore cache
+#       id: restore-p
+#       uses: actions/cache@v2
+#       with:
+#         path: ./*
+#         key: ${{github.sha}}
+
+#     - name: Deploy to Netlify
+#       uses: nwtgck/actions-netlify@v1.1
+#       with:
+#         publish-dir: './portfolio'
+#         production-branch: main
+#         github-token: ${{ secrets.GITHUB_TOKEN }}
+#         deploy-message: "Deploying at aditya-mitra.netlify.app - ${{ github.event.head_commit.message }}"
+#         enable-pull-request-comment: false
+#         enable-commit-comment: true
+#         overwrites-pull-request-comment: true
+#       env:
+#         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN_V2 }}
+#         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_V2 }}
+#       timeout-minutes: 1
