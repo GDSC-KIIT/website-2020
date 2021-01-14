@@ -56,7 +56,7 @@ describe('when user is logged in', () => {
 			api.createData('http://localhost:9000/quizzes', testUtils.question3),
 		]);
 		testUser.token = await api.loginUser();
-		console.log('THE LOGGED IN USER IS', testUser.token);
+		mocked(getSessionAuthToken).mockResolvedValue(testUser.token);
 	});
 
 	afterAll(async () => {
@@ -69,9 +69,17 @@ describe('when user is logged in', () => {
 	});
 
 	it('questions are available to the user', async () => {
-		mocked(getSessionAuthToken).mockResolvedValue(testUser.token);
 		const { getByTestId } = render(<Questions />);
 		await waitFor(() => {
+			expect(getByTestId(`question-${qids.q2}`)).toBeInTheDocument();
+		});
+	});
+
+	it('the three questions are available', async () => {
+		const { getByTestId } = render(<Questions />);
+		await waitFor(() => {
+			expect(getByTestId(`question-${qids.q1}`)).toBeInTheDocument();
+			expect(getByTestId(`question-${qids.q2}`)).toBeInTheDocument();
 			expect(getByTestId(`question-${qids.q3}`)).toBeInTheDocument();
 		});
 	});
