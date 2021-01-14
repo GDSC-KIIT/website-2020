@@ -10,28 +10,14 @@ const axiosInstance = axios.create({
 
 const quizUrl = '/quizzes';
 
-export default async function apiCall(
-	method: methodType,
-	config?: AxiosRequestConfig,
-	id?: number,
-	data?: any
-) {
+export default async function apiCall(id?: number, config?: AxiosRequestConfig) {
 	const url = id ? `${quizUrl}/${id}` : quizUrl;
 
 	const authToken = await getSessionAuthToken();
 
 	return axiosInstance({
 		...config,
-		// headers: { Authorization: `Bearer ${authToken}` },
-		method,
+		headers: { Authorization: `Bearer ${authToken}` },
 		url,
-		data,
-	})
-		.then((response) => response.data)
-		.catch((error) => {
-			console.log('error with api call in quiz', error);
-			return null;
-		});
+	}).then((response) => response.data);
 }
-
-type methodType = 'GET' | 'POST';
