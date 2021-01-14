@@ -33,9 +33,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	}
 
 	const jwt = await _getUserToken(query.access_token);
-	// TODO REMOVE THIS LINE before production
-	//  labels: production
-	console.log(jwt, 'is the auth token');
 	storeUserWithToken(ctx, jwt);
 
 	return {
@@ -47,8 +44,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
 export default function AuthCallback() {
 	const router = useRouter();
-
-	// TODO add user logout in a seperate file
 
 	useEffect(() => {
 		router.push('/');

@@ -122,7 +122,7 @@ const Navbar = () => {
 							</Link>
 						</Grid>
 						<Grid item>
-							<Link href="/quiz">
+							<Link href="/playground">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Quiz
 								</Typography>

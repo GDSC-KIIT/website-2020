@@ -1,3 +1,3 @@
-import fetchAllQuestions from './fetchAllQuestions';
+import fetchAllQuestions from './questions/fetchAllQuestions';
 
 export { fetchAllQuestions };
