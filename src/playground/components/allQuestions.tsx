@@ -13,7 +13,6 @@ import {
 	Backdrop,
 	Button,
 } from '@material-ui/core';
-import '@fontsource/montserrat';
 
 import { fetchAllQuestions } from '@/playground/lib/api';
 import { GoogleAuthLogin } from '@/components/AuthProvider';
@@ -46,8 +45,6 @@ export default function AllQs() {
 
 	const { data, error } = useSWR('all_questions', fetchAllQuestions, { refreshInterval: 1000 });
 
-	console.log('error was this', error, 'and ', data);
-
 	const quesDisplays = useMemo(() => {
 		const questions = data ?? [];
 		if (questions.length > 0) {
@@ -77,7 +74,7 @@ export default function AllQs() {
 			//  labels: priority, styling
 			//  assignees: yashvi2001
 			return (
-				<div>
+				<div data-testid="not-loggedin">
 					You are not logged in!
 					<Button>
 						<GoogleAuthLogin />
@@ -87,7 +84,7 @@ export default function AllQs() {
 		} else {
 			return (
 				<Backdrop className={classes.backdrop} open={true}>
-					<CircularProgress size={70} />;
+					<CircularProgress size={70} data-testid="loader" />;
 				</Backdrop>
 			);
 		}
