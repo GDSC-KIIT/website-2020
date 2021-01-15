@@ -1,5 +1,4 @@
 import { waitFor, render, cleanup } from '@testing-library/react';
-import { act } from 'react-test-renderer';
 import { mocked } from 'ts-jest/utils';
 import { api, testUtils } from '../../utils';
 
@@ -29,20 +28,16 @@ describe('when user is not logged in', () => {
 		const { getByTestId } = render(<Questions />);
 		expect(getByTestId('loader')).toBeInTheDocument();
 
-		act(() => {
-			waitFor(() => {
-				expect(getByTestId('not-loggedin')).toBeInTheDocument();
-			});
+		waitFor(() => {
+			expect(getByTestId('not-loggedin')).toBeInTheDocument();
 		});
 	});
 
 	it('no question is available', () => {
 		const { getByTestId } = render(<Questions />);
-		act(() => {
-			waitFor(() => {
-				expect(getByTestId('not-loggedin')).toBeInTheDocument();
-				expect(getByTestId(`question-${qids.q1}`)).not.toBeInTheDocument();
-			});
+		waitFor(() => {
+			getByTestId('not-loggedin');
+			getByTestId(`question-${qids.q1}`);
 		});
 	});
 });
@@ -68,19 +63,19 @@ describe('when user is logged in', () => {
 		cleanup();
 	});
 
-	it('questions are available to the user', async () => {
+	it('questions are available to the user', () => {
 		const { getByTestId } = render(<Questions />);
-		await waitFor(() => {
-			expect(getByTestId(`question-${qids.q2}`)).toBeInTheDocument();
+		waitFor(() => {
+			getByTestId(`question-${qids.q2}`);
 		});
 	});
 
-	it('the three questions are available', async () => {
+	it.only('the three questions are available', () => {
 		const { getByTestId } = render(<Questions />);
-		await waitFor(() => {
-			expect(getByTestId(`question-${qids.q1}`)).toBeInTheDocument();
-			expect(getByTestId(`question-${qids.q2}`)).toBeInTheDocument();
-			expect(getByTestId(`question-${qids.q3}`)).toBeInTheDocument();
+		waitFor(() => {
+			getByTestId(`question-${qids.q1}`);
+			getByTestId(`question-${qids.q2}`);
+			getByTestId(`question-${qids.q3}`);
 		});
 	});
 });
