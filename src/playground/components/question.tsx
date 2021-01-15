@@ -50,7 +50,12 @@ const useStyles = makeStyles((theme) => ({
 function createOption(option: string | null | undefined, value: optionTypes) {
 	if (!option) return null;
 	return (
-		<FormControlLabel value={value.toString()} control={<Radio />} label={option} key={value} />
+		<FormControlLabel
+			value={value && value.toString()}
+			control={<Radio />}
+			label={option}
+			key={value}
+		/>
 	);
 }
 
@@ -69,6 +74,8 @@ export default function Q() {
 	});
 
 	const [selectedOption, setSelectedOption] = useState<optionTypes>(null);
+
+	const [allowed, setAllowed] = useState(false);
 
 	const qid = useMemo(() => {
 		const { play } = router.query;
@@ -94,29 +101,38 @@ export default function Q() {
 
 	const Question = useMemo(() => {
 		if (!error && data) {
+			if (data.accepting) setAllowed(true);
 			return <div dangerouslySetInnerHTML={{ __html: md(data.question) }} />;
 		} else if (error) {
 			setSnack({ message: 'this is from snack', severity: 'error' });
 			return <Skeleton variant="rect" width={700} height={200} />;
 		}
+		// TODO Question and Options are blank during initial fetch
+		//  During inital data fetch, the question and the answers behind the backdrop are empty
+		//  They can be made to look nicer with a better loading screen
+		//  Please also make the *skeleton* mobile responsive (it can be found above)
+		//  labels: styling, responsive
+		//  assignees: yashvi2001
 		return (
-			// TODO Question and Options are blank during initial fetch
-			//  During inital data fetch, the question and the answers behind the backdrop are empty
-			//  They can be made to look nicer with a better loading screen
-			//  Please also make the *skeleton* mobile responsive (it can be found above)
-			//  labels: styling, responsive
-			//  assignees: yashvi2001
 			<Backdrop className={classes.backdrop} open={true}>
 				<CircularProgress size={100} data-testid="loader" />;
 			</Backdrop>
 		);
 	}, [data, error]);
 
-	const handleOptionChange = useCallback(
-		(event: ChangeEvent<HTMLInputElement>) => {
-			setSelectedOption(event.target.value);
+	const handleOptionChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+		setSelectedOption(event.target.value);
+	}, []);
+
+	const handleAnswerSubmission = useCallback(
+		(event: FormEvent<HTMLFormElement>) => {
+			event.preventDefault();
+			if (selectedOption) {
+				setAllowed(false);
+				console.log('you had selected ' + selectedOption);
+			}
 		},
-		[setSelectedOption]
+		[selectedOption]
 	);
 
 	const Options = useMemo(() => {
@@ -132,14 +148,17 @@ export default function Q() {
 
 	return (
 		<div>
-			<form>
+			<form onSubmit={handleAnswerSubmission}>
 				<Grid container spacing={0} justify="center">
-					<FormControl component="fieldset" className={classes.formControl}>
-						<Grid item xs={12}>
-							<Paper className={classes.paper1}>
-								<FormLabel>{Question}</FormLabel>
-							</Paper>
-						</Grid>
+					<Grid item xs={12}>
+						<Paper className={classes.paper1}>
+							<FormLabel>{Question}</FormLabel>
+						</Paper>
+					</Grid>
+					<FormControl
+						component="fieldset"
+						className={classes.formControl}
+						disabled={!allowed}>
 						<RadioGroup
 							aria-label="quiz"
 							value={selectedOption}
@@ -151,6 +170,7 @@ export default function Q() {
 							type="submit"
 							variant="outlined"
 							color="primary"
+							disabled={!allowed}
 							className={classes.button}>
 							Check Answer
 						</Button>

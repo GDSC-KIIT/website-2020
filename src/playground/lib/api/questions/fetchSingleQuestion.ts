@@ -5,10 +5,7 @@ import apiCall from './apiCall';
 
 export default function fetchSingleQuestion(id: number) {
 	return apiCall(id)
-		.then((data: QuestionType) => {
-			// TODO remove the console.log statement
-			return data;
-		})
+		.then((data: QuestionType) => data)
 		.catch((err: AxiosError) => {
 			if (err.response?.status === 401) {
 				throw new Error('you are not logged in');
