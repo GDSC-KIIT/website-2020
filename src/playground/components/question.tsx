@@ -3,7 +3,7 @@ import { useMemo, useCallback, useState, ChangeEvent, FormEvent } from 'react';
 import useSWR from 'swr';
 
 import md from '@/lib/markdown';
-import { fetchSingleQuestion } from '@/playground/lib/api';
+import { fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
 
 import {
 	makeStyles,
@@ -19,9 +19,10 @@ import {
 	CircularProgress,
 	Snackbar,
 	Slide,
+	IconButton,
 } from '@material-ui/core';
-
-import { Alert, AlertProps, Skeleton } from '@material-ui/lab';
+import { Close as CloseIcon } from '@material-ui/icons';
+import { Skeleton, Alert, AlertProps } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
 	paper1: {
@@ -60,6 +61,8 @@ function createOption(option: string | null | undefined, value: optionTypes) {
 }
 
 // TODO there is no feedback to see when the question is not accpeting responses
+//  **disable answer submission if user already submitted*()
+//  check if this qid is there in there in `user/me`
 //  labels: enhance
 //  assignees: aditya-mitra
 
@@ -75,10 +78,10 @@ export default function Q() {
 
 	const [selectedOption, setSelectedOption] = useState<optionTypes>(null);
 
-	const [allowed, setAllowed] = useState(false);
+	const [allowed, setAllowed] = useState(false); // refactor this into checks
 
 	const qid = useMemo(() => {
-		const { play } = router.query;
+		const play = router && router.query.play;
 
 		if (!play) {
 			return '';
@@ -127,9 +130,31 @@ export default function Q() {
 	const handleAnswerSubmission = useCallback(
 		(event: FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
-			if (selectedOption) {
-				setAllowed(false);
-				console.log('you had selected ' + selectedOption);
+			if (selectedOption && qid) {
+				submitAnswer(parseInt(qid, 10), parseInt(selectedOption, 10))
+					.then(({ correct, message, points, created, updated }) => {
+						if (correct) {
+							setSnack({ message: message.toUpperCase(), severity: 'success' });
+							setSnack({ message: `Current Points : ${points}`, severity: 'info' });
+						} else {
+							setSnack({ message: message.toUpperCase(), severity: 'error' });
+						}
+
+						if (created) {
+							setSnack({
+								message: 'We are now storing these points in your account',
+								severity: 'info',
+							});
+						} else if (updated) {
+							setSnack({
+								message: 'We have updated the points in your account',
+								severity: 'info',
+							});
+						}
+					})
+					.catch((err) => {
+						console.log(err);
+					});
 			}
 		},
 		[selectedOption]
@@ -184,13 +209,24 @@ export default function Q() {
 				disableWindowBlurListener={true}
 				onClose={() => setSnack({ message: '' })}
 				open={snack.message.length > 0}>
-				<Alert
-					elevation={6}
-					variant="standard"
-					onClose={() => setSnack({ message: '' })}
-					severity={snack.severity}>
-					{snack.message}
-				</Alert>
+				<span>
+					<Alert
+						elevation={6}
+						variant="standard"
+						onClose={() => setSnack({ message: '' })}
+						severity={snack.severity}>
+						{snack.message}
+					</Alert>
+					<IconButton
+						size="small"
+						aria-label="close"
+						color="inherit"
+						onClick={() => {
+							setSnack({ message: '' });
+						}}>
+						<CloseIcon fontSize="small" />
+					</IconButton>
+				</span>
 			</Snackbar>
 		</div>
 	);

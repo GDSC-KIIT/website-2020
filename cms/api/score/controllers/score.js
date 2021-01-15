@@ -25,6 +25,7 @@ function checkRequest(ctx, response) {
 	response.status = 400;
 
 	if (!ctx.state || !ctx.state.user) {
+		response.status = 403;
 		response.message = 'user not logged in';
 		return false;
 	}
