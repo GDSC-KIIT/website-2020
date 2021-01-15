@@ -10,8 +10,6 @@ const winstonLogger = createLogger({
 	transports: [new transports.Console()],
 });
 
-// export default winstonLogger;
-
 export default function logger(level: levelType, label: string, errMessage?: string) {
 	winstonLogger.log({
 		level,

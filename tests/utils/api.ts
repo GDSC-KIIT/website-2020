@@ -35,7 +35,13 @@ export function createUser() {
 		},
 	})
 		.then((response) => response.data)
-		.catch((err) => logger('error', 'create a new User', err));
+		.catch((err) =>
+			logger(
+				'error',
+				'Could not create a new user,\n A user with the same name might already exist in the db',
+				err
+			)
+		);
 }
 
 export function loginUser() {
