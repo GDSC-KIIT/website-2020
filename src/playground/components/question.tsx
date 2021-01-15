@@ -4,6 +4,7 @@ import useSWR from 'swr';
 
 import md from '@/lib/markdown';
 import { fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
+import useUser from '@/hooks/useUser';
 
 import {
 	makeStyles,
@@ -68,6 +69,10 @@ export default function Q() {
 	const classes = useStyles();
 
 	const router = useRouter();
+
+	const { user, loading } = useUser();
+
+	console.log('now the user is', user);
 
 	const [snack, setSnack] = useState<ISnack>({
 		message: '',

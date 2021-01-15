@@ -4,6 +4,7 @@ export type UserInfoType = {
 	id: number;
 	provider: string;
 	created_at: string;
+	score: number; // a one-to-ome relation with score model which has info about quizzes solved by the user
 };
 
 export type QuestionType = {
@@ -25,4 +26,9 @@ export type SubmitReponseType = {
 	status: number;
 	message: string;
 	correct: boolean;
+};
+
+export type ScoreDataType = {
+	id: number;
+	quizzes: QuestionType[];
 };
