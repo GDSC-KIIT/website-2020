@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useMemo, useCallback, useState } from 'react';
+import { useMemo, useCallback, useState, ChangeEvent, FormEvent } from 'react';
 import useSWR from 'swr';
 
 import md from '@/lib/markdown';
@@ -47,41 +47,50 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function createOption(option: string | null | undefined, value: number) {
+function createOption(option: string | null | undefined, value: optionTypes) {
 	if (!option) return null;
-	return <FormControlLabel value={value} control={<Radio />} label={option} key={value} />;
+	return (
+		<FormControlLabel value={value.toString()} control={<Radio />} label={option} key={value} />
+	);
 }
+
+// TODO there is no feedback to see when the question is not accpeting responses
+//  labels: enhance
+//  assignees: aditya-mitra
 
 export default function Q() {
 	const classes = useStyles();
+
+	const router = useRouter();
 
 	const [snack, setSnack] = useState<ISnack>({
 		message: '',
 		severity: 'info',
 	});
 
-	const router = useRouter();
+	const [selectedOption, setSelectedOption] = useState<optionTypes>(null);
 
-	const play = useMemo(() => {
-		const rq = router.query.play;
-		if (!rq) {
+	const qid = useMemo(() => {
+		const { play } = router.query;
+
+		if (!play) {
 			return '';
-		} else if (typeof rq === 'string') {
-			return rq;
-		} else if (Array.isArray(rq)) {
-			return rq[0];
+		} else if (typeof play === 'string') {
+			return play;
+		} else if (Array.isArray(play)) {
+			return play[0];
 		}
 		return '';
 	}, [router]);
 
 	const fetcher = useCallback(() => {
-		if (typeof play === 'string') {
-			return fetchSingleQuestion(parseInt(play, 10));
+		if (typeof qid === 'string') {
+			return fetchSingleQuestion(parseInt(qid, 10));
 		}
 		return null;
-	}, [play]);
+	}, [qid]);
 
-	const { data, error } = useSWR(`single-question-${play}`, fetcher, { refreshInterval: 1000 });
+	const { data, error } = useSWR(`single-question-${qid}`, fetcher, { refreshInterval: 1000 });
 
 	const Question = useMemo(() => {
 		if (!error && data) {
@@ -94,7 +103,7 @@ export default function Q() {
 			// TODO Question and Options are blank during initial fetch
 			//  During inital data fetch, the question and the answers behind the backdrop are empty
 			//  They can be made to look nicer with a better loading screen
-			// Please also make the *skeleton* mobile responsive (it can be found above)
+			//  Please also make the *skeleton* mobile responsive (it can be found above)
 			//  labels: styling, responsive
 			//  assignees: yashvi2001
 			<Backdrop className={classes.backdrop} open={true}>
@@ -103,56 +112,71 @@ export default function Q() {
 		);
 	}, [data, error]);
 
+	const handleOptionChange = useCallback(
+		(event: ChangeEvent<HTMLInputElement>) => {
+			setSelectedOption(event.target.value);
+		},
+		[setSelectedOption]
+	);
+
 	const Options = useMemo(() => {
 		return [
-			createOption(data?.option_1, 1),
-			createOption(data?.option_2, 2),
-			createOption(data?.option_3, 3),
-			createOption(data?.option_4, 4),
-			createOption(data?.option_5, 5),
-			createOption(data?.option_6, 6),
+			createOption(data?.option_1, '1'),
+			createOption(data?.option_2, '2'),
+			createOption(data?.option_3, '3'),
+			createOption(data?.option_4, '4'),
+			createOption(data?.option_5, '5'),
+			createOption(data?.option_6, '6'),
 		];
 	}, [data]);
 
 	return (
-		<form>
-			<Grid container spacing={0} justify="center">
-				<FormControl component="fieldset" className={classes.formControl}>
-					<Grid item xs={12}>
-						<Paper className={classes.paper1}>
-							<FormLabel>{Question}</FormLabel>
-						</Paper>
-					</Grid>
-					<RadioGroup aria-label="quiz" name="quiz">
-						{Options}
-					</RadioGroup>
-					<Button
-						type="submit"
-						variant="outlined"
-						color="primary"
-						className={classes.button}>
-						Check Answer
-					</Button>
-				</FormControl>
-				<Snackbar
-					TransitionComponent={(props) => <Slide {...props} direction="up" />}
-					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-					autoHideDuration={2000}
-					disableWindowBlurListener={true}
+		<div>
+			<form>
+				<Grid container spacing={0} justify="center">
+					<FormControl component="fieldset" className={classes.formControl}>
+						<Grid item xs={12}>
+							<Paper className={classes.paper1}>
+								<FormLabel>{Question}</FormLabel>
+							</Paper>
+						</Grid>
+						<RadioGroup
+							aria-label="quiz"
+							value={selectedOption}
+							name={`quiz-${qid}`}
+							onChange={handleOptionChange}>
+							{Options}
+						</RadioGroup>
+						<Button
+							type="submit"
+							variant="outlined"
+							color="primary"
+							className={classes.button}>
+							Check Answer
+						</Button>
+					</FormControl>
+				</Grid>
+			</form>
+			<Snackbar
+				TransitionComponent={(props) => <Slide {...props} direction="up" />}
+				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+				autoHideDuration={2000}
+				disableWindowBlurListener={true}
+				onClose={() => setSnack({ message: '' })}
+				open={snack.message.length > 0}>
+				<Alert
+					elevation={6}
+					variant="standard"
 					onClose={() => setSnack({ message: '' })}
-					open={snack.message.length > 0}>
-					<Alert
-						elevation={6}
-						variant="standard"
-						onClose={() => setSnack({ message: '' })}
-						severity={snack.severity}>
-						{snack.message}
-					</Alert>
-				</Snackbar>
-			</Grid>
-		</form>
+					severity={snack.severity}>
+					{snack.message}
+				</Alert>
+			</Snackbar>
+		</div>
 	);
 }
+
+type optionTypes = '1' | '2' | '3' | '4' | '5' | '6' | string | null;
 
 interface ISnack {
 	message: string;
