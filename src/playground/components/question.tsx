@@ -19,9 +19,7 @@ import {
 	CircularProgress,
 	Snackbar,
 	Slide,
-	IconButton,
 } from '@material-ui/core';
-import { Close as CloseIcon } from '@material-ui/icons';
 import { Skeleton, Alert, AlertProps } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
@@ -73,8 +71,26 @@ export default function Q() {
 
 	const [snack, setSnack] = useState<ISnack>({
 		message: '',
-		severity: 'info',
 	});
+
+	const showSnack = useCallback(
+		(
+			message: string,
+			severity: AlertProps['severity'],
+			duration?: number,
+			vertical: VerticalPosType = 'top',
+			horizontal: HorizontalPosType = 'right'
+		) => {
+			if (duration) {
+				setTimeout(() => {
+					setSnack({ message, severity, vertical, horizontal });
+				}, duration);
+			} else {
+				setSnack({ message, severity, vertical, horizontal });
+			}
+		},
+		[setSnack]
+	);
 
 	const [selectedOption, setSelectedOption] = useState<optionTypes>(null);
 
@@ -134,22 +150,29 @@ export default function Q() {
 				submitAnswer(parseInt(qid, 10), parseInt(selectedOption, 10))
 					.then(({ correct, message, points, created, updated }) => {
 						if (correct) {
-							setSnack({ message: message.toUpperCase(), severity: 'success' });
-							setSnack({ message: `Current Points : ${points}`, severity: 'info' });
+							showSnack(message.toUpperCase(), 'success');
 						} else {
-							setSnack({ message: message.toUpperCase(), severity: 'error' });
+							showSnack(message.toUpperCase(), 'error');
 						}
 
 						if (created) {
-							setSnack({
-								message: 'We are now storing these points in your account',
-								severity: 'info',
-							});
+							showSnack(
+								'We are now storing these points in your account',
+								'success',
+								4000,
+								'top',
+								'left'
+							);
+							showSnack(`Current Points : ${points}`, 'info', 6500, 'top', 'left');
 						} else if (updated) {
-							setSnack({
-								message: 'We have updated the points in your account',
-								severity: 'info',
-							});
+							showSnack(
+								'We have updated the points in your account',
+								'info',
+								4000,
+								'top',
+								'left'
+							);
+							showSnack(`Current Points : ${points}`, 'info', 6500, 'top', 'left');
 						}
 					})
 					.catch((err) => {
@@ -204,29 +227,21 @@ export default function Q() {
 			</form>
 			<Snackbar
 				TransitionComponent={(props) => <Slide {...props} direction="up" />}
-				anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-				autoHideDuration={2000}
+				anchorOrigin={{
+					vertical: snack.vertical || 'top',
+					horizontal: snack.horizontal || 'center',
+				}}
+				autoHideDuration={4000}
 				disableWindowBlurListener={true}
 				onClose={() => setSnack({ message: '' })}
 				open={snack.message.length > 0}>
-				<span>
-					<Alert
-						elevation={6}
-						variant="standard"
-						onClose={() => setSnack({ message: '' })}
-						severity={snack.severity}>
-						{snack.message}
-					</Alert>
-					<IconButton
-						size="small"
-						aria-label="close"
-						color="inherit"
-						onClick={() => {
-							setSnack({ message: '' });
-						}}>
-						<CloseIcon fontSize="small" />
-					</IconButton>
-				</span>
+				<Alert
+					elevation={6}
+					variant="standard"
+					onClose={() => setSnack({ message: '' })}
+					severity={snack.severity}>
+					{snack.message}
+				</Alert>
 			</Snackbar>
 		</div>
 	);
@@ -234,7 +249,12 @@ export default function Q() {
 
 type optionTypes = '1' | '2' | '3' | '4' | '5' | '6' | string | null;
 
+type VerticalPosType = 'top' | 'bottom';
+
+type HorizontalPosType = 'center' | 'left' | 'right';
 interface ISnack {
 	message: string;
 	severity?: AlertProps['severity'];
+	vertical?: VerticalPosType;
+	horizontal?: HorizontalPosType;
 }
