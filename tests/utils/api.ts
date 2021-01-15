@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import logger from './logger';
+
 type endpointTypes = 'http://localhost:9000/quizzes';
 
 export function createData(endpoint: endpointTypes, data: Object) {
@@ -10,7 +12,7 @@ export function createData(endpoint: endpointTypes, data: Object) {
 	})
 		.then((response) => response.data)
 		.then((data) => data.id)
-		.catch((err) => console.log('in test', err));
+		.catch((err) => logger('error', 'Could not create that Data', err));
 }
 
 export function deleteData(endpoint: endpointTypes, id: number) {
@@ -19,7 +21,7 @@ export function deleteData(endpoint: endpointTypes, id: number) {
 		method: 'DELETE',
 	})
 		.then((response) => response.data)
-		.catch((err) => console.log('in test', err));
+		.catch((err) => logger('error', 'Could not delete that Data', err));
 }
 
 export function createUser() {
@@ -33,7 +35,7 @@ export function createUser() {
 		},
 	})
 		.then((response) => response.data)
-		.catch((err) => console.log('in test, could not create user', err));
+		.catch((err) => logger('error', 'create a new User', err));
 }
 
 export function loginUser() {
@@ -47,7 +49,7 @@ export function loginUser() {
 	})
 		.then((response) => response.data)
 		.then((data) => data.jwt)
-		.catch(() => {
-			console.log('could not login in user during test');
+		.catch((err) => {
+			logger('error', 'login user', err);
 		});
 }
