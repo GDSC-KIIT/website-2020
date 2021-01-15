@@ -20,7 +20,7 @@
 			"collection": "quiz",
 			"via": "score"
 		},
-		"currentScore": {
+		"currentPoints": {
 			"type": "integer",
 			"default": 0
 		}

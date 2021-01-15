@@ -19,7 +19,10 @@ const { sanitizeEntity } = require('strapi-utils');
  * @type {object}
  * @property {number} id
  * @property {Array<object>} quizzes
+ * @property {number|null} currentPoints
  */
+
+const INCREMENT = 10;
 
 function checkRequest(ctx, response) {
 	response.status = 400;
@@ -42,28 +45,25 @@ function checkRequest(ctx, response) {
 	return true;
 }
 
-async function checkCorrectAnswer(qid, ans, response) {
+async function checkCorrectAnswer(qid, ans) {
 	const quiz = await strapi.query('quiz').findOne({ id: qid });
 
-	if (!quiz.accepting) {
-		response.status = 406;
-		response.message = 'this question is no longer accepting responses';
+	if (!quiz.accepting || quiz.answer !== ans) {
 		return false;
 	}
-	if (quiz.answer === ans) {
-		response.correct = true;
-		return true;
-	}
-	response.message = 'wrong answer';
-	return false;
+	return true;
 }
 
-async function updateUserScore(user, qid, response) {
+async function updateUserScore(user, qid, isAnswerCorrect, response) {
 	if (user.score) {
 		// update the user's score
 
 		/**@type {score} */
 		const foundScore = await strapi.query('score').findOne({ id: user.score });
+
+		const currentPoints = foundScore.currentPoints ? foundScore.currentPoints : 0;
+
+		const updatedPoints = isAnswerCorrect ? currentPoints + INCREMENT : currentPoints;
 
 		const newAnsweredQuizzesArray = [qid];
 		for (const q of foundScore.quizzes) {
@@ -73,7 +73,7 @@ async function updateUserScore(user, qid, response) {
 		/**@type {score} */
 		const updatedScore = await strapi.services.score.update(
 			{ id: foundScore.id },
-			{ quizzes: newAnsweredQuizzesArray }
+			{ quizzes: newAnsweredQuizzesArray, currentPoints: updatedPoints }
 		);
 
 		response.updated = true;
@@ -87,6 +87,7 @@ async function updateUserScore(user, qid, response) {
 		const newScore = await strapi.services.score.create({
 			users_permissions_user: user.id,
 			quizzes: [qid],
+			currentPoints: isAnswerCorrect ? INCREMENT : 0,
 		});
 
 		response.created = true;
@@ -119,16 +120,12 @@ module.exports = {
 		/**@type {number} */
 		const ans = ctx.request.body.ans;
 
-		if ((await checkCorrectAnswer(qid, ans, response)) === false) {
-			ctx.status = response.status;
-			ctx.body = response;
-			return;
-		}
+		const isAnswerCorrect = await checkCorrectAnswer(qid, ans, response);
 
 		/**@type {user} */
 		const user = ctx.state.user;
 
-		await updateUserScore(user, qid, response);
+		await updateUserScore(user, qid, isAnswerCorrect, response);
 
 		ctx.status = response.status;
 		ctx.body = response;
