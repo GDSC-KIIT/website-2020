@@ -7,7 +7,6 @@ export default function fetchSingleQuestion(id: number) {
 	return apiCall(id)
 		.then((data: QuestionType) => {
 			// TODO remove the console.log statement
-			console.log(data, 'is the response');
 			return data;
 		})
 		.catch((err: AxiosError) => {
