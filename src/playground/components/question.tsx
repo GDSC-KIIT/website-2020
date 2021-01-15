@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import useSWR from 'swr';
 
 import md from '@/lib/markdown';
@@ -17,7 +17,11 @@ import {
 	Paper,
 	Backdrop,
 	CircularProgress,
+	Snackbar,
+	Slide,
 } from '@material-ui/core';
+
+import { Alert, AlertProps, Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
 	paper1: {
@@ -44,13 +48,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function createOption(option: string | null | undefined, value: number) {
-	console.log(option, 'is the option');
 	if (!option) return null;
 	return <FormControlLabel value={value} control={<Radio />} label={option} key={value} />;
 }
 
 export default function Q() {
 	const classes = useStyles();
+
+	const [snack, setSnack] = useState<ISnack>({
+		message: '',
+		severity: 'info',
+	});
 
 	const router = useRouter();
 
@@ -79,17 +87,18 @@ export default function Q() {
 		if (!error && data) {
 			return <div dangerouslySetInnerHTML={{ __html: md(data.question) }} />;
 		} else if (error) {
-			// TODO create toast if there is an error
-			return null;
+			setSnack({ message: 'this is from snack', severity: 'error' });
+			return <Skeleton variant="rect" width={700} height={200} />;
 		}
 		return (
 			// TODO Question and Options are blank during initial fetch
 			//  During inital data fetch, the question and the answers behind the backdrop are empty
 			//  They can be made to look nicer with a better loading screen
-			//  labels: styling
+			// Please also make the *skeleton* mobile responsive (it can be found above)
+			//  labels: styling, responsive
 			//  assignees: yashvi2001
 			<Backdrop className={classes.backdrop} open={true}>
-				<CircularProgress size={70} data-testid="loader" />;
+				<CircularProgress size={100} data-testid="loader" />;
 			</Backdrop>
 		);
 	}, [data, error]);
@@ -105,7 +114,6 @@ export default function Q() {
 		];
 	}, [data]);
 
-	console.info(Options);
 	return (
 		<form>
 			<Grid container spacing={0} justify="center">
@@ -118,7 +126,6 @@ export default function Q() {
 					<RadioGroup aria-label="quiz" name="quiz">
 						{Options}
 					</RadioGroup>
-
 					<Button
 						type="submit"
 						variant="outlined"
@@ -127,7 +134,27 @@ export default function Q() {
 						Check Answer
 					</Button>
 				</FormControl>
+				<Snackbar
+					TransitionComponent={(props) => <Slide {...props} direction="up" />}
+					anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+					autoHideDuration={2000}
+					disableWindowBlurListener={true}
+					onClose={() => setSnack({ message: '' })}
+					open={snack.message.length > 0}>
+					<Alert
+						elevation={6}
+						variant="standard"
+						onClose={() => setSnack({ message: '' })}
+						severity={snack.severity}>
+						{snack.message}
+					</Alert>
+				</Snackbar>
 			</Grid>
 		</form>
 	);
+}
+
+interface ISnack {
+	message: string;
+	severity?: AlertProps['severity'];
 }
