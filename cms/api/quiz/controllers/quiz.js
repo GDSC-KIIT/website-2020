@@ -13,9 +13,8 @@ module.exports = {
 			accepting: true,
 			_sort: 'id:desc',
 		});
-		return sortedQuizzes.map((quiz) => {
-			delete quiz.answer; // delete the answer in the return
-			return sanitizeEntity(quiz, { model: strapi.models.quiz });
+		return sortedQuizzes.map(({ id, accepting }) => {
+			return sanitizeEntity({ id, accepting }, { model: strapi.models.quiz });
 		});
 	},
 	async findOne(ctx) {
