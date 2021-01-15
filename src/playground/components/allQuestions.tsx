@@ -53,6 +53,7 @@ export default function AllQs() {
 			//  `<Paper/>` needs to be disabled when `accepting===false`
 			//  Showing only the question number in the paper does not seem *stylish*
 			//  Some **annotations** would do fine if added
+			// Since a **Link** to a particular question is added, the `pointer` needs to appear as a `cursor` when hovered over the link
 			//  labels: priority, styling
 			//  assignees: yashvi2001, aditya-mitra
 			return questions.map((question) => (
