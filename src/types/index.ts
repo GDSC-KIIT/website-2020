@@ -30,5 +30,6 @@ export type SubmitReponseType = {
 
 export type ScoreDataType = {
 	id: number;
+	currentPoints: number;
 	quizzes: QuestionType[];
 };

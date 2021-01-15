@@ -5,21 +5,16 @@ import type { SubmitReponseType } from '@/types/index';
 
 const baseURL: string = process.env.BACKEND_URL || 'http://localhost:9000';
 
-const axiosInstance = axios.create({
-	url: baseURL + '/scores',
-	method: 'POST',
-});
-
 export default async function submitAnswer(qid: number, ans: number, config?: AxiosRequestConfig) {
 	const authToken = await getSessionAuthToken();
 
-	return axiosInstance({
-		...config,
+	console.info('qid amd ans', qid, ans);
+
+	return axios({
+		url: baseURL + '/scores',
+		method: 'POST',
 		headers: { Authorization: `Bearer ${authToken}` },
-		data: {
-			qid,
-			ans,
-		},
+		...config,
 	})
 		.then((response) => response.data)
 		.then((data: SubmitReponseType) => data)
@@ -29,6 +24,7 @@ export default async function submitAnswer(qid: number, ans: number, config?: Ax
 			} else if (err.response?.data.message) {
 				throw new Error(err.response.data.message);
 			}
+			console.log(err, 'during submittimg the question');
 			throw new Error('an unknown error occurred');
 		});
 }

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import { useMemo, useCallback, useState, ChangeEvent, FormEvent } from 'react';
+import { useMemo, useCallback, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import useSWR from 'swr';
 
 import md from '@/lib/markdown';
-import { fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
+import { hasUserAlreadySubmitted, fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
 import useUser from '@/hooks/useUser';
 
 import {
@@ -70,14 +70,19 @@ export default function Q() {
 
 	const router = useRouter();
 
-	const { user, loading } = useUser();
+	/**
+	 * checksForAllow needs to be 2 for options to enabled
+	 */
 
-	console.log('now the user is', user);
+	const [checksForAllow, setChecksForAllow] = useState(0);
+
+	/**
+	 * Snack Display Messages
+	 */
 
 	const [snack, setSnack] = useState<ISnack>({
 		message: '',
 	});
-
 	const showSnack = useCallback(
 		(
 			message: string,
@@ -97,9 +102,10 @@ export default function Q() {
 		[setSnack]
 	);
 
-	const [selectedOption, setSelectedOption] = useState<optionTypes>(null);
-
-	const [allowed, setAllowed] = useState(false); // refactor this into checks
+	/**
+	 * Fetching of question
+	 * Live update of question
+	 */
 
 	const qid = useMemo(() => {
 		const play = router && router.query.play;
@@ -123,9 +129,34 @@ export default function Q() {
 
 	const { data, error } = useSWR(`single-question-${qid}`, fetcher, { refreshInterval: 1000 });
 
+	/**
+	 * getting the user
+	 * knowing if the user has already submitted the question
+	 */
+
+	const { user } = useUser();
+
+	useEffect(() => {
+		if (user && qid.length > 0) {
+			hasUserAlreadySubmitted(parseInt(qid, 10), user.score).then((subm) => {
+				if (subm === false) {
+					setChecksForAllow((prev) => prev + 1);
+				} else {
+					setChecksForAllow((prev) => prev + 3);
+					showSnack('Buddy, you have already done this question', 'warning');
+				}
+			});
+		}
+	}, [user]);
+
+	/**
+	 * Showing loading while question is loaded
+	 * Display of question in markdown
+	 */
+
 	const Question = useMemo(() => {
 		if (!error && data) {
-			if (data.accepting) setAllowed(true);
+			if (data.accepting) setChecksForAllow((prev) => prev + 1);
 			return <div dangerouslySetInnerHTML={{ __html: md(data.question) }} />;
 		} else if (error) {
 			setSnack({ message: 'this is from snack', severity: 'error' });
@@ -144,9 +175,20 @@ export default function Q() {
 		);
 	}, [data, error]);
 
+	/**
+	 * Selecting an option
+	 */
+
+	const [selectedOption, setSelectedOption] = useState<optionTypes>(null);
+
 	const handleOptionChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
 		setSelectedOption(event.target.value);
 	}, []);
+
+	/**
+	 * Submission of answer
+	 * Also showing of toast messages
+	 */
 
 	const handleAnswerSubmission = useCallback(
 		(event: FormEvent<HTMLFormElement>) => {
@@ -181,7 +223,7 @@ export default function Q() {
 						}
 					})
 					.catch((err) => {
-						console.log(err);
+						showSnack(err, 'error');
 					});
 			}
 		},
@@ -211,7 +253,7 @@ export default function Q() {
 					<FormControl
 						component="fieldset"
 						className={classes.formControl}
-						disabled={!allowed}>
+						disabled={checksForAllow !== 2}>
 						<RadioGroup
 							aria-label="quiz"
 							value={selectedOption}
@@ -223,7 +265,7 @@ export default function Q() {
 							type="submit"
 							variant="outlined"
 							color="primary"
-							disabled={!allowed}
+							disabled={checksForAllow !== 2}
 							className={classes.button}>
 							Check Answer
 						</Button>
