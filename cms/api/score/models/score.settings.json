@@ -19,6 +19,10 @@
 		"quizzes": {
 			"collection": "quiz",
 			"via": "score"
+		},
+		"currentScore": {
+			"type": "integer",
+			"default": 0
 		}
 	}
 }

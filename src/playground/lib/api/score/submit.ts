@@ -6,7 +6,7 @@ import type { SubmitReponseType } from '@/types/index';
 const baseURL: string = process.env.BACKEND_URL || 'http://localhost:9000';
 
 const axiosInstance = axios.create({
-	baseURL,
+	url: baseURL + '/scores',
 	method: 'POST',
 });
 
@@ -16,7 +16,6 @@ export default async function submitAnswer(qid: number, ans: number, config?: Ax
 	return axiosInstance({
 		...config,
 		headers: { Authorization: `Bearer ${authToken}` },
-		url: '/scores',
 		data: {
 			qid,
 			ans,

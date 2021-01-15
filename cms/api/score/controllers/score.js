@@ -1,5 +1,7 @@
 'use strict';
 
+const { sanitizeEntity } = require('strapi-utils');
+
 /**
  * contains the information about the authenticated user
  * @typedef user
@@ -18,8 +20,6 @@
  * @property {number} id
  * @property {Array<object>} quizzes
  */
-
-const EACHPOINT = 10;
 
 function checkRequest(ctx, response) {
 	response.status = 400;
@@ -77,7 +77,7 @@ async function updateUserScore(user, qid, response) {
 		);
 
 		response.updated = true;
-		response.points = updatedScore.quizzes.length * EACHPOINT;
+		response.points = updatedScore.quizzes.length;
 		response.message = 'correct answer!';
 		response.status = 202;
 	} else {
@@ -90,7 +90,7 @@ async function updateUserScore(user, qid, response) {
 		});
 
 		response.created = true;
-		response.points = newScore.quizzes.length * EACHPOINT;
+		response.points = newScore.quizzes.length;
 		response.message = 'correct answer!';
 		response.status = 201;
 	}
@@ -132,5 +132,11 @@ module.exports = {
 
 		ctx.status = response.status;
 		ctx.body = response;
+	},
+	async findOne(ctx) {
+		const { id } = ctx.params;
+		const entity = await strapi.services.score.findOne({ id });
+		delete entity.users_permissions_user;
+		return sanitizeEntity(entity, { model: strapi.models.score });
 	},
 };
