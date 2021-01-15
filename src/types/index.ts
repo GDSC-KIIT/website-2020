@@ -17,3 +17,12 @@ export type QuestionType = {
 	option_5?: string;
 	option_6?: string;
 };
+
+export type SubmitReponseType = {
+	points: number;
+	updated: boolean;
+	created: boolean;
+	status: number;
+	message: string;
+	correct: boolean;
+};
