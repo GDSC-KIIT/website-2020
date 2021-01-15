@@ -10,10 +10,10 @@ export type QuestionType = {
 	id: number;
 	accepting: boolean;
 	question: string;
-	option1: string;
-	option2: string;
-	option3?: string;
-	option4?: string;
-	option5?: string;
-	option6?: string;
+	option_1: string;
+	option_2: string;
+	option_3?: string;
+	option_4?: string;
+	option_5?: string;
+	option_6?: string;
 };
