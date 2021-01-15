@@ -165,6 +165,7 @@ export default function Q() {
 		// TODO Question and Options are blank during initial fetch
 		//  During inital data fetch, the question and the answers behind the backdrop are empty
 		//  They can be made to look nicer with a better loading screen
+		//  When usings land on the wrong page, the loading screen is shown **404 PAGE**
 		//  Please also make the *skeleton* mobile responsive (it can be found above)
 		//  labels: styling, responsive
 		//  assignees: yashvi2001
@@ -222,8 +223,8 @@ export default function Q() {
 							showSnack(`Current Points : ${points}`, 'info', 6500, 'top', 'left');
 						}
 					})
-					.catch((err) => {
-						showSnack(err, 'error');
+					.catch((err: Error) => {
+						showSnack(err.message, 'error');
 					});
 			}
 		},

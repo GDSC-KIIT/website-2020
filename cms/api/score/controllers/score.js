@@ -77,8 +77,7 @@ async function updateUserScore(user, qid, isAnswerCorrect, response) {
 		);
 
 		response.updated = true;
-		response.points = updatedScore.quizzes.length;
-		response.message = 'correct answer!';
+		response.points = updatedScore.currentPoints;
 		response.status = 202;
 	} else {
 		// create a new score for the user
@@ -91,8 +90,7 @@ async function updateUserScore(user, qid, isAnswerCorrect, response) {
 		});
 
 		response.created = true;
-		response.points = newScore.quizzes.length;
-		response.message = 'correct answer!';
+		response.points = newScore.currentPoints;
 		response.status = 201;
 	}
 }
@@ -121,6 +119,9 @@ module.exports = {
 		const ans = ctx.request.body.ans;
 
 		const isAnswerCorrect = await checkCorrectAnswer(qid, ans, response);
+
+		response.correct = isAnswerCorrect ? true : false;
+		response.message = isAnswerCorrect ? 'Correct Answer 🎉' : 'Incorrect Answer 😯';
 
 		/**@type {user} */
 		const user = ctx.state.user;
