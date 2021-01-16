@@ -25,7 +25,7 @@ export default async function checkSubmission(currentQid: number, scoreId: numbe
 			return false;
 		})
 		.catch((err: AxiosError) => {
-			console.log('no such question found', err.response?.data);
+			console.log('could not find the score of the user', err);
 			return true;
 		});
 }
