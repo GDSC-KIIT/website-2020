@@ -1,11 +1,7 @@
 import { screen, waitFor, render, cleanup } from '@testing-library/react';
-import { mocked } from 'ts-jest/utils';
 import { api, logger, testUtils } from '../../utils';
 
-import Questions from '@/playground/components/allQuestions';
 import Question from '@/playground/components/question';
-
-import { getSessionAuthToken } from '@/lib/user/session';
 
 jest.mock('@/lib/user/session');
 
@@ -21,12 +17,8 @@ describe.skip('user not logged in', () => {
 });
 
 describe.skip('wrong answer', () => {
-	const testUser = { token: '' };
 	beforeAll(async () => {
-		qids.q1 = await api.createData('http://localhost:9000/quizzes', testUtils.question1);
-		testUser.token = await api.loginUser();
-		mocked(getSessionAuthToken).mockResolvedValue(testUser.token);
-		testUtils.mockNextUseRouter({ query: { play: qids.q1 } });
+		qids.q1 = await api.createData('http://localhost:9000/quizzes', testUtils.createdQuestion1);
 	});
 
 	afterAll(async () => {
@@ -38,10 +30,10 @@ describe.skip('wrong answer', () => {
 		render(<Question />);
 		waitFor(
 			() => {
-				screen.findByText(testUtils.question1.question);
+				screen.findByText(testUtils.createdQuestion1.question);
 			},
 			{ timeout: 7000 }
 		);
-		expect(screen.getByText(testUtils.question1.question)).toBeInTheDocument();
+		expect(screen.getByText(testUtils.createdQuestion1.question)).toBeInTheDocument();
 	});
 });

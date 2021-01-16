@@ -11,6 +11,8 @@
 		"start": "next start",
 		"format:prettier": "prettier --write .",
 		"test": "jest",
+		"test:unit": "npm run test -- tests/unit",
+		"test:integration": "npm run test -- tests/integration",
 		"testw": "jest --watch"
 	},
 	"dependencies": {
