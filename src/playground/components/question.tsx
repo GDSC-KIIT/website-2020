@@ -55,6 +55,7 @@ function createOption(option: string | null | undefined, value: optionTypes) {
 			control={<Radio />}
 			label={option}
 			key={value}
+			data-testid="question-options"
 		/>
 	);
 }
@@ -137,7 +138,7 @@ export default function Q() {
 	const { user } = useUser();
 
 	useEffect(() => {
-		if (user && user.score && qid.length > 0) {
+		if (user && user.score && qid !== '') {
 			hasUserAlreadySubmitted(parseInt(qid, 10), user.score).then((subm) => {
 				if (subm === false) {
 					setChecksForAllow((prev) => prev + 1);
@@ -259,7 +260,8 @@ export default function Q() {
 					<FormControl
 						component="fieldset"
 						className={classes.formControl}
-						disabled={checksForAllow !== 2}>
+						disabled={checksForAllow !== 2}
+						data-testid="form-options-radios">
 						<RadioGroup
 							aria-label="quiz"
 							value={selectedOption}
