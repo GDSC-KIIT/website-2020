@@ -1,4 +1,5 @@
-import { configure, cleanup, render, waitFor, act } from '@testing-library/react';
+import { configure, cleanup, render, waitFor, act, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { logger, testUtils } from '../../utils';
 import { mocked } from 'ts-jest/utils';
 
@@ -31,10 +32,27 @@ beforeEach(() => {
 			else if (rqConfig.url === '/5') {
 				logger('info', 'scores/5 was called');
 				return Promise.resolve({ data: testUtils.mockScoreData });
+			} else if (
+				rqConfig.url === 'http://localhost:9000/scores' &&
+				rqConfig.method === 'POST' &&
+				rqConfig.data
+			) {
+				logger('info', 'scores/ POST was called');
+				let correct = false;
+				let message = 'wrong answer';
+
+				if (rqConfig.data.ans === 4) {
+					correct = true;
+					message = 'correct answer';
+				}
+
+				return Promise.resolve({
+					data: { ...testUtils.mockSubmitResponse, correct, message },
+				});
 			}
-			logger('info', 'other method was called');
+			logger('info', 'other method was called', 'check the below request config');
 			console.info(rqConfig);
-			return Promise.resolve();
+			return Promise.reject('URL was not called');
 		}
 	);
 
@@ -72,7 +90,7 @@ describe('question is visible', () => {
 		});
 	});
 
-	it('the question is visible and displayed in markdown', async () => {
+	it('the question is visible', async () => {
 		const { getByText } = render(<Question />);
 
 		await waitFor(() => {
@@ -82,12 +100,17 @@ describe('question is visible', () => {
 });
 
 describe('options are present', () => {
-	it('4 radio buttons are present', async () => {
-		const { getAllByTestId } = render(<Question />);
+	it('the form control is enabled', async () => {
+		const { getByTestId } = render(<Question />);
 		await waitFor(() => {
-			const opts = getAllByTestId('question-options');
-			expect(opts).toHaveLength(4);
+			expect(getByTestId('form-options')).toBeEnabled();
 		});
+	});
+
+	it('4 radio buttons are present', async () => {
+		const { findAllByTestId } = render(<Question />);
+		const opts = await findAllByTestId('question-options');
+		expect(opts).toHaveLength(4);
 	});
 
 	it('radios are enabled', async () => {
@@ -112,6 +135,101 @@ describe('options are present', () => {
 		await waitFor(() => {
 			const radios = getAllByRole('radio');
 			expect(radios[2]).toBeDisabled();
+		});
+	});
+
+	it('options are disabled if user has already solved the question', async () => {
+		mocked(mockAxios).mockImplementation(
+			(config: any): Promise<any> => {
+				if (config.url === '/5') {
+					return Promise.resolve({
+						data: {
+							...testUtils.mockScoreData,
+							quizzes: [testUtils.mockSolvedQuestion3, testUtils.mockedQuestion1],
+						},
+					});
+				}
+				return Promise.resolve();
+			}
+		);
+		const { getAllByRole } = render(<Question />);
+		await waitFor(() => {
+			const radios = getAllByRole('radio');
+			expect(radios[2]).toBeDisabled();
+		});
+	});
+
+	it('none of the options are selected', async () => {
+		const { findAllByTestId } = render(<Question />);
+		const opts = await findAllByTestId('question-options');
+		act(() => {
+			opts.forEach((opt) => {
+				const radio = opt.querySelector('input[type="radio"]');
+				expect(radio).not.toBeChecked();
+			});
+		});
+	});
+});
+
+describe('user interaction', () => {
+	it('submit button is initially disabled', () => {
+		const { getByTestId } = render(<Question />);
+		expect(getByTestId('answer-submit-button')).toBeDisabled();
+		logger(
+			'info',
+			'ignore the act warning in this case',
+			'our assertion is true before state updates'
+		);
+	});
+
+	it('submit button becomes enabled', async () => {
+		const { getByTestId } = render(<Question />);
+		await waitFor(() => {
+			expect(getByTestId('answer-submit-button')).toBeEnabled();
+		});
+	});
+
+	it('blank answer cannot be submitted', async () => {
+		// the button should be still enabled
+
+		const { findByTestId } = render(<Question />);
+		const button = await findByTestId('answer-submit-button');
+
+		act(() => {
+			userEvent.click(button);
+		});
+
+		expect(button).toBeEnabled();
+	});
+
+	it('all the options can be selected', async () => {
+		const { findAllByTestId } = render(<Question />);
+		const opts = await findAllByTestId('question-options');
+
+		await waitFor(() => {
+			opts.forEach((opt) => {
+				const radio = opt.querySelector('input[type="radio"]');
+				userEvent.click(opt);
+				expect(radio).toBeChecked();
+			});
+		});
+	});
+
+	it('submit the correct answer', async () => {
+		const { findAllByTestId, findByTestId } = render(<Question />);
+		const opts = await findAllByTestId('question-options');
+		const button = await findByTestId('answer-submit-button');
+
+		act(() => {
+			userEvent.click(opts[3]); // select the correct option 4
+		});
+
+		act(() => {
+			userEvent.click(button);
+		});
+
+		await waitFor(() => {
+			expect(screen.getByTestId('snack-message')).toHaveTextContent(/correct answer/gi);
 		});
 	});
 });

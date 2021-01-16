@@ -1,4 +1,4 @@
-import { QuestionType, ScoreDataType, UserInfoType } from '@/types/index';
+import { QuestionType, ScoreDataType, SubmitReponseType, UserInfoType } from '@/types/index';
 
 export const createdQuestion1 = {
 	question: '*what is biology?*',
@@ -28,6 +28,7 @@ export const createdQuestion3 = {
 	option_4: '4',
 };
 
+// answer is 4
 export const mockedQuestion1: QuestionType = {
 	id: 10,
 	question: '*what is biology?*',
@@ -38,6 +39,7 @@ export const mockedQuestion1: QuestionType = {
 	option_4: 'all of these',
 };
 
+// answer is 1
 export const mockedQuestion2: QuestionType = {
 	id: 20,
 	question: '# can we ask questions?',
@@ -56,6 +58,7 @@ export const mockSolvedQuestion3: QuestionType = {
 	option_4: '4',
 };
 
+// answer is 1
 export const mockUser: UserInfoType = {
 	id: 1,
 	username: 'mocked_test_user',
@@ -69,4 +72,13 @@ export const mockScoreData: ScoreDataType = {
 	id: 5,
 	currentPoints: 40,
 	quizzes: [{ ...mockSolvedQuestion3 }],
+};
+
+export const mockSubmitResponse: SubmitReponseType = {
+	correct: true,
+	message: 'CORRECT ANSWER',
+	updated: true,
+	created: false,
+	points: 50,
+	status: 200,
 };

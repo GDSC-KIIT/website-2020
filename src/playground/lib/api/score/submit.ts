@@ -23,6 +23,7 @@ export default async function submitAnswer(qid: number, ans: number, config?: Ax
 			} else if (err.response && err.response.data && 'message' in err.response.data) {
 				throw new Error(err.response.data.message);
 			}
+			console.log('There was an error with your response', err);
 			throw new Error('an unknown error occurred');
 		});
 }
