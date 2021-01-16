@@ -18,4 +18,4 @@ export default function logger(level: levelType, label: string, errMessage?: str
 	});
 }
 
-type levelType = 'error' | 'crit' | 'warning' | 'info' | 'debug' | 'alert' | 'notice' | 'emerg';
+type levelType = 'error' | 'crit' | 'warning' | 'info' | 'debug' | 'alert' | 'emerg';
