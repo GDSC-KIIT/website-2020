@@ -215,7 +215,7 @@ describe('user interaction', () => {
 		});
 	});
 
-	it('submit the correct answer', async () => {
+	it('submitting the correct answer shows correct answer', async () => {
 		const { findAllByTestId, findByTestId } = render(<Question />);
 		const opts = await findAllByTestId('question-options');
 		const button = await findByTestId('answer-submit-button');
@@ -230,6 +230,24 @@ describe('user interaction', () => {
 
 		await waitFor(() => {
 			expect(screen.getByTestId('snack-message')).toHaveTextContent(/correct answer/gi);
+		});
+	});
+
+	it('submitting the wrong answer shows wrong answer', async () => {
+		const { findAllByTestId, findByTestId } = render(<Question />);
+		const opts = await findAllByTestId('question-options');
+		const button = await findByTestId('answer-submit-button');
+
+		act(() => {
+			userEvent.click(opts[1]); // select the wrong option 2
+		});
+
+		act(() => {
+			userEvent.click(button);
+		});
+
+		await waitFor(() => {
+			expect(screen.getByTestId('snack-message')).toHaveTextContent(/wrong answer/gi);
 		});
 	});
 });

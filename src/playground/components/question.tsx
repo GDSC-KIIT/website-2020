@@ -82,7 +82,7 @@ export default function Q() {
 	 */
 
 	const [snack, setSnack] = useState<ISnack>({
-		message: 'correct answer',
+		message: '',
 	});
 	const showSnack = useCallback(
 		(
@@ -301,7 +301,7 @@ export default function Q() {
 					{snack.message}
 				</Alert>
 			</Snackbar>
-			<span style={{ visibility: 'hidden' }} data-testid="snack-message">
+			<span style={{ display: 'none' }} data-testid="snack-message">
 				{snack.message}
 			</span>
 		</div>
