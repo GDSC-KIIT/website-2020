@@ -1,9 +1,6 @@
 name: Remaining to Do
 
-on:
-    push:
-        branches:
-            - 'todos'
+on: push
 
 jobs:
     todos:

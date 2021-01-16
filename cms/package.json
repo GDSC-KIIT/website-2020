@@ -11,6 +11,7 @@
 		"postinstall": "node env-Decrypter.js",
 		"devf": "cross-env FAST=TRUE strapi develop",
 		"ci:build": "cross-env FAST=TRUE strapi build",
+		"server:testing": "cross-env TESTING=TRUE npm start",
 		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"
 	},
 	"devDependencies": {

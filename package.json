@@ -8,11 +8,14 @@
 	"scripts": {
 		"dev": "next dev --port=3333",
 		"build": "next build",
+		"ci:build": "start-server-and-test server:testing http://localhost:9000 build",
 		"start": "next start",
 		"format:prettier": "prettier --write .",
+		"server:testing": "npm run server:testing --prefix cms",
 		"test": "jest",
 		"test:unit": "npm run test -- tests/unit",
-		"test:integration": "npm run test -- tests/integration",
+		"test:i": "npm run test -- tests/integration",
+		"test:integration": "start-server-and-test server:testing http://localhost:9000 test:i",
 		"testw": "jest --watch"
 	},
 	"dependencies": {
@@ -48,6 +51,7 @@
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
 		"react-test-renderer": "^17.0.1",
+		"start-server-and-test": "^1.11.7",
 		"ts-jest": "^26.4.4",
 		"ts-node": "^9.1.1",
 		"typescript": "^4.0.5",
