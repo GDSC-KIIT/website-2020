@@ -82,7 +82,7 @@ export default function Q() {
 	 */
 
 	const [snack, setSnack] = useState<ISnack>({
-		message: '',
+		message: 'correct answer',
 	});
 	const showSnack = useCallback(
 		(
@@ -165,7 +165,7 @@ export default function Q() {
 			if (data.accepting) setChecksForAllow((prev) => prev + 1);
 			return <div dangerouslySetInnerHTML={{ __html: md(data.question) }} />;
 		} else if (error) {
-			setSnack({ message: 'this is from snack', severity: 'error' });
+			showSnack(error.message || 'An unknown error occurred', 'error');
 			return <Skeleton variant="rect" width={700} height={200} />;
 		}
 		// TODO Question and Options are blank during initial fetch
@@ -201,6 +201,8 @@ export default function Q() {
 		(event: FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
 			if (selectedOption && qid) {
+				setChecksForAllow((prev) => prev + 3);
+
 				submitAnswer(parseInt(qid, 10), parseInt(selectedOption, 10))
 					.then(({ correct, message, points, created, updated }) => {
 						if (correct) {
@@ -261,7 +263,7 @@ export default function Q() {
 						component="fieldset"
 						className={classes.formControl}
 						disabled={checksForAllow !== 2}
-						data-testid="form-options-radios">
+						data-testid="form-options">
 						<RadioGroup
 							aria-label="quiz"
 							value={selectedOption}
@@ -274,7 +276,8 @@ export default function Q() {
 							variant="outlined"
 							color="primary"
 							disabled={checksForAllow !== 2}
-							className={classes.button}>
+							className={classes.button}
+							data-testid="answer-submit-button">
 							Check Answer
 						</Button>
 					</FormControl>
@@ -298,6 +301,9 @@ export default function Q() {
 					{snack.message}
 				</Alert>
 			</Snackbar>
+			<span style={{ visibility: 'hidden' }} data-testid="snack-message">
+				{snack.message}
+			</span>
 		</div>
 	);
 }
