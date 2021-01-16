@@ -5,6 +5,8 @@ import { mocked } from 'ts-jest/utils';
 
 import mockAxios, { AxiosRequestConfig } from 'axios';
 import Question from '@/playground/components/question';
+
+jest.mock('axios', () => jest.requireActual('../../mocks/axios'));
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
 configure({ asyncUtilTimeout: 2000, testIdAttribute: 'data-testid' });
