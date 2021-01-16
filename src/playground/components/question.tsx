@@ -158,6 +158,9 @@ export default function Q() {
 
 	const Question = useMemo(() => {
 		if (!error && data) {
+			// TODO allow checks can change during live update
+			//  labels: critical
+			//  assignees: aditya-mitra
 			if (data.accepting) setChecksForAllow((prev) => prev + 1);
 			return <div dangerouslySetInnerHTML={{ __html: md(data.question) }} />;
 		} else if (error) {
