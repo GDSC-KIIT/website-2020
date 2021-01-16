@@ -38,6 +38,10 @@ jobs:
     build_cms:
         runs-on: ubuntu-latest
         needs: install_cms
+        env:
+            NODE_ENV: PRODUCTION
+            SKIP_DECR: 'TRUE'
+            FAST: 'TRUE'
 
         defaults:
             run:
