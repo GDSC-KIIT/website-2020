@@ -16,7 +16,7 @@ const qids = {
 
 describe('when user is not logged in', () => {
 	beforeAll(async () => {
-		qids.q1 = await api.createData('http://localhost:9000/quizzes', testUtils.question1);
+		qids.q1 = await api.createData('http://localhost:9000/quizzes', testUtils.createdQuestion1);
 	});
 
 	afterAll(async () => {
@@ -46,9 +46,9 @@ describe('when user is logged in', () => {
 	const testUser = { token: '' };
 	beforeAll(async () => {
 		[qids.q1, qids.q2, qids.q3] = await Promise.all([
-			api.createData('http://localhost:9000/quizzes', testUtils.question1),
-			api.createData('http://localhost:9000/quizzes', testUtils.question2),
-			api.createData('http://localhost:9000/quizzes', testUtils.question3),
+			api.createData('http://localhost:9000/quizzes', testUtils.createdQuestion1),
+			api.createData('http://localhost:9000/quizzes', testUtils.createdQuestion2),
+			api.createData('http://localhost:9000/quizzes', testUtils.createdQuestion3),
 		]);
 		testUser.token = await api.loginUser();
 		mocked(getSessionAuthToken).mockResolvedValue(testUser.token);
@@ -72,11 +72,13 @@ describe('when user is logged in', () => {
 
 	it('the three questions are available', () => {
 		const { getByTestId } = render(<Questions />);
+
 		waitFor(() => {
 			expect(getByTestId(`question-${qids.q1}`)).toBeInTheDocument();
 			expect(getByTestId(`question-${qids.q2}`)).toBeInTheDocument();
 			expect(getByTestId(`question-${qids.q3}`)).toBeInTheDocument();
 		});
+
 		logger(
 			'info',
 			'ignore the overlapping act calls warning',

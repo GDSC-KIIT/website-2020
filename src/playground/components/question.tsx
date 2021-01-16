@@ -137,7 +137,7 @@ export default function Q() {
 	const { user } = useUser();
 
 	useEffect(() => {
-		if (user && qid.length > 0) {
+		if (user && user.score && qid.length > 0) {
 			hasUserAlreadySubmitted(parseInt(qid, 10), user.score).then((subm) => {
 				if (subm === false) {
 					setChecksForAllow((prev) => prev + 1);
@@ -146,6 +146,8 @@ export default function Q() {
 					showSnack('Buddy, you have already done this question', 'warning');
 				}
 			});
+		} else if (user && user.score === null) {
+			setChecksForAllow((prev) => prev + 1);
 		}
 	}, [user]);
 

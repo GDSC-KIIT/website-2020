@@ -4,7 +4,7 @@ export type UserInfoType = {
 	id: number;
 	provider: string;
 	created_at: string;
-	score: number; // a one-to-ome relation with score model which has info about quizzes solved by the user
+	score: number | null; // a one-to-ome relation with score model which has info about quizzes solved by the user
 };
 
 export type QuestionType = {
