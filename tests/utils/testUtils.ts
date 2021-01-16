@@ -25,3 +25,20 @@ export const question3 = {
 	option_3: '3',
 	option_4: '4',
 };
+
+// Mocks useRouter
+const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+
+export function mockNextUseRouter(props: {
+	route?: string;
+	pathname?: string;
+	query?: Object | string;
+	asPath?: string;
+}) {
+	useRouter.mockImplementation(() => ({
+		route: props.route,
+		pathname: props.pathname,
+		query: props.query,
+		asPath: props.asPath,
+	}));
+}

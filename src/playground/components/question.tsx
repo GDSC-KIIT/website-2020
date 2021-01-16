@@ -171,7 +171,7 @@ export default function Q() {
 		//  assignees: yashvi2001
 		return (
 			<Backdrop className={classes.backdrop} open={true}>
-				<CircularProgress size={100} data-testid="loader" />;
+				<CircularProgress size={100} data-testid="loader" />
 			</Backdrop>
 		);
 	}, [data, error]);
