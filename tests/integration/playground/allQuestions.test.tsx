@@ -24,21 +24,23 @@ describe('when user is not logged in', () => {
 		cleanup();
 	});
 
-	it('shows not logged', () => {
+	it('shows not logged', async () => {
 		const { getByTestId } = render(<Questions />);
 		expect(getByTestId('loader')).toBeInTheDocument();
 
-		waitFor(() => {
+		await waitFor(() => {
 			expect(getByTestId('not-loggedin')).toBeInTheDocument();
 		});
 	});
 
-	it('no question is available', () => {
-		const { getByTestId } = render(<Questions />);
-		waitFor(() => {
+	it('no question is available', async () => {
+		const { getByTestId, queryByTestId } = render(<Questions />);
+		await waitFor(() => {
 			expect(getByTestId('not-loggedin')).toBeInTheDocument();
-			expect(getByTestId(`question-${qids.q1}`)).toBeInTheDocument();
 		});
+
+		const question = queryByTestId(`question-${qids.q2}`);
+		expect(question).not.toBeInTheDocument();
 	});
 });
 
@@ -63,17 +65,17 @@ describe('when user is logged in', () => {
 		cleanup();
 	});
 
-	it('questions are available to the user', () => {
+	it('questions are available to the user', async () => {
 		const { getByTestId } = render(<Questions />);
-		waitFor(() => {
+		await waitFor(() => {
 			expect(getByTestId(`question-${qids.q2}`)).toBeInTheDocument();
 		});
 	});
 
-	it('the three questions are available', () => {
+	it('the three questions are available', async () => {
 		const { getByTestId } = render(<Questions />);
 
-		waitFor(() => {
+		await waitFor(() => {
 			expect(getByTestId(`question-${qids.q1}`)).toBeInTheDocument();
 			expect(getByTestId(`question-${qids.q2}`)).toBeInTheDocument();
 			expect(getByTestId(`question-${qids.q3}`)).toBeInTheDocument();
