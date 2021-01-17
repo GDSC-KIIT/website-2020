@@ -2,20 +2,25 @@ import NextLink from 'next/link';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 
+import { fetchAllQuestions } from '@/playground/lib/api';
+import useUser from '@/hooks/useUser';
+import { GoogleLoginLink } from '@/components/AuthProvider';
+import Layout from './layout';
+
 import {
 	makeStyles,
 	createStyles,
 	Theme,
-	Paper,
 	Grid,
 	Typography,
-	CircularProgress,
-	Backdrop,
 	Button,
+	Card,
+	CardActions,
+	CardContent,
+	CardMedia,
+	Container,
+	Chip,
 } from '@material-ui/core';
-
-import { fetchAllQuestions } from '@/playground/lib/api';
-import { GoogleAuthLogin } from '@/components/AuthProvider';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -37,13 +42,35 @@ const useStyles = makeStyles((theme: Theme) =>
 			zIndex: theme.zIndex.drawer + 1,
 			color: '#fff',
 		},
+		heroContent: {
+			backgroundColor: theme.palette.background.paper,
+			padding: theme.spacing(8, 0, 6),
+		},
+		heroButtons: {
+			marginTop: theme.spacing(4),
+		},
+		cardGrid: {
+			paddingTop: theme.spacing(8),
+			paddingBottom: theme.spacing(8),
+		},
+		card: {
+			height: '100%',
+			display: 'flex',
+			flexDirection: 'column',
+		},
+		cardMedia: {
+			paddingTop: '56.25%',
+		},
+		cardContent: {
+			flexGrow: 1,
+		},
 	})
 );
 
 export default function AllQs() {
 	const classes = useStyles();
 
-	const { data, error } = useSWR('all_questions', fetchAllQuestions, { refreshInterval: 1000 });
+	const { data } = useSWR('all_questions', fetchAllQuestions, { refreshInterval: 1000 });
 
 	const quesDisplays = useMemo(() => {
 		const questions = data ?? [];
@@ -57,46 +84,99 @@ export default function AllQs() {
 			//  labels: priority, styling
 			//  assignees: yashvi2001, aditya-mitra
 			return questions.map((question) => (
-				<Grid item xs={10} key={question.id}>
-					<NextLink href={question.accepting ? `/playground/${question.id}` : '#'}>
-						<Paper
-							data-testid={`question-${question.id}`}
-							className={classes.paper}
-							elevation={3}
-							style={{ backgroundColor: question.accepting ? 'green' : 'orangered' }}>
-							<Typography variant="h5">THE QUESTION IS {question.id}</Typography>
-						</Paper>
-					</NextLink>
+				<Grid item key={question.id} xs={12} sm={6} md={4}>
+					<Card className={classes.card}>
+						<NextLink href={`/playground/${question.id}`}>
+							<CardMedia
+								style={{ cursor: 'pointer' }}
+								className={classes.cardMedia}
+								// TODO
+								//  labels: styling, priority
+								//  Need **some random images** in the `assets` folder
+								image="https://source.unsplash.com/random"
+								title={'Solve ' + question.id}
+							/>
+						</NextLink>
+						<center>
+							<CardContent className={classes.cardContent}>
+								<Typography variant="h5" component="h2">
+									{question.id}
+								</Typography>
+							</CardContent>
+						</center>
+						<CardActions>
+							<NextLink href={`/playground/${question.id}`}>
+								<Button
+									size="small"
+									variant={question.accepting ? 'outlined' : 'contained'}
+									color="primary"
+									style={{ textDecoration: 'none' }}>
+									{question.accepting ? 'Solve' : 'View'}
+								</Button>
+							</NextLink>
+
+							{question.accepting ? (
+								<Chip
+									color="secondary"
+									label="LIVE"
+									size="small"
+									style={{ marginLeft: 'auto' }}
+								/>
+							) : null}
+						</CardActions>
+					</Card>
 				</Grid>
 			));
-		} else if (error) {
-			// TODO style the not logged in error message
-			//  style this as a heading and an **error** message
-			//  Also style the `<Button/>` component
-			//  labels: priority, styling
-			//  assignees: yashvi2001
-			return (
-				<div data-testid="not-loggedin">
-					You are not logged in!
-					<Button>
-						<GoogleAuthLogin />
-					</Button>
-				</div>
-			);
-		} else {
-			return (
-				<Backdrop className={classes.backdrop} open={true}>
-					<CircularProgress size={70} data-testid="loader" />;
-				</Backdrop>
-			);
 		}
-	}, [data, error]);
+
+		return null;
+	}, [data]);
 
 	return (
-		<div className={classes.root}>
-			<Grid container spacing={4} justify="center">
-				{quesDisplays}
-			</Grid>
-		</div>
+		<Layout>
+			<>
+				<div className={classes.heroContent}>
+					<Container maxWidth="sm">
+						<Typography
+							component="h1"
+							variant="h2"
+							align="center"
+							color="textPrimary"
+							gutterBottom>
+							DSC KIIT
+							<br />
+							<strong>PlayGround ⚡</strong>
+						</Typography>
+						<Typography variant="h5" align="center" color="textSecondary" paragraph>
+							{data && data.length > 0
+								? 'You can view or solve some questions'
+								: 'Currently no questions!'}
+						</Typography>
+						<div className={classes.heroButtons}>
+							<Grid container spacing={2} justify="center">
+								<LoginButton />
+							</Grid>
+						</div>
+					</Container>
+				</div>
+				<Container className={classes.cardGrid} maxWidth="md">
+					<Grid container spacing={4}>
+						{quesDisplays}
+					</Grid>
+				</Container>
+			</>
+		</Layout>
 	);
+}
+
+function LoginButton() {
+	const { loading, user } = useUser();
+
+	if (!loading && !user)
+		return (
+			<Button variant="contained" color="primary" data-testid="not-loggedin">
+				<GoogleLoginLink />
+			</Button>
+		);
+	return null;
 }
