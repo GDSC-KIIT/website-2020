@@ -125,6 +125,7 @@ jobs:
         runs-on: ubuntu-latest
         needs:
             - install_dis
+            - install_cms
 
         steps:
             - name: restore dis cache
@@ -165,23 +166,20 @@ jobs:
             - name: Build NextJS
               run: |
                   npm run server:testing & npm run build
-
-    test_report:
-        runs-on: ubuntu-latest
-        needs:
-            - install_dis
-
-        steps:
-            - name: restore dis cache
-              uses: actions/cache@v2
-              id: restore-dis-test-report
-              with:
-                  path: ./*
-                  key: ${{runner.os}}-dis-${{github.sha}}
-
-            - name: test dis with report
-              uses: mattallty/jest-github-action@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  test-command: 'npm run test:full'
+    # test_report:
+    #     runs-on: ubuntu-latest
+    #     needs:
+    #         - install_dis
+    #     steps:
+    #         - name: restore dis cache
+    #           uses: actions/cache@v2
+    #           id: restore-dis-test-report
+    #           with:
+    #               path: ./*
+    #               key: ${{runner.os}}-dis-${{github.sha}}
+    #         - name: test dis with report
+    #           uses: mattallty/jest-github-action@v1
+    #           env:
+    #               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #           with:
+    # test-command: npm run test:full
