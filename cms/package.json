@@ -2,32 +2,42 @@
 	"name": "dsc-kiit-website-backend",
 	"private": true,
 	"version": "2.1.1",
-	"description": "A Strapi application",
+	"description": "Strapi supported CMS and Backend",
 	"scripts": {
 		"dev": "strapi develop",
 		"start": "strapi start",
-		"build": "strapi build",
+		"build": "strapi build --clean",
 		"strapi": "strapi",
-		"postinstall": "node env-Decrypter.js"
+		"postinstall": "node env-Decrypter.js",
+		"devf": "cross-env FAST=TRUE strapi develop",
+		"ci:build": "cross-env FAST=TRUE strapi build",
+		"server:testing": "cross-env TESTING=TRUE npm start",
+		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
+		"cross-env": "^7.0.3",
+		"mocha": "^8.2.1",
+		"sqlite3": "latest"
+	},
 	"dependencies": {
 		"dotenv": "^8.2.0",
 		"find-config": "^1.0.0",
+		"firebase-admin": "^9.4.2",
 		"knex": "<0.20.0",
 		"pg": "^8.5.1",
 		"pg-connection-string": "^2.4.0",
-		"sqlite3": "latest",
-		"strapi": "3.4.1",
-		"strapi-admin": "3.4.1",
-		"strapi-connector-bookshelf": "3.4.1",
-		"strapi-plugin-content-manager": "3.4.1",
-		"strapi-plugin-content-type-builder": "3.4.1",
-		"strapi-plugin-email": "3.4.1",
-		"strapi-plugin-upload": "3.4.1",
-		"strapi-plugin-users-permissions": "3.4.1",
-		"strapi-provider-upload-firebase": "0.0.4",
-		"strapi-utils": "3.4.1"
+		"strapi": "3.4.2",
+		"strapi-admin": "3.4.2",
+		"strapi-connector-bookshelf": "3.4.2",
+		"strapi-plugin-content-manager": "3.4.2",
+		"strapi-plugin-content-type-builder": "3.4.2",
+		"strapi-plugin-email": "3.4.2",
+		"strapi-plugin-upload": "3.4.2",
+		"strapi-plugin-users-permissions": "3.4.2",
+		"strapi-provider-upload-firebase": "file:providers/strapi-provider-upload-firebase",
+		"strapi-utils": "3.4.2"
 	},
 	"author": {
 		"name": "aditya-mitra"

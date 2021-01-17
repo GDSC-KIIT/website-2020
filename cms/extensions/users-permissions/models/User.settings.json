@@ -62,6 +62,10 @@
 		"badges": {
 			"via": "users_permissions_user",
 			"collection": "badges"
+		},
+		"score": {
+			"via": "users_permissions_user",
+			"model": "score"
 		}
 	}
 }

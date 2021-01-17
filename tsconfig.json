@@ -3,6 +3,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/components/*": ["src/components/*"],
+			"@/playground/*": ["src/playground/*"],
 			"@/hooks/*": ["src/hooks/*"],
 			"@/lib/*": ["src/lib/*"],
 			"@/pages/*": ["src/pages/*"],
@@ -17,7 +18,7 @@
 		"allowJs": true,
 		"jsx": "preserve",
 		"moduleResolution": "node",
-		"rootDir": "src",
+		"rootDir": ".",
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitReturns": true,
 		"noImplicitThis": true,
@@ -32,15 +33,6 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true
 	},
-	"exclude": [
-		"node_modules",
-		"build",
-		"scripts",
-		"acceptance-tests",
-		"webpack",
-		"jest",
-		"src/setupTests.ts",
-		"cms"
-	],
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+	"exclude": ["node_modules", "build", "scripts", ".next", "cms"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tests/*"]
 }

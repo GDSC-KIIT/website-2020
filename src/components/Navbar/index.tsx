@@ -122,6 +122,13 @@ const Navbar = () => {
 							</Link>
 						</Grid>
 						<Grid item>
+							<Link href="/playground">
+								<Typography variant="body2" style={{ cursor: 'pointer' }}>
+									Quiz
+								</Typography>
+							</Link>
+						</Grid>
+						<Grid item>
 							<Link href="/blog">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Blogs

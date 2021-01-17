@@ -1,0 +1,28 @@
+{
+	"kind": "collectionType",
+	"collectionName": "scores",
+	"info": {
+		"name": "score",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": false
+	},
+	"attributes": {
+		"users_permissions_user": {
+			"plugin": "users-permissions",
+			"model": "user",
+			"via": "score"
+		},
+		"quizzes": {
+			"collection": "quiz",
+			"via": "score"
+		},
+		"currentPoints": {
+			"type": "integer",
+			"default": 0
+		}
+	}
+}

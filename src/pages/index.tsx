@@ -4,7 +4,8 @@ import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
 
 export default function Home() {
-	// TODO: Remove the cdns
+	// TODO Remove the cdns
+	//  labels: landing
 	return (
 		<>
 			<Head key="link">

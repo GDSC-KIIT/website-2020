@@ -1,4 +1,5 @@
-package-lock.json
+firebase-env.json
+/env/
 
 ############################
 # OS X

@@ -3,34 +3,59 @@
 	"description": "Our new website!",
 	"author": "Developer Student Club - KIIT",
 	"license": "MIT",
-	"version": "2.3.0",
+	"version": "2.5.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port=3333",
 		"build": "next build",
+		"ci:build": "start-server-and-test server:testing http://localhost:9000 build",
 		"start": "next start",
-		"format:prettier": "prettier --write ."
+		"format:prettier": "prettier --write .",
+		"server:testing": "npm run server:testing --prefix cms",
+		"test": "jest",
+		"test:unit": "npm run test -- tests/unit",
+		"test:i": "npm run test -- tests/integration",
+		"test:integration": "start-server-and-test server:testing http://localhost:9000 test:i",
+		"test:full": "start-server-and-test server:testing http://localhost:9000 test",
+		"testw": "jest --watch"
 	},
 	"dependencies": {
+		"@fontsource/montserrat": "^4.1.0",
 		"@material-ui/core": "^4.11.2",
 		"@material-ui/icons": "^4.11.2",
+		"@material-ui/lab": "^4.0.0-alpha.57",
 		"axios": "^0.21.1",
+		"dompurify": "^2.2.6",
 		"gray-matter": "^4.0.2",
 		"marked": "^1.2.7",
 		"next": "10.0.0",
 		"nookies": "^2.5.0",
 		"react": "17.0.1",
 		"react-dom": "17.0.1",
-		"react-twitter-widgets": "^1.9.5"
+		"react-twitter-widgets": "^1.9.5",
+		"swr": "^0.4.0"
 	},
 	"devDependencies": {
+		"@testing-library/jest-dom": "^5.11.9",
+		"@testing-library/react": "^11.2.3",
+		"@testing-library/react-hooks": "^4.0.1",
+		"@testing-library/user-event": "^12.6.0",
+		"@types/dompurify": "^2.2.1",
+		"@types/jest": "^26.0.20",
 		"@types/marked": "^1.2.1",
 		"@types/node": "^14.14.6",
 		"@types/react": "^16.9.56",
+		"babel-jest": "^26.6.3",
 		"husky": "^4.3.6",
+		"jest": "^26.6.3",
 		"prettier": "^2.2.1",
 		"pretty-quick": "^3.1.0",
-		"typescript": "^4.0.5"
+		"react-test-renderer": "^17.0.1",
+		"start-server-and-test": "^1.11.7",
+		"ts-jest": "^26.4.4",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.0.5",
+		"winston": "^3.3.3"
 	},
 	"husky": {
 		"hooks": {

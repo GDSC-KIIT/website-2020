@@ -1,19 +1,16 @@
-import { useState, useEffect } from 'react';
+import useSWR from 'swr';
 
 import { fetchAllBanners, IBanner } from '@/lib/dynamicData/banner';
 import Banner from './banner';
 
 export default function Banners() {
-	const [banners, setBanners] = useState<null | Array<IBanner>>(null);
+	const { data } = useSWR('all_banners', fetchAllBanners, { refreshInterval: 60 * 1000 });
 
-	useEffect(() => {
-		fetchAllBanners()
-			.then((bns) => setBanners(bns))
-			.catch(() => setBanners([]));
-	}, []);
+	let banners: IBanner[] = data ?? [];
 
-	if (Array.isArray(banners) && banners.length > 0) {
-		// TODO: Change the banner style
+	if (banners.length > 0) {
+		// TODO Change the banner style
+		//  labels: styling, landing
 		return (
 			<>
 				<span style={{ marginTop: '2rem' }} />

@@ -1,0 +1,55 @@
+{
+	"kind": "collectionType",
+	"collectionName": "quizzes",
+	"info": {
+		"name": "quiz",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": false
+	},
+	"attributes": {
+		"question": {
+			"type": "richtext",
+			"required": true
+		},
+		"answer": {
+			"type": "integer",
+			"required": true,
+			"min": 1,
+			"max": 6
+		},
+		"accepting": {
+			"type": "boolean",
+			"default": true,
+			"required": true
+		},
+		"option_1": {
+			"type": "string",
+			"required": true
+		},
+		"option_2": {
+			"type": "string",
+			"private": false,
+			"required": true
+		},
+		"option_3": {
+			"type": "string"
+		},
+		"option_4": {
+			"type": "string"
+		},
+		"option_5": {
+			"type": "string"
+		},
+		"option_6": {
+			"type": "string"
+		},
+		"score": {
+			"via": "quizzes",
+			"model": "score"
+		}
+	}
+}
