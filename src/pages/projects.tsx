@@ -2,8 +2,8 @@ import Head from 'next/head';
 // import Project from '@/components/Projects/index';
 import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
-import styles from '../components/projects/projects.module.css';
-import ProjectsCard from '../components/Projects/ProjectsCard';
+import styles from '../components/Projects/projects.module.css';
+import ProjectsCard from '@/components/Projects/ProjectsCard';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { GetStaticProps } from 'next';
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function Home({ allProjectsData }) {
+export default function Home({ allProjectsData }: any) {
 	useEffect(() => {
 		order = -1;
 	});
@@ -39,7 +39,6 @@ export default function Home({ allProjectsData }) {
 					rel="stylesheet"
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 				/>
-				<link rel="stylesheet" href="./index.css" />
 			</Head>
 
 			<Layout pageName="PROJECTS">
@@ -118,8 +117,6 @@ export default function Home({ allProjectsData }) {
 export const getStaticProps: GetStaticProps = async () => {
 	// Run API calls in parallel
 	const allProjectsData = await fetchAPIProjects('/projects');
-	console.log(allProjectsData);
-	console.log('Hello instinct is the best coder');
 	return {
 		props: { allProjectsData },
 	};
