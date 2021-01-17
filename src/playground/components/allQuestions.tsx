@@ -84,7 +84,13 @@ export default function AllQs() {
 			//  labels: priority, styling
 			//  assignees: yashvi2001, aditya-mitra
 			return questions.map((question) => (
-				<Grid item key={question.id} xs={12} sm={6} md={4}>
+				<Grid
+					item
+					key={question.id}
+					xs={12}
+					sm={6}
+					md={4}
+					data-testid={`question-${question.id}`}>
 					<Card className={classes.card}>
 						<NextLink href={`/playground/${question.id}`}>
 							<CardMedia

@@ -12,13 +12,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout({ qname, children }: { qname?: string; children: ReactNode }) {
 	const classes = useStyles();
+	const pn = qname && '| Quiz - ' + qname;
 
 	return (
 		<>
 			<Head key="Playground">
-				<title>PlayGround ⚡</title>
+				<title>PlayGround ⚡ {pn}</title>
 			</Head>
 			<CssBaseline />
 			<AppBar position="relative">

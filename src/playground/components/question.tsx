@@ -252,7 +252,7 @@ export default function Q() {
 	}, [data]);
 
 	return (
-		<Layout>
+		<Layout qname={data?.qname.toUpperCase()}>
 			<form onSubmit={handleAnswerSubmission}>
 				<Grid container spacing={0} justify="center">
 					<Grid item xs={12}>
