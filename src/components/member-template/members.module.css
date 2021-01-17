@@ -58,16 +58,12 @@
 .member {
 	list-style: none;
 	float: left;
-	/* width: 22%; */
-	/* margin-right: 4%; */
 	position: relative;
 	overflow: hidden;
 	text-align: center;
 	cursor: pointer;
 }
-/* .member:nth-child(4) {
-  margin-right: 0;
-} */
+
 .member:hover .school {
 	left: 0;
 	margin-left: 0;

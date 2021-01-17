@@ -1,13 +1,7 @@
-/* Footer */
-/* body {
-  background: #fbfbfd;
-} */
-/* footer {
-  background: black;
-} */
 .new_footer_area {
-	/* background: url("https://i.imgur.com/NZFduDq.png"); */
 	margin-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .new_footer_top {
@@ -79,12 +73,9 @@
 	margin-bottom: 0px;
 }
 .new_footer_top .f_social_icon a {
-	width: 44px;
-	height: 44px;
 	line-height: 43px;
 	background: transparent;
 	border: 1px solid #e2e2eb;
-	font-size: 24px;
 }
 .f_social_icon a {
 	width: 46px;
@@ -235,4 +226,5 @@
 .dsc_info a {
 	color: #6a7695;
 }
+
 /*************footer End*****************/
