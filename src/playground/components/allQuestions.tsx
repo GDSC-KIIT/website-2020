@@ -100,7 +100,7 @@ export default function AllQs() {
 						<center>
 							<CardContent className={classes.cardContent}>
 								<Typography variant="h5" component="h2">
-									{question.id}
+									{question.qname}
 								</Typography>
 							</CardContent>
 						</center>

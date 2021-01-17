@@ -12,8 +12,8 @@ module.exports = {
 		const sortedQuizzes = await strapi.services.quiz.find({
 			_sort: 'id:desc',
 		});
-		return sortedQuizzes.map(({ id, accepting }) =>
-			sanitizeEntity({ id, accepting }, { model: strapi.models.quiz })
+		return sortedQuizzes.map(({ id, accepting, qname }) =>
+			sanitizeEntity({ id, accepting, qname }, { model: strapi.models.quiz })
 		);
 	},
 	async findOne(ctx) {

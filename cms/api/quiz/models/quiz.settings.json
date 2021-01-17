@@ -48,8 +48,14 @@
 			"type": "string"
 		},
 		"score": {
-			"via": "quizzes",
-			"model": "score"
+			"model": "score",
+			"via": "quizzes"
+		},
+		"qname": {
+			"type": "string",
+			"required": true,
+			"maxLength": 10,
+			"minLength": 1
 		}
 	}
 }
