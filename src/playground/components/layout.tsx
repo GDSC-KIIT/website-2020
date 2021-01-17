@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import NextLink from 'next/link';
+import Head from 'next/head';
 
 import { AppBar, CssBaseline, Toolbar, Typography, makeStyles } from '@material-ui/core';
 
@@ -16,19 +17,28 @@ export default function Layout({ children }: { children: ReactNode }) {
 
 	return (
 		<>
+			<Head key="Playground">
+				<title>PlayGround ⚡</title>
+			</Head>
 			<CssBaseline />
 			<AppBar position="relative">
-				<Toolbar>
-					<Typography variant="h6" color="inherit" noWrap>
-						DSC KIIT <strong>PlayGround</strong>
-					</Typography>
-				</Toolbar>
+				<NextLink href="/playground">
+					<Toolbar style={{ cursor: 'pointer' }}>
+						<Typography variant="h6" color="inherit" noWrap>
+							DSC KIIT <strong>PlayGround</strong>
+						</Typography>
+					</Toolbar>
+				</NextLink>
 			</AppBar>
 			<main>{children}</main>
 			<footer className={classes.footer}>
 				<NextLink href="/playground">
-					<Typography align="left" gutterBottom style={{ cursor: 'pointer' }}>
-						DSC KIIT <strong>PlayGround</strong>
+					<Typography
+						variant="h5"
+						align="left"
+						gutterBottom
+						style={{ cursor: 'pointer' }}>
+						DSC KIIT <strong>PlayGround ⚡</strong>
 					</Typography>
 				</NextLink>
 				<Typography align="right" gutterBottom>
