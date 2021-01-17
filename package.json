@@ -29,7 +29,6 @@
 		"marked": "^1.2.7",
 		"next": "10.0.0",
 		"nookies": "^2.5.0",
-		"notistack": "^1.0.3",
 		"react": "17.0.1",
 		"react-dom": "17.0.1",
 		"react-twitter-widgets": "^1.9.5",
