@@ -3,7 +3,7 @@
 	"description": "Our new website!",
 	"author": "Developer Student Club - KIIT",
 	"license": "MIT",
-	"version": "2.4.0",
+	"version": "2.5.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port=3333",
@@ -16,6 +16,7 @@
 		"test:unit": "npm run test -- tests/unit",
 		"test:i": "npm run test -- tests/integration",
 		"test:integration": "start-server-and-test server:testing http://localhost:9000 test:i",
+		"test:full": "start-server-and-test server:testing http://localhost:9000 test",
 		"testw": "jest --watch"
 	},
 	"dependencies": {

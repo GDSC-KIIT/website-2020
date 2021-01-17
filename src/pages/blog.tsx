@@ -1,6 +1,6 @@
 import { fetchDevtoBlogPosts, fetchMediumBlogPosts, IBlogPost } from '@/lib/staticData/blogPosts';
 import Layout from '@/components/Layout';
-import Posts from '@/components/Blog/posts';
+import Posts from '@/components/Blog/index';
 
 export async function getStaticProps() {
 	const blogPosts = await Promise.all([
