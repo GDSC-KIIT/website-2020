@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import md from '@/lib/markdown';
 import { hasUserAlreadySubmitted, fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
 import useUser from '@/hooks/useUser';
+import Layout from './layout';
 
 import {
 	makeStyles,
@@ -251,7 +252,7 @@ export default function Q() {
 	}, [data]);
 
 	return (
-		<div>
+		<Layout qname={data?.qname.toUpperCase()}>
 			<form onSubmit={handleAnswerSubmission}>
 				<Grid container spacing={0} justify="center">
 					<Grid item xs={12}>
@@ -304,7 +305,7 @@ export default function Q() {
 			<span style={{ display: 'none' }} data-testid="snack-message">
 				{snack.message}
 			</span>
-		</div>
+		</Layout>
 	);
 }
 

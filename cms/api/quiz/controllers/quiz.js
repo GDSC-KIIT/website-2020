@@ -10,12 +10,11 @@ const { sanitizeEntity } = require('strapi-utils');
 module.exports = {
 	async find(ctx) {
 		const sortedQuizzes = await strapi.services.quiz.find({
-			accepting: true,
 			_sort: 'id:desc',
 		});
-		return sortedQuizzes.map(({ id, accepting }) => {
-			return sanitizeEntity({ id, accepting }, { model: strapi.models.quiz });
-		});
+		return sortedQuizzes.map(({ id, accepting, qname }) =>
+			sanitizeEntity({ id, accepting, qname }, { model: strapi.models.quiz })
+		);
 	},
 	async findOne(ctx) {
 		const { id } = ctx.params;

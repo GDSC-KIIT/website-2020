@@ -17,8 +17,8 @@
 			"via": "score"
 		},
 		"quizzes": {
-			"collection": "quiz",
-			"via": "score"
+			"via": "score",
+			"collection": "quiz"
 		},
 		"currentPoints": {
 			"type": "integer",

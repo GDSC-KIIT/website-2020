@@ -9,6 +9,7 @@ export type UserInfoType = {
 
 export type QuestionType = {
 	id: number;
+	qname: string;
 	accepting: boolean;
 	question: string;
 	option_1: string;

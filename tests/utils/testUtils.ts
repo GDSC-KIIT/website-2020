@@ -1,6 +1,7 @@
 import { QuestionType, ScoreDataType, SubmitReponseType, UserInfoType } from '@/types/index';
 
 export const createdQuestion1 = {
+	qname: 'biology',
 	question: '*what is biology?*',
 	answer: 4,
 	accepting: true,
@@ -11,6 +12,7 @@ export const createdQuestion1 = {
 };
 
 export const createdQuestion2 = {
+	qname: 'can we ask',
 	question: '# can we ask questions?',
 	answer: 2,
 	accepting: true,
@@ -19,6 +21,7 @@ export const createdQuestion2 = {
 };
 
 export const createdQuestion3 = {
+	qname: 'can we ask',
 	question: 'when does the event start?',
 	answer: 1,
 	accepting: true,
@@ -31,6 +34,7 @@ export const createdQuestion3 = {
 // answer is 4
 export const mockedQuestion1: QuestionType = {
 	id: 10,
+	qname: 'biology',
 	question: '*what is biology?*',
 	accepting: true,
 	option_1: 'animal',
@@ -42,6 +46,7 @@ export const mockedQuestion1: QuestionType = {
 // answer is 1
 export const mockedQuestion2: QuestionType = {
 	id: 20,
+	qname: 'can we ask',
 	question: '# can we ask questions?',
 	accepting: true,
 	option_1: 'yes',
@@ -50,6 +55,7 @@ export const mockedQuestion2: QuestionType = {
 
 export const mockSolvedQuestion3: QuestionType = {
 	id: 30,
+	qname: 'can we ask',
 	question: 'when does the event start?',
 	accepting: true,
 	option_1: '1',

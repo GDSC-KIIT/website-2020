@@ -17,6 +17,14 @@ const CurrentUser = ({ href, text }: IPropsCurrentUser) => (
 	</Link>
 );
 
+export function GoogleLoginLink() {
+	return (
+		<Link href={backendUrls['login_google']} color="inherit" underline="none">
+			Sign In with Google
+		</Link>
+	);
+}
+
 export function GoogleAuthLogin() {
 	const { loading, user } = useUser();
 
