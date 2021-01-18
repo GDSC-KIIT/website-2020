@@ -10,6 +10,7 @@ import {
 	Button,
 } from '@material-ui/core';
 import { GitHub as GitHubIcon, Person as PersonIcon } from '@material-ui/icons';
+import MoreIcon from '@material-ui/icons/More';
 // import { getStrapiMedia } from '../../lib/media';
 declare global {
 	namespace JSX {
@@ -35,13 +36,6 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 	return (
 		<>
 			{console.log(projectInfo, displayHeader)}
-			{/* {displayHeader ? (
-				<center className={styles.techDesc}>
-					<h3>{positionHeading[memberInfo.order]}</h3>
-				</center>
-			) : (
-				''
-			)} */}
 			<Card className={classes.root} raised={true}>
 				<CardActionArea>
 					<CardMedia
@@ -73,6 +67,13 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 						startIcon={<GitHubIcon />}
 						href="https://github.com">
 						GitHub
+					</Button>
+					<Button
+						variant="outlined"
+						color="primary"
+						startIcon={<MoreIcon />}
+						href="https://github.com">
+						Know More
 					</Button>
 				</CardActions>
 			</Card>
