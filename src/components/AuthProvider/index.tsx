@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import useUser from '@/hooks/useUser';
 import { backendUrls } from '@/lib/backendUrls';
 import { Link, CircularProgress, Typography, Menu, MenuItem, Fade } from '@material-ui/core';
@@ -27,7 +27,7 @@ export function GoogleLoginLink() {
 
 export function GoogleAuthLogin() {
 	const { loading, user } = useUser();
-	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {

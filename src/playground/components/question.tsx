@@ -27,7 +27,7 @@ import { Skeleton, Alert, AlertProps } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
 	paper1: {
-		padding: theme.spacing(5),
+		padding: theme.spacing(3),
 		textAlign: 'left',
 		color: theme.palette.text.primary,
 		marginTop: 100,
@@ -168,7 +168,7 @@ export default function Q() {
 			if (data.accepting) setChecksForAllow((prev) => prev + 1);
 			return (
 				<>
-					<h1>{data.qname}</h1>
+					<h5>{data.qname}</h5>
 					<div dangerouslySetInnerHTML={{ __html: md(data.question) }} />
 				</>
 			);
@@ -176,13 +176,6 @@ export default function Q() {
 			showSnack(error.message || 'An unknown error occurred', 'error');
 			return <Skeleton variant="rect" width={700} height={200} />;
 		}
-		// TODO Question and Options are blank during initial fetch
-		//  During inital data fetch, the question and the answers behind the backdrop are empty
-		//  They can be made to look nicer with a better loading screen
-		//  When usings land on the wrong page, the loading screen is shown **404 PAGE**
-		//  Please also make the *skeleton* mobile responsive (it can be found above)
-		//  labels: styling, responsive
-		//  assignees: yashvi2001
 		return (
 			<Backdrop className={classes.backdrop} open={true}>
 				<CircularProgress size={100} data-testid="loader" />
@@ -274,8 +267,7 @@ export default function Q() {
 								/>
 								DSC QUIZ
 							</Typography>
-							<hr style={{ marginBottom: '20px' }} />
-							<Typography>Question 1</Typography>
+							<hr />
 							<Typography variant="h6">{Question}</Typography>
 							<FormLabel></FormLabel>
 							<FormControl
