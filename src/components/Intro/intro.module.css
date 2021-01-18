@@ -19,20 +19,21 @@
 	margin-top: 120px;
 }
 .header {
-	font-family: serif;
 	color: #0e1c81;
 }
 .intro_image {
-	width: 90%;
+	width: 75%;
+	max-width: 468px;
 	height: auto;
 }
 .dsc_description {
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 }
 
 .welcome_team {
 	margin-top: 80px;
+	padding-left: 50px;
+	padding-top: 40px;
 }
 
 /* Our Team */
@@ -84,13 +85,24 @@
 	background-color: white;
 }
 .introImg {
-	padding-top: 45px;
+	text-align: center;
+	margin-top: -20px;
 }
-@media only screen and (max-width: 993px) {
+
+@media only screen and (max-width: 959px) {
 	.introImg {
 		display: none;
 	}
 	.welcome_team {
 		text-align: center !important;
+		padding-left: 0;
+		padding-top: 0;
+	}
+}
+
+@media only screen and (min-width: 1350px) {
+	.welcome_team {
+		padding-left: 100px;
+		padding-top: 60px;
 	}
 }
