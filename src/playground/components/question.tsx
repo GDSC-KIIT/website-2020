@@ -259,7 +259,18 @@ export default function Q() {
 				<Grid container spacing={0} justify="center">
 					<Grid item xs={12} sm={8} md={9}>
 						<Paper className={classes.paper1}>
-							<Typography>Question No.1</Typography>
+							<Typography
+								variant="h6"
+								style={{ cursor: 'pointer', marginLeft: '.4em' }}
+								noWrap>
+								<img
+									src="/dsc.svg"
+									style={{ marginRight: '10px', width: '1.5em' }}
+								/>
+								DSC QUIZ
+							</Typography>
+							<hr style={{ marginBottom: '20px' }} />
+							<Typography>Question 1</Typography>
 							<Typography variant="h6">{Question}</Typography>
 							<FormLabel></FormLabel>
 							<FormControl
@@ -274,15 +285,17 @@ export default function Q() {
 									onChange={handleOptionChange}>
 									{Options}
 								</RadioGroup>
-								<Button
-									type="submit"
-									variant="outlined"
-									color="primary"
-									disabled={checksForAllow !== 2}
-									className={classes.button}
-									data-testid="answer-submit-button">
-									Check Answer
-								</Button>
+								<Grid container spacing={0} justify="center">
+									<Button
+										type="submit"
+										variant="contained"
+										color="primary"
+										disabled={checksForAllow !== 2}
+										className={classes.button}
+										data-testid="answer-submit-button">
+										Check Answer
+									</Button>
+								</Grid>
 							</FormControl>
 						</Paper>
 					</Grid>
