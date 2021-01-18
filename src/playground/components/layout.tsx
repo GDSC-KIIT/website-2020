@@ -19,7 +19,7 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 	return (
 		<>
 			<Head key="Playground">
-				<title>PlayGround ⚡ {pn}</title>
+				<title>PlayGround ⚡🏆 {pn}</title>
 			</Head>
 			<CssBaseline />
 			<AppBar position="relative">
@@ -39,7 +39,7 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 						align="left"
 						gutterBottom
 						style={{ cursor: 'pointer' }}>
-						DSC KIIT <strong>PlayGround ⚡</strong>
+						DSC KIIT <strong>PlayGround ⚡🏆</strong>
 					</Typography>
 				</NextLink>
 				<Typography align="right" gutterBottom>

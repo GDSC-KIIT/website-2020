@@ -9,6 +9,7 @@ import Layout from './layout';
 
 import {
 	makeStyles,
+	Typography,
 	Radio,
 	RadioGroup,
 	FormControlLabel,
@@ -26,18 +27,19 @@ import { Skeleton, Alert, AlertProps } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
 	paper1: {
-		padding: theme.spacing(10),
-		textAlign: 'center',
-		color: theme.palette.text.secondary,
+		padding: theme.spacing(5),
+		textAlign: 'left',
+		color: theme.palette.text.primary,
+		marginTop: 100,
 	},
 	paper: {
-		padding: theme.spacing(3),
-		textAlign: 'center',
-		color: theme.palette.text.secondary,
+		padding: theme.spacing(2),
+		textAlign: 'left',
+		color: theme.palette.text.primary,
+		marginTop: 120,
 	},
 	formControl: {
-		margin: theme.spacing(3),
-		padding: theme.spacing(10),
+		margin: theme.spacing(0),
 	},
 	button: {
 		margin: theme.spacing(1, 1, 0, 0),
@@ -255,33 +257,35 @@ export default function Q() {
 		<Layout qname={data?.qname.toUpperCase()}>
 			<form onSubmit={handleAnswerSubmission}>
 				<Grid container spacing={0} justify="center">
-					<Grid item xs={12}>
+					<Grid item xs={12} sm={8} md={9}>
 						<Paper className={classes.paper1}>
-							<FormLabel>{Question}</FormLabel>
+							<Typography>Question No.1</Typography>
+							<Typography variant="h6">{Question}</Typography>
+							<FormLabel></FormLabel>
+							<FormControl
+								component="fieldset"
+								className={classes.formControl}
+								disabled={checksForAllow !== 2}
+								data-testid="form-options">
+								<RadioGroup
+									aria-label="quiz"
+									value={selectedOption}
+									name={`quiz-${qid}`}
+									onChange={handleOptionChange}>
+									{Options}
+								</RadioGroup>
+								<Button
+									type="submit"
+									variant="outlined"
+									color="primary"
+									disabled={checksForAllow !== 2}
+									className={classes.button}
+									data-testid="answer-submit-button">
+									Check Answer
+								</Button>
+							</FormControl>
 						</Paper>
 					</Grid>
-					<FormControl
-						component="fieldset"
-						className={classes.formControl}
-						disabled={checksForAllow !== 2}
-						data-testid="form-options">
-						<RadioGroup
-							aria-label="quiz"
-							value={selectedOption}
-							name={`quiz-${qid}`}
-							onChange={handleOptionChange}>
-							{Options}
-						</RadioGroup>
-						<Button
-							type="submit"
-							variant="outlined"
-							color="primary"
-							disabled={checksForAllow !== 2}
-							className={classes.button}
-							data-testid="answer-submit-button">
-							Check Answer
-						</Button>
-					</FormControl>
 				</Grid>
 			</form>
 			<Snackbar

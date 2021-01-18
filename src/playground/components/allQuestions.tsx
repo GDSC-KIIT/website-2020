@@ -151,7 +151,7 @@ export default function AllQs() {
 							gutterBottom>
 							DSC KIIT
 							<br />
-							<strong>PlayGround ⚡</strong>
+							<strong>PlayGround ⚡🏆</strong>
 						</Typography>
 						<Typography variant="h5" align="center" color="textSecondary" paragraph>
 							{data && data.length > 0
