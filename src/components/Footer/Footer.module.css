@@ -45,15 +45,6 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-.anchor:hover,
-  .anchor:focus,
-  .btn:hover,
-  .btn:focus
-  /* button:hover,
-  button:focus */ {
-	text-decoration: none;
-	outline: none;
-}
 
 .new_footer_top .f_widget.about_widget .f_list li a:hover {
 	color: #5e2ced;
@@ -78,8 +69,8 @@
 	border: 1px solid #e2e2eb;
 }
 .f_social_icon a {
-	width: 46px;
-	height: 46px;
+	width: 36px;
+	height: 35px;
 	border-radius: 50%;
 	font-size: 14px;
 	line-height: 45px;
@@ -127,6 +118,7 @@
 }
 .new_footer_top .f_title {
 	margin-bottom: 15px;
+	margin-top: 0px;
 	color: #263b5e;
 }
 .f_600 {
@@ -135,14 +127,7 @@
 .f_size_18 {
 	font-size: 18px;
 }
-/* h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: #4b505e;
-  } */
+
 .twitter_timeline {
 	margin: auto;
 	width: 90%;

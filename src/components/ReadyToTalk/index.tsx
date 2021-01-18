@@ -10,7 +10,7 @@ export default function ReadyToTalk() {
 	return (
 		<>
 			<section className={styles.ready_to_talk}>
-				<div className="container">
+				<div>
 					<h3>Ready to talk?</h3>
 					<p>Google Assistant can answer most of your questions.</p>
 					<div className={styles.icon}>
@@ -31,7 +31,7 @@ export default function ReadyToTalk() {
 					<a
 						href="https://assistant.google.com/services/invoke/uid/0000006c15659a07"
 						target="_blank"
-						className={`btn ${styles.talkDSC}`}
+						className={` ${styles.btn} ${styles.talkDSC}`}
 						style={{ color: 'grey', backgroundColor: 'white' }}>
 						Talk to DSC KIIT
 					</a>
@@ -41,7 +41,7 @@ export default function ReadyToTalk() {
 					<center>
 						<a
 							href="#contact"
-							className={`btn ${styles.contactAssist}`}
+							className={`${styles.btn} ${styles.contactAssist}`}
 							style={{ color: 'grey', backgroundColor: 'white' }}>
 							Contact
 						</a>
