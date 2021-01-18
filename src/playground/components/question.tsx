@@ -9,6 +9,7 @@ import Layout from './layout';
 
 import {
 	makeStyles,
+	Typography,
 	Radio,
 	RadioGroup,
 	FormControlLabel,
@@ -26,18 +27,19 @@ import { Skeleton, Alert, AlertProps } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
 	paper1: {
-		padding: theme.spacing(10),
-		textAlign: 'center',
-		color: theme.palette.text.secondary,
+		padding: theme.spacing(3),
+		textAlign: 'left',
+		color: theme.palette.text.primary,
+		marginTop: 100,
 	},
 	paper: {
-		padding: theme.spacing(3),
-		textAlign: 'center',
-		color: theme.palette.text.secondary,
+		padding: theme.spacing(2),
+		textAlign: 'left',
+		color: theme.palette.text.primary,
+		marginTop: 120,
 	},
 	formControl: {
-		margin: theme.spacing(3),
-		padding: theme.spacing(10),
+		margin: theme.spacing(0),
 	},
 	button: {
 		margin: theme.spacing(1, 1, 0, 0),
@@ -164,18 +166,16 @@ export default function Q() {
 			//  labels: critical
 			//  assignees: aditya-mitra
 			if (data.accepting) setChecksForAllow((prev) => prev + 1);
-			return <div dangerouslySetInnerHTML={{ __html: md(data.question) }} />;
+			return (
+				<>
+					<h5>{data.qname}</h5>
+					<div dangerouslySetInnerHTML={{ __html: md(data.question) }} />
+				</>
+			);
 		} else if (error) {
 			showSnack(error.message || 'An unknown error occurred', 'error');
 			return <Skeleton variant="rect" width={700} height={200} />;
 		}
-		// TODO Question and Options are blank during initial fetch
-		//  During inital data fetch, the question and the answers behind the backdrop are empty
-		//  They can be made to look nicer with a better loading screen
-		//  When usings land on the wrong page, the loading screen is shown **404 PAGE**
-		//  Please also make the *skeleton* mobile responsive (it can be found above)
-		//  labels: styling, responsive
-		//  assignees: yashvi2001
 		return (
 			<Backdrop className={classes.backdrop} open={true}>
 				<CircularProgress size={100} data-testid="loader" />
@@ -255,33 +255,47 @@ export default function Q() {
 		<Layout qname={data?.qname.toUpperCase()}>
 			<form onSubmit={handleAnswerSubmission}>
 				<Grid container spacing={0} justify="center">
-					<Grid item xs={12}>
+					<Grid item xs={12} sm={8} md={9}>
 						<Paper className={classes.paper1}>
-							<FormLabel>{Question}</FormLabel>
+							<Typography
+								variant="h6"
+								style={{ cursor: 'pointer', marginLeft: '.4em' }}
+								noWrap>
+								<img
+									src="/dsc.svg"
+									style={{ marginRight: '10px', width: '1.5em' }}
+								/>
+								DSC QUIZ
+							</Typography>
+							<hr />
+							<Typography variant="h6">{Question}</Typography>
+							<FormLabel></FormLabel>
+							<FormControl
+								component="fieldset"
+								className={classes.formControl}
+								disabled={checksForAllow !== 2}
+								data-testid="form-options">
+								<RadioGroup
+									aria-label="quiz"
+									value={selectedOption}
+									name={`quiz-${qid}`}
+									onChange={handleOptionChange}>
+									{Options}
+								</RadioGroup>
+								<Grid container spacing={0} justify="center">
+									<Button
+										type="submit"
+										variant="contained"
+										color="primary"
+										disabled={checksForAllow !== 2}
+										className={classes.button}
+										data-testid="answer-submit-button">
+										Check Answer
+									</Button>
+								</Grid>
+							</FormControl>
 						</Paper>
 					</Grid>
-					<FormControl
-						component="fieldset"
-						className={classes.formControl}
-						disabled={checksForAllow !== 2}
-						data-testid="form-options">
-						<RadioGroup
-							aria-label="quiz"
-							value={selectedOption}
-							name={`quiz-${qid}`}
-							onChange={handleOptionChange}>
-							{Options}
-						</RadioGroup>
-						<Button
-							type="submit"
-							variant="outlined"
-							color="primary"
-							disabled={checksForAllow !== 2}
-							className={classes.button}
-							data-testid="answer-submit-button">
-							Check Answer
-						</Button>
-					</FormControl>
 				</Grid>
 			</form>
 			<Snackbar
