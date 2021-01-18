@@ -3,7 +3,7 @@ import styles from './members.module.css';
 function Mentors() {
 	return (
 		<>
-			<div className={`${styles.member} mb-5`}>
+			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
 					<img src="/assets/images/mentors/kd.jpg" alt="Member photo" />
 				</div>
@@ -15,7 +15,7 @@ function Mentors() {
 					<span>Assistant Professor</span>
 				</div>
 			</div>
-			<div className={`${styles.member} mb-5`}>
+			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
 					<img src="/assets/images/mentors/km.jpg" alt="Member photo" />
 				</div>
@@ -27,7 +27,7 @@ function Mentors() {
 					<span>Director (Corporate Relations)</span>
 				</div>
 			</div>
-			<div className={`${styles.member} mb-5`}>
+			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
 					<img src="/assets/images/mentors/ar.jpg" alt="Member photo" />
 				</div>
@@ -39,7 +39,7 @@ function Mentors() {
 					<span>Associate Dean (T&P)</span>
 				</div>
 			</div>
-			<div className={`${styles.member} mb-5`}>
+			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
 					<img src="/assets/images/mentors/pb.jpg" alt="Member photo" />
 				</div>

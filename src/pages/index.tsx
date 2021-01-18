@@ -1,14 +1,13 @@
-import Head from 'next/head';
+// import Head from 'next/head';
 import Landing from '@/components/Landing';
 import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
-
 export default function Home() {
 	// TODO Remove the cdns
 	//  labels: landing
 	return (
 		<>
-			<Head key="link">
+			{/* <Head key="link">
 				<link
 					rel="stylesheet"
 					href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -20,7 +19,7 @@ export default function Home() {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 				/>
 				<link rel="stylesheet" href="./index.css" />
-			</Head>
+			</Head> */}
 
 			<Layout pageName="Home">
 				<Landing />

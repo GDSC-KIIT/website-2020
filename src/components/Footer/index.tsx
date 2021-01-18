@@ -6,6 +6,10 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
+import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
+import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
@@ -49,14 +53,12 @@ export default function Home() {
 								className={`${styles.f_widget} ${styles.about_widget} ${styles.pl_70} ${styles.wow} ${styles.fadeInLeft}`}
 								data-wow-delay="0.4s">
 								<h3
-									className={`${styles.f_title} ${styles.f_600} ${styles.t_color} ${styles.f_size_18}`}>
+									className={`${styles.f_title} ${styles.f_600}  ${styles.f_size_18}`}>
 									General Guidelines
 								</h3>
-								<ul className={`${styles.list_unstyled} ${styles.f_list} pb-3`}>
+								<ul className={`${styles.list_unstyled} ${styles.f_list} `}>
 									<li>
-										<a className="anchor" href="#">
-											Code of Conduct
-										</a>
+										<a href="#">Code of Conduct</a>
 									</li>
 								</ul>
 							</div>
@@ -66,24 +68,18 @@ export default function Home() {
 								className={`${styles.f_widget} ${styles.about_widget} ${styles.pl_70} ${styles.wow} ${styles.fadeInLeft}`}
 								data-wow-delay="0.6s">
 								<h3
-									className={`${styles.f_title} ${styles.f_600} ${styles.t_color} ${styles.f_size_18}`}>
+									className={`${styles.f_title} ${styles.f_600}  ${styles.f_size_18}`}>
 									Google Dvelopers
 								</h3>
-								<ul className={`${styles.list_unstyled} ${styles.f_list} pb-3`}>
+								<ul className={`${styles.list_unstyled} ${styles.f_list} `}>
 									<li>
-										<a className="anchor" href="#">
-											Google Developers Program
-										</a>
+										<a href="#">Google Developers Program</a>
 									</li>
 									<li>
-										<a className="anchor" href="#">
-											Developer Student Clubs
-										</a>
+										<a href="#">Developer Student Clubs</a>
 									</li>
 									<li>
-										<a className="anchor" href="#">
-											Tech Includes
-										</a>
+										<a href="#">Tech Includes</a>
 									</li>
 								</ul>
 							</div>
@@ -94,27 +90,31 @@ export default function Home() {
 								className={`${styles.f_widget} ${styles.social_widget} ${styles.pl_70} ${styles.wow} ${styles.fadeInLeft}`}
 								data-wow-delay="0.8s">
 								<h3
-									className={`${styles.f_title} ${styles.f_600} ${styles.t_color} ${styles.f_size_18}`}>
+									className={`${styles.f_title} ${styles.f_600}  ${styles.f_size_18}`}>
 									Feel free to contact us
 								</h3>
 
 								<ul className={styles.dsc_info}>
 									<li>
-										<i className="fas fa-search-location"></i>&nbsp; School of
-										Computer Engineering, KIIT University, Bhubaneswar, 751024
+										<LocationOnOutlinedIcon style={{ fontSize: 20 }} />
+										&nbsp; School of Computer Engineering, KIIT University,
+										Bhubaneswar, 751024
 									</li>
 									<li>
-										<i className="far fa-envelope"></i> &nbsp;Email:{' '}
+										<EmailOutlinedIcon style={{ fontSize: 20 }} /> &nbsp;Email:{' '}
 										<a href="mailto:info@dsckiit.in">info@dsckiit.in</a>
 									</li>
 									<li>
-										<i className="far fa-envelope"></i>&nbsp; Alt.:{' '}
+										<EmailOutlinedIcon style={{ fontSize: 20 }} />
+										&nbsp; Alt.:{' '}
 										<a href="mailto:dsckiit@gmail.com">dsckiit@gmail.com</a>
 									</li>
 									<li>
-										<i className="fas fa-phone"></i>&nbsp; Phone:{' '}
-										<a href="tel:+91-7504417023">+917504417023</a> (Manzar
-										Hasnain)
+										<PhoneEnabledIcon style={{ fontSize: 20 }} />
+										&nbsp; Phone: <a href="tel:+91-7504417023">
+											+917504417023
+										</a>{' '}
+										(Manzar Hasnain)
 									</li>
 								</ul>
 								<div className={styles.f_social_icon}>

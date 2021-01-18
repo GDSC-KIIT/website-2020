@@ -1,4 +1,4 @@
-import Head from 'next/head';
+// import Head from 'next/head';
 // import Project from '@/components/Projects/index';
 import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
@@ -28,7 +28,7 @@ export default function Home({ allProjectsData }: any) {
 
 	return (
 		<>
-			<Head>
+			{/* <Head>
 				<link
 					rel="stylesheet"
 					href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -39,7 +39,7 @@ export default function Home({ allProjectsData }: any) {
 					rel="stylesheet"
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 				/>
-			</Head>
+			</Head> */}
 
 			<Layout pageName="PROJECTS">
 				<img src="https://i.imgur.com/tzzAJeX.png" className={styles.background_img} />

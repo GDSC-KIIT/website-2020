@@ -46,6 +46,7 @@
 	width: 50%;
 	/* border: 3px solid green; */
 	padding: 10px;
+	margin-bottom: 3rem;
 }
 .imageWrap {
 	background: grey;
@@ -189,6 +190,7 @@
 .fa {
 	font-size: 1.2rem;
 	cursor: pointer;
+	margin-right: 6px;
 	transition: all 0.3s linear;
 }
 .fa_twitter:hover {

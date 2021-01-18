@@ -1,6 +1,11 @@
 import styles from './members.module.css';
 import { getStrapiMedia } from '../../lib/media';
 import Link from 'next/link';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+
 const positionHeading = [
 	'DSC KIIT LEAD',
 	'Web Development',
@@ -22,6 +27,7 @@ declare global {
 }
 function Members({ memberInfo, displayHeader }: any) {
 	const imageUrl = getStrapiMedia(memberInfo.image_path);
+
 	return (
 		<>
 			{console.log(memberInfo, displayHeader)}
@@ -32,7 +38,7 @@ function Members({ memberInfo, displayHeader }: any) {
 			) : (
 				''
 			)}
-			<div className={`${styles.member} mb-5`}>
+			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
 					<img src={imageUrl} alt="Member photo" />
 				</div>
@@ -41,28 +47,25 @@ function Members({ memberInfo, displayHeader }: any) {
 					<span className={styles.state}>
 						{memberInfo.twitter ? (
 							<Link href={memberInfo.twitter}>
-								<i
-									className={`fab fa-fw fa-twitter-square ${styles.fa} ${styles.fa_twitter}`}
-									aria-hidden="true"></i>
+								<TwitterIcon className={` ${styles.fa} ${styles.fa_twitter}`} />
 							</Link>
 						) : null}
 						<Link href={memberInfo.github}>
-							<i
-								className={`fab fa-fw fa-github-square ${styles.fa} ${styles.fa_github}`}
-								aria-hidden="true"></i>
+							<GitHubIcon
+								style={{ fontSize: 23 }}
+								className={`${styles.fa} ${styles.fa_github}`}
+							/>
 						</Link>
 						{memberInfo.facebook ? (
 							<Link href={memberInfo.facebook}>
-								<i
-									className={`fab fa-fw fa-facebook-square ${styles.fa} ${styles.fa_facebook}`}
-									aria-hidden="true"></i>
+								<FacebookIcon className={`${styles.fa} ${styles.fa_facebook}`} />
 							</Link>
 						) : null}
 						{memberInfo.linkedIn ? (
 							<Link href={memberInfo.linkedIn}>
-								<i
-									className={`fab fa-fw fa-linkedin ${styles.fa} ${styles.fa_linkedin_square}`}
-									aria-hidden="true"></i>
+								<LinkedInIcon
+									className={`${styles.fa} ${styles.fa_linkedin_square}`}
+								/>
 							</Link>
 						) : null}
 					</span>
