@@ -10,11 +10,11 @@ interface IPropsCurrentUser {
 }
 
 const CurrentUser = ({ href, text }: IPropsCurrentUser) => (
-	<NextLink href={href}>
+	<Link underline="none" href={href}>
 		<Typography variant="body2" style={{ cursor: 'pointer' }}>
 			{text}
 		</Typography>
-	</NextLink>
+	</Link>
 );
 
 export function GoogleLoginLink() {

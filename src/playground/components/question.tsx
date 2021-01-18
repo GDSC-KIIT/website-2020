@@ -166,7 +166,12 @@ export default function Q() {
 			//  labels: critical
 			//  assignees: aditya-mitra
 			if (data.accepting) setChecksForAllow((prev) => prev + 1);
-			return <div dangerouslySetInnerHTML={{ __html: md(data.question) }} />;
+			return (
+				<>
+					<h1>{data.qname}</h1>
+					<div dangerouslySetInnerHTML={{ __html: md(data.question) }} />
+				</>
+			);
 		} else if (error) {
 			showSnack(error.message || 'An unknown error occurred', 'error');
 			return <Skeleton variant="rect" width={700} height={200} />;
