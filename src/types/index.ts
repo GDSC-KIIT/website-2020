@@ -34,3 +34,11 @@ export type ScoreDataType = {
 	currentPoints: number;
 	quizzes: QuestionType[];
 };
+
+export type BannerType = {
+	id: number;
+	eye_catcher: string;
+	title: string;
+	image: string;
+	link: string;
+};

@@ -1,16 +1,17 @@
 import useSWR from 'swr';
 
-import { fetchAllBanners, IBanner } from '@/lib/dynamicData/banner';
+import type { BannerType } from '@/types/index';
+import { fetchAllBanners } from '@/lib/dynamicData/banner';
 import Banner from './banner';
 
 export default function Banners() {
 	const { data } = useSWR('all_banners', fetchAllBanners, { refreshInterval: 60 * 1000 });
 
-	let banners: IBanner[] = data ?? [];
+	let banners: BannerType[] = data ?? [];
 
 	if (banners.length > 0) {
 		// TODO Change the banner style
-		//  labels: styling, landing
+		//  labels: styling, landing, critical
 		return (
 			<>
 				<span style={{ marginTop: '2rem' }} />

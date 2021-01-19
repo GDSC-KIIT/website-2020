@@ -1,3 +1,7 @@
+import NextImage from 'next/image';
+
+import type { BannerType } from '@/types/index';
+
 import { makeStyles, Paper, Typography, Grid, Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -6,9 +10,6 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'grey',
 		color: 'white',
 		marginBottom: '1rem',
-		backgroundSize: 'cover',
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: 'center',
 	},
 	overlay: {
 		position: 'absolute',
@@ -24,11 +25,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Banner({ title, image, eye_catcher, link }: IProps) {
+export default function Banner({ title, image, eye_catcher, link }: Omit<BannerType, 'id'>) {
 	const classes = useStyles();
 
 	return (
-		<Paper className={classes.bannerMain} style={{ backgroundImage: `url(${image})` }}>
+		<Paper className={classes.bannerMain}>
+			<NextImage src={image} layout="fill" objectFit="cover" />
 			<div className={classes.overlay} />
 			<Grid container>
 				<Grid item md={6}>
@@ -47,10 +49,4 @@ export default function Banner({ title, image, eye_catcher, link }: IProps) {
 			</Grid>
 		</Paper>
 	);
-}
-interface IProps {
-	image: string;
-	title: string;
-	eye_catcher: string;
-	link: string;
 }
