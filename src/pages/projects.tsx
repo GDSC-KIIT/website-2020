@@ -1,5 +1,3 @@
-// import Head from 'next/head';
-// import Project from '@/components/Projects/index';
 import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
 import styles from '../components/Projects/projects.module.css';
