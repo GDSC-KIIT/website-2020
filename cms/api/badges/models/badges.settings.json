@@ -11,13 +11,23 @@
 		"draftAndPublish": true
 	},
 	"attributes": {
-		"users_permissions_user": {
+		"users_permissions_users": {
 			"plugin": "users-permissions",
-			"model": "user",
-			"via": "badges"
+			"collection": "user",
+			"via": "badge"
 		},
 		"name": {
-			"type": "string"
+			"type": "string",
+			"required": true,
+			"maxLength": 200,
+			"minLength": 1
+		},
+		"image": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images"],
+			"plugin": "upload",
+			"required": true
 		}
 	}
 }
