@@ -10,6 +10,7 @@
 }
 .header {
 	width: 100%;
+	margin-left: 50px;
 }
 .intro_image {
 	width: 100%;
@@ -20,6 +21,8 @@
 	font-size: 1.2rem;
 	margin-top: 20px;
 	color: #576877;
+	width: 550px;
+	margin-left: 50px;
 }
 .about {
 	font-family: serif;
@@ -81,14 +84,20 @@
 .intro_image {
 	background-color: white;
 }
-.introImg {
-	padding-top: 90px;
-}
+
 @media only screen and (max-width: 993px) {
 	.introImg {
 		display: none;
 	}
 	.container {
 		text-align: center !important;
+	}
+	.dsc_description {
+		width: inherit;
+		margin-left: inherit;
+	}
+	.header {
+		margin-left: 15px;
+		width: 350px;
 	}
 }
