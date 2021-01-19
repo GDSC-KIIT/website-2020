@@ -2,7 +2,7 @@ import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
 import styles from '../components/Projects/projects.module.css';
 import ProjectsCard from '@/components/Projects/ProjectsCard';
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { GetStaticProps } from 'next';
 import { fetchAPIProjects } from '../lib/api';
@@ -24,6 +24,8 @@ const useStyles = makeStyles({
 	gridContainer: {
 		paddingLeft: '40 px',
 		paddingRight: '40 px',
+		marginLeft: 'auto',
+		marginBottom: '10 px',
 	},
 });
 
@@ -76,32 +78,31 @@ export default function Home({ allProjectsData }: any) {
 
 				<div className="row margin">
 					<Grid container spacing={4} className={classes.gridContainer}>
-						<Grid item xs={12} sm={6} md={4}>
-							{/* <ProjectsCard /> */}
-							{allProjectsData &&
-								allProjectsData.map(({ ...project }) => {
-									{
-										console.log(order);
-									}
-									if (project.order > order) {
-										order = project.order;
-										displayHeader = true;
-									} else {
-										displayHeader = false;
-									}
-									// console.log(displayHeader)
-									return (
-										<ProjectsCard
-											projectInfo={project}
-											key={project.id}
-											displayHeader={displayHeader}
-										/>
-									);
-								})}
-						</Grid>
+						{/* <Grid item xs={12} sm={6} md={4}> */}
+						{/* <ProjectsCard /> */}
+						{allProjectsData &&
+							allProjectsData.map(({ ...project }) => {
+								{
+									console.log(order);
+								}
+								if (project.order > order) {
+									order = project.order;
+									displayHeader = true;
+								} else {
+									displayHeader = false;
+								}
+								// console.log(displayHeader)
+								return (
+									<ProjectsCard
+										projectInfo={project}
+										key={project.id}
+										displayHeader={displayHeader}
+									/>
+								);
+							})}
+						{/* </Grid> */}
 					</Grid>
 				</div>
-
 				<ReadyToTalk />
 			</Layout>
 		</>

@@ -4,6 +4,7 @@ import styles from './landing.module.css';
 
 import Programming from '@/components/Programming';
 import Faq from '@/components/Faq';
+import Image from 'next/image';
 
 import {
 	makeStyles,
