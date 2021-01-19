@@ -63,7 +63,7 @@ export default function Landing() {
 			<Banners />
 			<Grid container className={classes.root}>
 				<Grid item md={6} xs={12} className={styles.container}>
-					<img src="/logo.png" className={`${styles.header}`} />
+					<img src="/images/landing/logo.png" className={styles.header} />
 					<p className={styles.dsc_description}>
 						Google collaborates with university students who are enthusiastic about
 						growing developer communities and supports them with commencing student
