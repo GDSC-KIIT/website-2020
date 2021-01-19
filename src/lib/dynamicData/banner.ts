@@ -14,7 +14,7 @@ export function fetchAllBanners(): Promise<IBanner[]> {
 				id: d.id,
 				eye_catcher: d.eye_catcher,
 				title: d.title,
-				image: d.image.url,
+				image: d.image?.url,
 				link: d.link,
 			}));
 			return banners;
