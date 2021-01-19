@@ -17,6 +17,16 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+		marginTop: '3rem',
+		marginBottom: '3rem',
+		paddingLeft: '15px',
+		paddingRight: '15px',
+		maxWidth: '1500px',
+		marginLeft: 'auto',
+		marginRight: 'auto',
+	},
 	eventContainer: {
 		paddingTop: theme.spacing(3),
 		paddingBottom: theme.spacing(3),
@@ -52,29 +62,25 @@ export default function Landing() {
 				src="https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-012.jpg"
 				className={styles.background_img}
 			/>
-			<div className={`container my-5`}>
-				<div className="row">
-					<div className={`col-12 col-lg-6 ${styles.container}  pb-5`}>
-						<img src="/logo.png" className={`${styles.header}`} />
-
-						<p className={styles.dsc_description}>
-							Google collaborates with university students who are enthusiastic about
-							growing developer communities and supports them with commencing student
-							clubs on their campuses. Developer Student Clubs is a program that
-							recognizes and supports university students who are excited about
-							growing developer communities that cultivate learning, sharing, and
-							collaboration.
-						</p>
-					</div>
-					<div className={`col-lg-6 ${styles.introImg}`}>
-						<img
-							src="https://image.freepik.com/free-vector/modern-isometric-illustration-work-from-home_145666-793.jpg"
-							className={styles.intro_image}
-						/>
-					</div>
-				</div>
-			</div>
-			<div className={`container my-5`}>
+			<Grid container className={classes.root}>
+				<Grid item md={6} xs={12} className={styles.container}>
+					<img src="/logo.png" className={`${styles.header}`} />
+					<p className={styles.dsc_description}>
+						Google collaborates with university students who are enthusiastic about
+						growing developer communities and supports them with commencing student
+						clubs on their campuses. Developer Student Clubs is a program that
+						recognizes and supports university students who are excited about growing
+						developer communities that cultivate learning, sharing, and collaboration.
+					</p>
+				</Grid>
+				<Grid item md={6} className={styles.introImg}>
+					<img
+						src="https://image.freepik.com/free-vector/modern-isometric-illustration-work-from-home_145666-793.jpg"
+						className={styles.intro_image}
+					/>
+				</Grid>
+			</Grid>
+			<div>
 				<h1 className={`${styles.about}`}>ABOUT DSC</h1>
 			</div>
 			<div className="App">
@@ -142,16 +148,16 @@ export default function Landing() {
 					</Grid>
 				</Container>
 			</div>
-			<div className={`container my-5`}>
+			<div>
 				<h1 className={`${styles.about}`}>TECH STACKS</h1>
 			</div>
 			<Programming />
 
-			<div className={`container my-5`}>
+			<div>
 				<h1 className={`${styles.about}`}>FAQ SECTION</h1>
 			</div>
 			<Faq />
-			<div className={`container my-5`}>
+			<div>
 				<h1 className={`${styles.about}`}>JOIN OUR DISCORD</h1>
 				<p className={styles.d}>
 					Join our Discord Channel to know more about the Activities, Sessions and other
@@ -160,7 +166,7 @@ export default function Landing() {
 				<Grid container spacing={0} justify="center">
 					<Button
 						variant="contained"
-						style={{ backgroundColor: '#313B86', color: 'white' }}
+						style={{ backgroundColor: '#313B86', color: 'white', marginBottom: 20 }}
 						onClick={() => {
 							window.open('https://discord.com/invite/nYQCMKF');
 						}}>

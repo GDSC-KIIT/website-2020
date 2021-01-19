@@ -19,7 +19,6 @@ declare global {
 		}
 	}
 }
-
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
