@@ -62,8 +62,6 @@ async function addBadge(limit, badge) {
 	/**@type {user[]} */
 	const foundUsers = await usersORM.find({ id_in: receivingUsers });
 
-	console.log(foundUsers, 'are found', receivingUsers);
-
 	const updatedUsers = foundUsers.map((user) => {
 		const newBadges = user.badges;
 		newBadges.push(badge.id);
@@ -83,8 +81,8 @@ module.exports = {
 			if (!result.limit || !result.badge) {
 				return strapi.log.error('either limit or badge were missing');
 			}
-			strapi.log.info('updates all corresponding scores');
-			addBadge(result.limit, result.badge);
+			await addBadge(result.limit, result.badge);
+			strapi.log.info('updated all corresponding scores');
 		},
 	},
 };
