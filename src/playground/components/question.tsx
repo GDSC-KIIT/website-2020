@@ -145,7 +145,7 @@ export default function Q() {
 			hasUserAlreadySubmitted(parseInt(qid, 10), user.score).then((subm) => {
 				if (subm === false) {
 					setChecksForAllow((prev) => prev + 1);
-				} else {
+				} else if (subm === true) {
 					setChecksForAllow((prev) => prev + 3);
 					showSnack('Buddy, you have already done this question', 'warning');
 				}

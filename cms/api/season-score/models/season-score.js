@@ -65,7 +65,7 @@ async function addBadge(limit, badge) {
 	const updatedUsers = foundUsers.map((user) => {
 		const newBadges = user.badges;
 		newBadges.push(badge.id);
-		return usersORM.update({ id: user.id }, { badges: newBadges });
+		return usersORM.update({ id: user.id }, { badges: newBadges, score: null });
 	});
 
 	await Promise.all(updatedUsers);
