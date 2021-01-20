@@ -6,6 +6,6 @@ export function getStrapiMedia(media: any) {
 }
 
 export function getStrapiMediaProject(media: any) {
-	const imageUrl = media.url.startsWith('/') ? getStrapiURL(media.url) : media.url;
+	const imageUrl = media.url;
 	return imageUrl;
 }
