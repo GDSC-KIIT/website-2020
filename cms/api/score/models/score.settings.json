@@ -12,9 +12,9 @@
 	},
 	"attributes": {
 		"users_permissions_user": {
+			"via": "score",
 			"plugin": "users-permissions",
-			"model": "user",
-			"via": "score"
+			"model": "user"
 		},
 		"quizzes": {
 			"via": "score",

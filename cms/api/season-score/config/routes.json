@@ -1,0 +1,28 @@
+{
+	"routes": [
+		{
+			"method": "GET",
+			"path": "/season-score",
+			"handler": "season-score.find",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "PUT",
+			"path": "/season-score",
+			"handler": "season-score.update",
+			"config": {
+				"policies": []
+			}
+		},
+		{
+			"method": "DELETE",
+			"path": "/season-score",
+			"handler": "season-score.delete",
+			"config": {
+				"policies": []
+			}
+		}
+	]
+}

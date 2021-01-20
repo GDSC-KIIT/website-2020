@@ -59,13 +59,12 @@
 			"plugin": "users-permissions",
 			"configurable": false
 		},
-		"badges": {
-			"via": "users_permissions_user",
-			"collection": "badges"
-		},
 		"score": {
-			"via": "users_permissions_user",
-			"model": "score"
+			"model": "score",
+			"via": "users_permissions_user"
+		},
+		"badges": {
+			"collection": "badges"
 		}
 	}
 }

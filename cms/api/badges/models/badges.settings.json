@@ -8,16 +8,21 @@
 	"options": {
 		"increments": true,
 		"timestamps": true,
-		"draftAndPublish": true
+		"draftAndPublish": false
 	},
 	"attributes": {
-		"users_permissions_user": {
-			"plugin": "users-permissions",
-			"model": "user",
-			"via": "badges"
-		},
 		"name": {
-			"type": "string"
+			"type": "string",
+			"required": true,
+			"maxLength": 200,
+			"minLength": 1
+		},
+		"image": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images"],
+			"plugin": "upload",
+			"required": true
 		}
 	}
 }

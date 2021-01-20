@@ -1,0 +1,22 @@
+{
+	"kind": "singleType",
+	"collectionName": "season_scores",
+	"info": {
+		"name": "season-score",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"attributes": {
+		"limit": {
+			"type": "integer",
+			"required": true
+		},
+		"badge": {
+			"model": "badges"
+		}
+	}
+}

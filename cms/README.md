@@ -24,3 +24,10 @@ FIND
 ### UnAuthenticated Endpoints
 
 All with FIND and FINDONE enabled
+
+## Settings
+
+#### Media
+
+Set _Enable responsive friendly upload_ in **Media Library** to _Off_.
+(This is to disable uploading the same in `large`, `medium` and `small` formats)
