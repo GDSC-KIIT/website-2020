@@ -26,7 +26,6 @@
 		"@material-ui/lab": "^4.0.0-alpha.57",
 		"axios": "^0.21.1",
 		"dompurify": "^2.2.6",
-		"gray-matter": "^4.0.2",
 		"marked": "^1.2.7",
 		"next": "^10.0.5",
 		"nookies": "^2.5.0",

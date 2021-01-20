@@ -91,9 +91,6 @@ export default function AllQs() {
 							<CardMedia
 								style={{ cursor: 'pointer' }}
 								className={classes.cardMedia}
-								// TODO
-								//  labels: styling, priority
-								//  Need **some random images** in the `assets` folder
 								image="https://source.unsplash.com/random"
 								title={'Solve ' + question.id}
 							/>
