@@ -20,7 +20,9 @@ export default function Home() {
 	const classes = useStyles();
 	return (
 		<>
-			<footer className={`${styles.new_footer_area} ${styles.bg_color} ${classes.root}`}>
+			<footer
+				className={`${styles.new_footer_area} ${styles.bg_color} ${classes.root}`}
+				id="contact">
 				<div className={styles.new_footer_top}>
 					<Grid container spacing={4}>
 						<Grid item lg={4} md={6}>

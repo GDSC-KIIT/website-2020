@@ -211,5 +211,11 @@
 .dsc_info a {
 	color: #6a7695;
 }
+@media only screen and (max-width: 405px) {
+	.twitter_timeline {
+		width: 100%;
+		padding: 5px;
+	}
+}
 
 /*************footer End*****************/

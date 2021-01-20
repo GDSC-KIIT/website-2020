@@ -5,7 +5,7 @@ function Mentors() {
 		<>
 			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
-					<img src="/assets/images/mentors/kd.jpg" alt="Member photo" />
+					<img src="/images/mentors/kd.jpg" alt="Mentor photo" />
 				</div>
 				<div className={styles.info}>
 					<span className={styles.school}>Prof. Kumar Devdutta</span>
@@ -17,7 +17,7 @@ function Mentors() {
 			</div>
 			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
-					<img src="/assets/images/mentors/km.jpg" alt="Member photo" />
+					<img src="/images/mentors/km.jpg" alt="Mentor photo" />
 				</div>
 				<div className={styles.info}>
 					<span className={styles.school}>Dr. Kumar Mohanty</span>
@@ -29,7 +29,7 @@ function Mentors() {
 			</div>
 			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
-					<img src="/assets/images/mentors/ar.jpg" alt="Member photo" />
+					<img src="/images/mentors/ar.jpg" alt="Mentor photo" />
 				</div>
 				<div className={styles.info}>
 					<span className={styles.school}>Dr. Abhishek Ray</span>
@@ -41,7 +41,7 @@ function Mentors() {
 			</div>
 			<div className={`${styles.member} `}>
 				<div className={styles.imageWrap}>
-					<img src="/assets/images/mentors/pb.jpg" alt="Member photo" />
+					<img src="/images/mentors/pb.jpg" alt="Mentor photo" />
 				</div>
 				<div className={styles.info}>
 					<span className={styles.school}>Dr. Prachet Bhuyan</span>
