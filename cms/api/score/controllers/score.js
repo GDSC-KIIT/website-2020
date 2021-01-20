@@ -54,45 +54,48 @@ async function checkCorrectAnswer(qid, ans) {
 	return true;
 }
 
+async function createNewUserScore(user, qid, isAnswerCorrect, response) {
+	// create a new score for the user
+
+	/**@type {score} */
+	const newScore = await strapi.services.score.create({
+		users_permissions_user: user.id,
+		quizzes: [qid],
+		currentPoints: isAnswerCorrect ? INCREMENT : 0,
+	});
+
+	response.created = true;
+	response.points = newScore.currentPoints;
+	response.status = 201;
+}
+
 async function updateUserScore(user, qid, isAnswerCorrect, response) {
-	if (user.score) {
-		// update the user's score
+	if (!user.score) return createNewUserScore(user, qid, isAnswerCorrect, response);
 
-		/**@type {score} */
-		const foundScore = await strapi.query('score').findOne({ id: user.score });
+	/**@type {score} */
+	const foundScore = await strapi.query('score').findOne({ id: user.score });
 
-		const currentPoints = foundScore.currentPoints ? foundScore.currentPoints : 0;
+	// update the user's score
+	if (!foundScore) return createNewUserScore(user, qid, isAnswerCorrect, response);
 
-		const updatedPoints = isAnswerCorrect ? currentPoints + INCREMENT : currentPoints;
+	const currentPoints = foundScore.currentPoints ? foundScore.currentPoints : 0;
 
-		const newAnsweredQuizzesArray = [qid];
-		for (const q of foundScore.quizzes) {
-			newAnsweredQuizzesArray.push(q.id);
-		}
+	const updatedPoints = isAnswerCorrect ? currentPoints + INCREMENT : currentPoints;
 
-		/**@type {score} */
-		const updatedScore = await strapi.services.score.update(
-			{ id: foundScore.id },
-			{ quizzes: newAnsweredQuizzesArray, currentPoints: updatedPoints }
-		);
-
-		response.updated = true;
-		response.points = updatedScore.currentPoints;
-		response.status = 202;
-	} else {
-		// create a new score for the user
-
-		/**@type {score} */
-		const newScore = await strapi.services.score.create({
-			users_permissions_user: user.id,
-			quizzes: [qid],
-			currentPoints: isAnswerCorrect ? INCREMENT : 0,
-		});
-
-		response.created = true;
-		response.points = newScore.currentPoints;
-		response.status = 201;
+	const newAnsweredQuizzesArray = [qid];
+	for (const q of foundScore.quizzes) {
+		newAnsweredQuizzesArray.push(q.id);
 	}
+
+	/**@type {score} */
+	const updatedScore = await strapi.services.score.update(
+		{ id: foundScore.id },
+		{ quizzes: newAnsweredQuizzesArray, currentPoints: updatedPoints }
+	);
+
+	response.updated = true;
+	response.points = updatedScore.currentPoints;
+	response.status = 202;
 }
 
 module.exports = {

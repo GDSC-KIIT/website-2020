@@ -68,6 +68,8 @@ async function addBadge(limit, badge) {
 		return usersORM.update({ id: user.id }, { badges: newBadges, score: null });
 	});
 
+	console.log('the rec users', receivingUsers);
+
 	await Promise.all(updatedUsers);
 
 	// delete all the rows in the score table (cascading all the related users' score)
