@@ -11,11 +11,6 @@
 		"draftAndPublish": false
 	},
 	"attributes": {
-		"users_permissions_users": {
-			"plugin": "users-permissions",
-			"collection": "user",
-			"via": "badge"
-		},
 		"name": {
 			"type": "string",
 			"required": true,
@@ -28,6 +23,11 @@
 			"allowedTypes": ["images"],
 			"plugin": "upload",
 			"required": true
+		},
+		"users": {
+			"via": "badges",
+			"plugin": "users-permissions",
+			"collection": "user"
 		}
 	}
 }

@@ -60,12 +60,13 @@
 			"configurable": false
 		},
 		"score": {
-			"via": "users_permissions_user",
-			"model": "score"
+			"model": "score",
+			"via": "users_permissions_user"
 		},
-		"badge": {
-			"via": "users_permissions_users",
-			"model": "badges"
+		"badges": {
+			"collection": "badges",
+			"via": "users",
+			"dominant": true
 		}
 	}
 }

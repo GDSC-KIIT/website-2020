@@ -2,7 +2,8 @@
 	"kind": "singleType",
 	"collectionName": "season_scores",
 	"info": {
-		"name": "season-score"
+		"name": "season-score",
+		"description": ""
 	},
 	"options": {
 		"increments": true,
@@ -13,6 +14,9 @@
 		"limit": {
 			"type": "integer",
 			"required": true
+		},
+		"badge": {
+			"model": "badges"
 		}
 	}
 }

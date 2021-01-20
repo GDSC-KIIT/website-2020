@@ -5,4 +5,11 @@
  * to customize this model
  */
 
-module.exports = {};
+module.exports = {
+	lifecycles: {
+		async afterDelete(result, params) {
+			console.log(result, 'WAS DELETED');
+			strapi.log.info(params, 'was THE PARAMS');
+		},
+	},
+};
