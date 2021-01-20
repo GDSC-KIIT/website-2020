@@ -3,7 +3,6 @@ import { api, testUtils } from '../../utils';
 let qid: number;
 let scoreId: number;
 let badgeId: number;
-let seasonScoreId: number;
 
 // the user scores 10 for each question
 
@@ -27,7 +26,7 @@ afterEach(async () => {
 
 describe('user gets badges', () => {
 	it('get a badge when the user has scored more than limit', async () => {
-		seasonScoreId = await api.updateSingleTypeData('http://localhost:9000/season-score', {
+		await api.updateSingleTypeData('http://localhost:9000/season-score', {
 			limit: 9,
 			badge: badgeId,
 		});
@@ -40,7 +39,7 @@ describe('user gets badges', () => {
 	});
 
 	it('does not get a badge when the user has score less than limit', async () => {
-		seasonScoreId = await api.updateSingleTypeData('http://localhost:9000/season-score', {
+		await api.updateSingleTypeData('http://localhost:9000/season-score', {
 			limit: 11,
 			badge: badgeId,
 		});
@@ -54,7 +53,7 @@ describe('user gets badges', () => {
 
 describe('the correct badge is issued', () => {
 	beforeEach(async () => {
-		seasonScoreId = await api.updateSingleTypeData('http://localhost:9000/season-score', {
+		await api.updateSingleTypeData('http://localhost:9000/season-score', {
 			limit: 5,
 			badge: badgeId,
 		});
