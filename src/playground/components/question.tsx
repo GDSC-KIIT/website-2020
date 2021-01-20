@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo, useCallback, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import useSWR from 'swr';
@@ -257,19 +258,18 @@ export default function Q() {
 				<Grid container spacing={0} justify="center">
 					<Grid item xs={12} sm={8} md={9}>
 						<Paper className={classes.paper1}>
-							<Typography
-								variant="h6"
-								style={{ cursor: 'pointer', marginLeft: '.4em' }}
-								noWrap>
-								<img
-									src="/dsc.svg"
-									style={{ marginRight: '10px', width: '1.5em' }}
-								/>
-								DSC QUIZ
-							</Typography>
+							<NextLink href="/playground">
+								<Typography
+									variant="h6"
+									style={{ cursor: 'pointer', marginLeft: '.4em' }}
+									noWrap>
+									<img src="/images/playground/dsc.svg" alt="DSC KIIT LOGO" />
+									DSC QUIZ
+								</Typography>
+							</NextLink>
 							<hr />
 							<Typography variant="h6">{Question}</Typography>
-							<FormLabel></FormLabel>
+							<FormLabel />
 							<FormControl
 								component="fieldset"
 								className={classes.formControl}
