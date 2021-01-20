@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { GitHub as GitHubIcon, Person as PersonIcon } from '@material-ui/icons';
 import MoreIcon from '@material-ui/icons/More';
-// import { getStrapiMedia } from '../../lib/media';
+import { getStrapiMediaProject } from '../../lib/media';
 declare global {
 	namespace JSX {
 		interface IntrinsicElements {
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 export default function ProjectsCard({ projectInfo, displayHeader }: any) {
-	// const imageUrl = getStrapiMedia(projectInfo.image_path);
+	const imageUrl = getStrapiMediaProject(projectInfo.project_logo);
 	const classes = useStyles();
 
 	return (
@@ -41,7 +41,7 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 					<CardActionArea>
 						<CardMedia
 							className={classes.media}
-							image="/projectslogo.png"
+							image={imageUrl}
 							title="DSC KIIT projects"
 						/>
 						<CardContent>
@@ -57,7 +57,7 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 								}}>
 								<PersonIcon style={{ marginRight: 10 }} />
 
-								<Typography>Project Members Name</Typography>
+								<Typography>{projectInfo.members.names}</Typography>
 							</div>
 						</CardContent>
 					</CardActionArea>
