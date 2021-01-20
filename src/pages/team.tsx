@@ -4,53 +4,33 @@ import TeamIntro from '@/components/Intro';
 import Layout from '@/components/Layout';
 import { GetStaticProps } from 'next';
 import { fetchAPI } from '../lib/api';
-import { useEffect } from 'react';
-import Head from 'next/head';
 import styles from '@/components/member-template/members.module.css';
-let order = -1;
-let displayHeader = false;
-const siteTitle = 'DSC Team';
-export default function Team({
-	allMembersData,
-}: {
-	allMembersData: {
-		id: string;
-		name: string;
-		position: string;
-		image_path: string;
-		twitter: string;
-		github: string;
-		linkedIn: string;
-		order: number;
-	}[];
-}) {
-	useEffect(() => {
-		order = -1;
-	});
+type member = {
+	id: string;
+	name: string;
+	position: string;
+	image_path: string;
+	twitter: string;
+	github: string;
+	linkedIn: string;
+	facebook: string;
+	order: number;
+};
+export default function Team({ allMembersData }: { allMembersData: member[] }) {
+	let order: number = -1;
+	let displayHeader: boolean = false;
 
 	return (
 		<>
-			<Head>
-				<link rel="icon" href="/favicon.ico" />
-				<meta name="description" content="DSC Team" />
-				<meta
-					property="og:image"
-					content={`https://og-image.now.sh/${encodeURI(
-						siteTitle
-					)}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-				/>
-				<meta name="og:title" content={siteTitle} />
-				<meta name="twitter:card" content="summary_large_image" />
-			</Head>
 			<img
 				src="https://i.imgur.com/tzzAJeX.png"
-				style={{ position: 'fixed', opacity: 0.1, top: 0 }}
+				style={{ position: 'fixed', opacity: 0.1, top: 0, height: '100vh' }}
 			/>
 
 			<Layout pageName="Team">
 				<TeamIntro />
 				<section>
-					{console.log(allMembersData)}
+					{/* {console.log(allMembersData)} */}
 					<div className={styles.container}>
 						{allMembersData.map(({ ...member }) => {
 							{
@@ -62,7 +42,7 @@ export default function Team({
 							} else {
 								displayHeader = false;
 							}
-							console.log(displayHeader);
+							// console.log(displayHeader);
 							return (
 								<Member
 									memberInfo={member}
