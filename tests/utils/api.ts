@@ -111,6 +111,16 @@ export async function getUserData() {
 		.catch((err) => logger('error', 'could not get user info', err));
 }
 
+export async function updateUserData(data: object) {
+	return axios({
+		url: 'http://localhost:9000/users/' + createdUser.id,
+		method: 'PUT',
+		data,
+	})
+		.then((response) => response.data)
+		.catch((err) => logger('error', 'could not update user data', err));
+}
+
 export async function solveQuestion(qid: number, ans = 4) {
 	const authToken = await loginUser();
 
