@@ -85,7 +85,7 @@ const Navbar = () => {
 								style={{ cursor: 'pointer', marginLeft: '.4em' }}
 								noWrap>
 								<img
-									src="/dsc.svg"
+									src="/images/playground/dsc.svg"
 									style={{ marginRight: '10px', width: '1.5em' }}
 								/>
 								DSC KIIT

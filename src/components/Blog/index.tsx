@@ -1,5 +1,3 @@
-import React from 'react';
-import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -10,7 +8,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import type { IBlogPost } from '@/lib/staticData/blogPosts';
 
 const useStyles = makeStyles((theme) => ({
@@ -40,48 +38,51 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 	},
 }));
+
 export default function Blogs({ blogPosts }: { blogPosts: Array<IBlogPost> }) {
 	const classes = useStyles();
 	const posts = blogPosts.map((post) => (
-		<div className="App">
+		<div key={post.link}>
 			<Container maxWidth="lg" className={classes.blogsContainer}>
 				<Grid container spacing={3} className={classes.gridContainer}>
 					<Grid item xs={12} sm={10} md={11}>
-						<Card className={classes.card}>
-							<CardActionArea>
-								<CardMedia
-									className={classes.media}
-									image={post.image}
-									title="Contemplative Reptile"
-								/>
-								<CardContent>
-									<Typography gutterBottom variant="h5" component="h2">
-										{post.title}
-									</Typography>
-									<Typography variant="body2" color="textSecondary" component="p">
-										{post.categories}
-									</Typography>
-								</CardContent>
-							</CardActionArea>
-							<CardActions className={classes.cardActions}>
-								<Box className={classes.author}>
-									<Box>
-										<Typography variant="subtitle2" component="p">
-											{post.author}
+						<Link href={post.link} underline="none">
+							<Card className={classes.card}>
+								<CardActionArea>
+									<CardMedia
+										className={classes.media}
+										image={post.image}
+										title="Contemplative Reptile"
+									/>
+									<CardContent>
+										<Typography gutterBottom variant="h5" component="h2">
+											{post.title}
 										</Typography>
 										<Typography
-											variant="subtitle2"
+											variant="body2"
 											color="textSecondary"
 											component="p">
-											DD/MM/YYYY
+											{post.categories}
 										</Typography>
+									</CardContent>
+								</CardActionArea>
+								<CardActions className={classes.cardActions}>
+									<Box className={classes.author}>
+										<Box>
+											<Typography variant="subtitle2" component="p">
+												{post.author}
+											</Typography>
+											<Typography
+												variant="subtitle2"
+												color="textSecondary"
+												component="p">
+												{post.date}
+											</Typography>
+										</Box>
 									</Box>
-								</Box>
-								<Link href={post.link}>
-									<Button color="primary">Learn More</Button>
-								</Link>
-							</CardActions>
-						</Card>
+								</CardActions>
+							</Card>
+						</Link>
 					</Grid>
 				</Grid>
 			</Container>
