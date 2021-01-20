@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { configure, cleanup, render, waitFor, act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { logger, testUtils } from '../../utils';
@@ -7,6 +8,7 @@ import mockAxios, { AxiosRequestConfig } from 'axios';
 import Question from '@/playground/components/question';
 
 jest.mock('axios', () => jest.requireActual('../../mocks/axios'));
+jest.mock('next/link', () => ({ children }: { children: ReactNode }) => children);
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
 configure({ asyncUtilTimeout: 2000, testIdAttribute: 'data-testid' });
@@ -84,7 +86,7 @@ describe('next router is called', () => {
 	});
 });
 
-describe('question is visible', () => {
+describe('question are accessible', () => {
 	it('option 1 is visible', async () => {
 		const { getByText } = render(<Question />);
 		await waitFor(() => {
