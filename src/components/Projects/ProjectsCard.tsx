@@ -41,7 +41,8 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 					<CardActionArea>
 						<CardMedia
 							className={classes.media}
-							image={imageUrl}
+							// image={imageUrl}
+							image="/projectslogo.png"
 							title="DSC KIIT projects"
 						/>
 						<CardContent>
@@ -56,8 +57,12 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 									marginTop: 10,
 								}}>
 								<PersonIcon style={{ marginRight: 10 }} />
-
+								{/* 
+<<<<<<< HEAD
 								<Typography>{projectInfo.members.names}</Typography>
+======= */}
+								<Typography>Project Members Name</Typography>
+								{/* >>>>>>> 297fce798fa665e13d5c5e4819c07f6a0b2d5f34 */}
 							</div>
 						</CardContent>
 					</CardActionArea>
