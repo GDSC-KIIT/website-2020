@@ -73,7 +73,7 @@ const Navbar = () => {
 							<DrawerItem label="Events" icon={<EmojiEventsIcon />} link="/events" />
 							<DrawerItem label="Teams" icon={<GroupIcon />} link="/team" />
 							<DrawerItem label="Mentors" icon={<ContactsIcon />} link="/mentors" />
-							<DrawerItem label="Contact" icon={<InfoIcon />} link="/contact" />
+							<DrawerItem label="Contact" icon={<InfoIcon />} link="#contact" />
 						</List>
 					</Drawer>
 				</Box>
@@ -143,7 +143,7 @@ const Navbar = () => {
 							</Link>
 						</Grid>
 						<Grid item>
-							<Link href="/contact">
+							<Link href="#contact">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Contact
 								</Typography>
