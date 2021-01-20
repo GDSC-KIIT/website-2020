@@ -75,14 +75,9 @@ export default function AllQs() {
 	const quesDisplays = useMemo(() => {
 		const questions = data ?? [];
 		if (questions.length > 0) {
-			// TODO add a ripple effect to the paper design
-			//  Also change the colour of the paper whether both accepting or not
-			//  `<Paper/>` needs to be disabled when `accepting===false`
-			//  Showing only the question number in the paper does not seem *stylish*
-			//  Some **annotations** would do fine if added
-			// Since a **Link** to a particular question is added, the `pointer` needs to appear as a `cursor` when hovered over the link
-			//  labels: priority, styling
-			//  assignees: yashvi2001, aditya-mitra
+			// TODO Change the design of the question card display
+			//  labels: styling
+			//  assignees: yashvi2001
 			return questions.map((question) => (
 				<Grid
 					item

@@ -64,12 +64,6 @@ function createOption(option: string | null | undefined, value: optionTypes) {
 	);
 }
 
-// TODO there is no feedback to see when the question is not accpeting responses
-//  **disable answer submission if user already submitted*()
-//  check if this qid is there in there in `user/me`
-//  labels: enhance
-//  assignees: aditya-mitra
-
 export default function Q() {
 	const classes = useStyles();
 
@@ -163,9 +157,6 @@ export default function Q() {
 
 	const Question = useMemo(() => {
 		if (!error && data) {
-			// TODO allow checks can change during live update
-			//  labels: critical
-			//  assignees: aditya-mitra
 			if (data.accepting) setChecksForAllow((prev) => prev + 1);
 			return (
 				<>
