@@ -1,12 +1,11 @@
 import styles from './members.module.css';
 import { getStrapiMedia } from '../../lib/media';
-import Link from 'next/link';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-const positionHeading = [
+const positionHeading: string[] = [
 	'DSC KIIT LEAD',
 	'Web Development',
 	'Machine Learning',
@@ -25,12 +24,23 @@ declare global {
 		}
 	}
 }
-function Members({ memberInfo, displayHeader }: any) {
+type member = {
+	id: string;
+	name: string;
+	position: string;
+	image_path: string;
+	twitter: string;
+	github: string;
+	linkedIn: string;
+	facebook: string;
+	order: number;
+};
+function Members({ memberInfo, displayHeader }: { memberInfo: member; displayHeader: boolean }) {
 	const imageUrl = getStrapiMedia(memberInfo.image_path);
 
 	return (
 		<>
-			{console.log(memberInfo, displayHeader)}
+			{/* {console.log(memberInfo, displayHeader)} */}
 			{displayHeader ? (
 				<center className={styles.techDesc}>
 					<h3>{positionHeading[memberInfo.order]}</h3>
@@ -46,27 +56,27 @@ function Members({ memberInfo, displayHeader }: any) {
 					<span className={styles.school}>{memberInfo.name}</span>
 					<span className={styles.state}>
 						{memberInfo.twitter ? (
-							<Link href={memberInfo.twitter}>
+							<a href={memberInfo.twitter} target="_blank">
 								<TwitterIcon className={` ${styles.fa} ${styles.fa_twitter}`} />
-							</Link>
+							</a>
 						) : null}
-						<Link href={memberInfo.github}>
+						<a href={memberInfo.github} target="_blank">
 							<GitHubIcon
 								style={{ fontSize: 23 }}
 								className={`${styles.fa} ${styles.fa_github}`}
 							/>
-						</Link>
+						</a>
 						{memberInfo.facebook ? (
-							<Link href={memberInfo.facebook}>
+							<a href={memberInfo.facebook} target="_blank">
 								<FacebookIcon className={`${styles.fa} ${styles.fa_facebook}`} />
-							</Link>
+							</a>
 						) : null}
 						{memberInfo.linkedIn ? (
-							<Link href={memberInfo.linkedIn}>
+							<a href={memberInfo.linkedIn} target="_blank">
 								<LinkedInIcon
 									className={`${styles.fa} ${styles.fa_linkedin_square}`}
 								/>
-							</Link>
+							</a>
 						) : null}
 					</span>
 				</div>
