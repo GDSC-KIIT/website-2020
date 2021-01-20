@@ -23,11 +23,6 @@
 			"allowedTypes": ["images"],
 			"plugin": "upload",
 			"required": true
-		},
-		"users": {
-			"via": "badges",
-			"plugin": "users-permissions",
-			"collection": "user"
 		}
 	}
 }

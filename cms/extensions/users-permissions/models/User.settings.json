@@ -64,9 +64,7 @@
 			"via": "users_permissions_user"
 		},
 		"badges": {
-			"collection": "badges",
-			"via": "users",
-			"dominant": true
+			"collection": "badges"
 		}
 	}
 }

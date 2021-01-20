@@ -6,12 +6,14 @@
  */
 
 module.exports = {
-	async find() {
-		// both are async
+	async find(ctx) {
 		const b = await strapi.query('season-score').find();
-		const a = strapi.services['season-score'].find();
 
-		console.log(b[0].badge);
+		if (!b || !b[0].published_at) {
+			ctx.status = 404;
+			ctx.body = { error: 'season score has not been revealed' };
+			return;
+		}
 
 		const seasonScore = {
 			limit: b[0].limit,

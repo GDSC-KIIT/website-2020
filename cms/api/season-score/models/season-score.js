@@ -5,11 +5,86 @@
  * to customize this model
  */
 
+/**
+ * contains the information about the authenticated user
+ * @typedef user
+ * @type {object}
+ * @property {number} id
+ * @property {string} username
+ * @property {string} provider
+ * @property {string} email
+ * @property {number|null} score
+ * @property {badge[]} badges
+ */
+
+/**
+ * interested fields to update in the score model
+ * @typedef score
+ * @type {object}
+ * @property {number} id
+ * @property {Array<object>} quizzes
+ * @property {number|null} currentPoints
+ * @property {user} users_permissions_user
+ */
+
+/**
+ * @typedef badge
+ * @type {object}
+ * @property {number} id
+ * @property {string} name
+ * @property {object} image
+ */
+
+/**
+ * @typedef season_score
+ * @type {object}
+ * @property {number}
+ * @property {badge} badge
+ * @property {number} limit
+ */
+
+/**
+ * @param {number} limit
+ * @param {badge} badge
+ */
+async function addBadge(limit, badge) {
+	const knex = strapi.connections.default;
+
+	/**getting all users who have currentPoints greater than limit
+	 * @type {Array<{userId:number}>} */
+	const receivingUsers = await knex('scores')
+		.where('currentPoints', '>=', limit)
+		.select('users_permissions_user as userId')
+		.map(({ userId }) => userId);
+
+	const usersORM = strapi.query('user', 'users-permissions');
+
+	/**@type {user[]} */
+	const foundUsers = await usersORM.find({ id_in: receivingUsers });
+
+	console.log(foundUsers, 'are found', receivingUsers);
+
+	const updatedUsers = foundUsers.map((user) => {
+		const newBadges = user.badges;
+		newBadges.push(badge.id);
+		return usersORM.update({ id: user.id }, { badges: newBadges });
+	});
+
+	await Promise.all(updatedUsers);
+
+	// delete all the rows in the score table (cascading all the related users' score)
+	await knex('scores').del();
+}
+
 module.exports = {
 	lifecycles: {
-		async afterDelete(result, params) {
-			console.log(result, 'WAS DELETED');
-			strapi.log.info(params, 'was THE PARAMS');
+		/**@param {season_score} result  */
+		async afterDelete(result) {
+			if (!result.limit || !result.badge) {
+				return strapi.log.error('either limit or badge were missing');
+			}
+			strapi.log.info('updates all corresponding scores');
+			addBadge(result.limit, result.badge);
 		},
 	},
 };
