@@ -1,20 +1,21 @@
 import axios from 'axios';
 
+import type { BannerType } from '@/types/index';
 import { backendUrls } from '@/lib/backendUrls';
 
-export function fetchAllBanners(): Promise<IBanner[]> {
+export function fetchAllBanners(): Promise<BannerType[]> {
 	return axios
 		.get(backendUrls['all_banners'])
 		.then((response) => response.data)
-		.then((data: Array<IBannerData>) => {
+		.then((data: Array<BannerType & DataImageType>) => {
 			if (Array.isArray(data) === false) {
 				return [];
 			}
-			const banners: IBanner[] = data.map((d) => ({
+			const banners: BannerType[] = data.map((d) => ({
 				id: d.id,
 				eye_catcher: d.eye_catcher,
 				title: d.title,
-				image: d.image.url,
+				image: d.image?.url,
 				link: d.link,
 			}));
 			return banners;
@@ -24,20 +25,9 @@ export function fetchAllBanners(): Promise<IBanner[]> {
 			return [];
 		});
 }
-export interface IBanner {
-	id: number;
-	eye_catcher: string;
-	title: string;
-	image: string;
-	link: string;
-}
 
-export interface IBannerData {
-	id: number;
-	eye_catcher: string;
-	title: string;
-	link: string;
+type DataImageType = {
 	image: {
 		url: string;
 	};
-}
+};

@@ -1,10 +1,8 @@
 import dynamic from 'next/dynamic';
-
-import styles from './landing.module.css';
+import NextImage from 'next/image';
 
 import Programming from '@/components/Programming';
 import Faq from '@/components/Faq';
-// import Image from 'next/image';
 
 import {
 	makeStyles,
@@ -16,6 +14,7 @@ import {
 	Container,
 	Button,
 } from '@material-ui/core';
+import styles from './landing.module.css';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -58,14 +57,13 @@ export default function Landing() {
 	const classes = useStyles();
 	return (
 		<>
+			<div className={styles.background_img}>
+				<NextImage src="/images/landing/background.jpg" layout="fill" objectFit="cover" />
+			</div>
 			<Banners />
-			<img
-				src="https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-012.jpg"
-				className={styles.background_img}
-			/>
 			<Grid container className={classes.root}>
 				<Grid item md={6} xs={12} className={styles.container}>
-					<img src="/logo.png" className={`${styles.header}`} />
+					<img src="/images/landing/logo.png" className={styles.header} />
 					<p className={styles.dsc_description}>
 						Google collaborates with university students who are enthusiastic about
 						growing developer communities and supports them with commencing student
