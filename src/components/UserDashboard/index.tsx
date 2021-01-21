@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
+import useSWR from 'swr';
 
 import { getUserScore } from '@/lib/dynamicData/userScore';
 import useUser from '@/hooks/useUser';
+import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
+import { getAllBadges } from '@/lib/dynamicData/badges';
 
 import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
 import useStyles from './styles';
-import useSWR from 'swr';
-import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
 
 export default function Dashboard() {
 	const classes = useStyles();
@@ -26,6 +27,8 @@ export default function Dashboard() {
 		refreshInterval: 120 * 1000,
 	});
 
+	const { data: badges } = useSWR('all_badges', getAllBadges, { refreshInterval: 60 * 1000 });
+
 	const profile = useMemo(() => {
 		if (user) {
 			const joinedOn = user.created_at && new Date(user.created_at).toDateString();
@@ -38,6 +41,44 @@ export default function Dashboard() {
 		}
 		return null;
 	}, [user]);
+
+	// TODO: the users badges are not displayed (strapi-error)
+	//  labels: bug
+	//  **This is an error with strapi**
+	//  The `users/me` endpoint does not give the badge but the `users/1` endpoint does
+	//  this `/1` endpoint should not be used since it exposes the **other** users data
+	const badgesDisplay = useMemo(() => {
+		if (badges) {
+			return badges.map((badge) => (
+				<div className={classes.badge} key={badge.id}>
+					<Paper className={classes.paper}>
+						<Grid container spacing={2}>
+							<Grid item>
+								<ButtonBase className={classes.image}>
+									<img
+										className={classes.imge}
+										alt={badge.name}
+										src={badge.image}
+										loading="lazy"
+									/>
+								</ButtonBase>
+							</Grid>
+							<Grid item xs={12} sm container>
+								<Grid item xs container direction="column" spacing={2}>
+									<Grid item xs>
+										<Typography gutterBottom variant="subtitle1">
+											{badge.name.toUpperCase()}
+										</Typography>
+									</Grid>
+								</Grid>
+							</Grid>
+						</Grid>
+					</Paper>
+				</div>
+			));
+		}
+		return null;
+	}, [badges]);
 
 	return (
 		<div>
@@ -107,33 +148,7 @@ export default function Dashboard() {
 					BADGES
 				</h1>
 			</div>
-			<div className={classes.badge}>
-				<Paper className={classes.paper}>
-					<Grid container spacing={2}>
-						<Grid item>
-							<ButtonBase className={classes.image}>
-								<img
-									className={classes.imge}
-									alt="complex"
-									src="https://th.bing.com/th/id/R35fa7e4bc8c69f5bc3674eaf1afc17cd?rik=5n92n83FVOGL%2fQ&riu=http%3a%2f%2fst2.depositphotos.com%2f4459125%2f7302%2fv%2f170%2fdepositphotos_73029813-stock-illustration-cartoon-gold-cup.jpg&ehk=GClqxdwgjLxLeAxYi3qrfByiSP8YD4XaKHRzyHkQ%2bAA%3d&risl=&pid=ImgRaw"
-								/>
-							</ButtonBase>
-						</Grid>
-						<Grid item xs={12} sm container>
-							<Grid item xs container direction="column" spacing={2}>
-								<Grid item xs>
-									<Typography gutterBottom variant="subtitle1">
-										GOLDEN BADGE
-									</Typography>
-									<Typography variant="body2" gutterBottom>
-										In which qUIZ
-									</Typography>
-								</Grid>
-							</Grid>
-						</Grid>
-					</Grid>
-				</Paper>
-			</div>
+			{badgesDisplay}
 		</div>
 	);
 }
