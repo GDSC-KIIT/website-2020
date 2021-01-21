@@ -54,7 +54,9 @@ export function GoogleAuthLogin() {
 						open={open}
 						onClose={handleClose}
 						TransitionComponent={Fade}>
-						<MenuItem onClick={handleClose}>My account</MenuItem>
+						<NextLink href="/dashboard">
+							<MenuItem onClick={handleClose}>My account</MenuItem>
+						</NextLink>
 						<NextLink href="/auth/logout">
 							<MenuItem onClick={handleClose}>Sign Out</MenuItem>
 						</NextLink>
