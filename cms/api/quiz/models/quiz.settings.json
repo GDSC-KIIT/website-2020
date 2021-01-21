@@ -11,6 +11,12 @@
 		"draftAndPublish": false
 	},
 	"attributes": {
+		"qname": {
+			"type": "string",
+			"required": true,
+			"maxLength": 100,
+			"minLength": 1
+		},
 		"question": {
 			"type": "richtext",
 			"required": true
@@ -50,12 +56,6 @@
 		"score": {
 			"model": "score",
 			"via": "quizzes"
-		},
-		"qname": {
-			"type": "string",
-			"required": true,
-			"maxLength": 100,
-			"minLength": 1
 		}
 	}
 }
