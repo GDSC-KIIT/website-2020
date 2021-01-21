@@ -35,6 +35,12 @@ export type ScoreDataType = {
 	quizzes: QuestionType[];
 };
 
+export type SeasonScoreDataType = {
+	id: number;
+	limit: number;
+	badge: null;
+};
+
 export type BannerType = {
 	id: number;
 	eye_catcher: string;

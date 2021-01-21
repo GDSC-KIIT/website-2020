@@ -4,75 +4,9 @@ import { getUserScore } from '@/lib/dynamicData/userScore';
 import useUser from '@/hooks/useUser';
 
 import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			height: '100vh',
-		},
-		container: {
-			height: '100%',
-			padding: '0.2rem',
-			backgroundColor: 'white',
-			borderRadius: 20,
-			marginTop: 30,
-			marginBottom: 30,
-
-			boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-		},
-		header: {
-			height: '35%',
-			borderRadius: '20px 20px 0px 0px',
-		},
-		img: {
-			width: '100%',
-			height: '100%',
-			borderRadius: '20px 20px 0px 0px',
-		},
-		large: {
-			width: theme.spacing(9),
-			height: theme.spacing(9),
-			border: '4px solid white',
-		},
-		box: {
-			display: 'flex',
-			justifyContent: 'center',
-			marginTop: '-45px',
-		},
-		content: {
-			textAlign: 'center',
-			marginBottom: '25px',
-		},
-		name: {
-			textAlign: 'center',
-			fontWeight: 500,
-		},
-		location: {
-			fontSize: '14px',
-			fontWeight: 500,
-		},
-		badge: {
-			flexGrow: 1,
-		},
-		paper: {
-			padding: theme.spacing(2),
-			marginLeft: 10,
-			marginBottom: 30,
-			maxWidth: 500,
-		},
-		image: {
-			width: 128,
-			height: 128,
-		},
-		imge: {
-			margin: 'auto',
-			display: 'block',
-			maxWidth: '100%',
-			maxHeight: '100%',
-		},
-	})
-);
+import useStyles from './styles';
+import useSWR from 'swr';
+import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
 
 export default function Dashboard() {
 	const classes = useStyles();
@@ -87,6 +21,10 @@ export default function Dashboard() {
 			});
 		}
 	}, [user]);
+
+	const { data: seasonScore } = useSWR('season_score', getSeasonScore, {
+		refreshInterval: 120 * 1000,
+	});
 
 	const profile = useMemo(() => {
 		if (user) {
@@ -129,26 +67,35 @@ export default function Dashboard() {
 					</Typography>
 				</Box>
 				<Grid container item xs={12}>
-					{userScore ? (
-						<Grid item xs={6}>
-							<Typography
-								variant="body2"
-								className={classes.name}
-								color="textSecondary">
-								Your Points
-							</Typography>
-							<Typography variant="h6" className={classes.name}>
-								{userScore}
-							</Typography>
-						</Grid>
-					) : null}
 					<Grid item xs={6}>
-						<Typography variant="body2" className={classes.name} color="textSecondary">
-							Final Points
-						</Typography>
-						<Typography variant="h6" className={classes.name}>
-							980
-						</Typography>
+						{userScore ? (
+							<>
+								<Typography
+									variant="body2"
+									className={classes.name}
+									color="textSecondary">
+									Your Points
+								</Typography>
+								<Typography variant="h6" className={classes.name}>
+									{userScore}
+								</Typography>
+							</>
+						) : null}
+					</Grid>
+					<Grid item xs={6}>
+						{seasonScore ? (
+							<>
+								<Typography
+									variant="body2"
+									className={classes.name}
+									color="textSecondary">
+									Season Points
+								</Typography>
+								<Typography variant="h6" className={classes.name}>
+									{seasonScore}
+								</Typography>
+							</>
+						) : null}
 					</Grid>
 				</Grid>
 			</Container>
@@ -180,9 +127,6 @@ export default function Dashboard() {
 									</Typography>
 									<Typography variant="body2" gutterBottom>
 										In which qUIZ
-									</Typography>
-									<Typography variant="body2" color="textSecondary">
-										Points:100
 									</Typography>
 								</Grid>
 							</Grid>
