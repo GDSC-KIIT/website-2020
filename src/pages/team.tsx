@@ -1,5 +1,4 @@
 import Member from '@/components/member-template/members';
-import ReadyToTalk from '@/components/ReadyToTalk';
 import TeamIntro from '@/components/Intro';
 import Layout from '@/components/Layout';
 import { GetStaticProps } from 'next';
@@ -23,7 +22,7 @@ export default function Team({ allMembersData }: { allMembersData: member[] }) {
 	return (
 		<>
 			<img
-				src="https://i.imgur.com/tzzAJeX.png"
+				src="/images/mentors/background.png"
 				style={{ position: 'fixed', opacity: 0.1, top: 0, height: '100vh' }}
 			/>
 
@@ -53,7 +52,6 @@ export default function Team({ allMembersData }: { allMembersData: member[] }) {
 						})}
 					</div>
 				</section>
-				<ReadyToTalk />
 			</Layout>
 		</>
 	);
