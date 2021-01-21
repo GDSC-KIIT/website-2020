@@ -38,7 +38,13 @@ export type ScoreDataType = {
 export type SeasonScoreDataType = {
 	id: number;
 	limit: number;
-	badge: null;
+	badge: BadgeDataType | null;
+};
+
+export type BadgeDataType = {
+	id: number;
+	name: string;
+	image: string;
 };
 
 export type BannerType = {

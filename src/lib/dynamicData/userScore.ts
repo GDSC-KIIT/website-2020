@@ -5,7 +5,7 @@ import { backendUrls } from '@/lib/backendUrls';
 
 export function getUserScore(scoreId: number): Promise<ScoreDataType | null> {
 	return axios
-		.get(backendUrls['user_score'] + scoreId)
+		.get(backendUrls['user_score'] + '/' + scoreId)
 		.then((response) => response.data)
 		.catch((err) => {
 			console.log('could not get the user score', err);
