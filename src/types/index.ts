@@ -48,3 +48,15 @@ export type BannerType = {
 	image: string;
 	link: string;
 };
+
+export type DataImageType = {
+	image: {
+		id: number;
+		url: string;
+		width: number;
+		height: number;
+		hash: string;
+		caption: string;
+		alternativeText: string;
+	};
+};

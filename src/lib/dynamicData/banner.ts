@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import type { BannerType } from '@/types/index';
+import type { BannerType, DataImageType } from '@/types/index';
 import { backendUrls } from '@/lib/backendUrls';
 
 export function fetchAllBanners(): Promise<BannerType[]> {
@@ -25,9 +25,3 @@ export function fetchAllBanners(): Promise<BannerType[]> {
 			return [];
 		});
 }
-
-type DataImageType = {
-	image: {
-		url: string;
-	};
-};
