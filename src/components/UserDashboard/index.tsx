@@ -85,7 +85,7 @@ export default function Dashboard() {
 			<Container maxWidth="sm" className={classes.container}>
 				<Box className={classes.header}>
 					<img
-						src="https://www.hiretheyouth.org/wp-content/uploads/2019/04/Developer-Student-Clubs-1024x257.png"
+						src="	/images/dashboard/dscdash.png"
 						className={classes.img}
 						alt="coverImage"></img>
 				</Box>

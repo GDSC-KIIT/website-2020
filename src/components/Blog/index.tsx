@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 	blogsContainer: {
 		paddingTop: theme.spacing(6),
 		paddingLeft: 80,
+		paddingBottom: theme.spacing(3),
 	},
 	blogTitle: {
 		fontWeight: 800,
@@ -52,7 +53,7 @@ export default function Blogs({ blogPosts }: { blogPosts: Array<IBlogPost> }) {
 									<CardMedia
 										className={classes.media}
 										image={post.image}
-										title="Contemplative Reptile"
+										title="imageinfo"
 									/>
 									<CardContent>
 										<Typography gutterBottom variant="h5" component="h2">
