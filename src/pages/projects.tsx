@@ -1,4 +1,3 @@
-import ReadyToTalk from '@/components/ReadyToTalk';
 import Layout from '@/components/Layout';
 import styles from '../components/Projects/projects.module.css';
 import ProjectsCard from '@/components/Projects/ProjectsCard';
@@ -78,8 +77,6 @@ export default function Home({ allProjectsData }: any) {
 
 				<div className="row margin">
 					<Grid container spacing={4} className={classes.gridContainer}>
-						{/* <Grid item xs={12} sm={6} md={4}> */}
-						{/* <ProjectsCard /> */}
 						{allProjectsData &&
 							allProjectsData.map(({ ...project }) => {
 								{
@@ -91,7 +88,6 @@ export default function Home({ allProjectsData }: any) {
 								} else {
 									displayHeader = false;
 								}
-								// console.log(displayHeader)
 								return (
 									<ProjectsCard
 										projectInfo={project}
@@ -103,7 +99,6 @@ export default function Home({ allProjectsData }: any) {
 						{/* </Grid> */}
 					</Grid>
 				</div>
-				<ReadyToTalk />
 			</Layout>
 		</>
 	);

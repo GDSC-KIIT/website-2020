@@ -1,6 +1,15 @@
-import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
+import {
+	Container,
+	Grid,
+	Box,
+	Avatar,
+	Typography,
+	Paper,
+	ButtonBase,
+	makeStyles,
+	createStyles,
+	Theme,
+} from '@material-ui/core';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		root: {
@@ -47,14 +56,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			fontSize: '14px',
 			fontWeight: 500,
 		},
-		badge: {
-			flexGrow: 1,
-		},
 		paper: {
 			padding: theme.spacing(2),
-			marginLeft: 10,
+			marginLeft: 55,
 			marginBottom: 30,
 			maxWidth: 500,
+			display: 'flex',
 		},
 		image: {
 			width: 128,
@@ -62,6 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		imge: {
 			margin: 'auto',
+			marginRight: 15,
 			display: 'block',
 			maxWidth: '100%',
 			maxHeight: '100%',
@@ -77,7 +85,7 @@ export default function Dashboard() {
 			<Container maxWidth="sm" className={classes.container}>
 				<Box className={classes.header}>
 					<img
-						src="https://www.hiretheyouth.org/wp-content/uploads/2019/04/Developer-Student-Clubs-1024x257.png"
+						src="	/images/dashboard/dscdash.png"
 						className={classes.img}
 						alt="coverImage"></img>
 				</Box>
@@ -126,10 +134,10 @@ export default function Dashboard() {
 					BADGES
 				</h1>
 			</div>
-			<div className={classes.badge}>
-				<Paper className={classes.paper}>
-					<Grid container spacing={2}>
-						<Grid item>
+			<div>
+				<Grid container spacing={3}>
+					<Grid item xs={6}>
+						<Paper className={classes.paper}>
 							<ButtonBase className={classes.image}>
 								<img
 									className={classes.imge}
@@ -137,24 +145,44 @@ export default function Dashboard() {
 									src="https://th.bing.com/th/id/R35fa7e4bc8c69f5bc3674eaf1afc17cd?rik=5n92n83FVOGL%2fQ&riu=http%3a%2f%2fst2.depositphotos.com%2f4459125%2f7302%2fv%2f170%2fdepositphotos_73029813-stock-illustration-cartoon-gold-cup.jpg&ehk=GClqxdwgjLxLeAxYi3qrfByiSP8YD4XaKHRzyHkQ%2bAA%3d&risl=&pid=ImgRaw"
 								/>
 							</ButtonBase>
-						</Grid>
-						<Grid item xs={12} sm container>
-							<Grid item xs container direction="column" spacing={2}>
-								<Grid item xs>
-									<Typography gutterBottom variant="subtitle1">
-										GOLDEN BADGE
-									</Typography>
-									<Typography variant="body2" gutterBottom>
-										In which qUIZ
-									</Typography>
-									<Typography variant="body2" color="textSecondary">
-										Points:100
-									</Typography>
-								</Grid>
+
+							<Grid item>
+								<Typography gutterBottom variant="subtitle1">
+									GOLDEN BADGE
+								</Typography>
+								<Typography variant="body2" gutterBottom>
+									In which qUIZ
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									Points:100
+								</Typography>
 							</Grid>
-						</Grid>
+						</Paper>
 					</Grid>
-				</Paper>
+					<Grid item xs={6}>
+						<Paper className={classes.paper}>
+							<ButtonBase className={classes.image}>
+								<img
+									className={classes.imge}
+									alt="complex"
+									src="https://th.bing.com/th/id/R35fa7e4bc8c69f5bc3674eaf1afc17cd?rik=5n92n83FVOGL%2fQ&riu=http%3a%2f%2fst2.depositphotos.com%2f4459125%2f7302%2fv%2f170%2fdepositphotos_73029813-stock-illustration-cartoon-gold-cup.jpg&ehk=GClqxdwgjLxLeAxYi3qrfByiSP8YD4XaKHRzyHkQ%2bAA%3d&risl=&pid=ImgRaw"
+								/>
+							</ButtonBase>
+
+							<Grid item>
+								<Typography gutterBottom variant="subtitle1">
+									GOLDEN BADGE
+								</Typography>
+								<Typography variant="body2" gutterBottom>
+									In which qUIZ
+								</Typography>
+								<Typography variant="body2" color="textSecondary">
+									Points:100
+								</Typography>
+							</Grid>
+						</Paper>
+					</Grid>
+				</Grid>
 			</div>
 		</div>
 	);

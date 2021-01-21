@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import Head from 'next/head';
 
 import Navbar from '@/components/Navbar';
+import Readytotalk from '@/components/ReadyToTalk';
 import Footer from '@/components/Footer';
 
 interface IProps {
@@ -17,6 +18,7 @@ export default function Layout({ children, pageName }: IProps) {
 			</Head>
 			<Navbar />
 			{children}
+			<Readytotalk />
 			<Footer />
 		</>
 	);
