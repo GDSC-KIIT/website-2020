@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
 	collectCoverage: true,
 	moduleNameMapper: {
 		'^@/(.*)$': '<rootDir>/src/$1',
+		'\\.(css|less|scss|sss|styl)$': '<rootDir>/node_modules/jest-css-modules',
 	},
 };
 

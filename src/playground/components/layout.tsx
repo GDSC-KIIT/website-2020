@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 import Head from 'next/head';
 
 import { AppBar, CssBaseline, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import 'highlight.js/styles/github.css';
 
 const useStyles = makeStyles((theme) => ({
 	footer: {
@@ -20,6 +21,10 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 		<>
 			<Head key="Playground">
 				<title>PlayGround ⚡🏆 {pn}</title>
+				<link
+					rel="stylesheet"
+					href="https://highlightjs.org/static/demo/styles/railscasts.css"
+				/>
 			</Head>
 			<CssBaseline />
 			<AppBar position="relative">

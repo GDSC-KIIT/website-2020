@@ -35,10 +35,34 @@ export type ScoreDataType = {
 	quizzes: QuestionType[];
 };
 
+export type SeasonScoreDataType = {
+	id: number;
+	limit: number;
+	badge: BadgeDataType | null;
+};
+
+export type BadgeDataType = {
+	id: number;
+	name: string;
+	image: string;
+};
+
 export type BannerType = {
 	id: number;
 	eye_catcher: string;
 	title: string;
 	image: string;
 	link: string;
+};
+
+export type DataImageType = {
+	image: {
+		id: number;
+		url: string;
+		width: number;
+		height: number;
+		hash: string;
+		caption: string;
+		alternativeText: string;
+	};
 };

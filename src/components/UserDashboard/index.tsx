@@ -1,84 +1,84 @@
-import {
-	Container,
-	Grid,
-	Box,
-	Avatar,
-	Typography,
-	Paper,
-	ButtonBase,
-	makeStyles,
-	createStyles,
-	Theme,
-} from '@material-ui/core';
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			height: '100vh',
-		},
-		container: {
-			height: '100%',
-			padding: '0.2rem',
-			backgroundColor: 'white',
-			borderRadius: 20,
-			marginTop: 30,
-			marginBottom: 30,
+import { useEffect, useMemo, useState } from 'react';
+import useSWR from 'swr';
 
-			boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-		},
-		header: {
-			height: '35%',
-			borderRadius: '20px 20px 0px 0px',
-		},
-		img: {
-			width: '100%',
-			height: '100%',
-			borderRadius: '20px 20px 0px 0px',
-		},
-		large: {
-			width: theme.spacing(9),
-			height: theme.spacing(9),
-			border: '4px solid white',
-		},
-		box: {
-			display: 'flex',
-			justifyContent: 'center',
-			marginTop: '-45px',
-		},
-		content: {
-			textAlign: 'center',
-			marginBottom: '25px',
-		},
-		name: {
-			textAlign: 'center',
-			fontWeight: 500,
-		},
-		location: {
-			fontSize: '14px',
-			fontWeight: 500,
-		},
-		paper: {
-			padding: theme.spacing(2),
-			marginLeft: 55,
-			marginBottom: 30,
-			maxWidth: 500,
-			display: 'flex',
-		},
-		image: {
-			width: 128,
-			height: 128,
-		},
-		imge: {
-			margin: 'auto',
-			marginRight: 15,
-			display: 'block',
-			maxWidth: '100%',
-			maxHeight: '100%',
-		},
-	})
-);
+import { getUserScore } from '@/lib/dynamicData/userScore';
+import useUser from '@/hooks/useUser';
+import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
+import { getAllBadges } from '@/lib/dynamicData/badges';
+
+import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
+import useStyles from './styles';
 
 export default function Dashboard() {
 	const classes = useStyles();
+
+	const { user } = useUser();
+	const [userScore, setUserScore] = useState<number | null>(null);
+
+	useEffect(() => {
+		if (user && user.score) {
+			getUserScore(user.score).then((scoreData) => {
+				if (scoreData) setUserScore(scoreData.currentPoints);
+			});
+		}
+	}, [user]);
+
+	const { data: seasonScore } = useSWR('season_score', getSeasonScore, {
+		refreshInterval: 120 * 1000,
+	});
+
+	const { data: badges } = useSWR('all_badges', getAllBadges, { refreshInterval: 60 * 1000 });
+
+	const profile = useMemo(() => {
+		if (user) {
+			const joinedOn = user.created_at && new Date(user.created_at).toDateString();
+			const username = user.username.toUpperCase();
+			return {
+				username,
+				joinedOn,
+				email: user.email,
+			};
+		}
+		return null;
+	}, [user]);
+
+	// TODO: the users badges are not displayed (strapi-error)
+	//  labels: bug
+	//  **This is an error with strapi**
+	//  The `users/me` endpoint does not give the badge but the `users/1` endpoint does
+	//  this `/1` endpoint should not be used since it exposes the **other** users data
+	const badgesDisplay = useMemo(() => {
+		if (badges) {
+			return badges.map((badge) => (
+				<div className={classes.badge} key={badge.id}>
+					<Paper className={classes.paper}>
+						<Grid container spacing={2}>
+							<Grid item>
+								<ButtonBase className={classes.image}>
+									<img
+										className={classes.imge}
+										alt={badge.name}
+										src={badge.image}
+										loading="lazy"
+									/>
+								</ButtonBase>
+							</Grid>
+							<Grid item xs={12} sm container>
+								<Grid item xs container direction="column" spacing={2}>
+									<Grid item xs>
+										<Typography gutterBottom variant="subtitle1">
+											{badge.name.toUpperCase()}
+										</Typography>
+									</Grid>
+								</Grid>
+							</Grid>
+						</Grid>
+					</Paper>
+				</div>
+			));
+		}
+		return null;
+	}, [badges]);
 
 	return (
 		<div>
@@ -94,35 +94,49 @@ export default function Dashboard() {
 				</Box>
 				<Box className={classes.content}>
 					<Typography variant="h6" className={classes.name}>
-						Name : username
+						{profile?.username}
 					</Typography>
 					<Typography variant="subtitle1" className={classes.name}>
-						Email:- username@gmail.com
+						{profile?.email}
 					</Typography>
 					<Typography
 						variant="h6"
 						gutterBottom
 						className={classes.location}
 						color={'textSecondary'}>
-						joined at
+						Joined on <strong>{profile?.joinedOn}</strong>
 					</Typography>
 				</Box>
 				<Grid container item xs={12}>
 					<Grid item xs={6}>
-						<Typography variant="body2" className={classes.name} color="textSecondary">
-							Total Points
-						</Typography>
-						<Typography variant="h6" className={classes.name}>
-							980
-						</Typography>
+						{userScore ? (
+							<>
+								<Typography
+									variant="body2"
+									className={classes.name}
+									color="textSecondary">
+									Your Points
+								</Typography>
+								<Typography variant="h6" className={classes.name}>
+									{userScore}
+								</Typography>
+							</>
+						) : null}
 					</Grid>
 					<Grid item xs={6}>
-						<Typography variant="body2" className={classes.name} color="textSecondary">
-							Final Points
-						</Typography>
-						<Typography variant="h6" className={classes.name}>
-							980
-						</Typography>
+						{seasonScore ? (
+							<>
+								<Typography
+									variant="body2"
+									className={classes.name}
+									color="textSecondary">
+									Season Points
+								</Typography>
+								<Typography variant="h6" className={classes.name}>
+									{seasonScore}
+								</Typography>
+							</>
+						) : null}
 					</Grid>
 				</Grid>
 			</Container>
@@ -134,56 +148,7 @@ export default function Dashboard() {
 					BADGES
 				</h1>
 			</div>
-			<div>
-				<Grid container spacing={3}>
-					<Grid item xs={6}>
-						<Paper className={classes.paper}>
-							<ButtonBase className={classes.image}>
-								<img
-									className={classes.imge}
-									alt="complex"
-									src="https://th.bing.com/th/id/R35fa7e4bc8c69f5bc3674eaf1afc17cd?rik=5n92n83FVOGL%2fQ&riu=http%3a%2f%2fst2.depositphotos.com%2f4459125%2f7302%2fv%2f170%2fdepositphotos_73029813-stock-illustration-cartoon-gold-cup.jpg&ehk=GClqxdwgjLxLeAxYi3qrfByiSP8YD4XaKHRzyHkQ%2bAA%3d&risl=&pid=ImgRaw"
-								/>
-							</ButtonBase>
-
-							<Grid item>
-								<Typography gutterBottom variant="subtitle1">
-									GOLDEN BADGE
-								</Typography>
-								<Typography variant="body2" gutterBottom>
-									In which qUIZ
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									Points:100
-								</Typography>
-							</Grid>
-						</Paper>
-					</Grid>
-					<Grid item xs={6}>
-						<Paper className={classes.paper}>
-							<ButtonBase className={classes.image}>
-								<img
-									className={classes.imge}
-									alt="complex"
-									src="https://th.bing.com/th/id/R35fa7e4bc8c69f5bc3674eaf1afc17cd?rik=5n92n83FVOGL%2fQ&riu=http%3a%2f%2fst2.depositphotos.com%2f4459125%2f7302%2fv%2f170%2fdepositphotos_73029813-stock-illustration-cartoon-gold-cup.jpg&ehk=GClqxdwgjLxLeAxYi3qrfByiSP8YD4XaKHRzyHkQ%2bAA%3d&risl=&pid=ImgRaw"
-								/>
-							</ButtonBase>
-
-							<Grid item>
-								<Typography gutterBottom variant="subtitle1">
-									GOLDEN BADGE
-								</Typography>
-								<Typography variant="body2" gutterBottom>
-									In which qUIZ
-								</Typography>
-								<Typography variant="body2" color="textSecondary">
-									Points:100
-								</Typography>
-							</Grid>
-						</Paper>
-					</Grid>
-				</Grid>
-			</div>
+			{badgesDisplay}
 		</div>
 	);
 }

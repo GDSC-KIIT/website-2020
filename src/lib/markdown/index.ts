@@ -1,7 +1,12 @@
 import marked from 'marked';
+import { highlightAuto } from 'highlight.js';
 import { sanitize } from 'dompurify';
 
 export default function md(text: string) {
-	const sanitizedText = sanitize(text);
-	return marked(sanitizedText);
+	marked.setOptions({
+		highlight: (code) => highlightAuto(code).value,
+		sanitizer: (text) => sanitize(text),
+	});
+
+	return marked(text);
 }
