@@ -30,7 +30,7 @@ export default function Banner({ title, image, eye_catcher, link }: Omit<BannerT
 
 	return (
 		<Paper className={classes.bannerMain}>
-			<NextImage src={image} layout="fill" objectFit="cover" />
+			{image ? <NextImage src={image} layout="fill" objectFit="cover" /> : null}
 			<div className={classes.overlay} />
 			<Grid container>
 				<Grid item md={6}>

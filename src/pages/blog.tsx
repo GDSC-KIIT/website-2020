@@ -7,22 +7,31 @@ export async function getStaticProps() {
 		fetchDevtoBlogPosts(),
 		fetchMediumBlogPosts(),
 	]).then((arr) => [...arr[0], ...arr[1]]);
-	// TODO sort all by published date
-	//  labels: enhance
-	//  assignees: aditya-mitra
+
+	blogPosts
+		.sort((blogPost) => {
+			const a = new Date(blogPost.date).getDate();
+			const b = new Date(blogPost.date).getDate();
+			return a - b;
+		})
+		.forEach((bp) => {
+			const d = new Date(bp.date);
+			bp.date = `${d.getDay()} / ${d.getMonth()} / ${d.getFullYear()}`;
+			return bp;
+		});
+
 	return {
 		props: {
 			blogPosts,
 		},
+		revalidate: 60,
 	};
 }
 
 export default function Blog(props: { blogPosts: Array<IBlogPost> }) {
 	return (
-		<>
-			<Layout pageName="Blogs">
-				<Posts blogPosts={props.blogPosts} />
-			</Layout>
-		</>
+		<Layout pageName="Blogs">
+			<Posts blogPosts={props.blogPosts} />
+		</Layout>
 	);
 }

@@ -9,7 +9,7 @@ module.exports = {
 	async find(ctx) {
 		const b = await strapi.query('season-score').find();
 
-		if (!b || !b[0].published_at) {
+		if (!b || !b[0] || !b[0].published_at) {
 			ctx.status = 404;
 			ctx.body = { error: 'season score has not been revealed' };
 			return;

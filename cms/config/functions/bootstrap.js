@@ -44,6 +44,18 @@ async function updatePermissionsTestConfig() {
 			orm.update({ id: perm.id }, { ...perm, enabled: true });
 		}
 	}
+
+	const userPerms = await orm.find({ type: 'users-permissions' });
+
+	for (const userPerm of userPerms) {
+		if (userPerm.controller === 'user' && userPerm.role.type === 'public') {
+			orm.update({ id: userPerm.id }, { ...userPerm, enabled: true });
+
+			strapi.log.info(
+				`USER-PERMISSIONS Allowing public to call ${userPerm.controller}.${userPerm.action}`
+			);
+		}
+	}
 }
 
 async function updatePermissions() {

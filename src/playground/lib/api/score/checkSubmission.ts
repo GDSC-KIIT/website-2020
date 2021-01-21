@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 import { getSessionAuthToken } from '@/lib/user/session';
 import { ScoreDataType } from '@/types/index';
@@ -24,8 +24,5 @@ export default async function checkSubmission(currentQid: number, scoreId: numbe
 			}
 			return false;
 		})
-		.catch((err: AxiosError) => {
-			console.log('could not find the score of the user', err);
-			return true;
-		});
+		.catch((err) => console.log('could not find the score of the user', err));
 }

@@ -1,5 +1,12 @@
 import { QuestionType, ScoreDataType, SubmitReponseType, UserInfoType } from '@/types/index';
 
+export const createdUser = {
+	id: 1,
+	username: 'testUser1',
+	email: 'test1@test.com',
+	password: 'testpass123',
+};
+
 export const createdQuestion1 = {
 	qname: 'biology',
 	question: '*what is biology?*',
@@ -29,6 +36,10 @@ export const createdQuestion3 = {
 	option_2: '2',
 	option_3: '3',
 	option_4: '4',
+};
+
+export const createdBadge = {
+	name: 'gauntlet',
 };
 
 // answer is 4

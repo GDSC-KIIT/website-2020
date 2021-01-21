@@ -23,10 +23,10 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 			</Head>
 			<CssBaseline />
 			<AppBar position="relative">
-				<NextLink href="/playground">
+				<NextLink href="/">
 					<Toolbar style={{ cursor: 'pointer' }}>
 						<Typography variant="h6" color="inherit" noWrap>
-							DSC KIIT <strong>PlayGround</strong>
+							DSC KIIT
 						</Typography>
 					</Toolbar>
 				</NextLink>

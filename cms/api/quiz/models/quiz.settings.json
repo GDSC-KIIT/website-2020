@@ -54,7 +54,7 @@
 		"qname": {
 			"type": "string",
 			"required": true,
-			"maxLength": 10,
+			"maxLength": 100,
 			"minLength": 1
 		}
 	}

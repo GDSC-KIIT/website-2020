@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo, useCallback, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import useSWR from 'swr';
@@ -62,12 +63,6 @@ function createOption(option: string | null | undefined, value: optionTypes) {
 		/>
 	);
 }
-
-// TODO there is no feedback to see when the question is not accpeting responses
-//  **disable answer submission if user already submitted*()
-//  check if this qid is there in there in `user/me`
-//  labels: enhance
-//  assignees: aditya-mitra
 
 export default function Q() {
 	const classes = useStyles();
@@ -145,7 +140,7 @@ export default function Q() {
 			hasUserAlreadySubmitted(parseInt(qid, 10), user.score).then((subm) => {
 				if (subm === false) {
 					setChecksForAllow((prev) => prev + 1);
-				} else {
+				} else if (subm === true) {
 					setChecksForAllow((prev) => prev + 3);
 					showSnack('Buddy, you have already done this question', 'warning');
 				}
@@ -162,9 +157,6 @@ export default function Q() {
 
 	const Question = useMemo(() => {
 		if (!error && data) {
-			// TODO allow checks can change during live update
-			//  labels: critical
-			//  assignees: aditya-mitra
 			if (data.accepting) setChecksForAllow((prev) => prev + 1);
 			return (
 				<>
@@ -257,19 +249,18 @@ export default function Q() {
 				<Grid container spacing={0} justify="center">
 					<Grid item xs={12} sm={8} md={9}>
 						<Paper className={classes.paper1}>
-							<Typography
-								variant="h6"
-								style={{ cursor: 'pointer', marginLeft: '.4em' }}
-								noWrap>
-								<img
-									src="/dsc.svg"
-									style={{ marginRight: '10px', width: '1.5em' }}
-								/>
-								DSC QUIZ
-							</Typography>
+							<NextLink href="/playground">
+								<Typography
+									variant="h6"
+									style={{ cursor: 'pointer', marginLeft: '.4em' }}
+									noWrap>
+									<img src="/images/playground/dsc.svg" alt="DSC KIIT LOGO" />
+									DSC QUIZ
+								</Typography>
+							</NextLink>
 							<hr />
 							<Typography variant="h6">{Question}</Typography>
-							<FormLabel></FormLabel>
+							<FormLabel />
 							<FormControl
 								component="fieldset"
 								className={classes.formControl}
