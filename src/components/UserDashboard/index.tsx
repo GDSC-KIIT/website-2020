@@ -1,3 +1,8 @@
+import { useEffect, useMemo, useState } from 'react';
+
+import { getUserScore } from '@/lib/dynamicData/userScore';
+import useUser from '@/hooks/useUser';
+
 import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
@@ -72,6 +77,30 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function Dashboard() {
 	const classes = useStyles();
 
+	const { user } = useUser();
+	const [userScore, setUserScore] = useState<number | null>(null);
+
+	useEffect(() => {
+		if (user && user.score) {
+			getUserScore(user.score).then((scoreData) => {
+				if (scoreData) setUserScore(scoreData.currentPoints);
+			});
+		}
+	}, [user]);
+
+	const profile = useMemo(() => {
+		if (user) {
+			const joinedOn = user.created_at && new Date(user.created_at).toDateString();
+			const username = user.username.toUpperCase();
+			return {
+				username,
+				joinedOn,
+				email: user.email,
+			};
+		}
+		return null;
+	}, [user]);
+
 	return (
 		<div>
 			<Container maxWidth="sm" className={classes.container}>
@@ -86,28 +115,33 @@ export default function Dashboard() {
 				</Box>
 				<Box className={classes.content}>
 					<Typography variant="h6" className={classes.name}>
-						Name : username
+						{profile?.username}
 					</Typography>
 					<Typography variant="subtitle1" className={classes.name}>
-						Email:- username@gmail.com
+						{profile?.email}
 					</Typography>
 					<Typography
 						variant="h6"
 						gutterBottom
 						className={classes.location}
 						color={'textSecondary'}>
-						joined at
+						Joined on <strong>{profile?.joinedOn}</strong>
 					</Typography>
 				</Box>
 				<Grid container item xs={12}>
-					<Grid item xs={6}>
-						<Typography variant="body2" className={classes.name} color="textSecondary">
-							Total Points
-						</Typography>
-						<Typography variant="h6" className={classes.name}>
-							980
-						</Typography>
-					</Grid>
+					{userScore ? (
+						<Grid item xs={6}>
+							<Typography
+								variant="body2"
+								className={classes.name}
+								color="textSecondary">
+								Your Points
+							</Typography>
+							<Typography variant="h6" className={classes.name}>
+								{userScore}
+							</Typography>
+						</Grid>
+					) : null}
 					<Grid item xs={6}>
 						<Typography variant="body2" className={classes.name} color="textSecondary">
 							Final Points
