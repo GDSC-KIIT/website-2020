@@ -21,6 +21,6 @@ export const backendUrls: IBackendUrls = {
 	user_score: 'http://localhost:9000/scores',
 	all_events: 'http://localhost:9000/events',
 	all_banners: 'http://localhost:9000/banners',
-	all_badges: 'http://localhost:9000/badges',
+	badges: 'http://localhost:9000/badges',
 	season_score: 'http://localhost:9000/season-score',
 };
