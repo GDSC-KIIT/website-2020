@@ -1,4 +1,10 @@
-import { QuestionType, ScoreDataType, SubmitReponseType, UserInfoType } from '@/types/index';
+import {
+	QuestionType,
+	ScoreDataType,
+	SubmitReponseType,
+	UserInfoType,
+	BadgeDataType,
+} from '@/types/index';
 
 export const createdUser = {
 	id: 1,
@@ -54,7 +60,7 @@ export const mockedQuestion1: QuestionType = {
 	option_4: 'all of these',
 };
 
-// answer is 1
+// answer is 2
 export const mockedQuestion2: QuestionType = {
 	id: 20,
 	qname: 'can we ask',
@@ -64,6 +70,7 @@ export const mockedQuestion2: QuestionType = {
 	option_2: 'no',
 };
 
+// answer is 1
 export const mockSolvedQuestion3: QuestionType = {
 	id: 30,
 	qname: 'can we ask',
@@ -75,7 +82,18 @@ export const mockSolvedQuestion3: QuestionType = {
 	option_4: '4',
 };
 
-// answer is 1
+export const mockScoreData: ScoreDataType = {
+	id: 5,
+	currentPoints: 40,
+	quizzes: [{ ...mockSolvedQuestion3 }],
+};
+
+export const mockBadgeData: BadgeDataType = {
+	id: 3,
+	name: 'cool badge',
+	image: 'cool-badge.jpg',
+};
+
 export const mockUser: UserInfoType = {
 	id: 1,
 	username: 'mocked_test_user',
@@ -83,12 +101,7 @@ export const mockUser: UserInfoType = {
 	provider: 'local',
 	score: 5,
 	created_at: 'during the test',
-};
-
-export const mockScoreData: ScoreDataType = {
-	id: 5,
-	currentPoints: 40,
-	quizzes: [{ ...mockSolvedQuestion3 }],
+	badges: [mockBadgeData],
 };
 
 export const mockSubmitResponse: SubmitReponseType = {

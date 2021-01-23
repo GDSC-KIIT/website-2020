@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import useSWR from 'swr';
 
 import { getUserScore } from '@/lib/dynamicData/userScore';
 import useUser from '@/hooks/useUser';
 import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
 import { getUserBadgesFromArray } from '@/lib/dynamicData/badges';
-import type { BadgeDataType } from '@/types/index';
 
 import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
 import useStyles from './styles';
@@ -14,21 +13,18 @@ export default function Dashboard() {
 	const classes = useStyles();
 
 	const { user } = useUser();
-	const [userScore, setUserScore] = useState<number | null>(null);
-	const [userBadges, setUserBadges] = useState<BadgeDataType[]>([]);
 
-	useEffect(() => {
-		if (user?.score) {
-			getUserScore(user.score).then((scoreData) => {
-				if (scoreData) setUserScore(scoreData.currentPoints);
-			});
-		}
-		if (user?.badges) {
-			getUserBadgesFromArray(user.badges).then((badges) => {
-				setUserBadges(badges);
-			});
-		}
-	}, [user]);
+	const { data: userScore } = useSWR(
+		`${user?.id}_score`,
+		() => (user?.score ? getUserScore(user.score) : null),
+		{ refreshInterval: 10 * 1000 }
+	);
+
+	const { data: userBadges } = useSWR(
+		`${user?.id}_badges`,
+		() => (user?.badges ? getUserBadgesFromArray(user.badges) : null),
+		{ refreshInterval: 10 * 1000 }
+	);
 
 	const { data: seasonScore } = useSWR('season_score', getSeasonScore, {
 		refreshInterval: 120 * 1000,
@@ -47,14 +43,9 @@ export default function Dashboard() {
 		return null;
 	}, [user]);
 
-	// TODO: the users badges are not displayed (strapi-error)
-	//  labels: bug
-	//  **This is an error with strapi**
-	//  The `users/me` endpoint does not give the badge but the `users/1` endpoint does
-	//  this `/1` endpoint should not be used since it exposes the **other** users data
 	const badgesDisplay = useMemo(
 		() =>
-			userBadges.map((badge) => (
+			userBadges?.map((badge) => (
 				<div className={classes.badge} key={badge.id}>
 					<Paper className={classes.paper}>
 						<Grid container spacing={2}>
