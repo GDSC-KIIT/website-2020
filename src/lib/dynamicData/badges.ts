@@ -27,4 +27,13 @@ export function getSingleBadge(id: number): Promise<BadgeDataType | null> {
 		});
 }
 
+export async function getUserBadgesFromArray(
+	BadgesArray: Array<Omit<BadgeDataType, 'image'>>
+): Promise<Array<BadgeDataType>> {
+	const reqs = BadgesArray.map((badgeItem) => getSingleBadge(badgeItem.id));
+	const resps = await Promise.all(reqs);
+
+	return resps.filter((resp): resp is BadgeDataType => resp !== null);
+}
+
 type BadgeAndImageDataType = BadgeDataType & DataImageType;

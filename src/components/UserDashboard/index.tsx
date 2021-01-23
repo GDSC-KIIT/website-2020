@@ -4,7 +4,8 @@ import useSWR from 'swr';
 import { getUserScore } from '@/lib/dynamicData/userScore';
 import useUser from '@/hooks/useUser';
 import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
-import { getAllBadges } from '@/lib/dynamicData/badges';
+import { getUserBadgesFromArray } from '@/lib/dynamicData/badges';
+import type { BadgeDataType } from '@/types/index';
 
 import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
 import useStyles from './styles';
@@ -14,11 +15,17 @@ export default function Dashboard() {
 
 	const { user } = useUser();
 	const [userScore, setUserScore] = useState<number | null>(null);
+	const [userBadges, setUserBadges] = useState<BadgeDataType[]>([]);
 
 	useEffect(() => {
-		if (user && user.score) {
+		if (user?.score) {
 			getUserScore(user.score).then((scoreData) => {
 				if (scoreData) setUserScore(scoreData.currentPoints);
+			});
+		}
+		if (user?.badges) {
+			getUserBadgesFromArray(user.badges).then((badges) => {
+				setUserBadges(badges);
 			});
 		}
 	}, [user]);
@@ -26,8 +33,6 @@ export default function Dashboard() {
 	const { data: seasonScore } = useSWR('season_score', getSeasonScore, {
 		refreshInterval: 120 * 1000,
 	});
-
-	const { data: badges } = useSWR('all_badges', getAllBadges, { refreshInterval: 60 * 1000 });
 
 	const profile = useMemo(() => {
 		if (user) {
@@ -47,9 +52,9 @@ export default function Dashboard() {
 	//  **This is an error with strapi**
 	//  The `users/me` endpoint does not give the badge but the `users/1` endpoint does
 	//  this `/1` endpoint should not be used since it exposes the **other** users data
-	const badgesDisplay = useMemo(() => {
-		if (badges) {
-			return badges.map((badge) => (
+	const badgesDisplay = useMemo(
+		() =>
+			userBadges.map((badge) => (
 				<div className={classes.badge} key={badge.id}>
 					<Paper className={classes.paper}>
 						<Grid container spacing={2}>
@@ -59,7 +64,6 @@ export default function Dashboard() {
 										className={classes.imge}
 										alt={badge.name}
 										src={badge.image}
-										loading="lazy"
 									/>
 								</ButtonBase>
 							</Grid>
@@ -75,10 +79,9 @@ export default function Dashboard() {
 						</Grid>
 					</Paper>
 				</div>
-			));
-		}
-		return null;
-	}, [badges]);
+			)),
+		[userBadges]
+	);
 
 	return (
 		<div>
