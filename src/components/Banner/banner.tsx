@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'grey',
 		color: 'white',
 		marginBottom: '1rem',
+		marginTop: '1rem',
+		height: '40vh',
 	},
 	overlay: {
 		position: 'absolute',

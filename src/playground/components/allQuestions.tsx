@@ -87,14 +87,6 @@ export default function AllQs() {
 					md={4}
 					data-testid={`question-${question.id}`}>
 					<Card className={classes.card}>
-						<NextLink href={`/playground/${question.id}`}>
-							<CardMedia
-								style={{ cursor: 'pointer' }}
-								className={classes.cardMedia}
-								image="https://source.unsplash.com/random"
-								title={'Solve ' + question.id}
-							/>
-						</NextLink>
 						<center>
 							<CardContent className={classes.cardContent}>
 								<Typography variant="h5" component="h2">
