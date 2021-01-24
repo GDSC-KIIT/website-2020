@@ -42,17 +42,12 @@ export default function Dashboard() {
 		return null;
 	}, [user]);
 
-	// TODO: the users badges are not displayed (strapi-error)
-	//  labels: bug
-	//  **This is an error with strapi**
-	//  The `users/me` endpoint does not give the badge but the `users/1` endpoint does
-	//  this `/1` endpoint should not be used since it exposes the **other** users data
 	const badgesDisplay = useMemo(() => {
 		if (badges) {
 			return badges.map((badge) => (
 				<div className={classes.badge} key={badge.id}>
 					<Paper className={classes.paper}>
-						<Grid container spacing={2}>
+						<Grid container direction="row" spacing={2}>
 							<Grid item>
 								<ButtonBase className={classes.image}>
 									<img
@@ -63,10 +58,13 @@ export default function Dashboard() {
 									/>
 								</ButtonBase>
 							</Grid>
-							<Grid item xs={12} sm container>
+							<Grid item xs={10} sm container>
 								<Grid item xs container direction="column" spacing={2}>
 									<Grid item xs>
-										<Typography gutterBottom variant="subtitle1">
+										<Typography
+											style={{ marginTop: 45 }}
+											gutterBottom
+											variant="h5">
 											{badge.name.toUpperCase()}
 										</Typography>
 									</Grid>
@@ -148,7 +146,11 @@ export default function Dashboard() {
 					BADGES
 				</h1>
 			</div>
-			{badgesDisplay}
+			<Container className={classes.c} maxWidth="md">
+				<Grid container spacing={2}>
+					{badgesDisplay}
+				</Grid>
+			</Container>
 		</div>
 	);
 }

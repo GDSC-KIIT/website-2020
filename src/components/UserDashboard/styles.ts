@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 			boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
 		},
+		c: {
+			paddingTop: theme.spacing(5),
+			paddingBottom: theme.spacing(5),
+			paddingRight: theme.spacing(1),
+		},
 		header: {
 			height: '35%',
 			borderRadius: '20px 20px 0px 0px',
@@ -50,10 +55,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			flexGrow: 1,
 		},
 		paper: {
-			padding: theme.spacing(2),
-			marginLeft: 10,
 			marginBottom: 30,
-			maxWidth: 500,
+			width: 300,
 		},
 		image: {
 			width: 128,

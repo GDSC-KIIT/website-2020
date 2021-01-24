@@ -17,7 +17,6 @@ import {
 	Card,
 	CardActions,
 	CardContent,
-	CardMedia,
 	Container,
 	Chip,
 } from '@material-ui/core';
@@ -75,9 +74,6 @@ export default function AllQs() {
 	const quesDisplays = useMemo(() => {
 		const questions = data ?? [];
 		if (questions.length > 0) {
-			// TODO Change the design of the question card display
-			//  labels: styling
-			//  assignees: yashvi2001
 			return questions.map((question) => (
 				<Grid
 					item
@@ -87,14 +83,6 @@ export default function AllQs() {
 					md={4}
 					data-testid={`question-${question.id}`}>
 					<Card className={classes.card}>
-						<NextLink href={`/playground/${question.id}`}>
-							<CardMedia
-								style={{ cursor: 'pointer' }}
-								className={classes.cardMedia}
-								image="https://source.unsplash.com/random"
-								title={'Solve ' + question.id}
-							/>
-						</NextLink>
 						<center>
 							<CardContent className={classes.cardContent}>
 								<Typography variant="h5" component="h2">

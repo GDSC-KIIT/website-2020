@@ -42,7 +42,6 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 						<CardMedia
 							className={classes.media}
 							image={imageUrl}
-							// image="/projectslogo.png"
 							title="DSC KIIT projects"
 						/>
 						<CardContent>

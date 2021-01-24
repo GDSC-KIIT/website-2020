@@ -16,6 +16,7 @@ import {
 	ListItemIcon,
 	ListItemText,
 	Box,
+	Divider,
 } from '@material-ui/core';
 
 import {
@@ -36,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
 		display: 'none',
 		[theme.breakpoints.down('sm')]: {
 			display: 'block',
+		},
+	},
+	divider: {
+		'& hr': {
+			margin: theme.spacing(0, 0.5),
 		},
 	},
 }));
@@ -92,6 +98,7 @@ const Navbar = () => {
 							</Typography>
 						</Link>
 					</Grid>
+
 					<Grid
 						item
 						xs={7}
@@ -149,6 +156,7 @@ const Navbar = () => {
 								</Typography>
 							</Link>
 						</Grid>
+						<Divider className={classes.divider} orientation="vertical" flexItem />
 						<Grid item>
 							<GoogleAuthLogin />
 						</Grid>
@@ -158,7 +166,6 @@ const Navbar = () => {
 		</AppBar>
 	);
 };
-
 export default Navbar;
 
 interface IDrawerItemProps {
