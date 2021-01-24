@@ -3,7 +3,15 @@ import type { ReactNode } from 'react';
 import NextLink from 'next/link';
 import Head from 'next/head';
 
-import { AppBar, CssBaseline, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import {
+	AppBar,
+	CssBaseline,
+	Toolbar,
+	Typography,
+	makeStyles,
+	createMuiTheme,
+	ThemeProvider,
+} from '@material-ui/core';
 import 'highlight.js/styles/github.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(6),
 	},
 }));
+
+const theme = createMuiTheme({
+	typography: {
+		fontFamily: ['Quicksand', 'Roboto'].join(','),
+	},
+});
 
 export default function Layout({ qname, children }: { qname?: string; children: ReactNode }) {
 	const classes = useStyles();
@@ -27,31 +41,33 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 				/>
 			</Head>
 			<CssBaseline />
-			<AppBar position="relative">
-				<NextLink href="/">
-					<Toolbar style={{ cursor: 'pointer' }}>
-						<Typography variant="h6" color="inherit" noWrap>
-							DSC KIIT
+			<ThemeProvider theme={theme}>
+				<AppBar position="relative">
+					<NextLink href="/">
+						<Toolbar style={{ cursor: 'pointer' }}>
+							<Typography variant="h6" color="inherit" noWrap>
+								DSC KIIT
+							</Typography>
+						</Toolbar>
+					</NextLink>
+				</AppBar>
+				<main>{children}</main>
+				<footer className={classes.footer}>
+					<NextLink href="/playground">
+						<Typography
+							variant="h5"
+							align="left"
+							gutterBottom
+							style={{ cursor: 'pointer' }}>
+							DSC KIIT <strong>PlayGround ⚡🏆</strong>
 						</Typography>
-					</Toolbar>
-				</NextLink>
-			</AppBar>
-			<main>{children}</main>
-			<footer className={classes.footer}>
-				<NextLink href="/playground">
-					<Typography
-						variant="h5"
-						align="left"
-						gutterBottom
-						style={{ cursor: 'pointer' }}>
-						DSC KIIT <strong>PlayGround ⚡🏆</strong>
+					</NextLink>
+					<Typography align="right" gutterBottom>
+						Maintained By <strong>Yashvi Mahapatra</strong> and{' '}
+						<strong>Aditya Mitra</strong>
 					</Typography>
-				</NextLink>
-				<Typography align="right" gutterBottom>
-					Maintained By <strong>Yashvi Mahapatra</strong> and{' '}
-					<strong>Aditya Mitra</strong>
-				</Typography>
-			</footer>
+				</footer>
+			</ThemeProvider>
 		</>
 	);
 }
