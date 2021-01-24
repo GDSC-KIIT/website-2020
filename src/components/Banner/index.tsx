@@ -10,8 +10,6 @@ export default function Banners() {
 	let banners: BannerType[] = data ?? [];
 
 	if (banners.length > 0) {
-		// TODO Change the banner style
-		//  labels: styling, landing, critical
 		return (
 			<>
 				<span style={{ marginTop: '2rem' }} />
