@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import useSWR from 'swr';
 
 import { getUserScore } from '@/lib/dynamicData/userScore';
 import useUser from '@/hooks/useUser';
 import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
-import { getAllBadges } from '@/lib/dynamicData/badges';
+import { getUserBadgesFromArray } from '@/lib/dynamicData/badges';
 
 import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
 import useStyles from './styles';
@@ -13,21 +13,22 @@ export default function Dashboard() {
 	const classes = useStyles();
 
 	const { user } = useUser();
-	const [userScore, setUserScore] = useState<number | null>(null);
 
-	useEffect(() => {
-		if (user && user.score) {
-			getUserScore(user.score).then((scoreData) => {
-				if (scoreData) setUserScore(scoreData.currentPoints);
-			});
-		}
-	}, [user]);
+	const { data: userScore } = useSWR(
+		`${user?.id}_score`,
+		() => (user?.score ? getUserScore(user.score) : null),
+		{ refreshInterval: 10 * 1000 }
+	);
+
+	const { data: userBadges } = useSWR(
+		`${user?.id}_badges`,
+		() => (user?.badges ? getUserBadgesFromArray(user.badges) : null),
+		{ refreshInterval: 10 * 1000 }
+	);
 
 	const { data: seasonScore } = useSWR('season_score', getSeasonScore, {
 		refreshInterval: 120 * 1000,
 	});
-
-	const { data: badges } = useSWR('all_badges', getAllBadges, { refreshInterval: 60 * 1000 });
 
 	const profile = useMemo(() => {
 		if (user) {
@@ -42,9 +43,9 @@ export default function Dashboard() {
 		return null;
 	}, [user]);
 
-	const badgesDisplay = useMemo(() => {
-		if (badges) {
-			return badges.map((badge) => (
+	const badgesDisplay = useMemo(
+		() =>
+			userBadges?.map((badge) => (
 				<div className={classes.badge} key={badge.id}>
 					<Paper className={classes.paper}>
 						<Grid container direction="row" spacing={2}>
@@ -54,7 +55,6 @@ export default function Dashboard() {
 										className={classes.imge}
 										alt={badge.name}
 										src={badge.image}
-										loading="lazy"
 									/>
 								</ButtonBase>
 							</Grid>
@@ -73,10 +73,9 @@ export default function Dashboard() {
 						</Grid>
 					</Paper>
 				</div>
-			));
-		}
-		return null;
-	}, [badges]);
+			)),
+		[userBadges]
+	);
 
 	return (
 		<div>
@@ -142,9 +141,7 @@ export default function Dashboard() {
 				style={{
 					marginTop: 30,
 				}}>
-				<h1 style={{ fontFamily: 'serif', color: '#2f353a', textAlign: 'center' }}>
-					BADGES
-				</h1>
+				<h1 style={{ color: '#2f353a', textAlign: 'center' }}>BADGES</h1>
 			</div>
 			<Container className={classes.c} maxWidth="md">
 				<Grid container spacing={2}>

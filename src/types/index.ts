@@ -5,6 +5,7 @@ export type UserInfoType = {
 	provider: string;
 	created_at: string;
 	score: number | null; // a one-to-ome relation with score model which has info about quizzes solved by the user
+	badges: Array<Omit<BadgeDataType, 'image'>>;
 };
 
 export type QuestionType = {
