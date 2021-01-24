@@ -17,7 +17,6 @@ import {
 	Card,
 	CardActions,
 	CardContent,
-	CardMedia,
 	Container,
 	Chip,
 } from '@material-ui/core';
@@ -75,9 +74,6 @@ export default function AllQs() {
 	const quesDisplays = useMemo(() => {
 		const questions = data ?? [];
 		if (questions.length > 0) {
-			// TODO Change the design of the question card display
-			//  labels: styling
-			//  assignees: yashvi2001
 			return questions.map((question) => (
 				<Grid
 					item
