@@ -141,9 +141,7 @@ export default function Dashboard() {
 				style={{
 					marginTop: 30,
 				}}>
-				<h1 style={{ fontFamily: 'serif', color: '#2f353a', textAlign: 'center' }}>
-					BADGES
-				</h1>
+				<h1 style={{ color: '#2f353a', textAlign: 'center' }}>BADGES</h1>
 			</div>
 			<Container className={classes.c} maxWidth="md">
 				<Grid container spacing={2}>
