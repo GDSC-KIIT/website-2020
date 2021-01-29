@@ -1,15 +1,14 @@
 {
 	"name": "dsc-kiit-website-backend",
 	"private": true,
-	"version": "2.1.1",
+	"version": "2.6.0",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
-		"dev": "strapi develop",
+		"devf": "cross-env FAST=TRUE strapi develop",
 		"start": "strapi start",
 		"build": "strapi build --clean",
 		"strapi": "strapi",
 		"postinstall": "node env-Decrypter.js",
-		"devf": "cross-env FAST=TRUE strapi develop",
 		"ci:build": "cross-env FAST=TRUE strapi build",
 		"server:testing": "cross-env TESTING=TRUE npm start",
 		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"
