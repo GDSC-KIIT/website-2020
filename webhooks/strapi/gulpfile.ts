@@ -4,18 +4,20 @@ import path from 'path';
 import { spawn, execSync } from 'child_process';
 import uglify from 'uglify-js';
 
-export function tsCompile() {
+function cleanDir() {
+	fs.rmdirSync(dir, { recursive: true });
+	return Promise.resolve();
+}
+
+function tsCompile() {
 	execSync('npm run tsc', {
 		cwd: process.cwd(),
 		stdio: 'inherit',
 	});
+	return Promise.resolve();
 }
 
 const dir = './build';
-
-function cleanDir() {
-	fs.rmdirSync(dir, { recursive: true });
-}
 
 function _getFileLocations() {
 	const files = fs.readdirSync(dir);
@@ -26,22 +28,26 @@ function _getFileLocations() {
 }
 
 function minifyJS() {
-	var options = {
-		mangle: {
-			properties: true,
+	const options = {
+		mangle: true,
+		compress: {
+			sequences: true,
+			dead_code: true,
+			conditionals: true,
+			booleans: true,
+			unused: true,
+			if_return: true,
+			join_vars: true,
+			drop_console: true,
 		},
 	};
 	const locs = _getFileLocations();
 	const uglifed = uglify.minify(locs, options);
 	fs.writeFileSync(dir + '/main.js', uglifed.code);
-}
-
-export function build() {
-	cleanDir();
-	tsCompile();
-	minifyJS();
 	return Promise.resolve();
 }
+
+export const build = gulp.series(cleanDir, tsCompile, minifyJS);
 
 export async function tsDev() {
 	execSync('pkill -9 node');

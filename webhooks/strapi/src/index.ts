@@ -15,7 +15,7 @@ async function init(): Promise<IHapiServer> {
 		method: 'GET',
 		path: '/',
 		handler: (req, h) => {
-			return 'Found it';
+			return { this: true };
 		},
 	});
 
