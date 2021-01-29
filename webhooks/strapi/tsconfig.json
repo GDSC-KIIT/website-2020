@@ -1,13 +1,14 @@
 {
 	"compilerOptions": {
 		"outDir": "build",
-		"target": "es6",
+		"target": "es5",
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"typeRoots": ["node_modules/@types"],
 		"esModuleInterop": true
 	},
+	"rootDir": ".",
 	"include": ["src/**/**.ts"],
 	"exclude": ["node_modules"]
 }

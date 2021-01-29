@@ -1,5 +1,4 @@
 import { server as HapiServer, Server as IHapiServer } from '@hapi/hapi';
-import { debuglog } from 'util';
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || '9001';
@@ -20,9 +19,8 @@ async function init(): Promise<IHapiServer> {
 		},
 	});
 
+	console.log('started server on ', PORT, DEBUG_LEVEL);
 	await server.start();
-
-	console.log('SERVER STARTED ON ' + PORT);
 
 	return server;
 }
