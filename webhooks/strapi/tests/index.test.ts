@@ -1,7 +1,9 @@
 import * as Lab from '@hapi/lab';
-// import { expect } from 'chai';
 import * as chai from 'chai';
 const expect = chai.expect;
+
+import { Server as IHapiServer } from '@hapi/hapi';
+import { init } from '../src/bootstrap';
 
 const lab = Lab.script();
 const { describe, it, before, beforeEach, afterEach } = lab;
@@ -15,4 +17,20 @@ describe('experiment', () => {
 	});
 });
 
-// describe('server can bootstrap', () => {});
+describe('server can bootstrap', () => {
+	let server: IHapiServer;
+	beforeEach(async () => {
+		server = await init();
+	});
+	afterEach(async () => {
+		await server.stop();
+	});
+
+	it('responds with 200', async () => {
+		const res = await server.inject({
+			url: '/',
+			method: 'GET',
+		});
+		expect(res.statusCode).to.equal(200);
+	});
+});

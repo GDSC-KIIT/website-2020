@@ -1,4 +1,8 @@
-import { server as HapiServer, Server as IHapiServer } from '@hapi/hapi';
+import {
+	server as HapiServer,
+	Server as IHapiServer,
+	ServerRoute as IServerRoute,
+} from '@hapi/hapi';
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || '9001';
@@ -10,22 +14,20 @@ const server = HapiServer({
 	host: HOST,
 });
 
-server.route({
-	method: 'GET',
-	path: '/',
-	handler: (req, h) => {
-		return { this: true };
-	},
-});
-
 export async function init(): Promise<IHapiServer> {
 	await server.initialize();
 	return server;
 }
 
-export async function start(): Promise<IHapiServer> {
-	await server.start();
-	return server;
-}
+export const indexRoute: IServerRoute = {
+	path: '/',
+	method: ['GET', 'POST'],
+	handler: (req) => {
+		if (req.method === 'post') {
+			return { message: 'check the correct route' };
+		}
+		return { message: 'hapi strapi router' };
+	},
+};
 
-init();
+export default server;
