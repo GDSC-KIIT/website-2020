@@ -18,7 +18,9 @@ export interface IStrapiEvent {
 	event?: eventType;
 	created_at?: Date;
 	model?: string;
-	entry?: object;
+	entry?: {
+		id?: number;
+	};
 	media?: {
 		name: string;
 		url: string;
