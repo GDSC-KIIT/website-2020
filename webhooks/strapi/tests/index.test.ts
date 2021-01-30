@@ -2,7 +2,7 @@ import * as Lab from '@hapi/lab';
 import { expect } from '@hapi/code';
 
 const lab = Lab.script();
-const { describe, it, before } = lab;
+const { describe, it, before, beforeEach, afterEach } = lab;
 export { lab };
 
 describe('experiment', () => {

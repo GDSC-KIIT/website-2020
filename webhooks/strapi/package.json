@@ -25,7 +25,6 @@
 		"@hapi/lab": "^24.1.0",
 		"@types/gulp": "^4.0.8",
 		"@types/hapi__hapi": "^20.0.5",
-		"@types/uglify-js": "^3.11.1",
 		"gulp": "^4.0.2",
 		"lab-transform-typescript": "^3.0.1",
 		"mocha": "^8.2.1",
