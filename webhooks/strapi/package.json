@@ -4,11 +4,11 @@
 	"description": "A webhook-router for outgoing requests from strapi webhook",
 	"main": "index.js",
 	"scripts": {
-		"test": "TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
-		"watch": "nodemon --watch build/src build/src/index.js",
 		"build": "gulp build",
 		"tsc": "tsc",
-		"dev": "NODE_ENV=development ts-node-dev --watch src/**/.ts src/index.ts"
+		"dev": "NODE_ENV=development ts-node-dev --watch src/**/.ts src/index.ts",
+		"test": "lab --sourcemaps --transform node_modules/lab-transform-typescript **/*.test.ts --timeout 1000",
+		"testw": "gulp testWatch"
 	},
 	"keywords": [
 		"webhook",
@@ -21,14 +21,13 @@
 		"@hapi/hapi": "^20.1.0"
 	},
 	"devDependencies": {
-		"@types/chai": "^4.2.14",
+		"@hapi/code": "^8.0.2",
+		"@hapi/lab": "^24.1.0",
 		"@types/gulp": "^4.0.8",
 		"@types/hapi__hapi": "^20.0.5",
-		"@types/mocha": "^8.2.0",
-		"@types/node": "^14.14.22",
-		"chai": "^4.2.0",
-		"chai-http": "^4.3.0",
+		"@types/uglify-js": "^3.11.1",
 		"gulp": "^4.0.2",
+		"lab-transform-typescript": "^3.0.1",
 		"mocha": "^8.2.1",
 		"ts-node-dev": "^1.1.1",
 		"typescript": "^4.1.3",

@@ -49,18 +49,33 @@ function minifyJS() {
 
 export const build = gulp.series(cleanDir, tsCompile, minifyJS);
 
-export async function tsDev() {
-	execSync('pkill -9 node');
-	spawn('npm', ['run', 'ts-node', 'src/index.ts'], {
+// export async function tsDev() {
+// 	execSync('pkill -9 node');
+// 	spawn('npm', ['run', 'ts-node', 'src/index.ts'], {
+// 		cwd: process.cwd(),
+// 		detached: true,
+// 		stdio: 'inherit',
+// 	});
+// }
+
+// export function dev() {
+// 	tsDev();
+// 	gulp.watch('src/**/*.ts', () => {
+// 		tsDev();
+// 	});
+// }
+
+function runTest() {
+	spawn('npm', ['run', 'test'], {
 		cwd: process.cwd(),
 		detached: true,
 		stdio: 'inherit',
 	});
 }
 
-export function dev() {
-	tsDev();
-	gulp.watch('src/**/*.ts', () => {
-		tsDev();
+export function testWatch() {
+	runTest();
+	gulp.watch('**/*.*', () => {
+		runTest();
 	});
 }

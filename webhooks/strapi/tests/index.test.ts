@@ -1,7 +1,14 @@
-import { expect } from 'chai';
+import * as Lab from '@hapi/lab';
+import { expect } from '@hapi/code';
 
-describe('adder', () => {
-	it('adds the 2 quantities', () => {
-		expect(2 + 2).to.eq(4);
+const lab = Lab.script();
+const { describe, it, before } = lab;
+export { lab };
+
+describe('experiment', () => {
+	before(() => {});
+
+	it('verifies 1 equals 1', () => {
+		expect(1).to.equal(1);
 	});
 });
