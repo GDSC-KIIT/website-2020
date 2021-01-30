@@ -67,10 +67,10 @@ const sendToDiscordChannel = (message: string): void => {
 	axios.post(DISCORD_URL, data);
 };
 
-const handler: Lifecycle.Method = (req) => {
+const handler: Lifecycle.Method = (req, h) => {
 	const payload = req.payload as IStrapiEvent;
-	if (!payload) {
-		return { done: false };
+	if (!instanceOfStrapiEvent(payload)) {
+		return h.response({ done: false }).code(400);
 	}
 
 	const message = whatHappened(payload);
@@ -86,3 +86,7 @@ export const discordRoutes: ServerRoute[] = [
 		handler,
 	},
 ];
+
+function instanceOfStrapiEvent(obj: any): obj is IStrapiEvent {
+	return obj && typeof obj === 'object' && 'event' in obj && ('entry' in obj || 'media' in obj);
+}
