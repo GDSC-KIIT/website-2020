@@ -14,11 +14,6 @@ const server = HapiServer({
 	host: HOST,
 });
 
-export async function init(): Promise<IHapiServer> {
-	await server.initialize();
-	return server;
-}
-
 export const indexRoute: IServerRoute = {
 	path: '/',
 	method: ['GET', 'POST'],

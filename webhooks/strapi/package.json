@@ -24,6 +24,7 @@
 	},
 	"devDependencies": {
 		"@hapi/lab": "^24.1.0",
+		"@types/chai": "^4.2.14",
 		"@types/gulp": "^4.0.8",
 		"@types/hapi__hapi": "^20.0.5",
 		"chai": "^4.2.0",
