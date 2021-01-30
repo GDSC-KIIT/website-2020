@@ -4,7 +4,7 @@ import type { IDiscordData } from '../../types/discord';
 
 import axios from 'axios';
 
-const DISCORD_URL = process.env.DISCORD_URL;
+const DISCORD_URL = process.env.DISCORD_URL || 'none';
 
 const createMessage = (event: string, entry: IStrapiEvent['entry'], model: string): string => {
 	if (Array.isArray(entry)) {
