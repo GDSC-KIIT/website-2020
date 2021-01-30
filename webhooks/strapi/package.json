@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "gulp build",
+		"start": "node build/main.js || node build/src/index.js",
 		"tsc": "tsc",
 		"dev": "NODE_ENV=development ts-node-dev --watch src/**/.ts src/index.ts",
 		"test": "lab --sourcemaps --transform node_modules/lab-transform-typescript **/*.test.ts --timeout 1000",
@@ -18,7 +19,8 @@
 	"author": "aditya-mitra",
 	"license": "MIT",
 	"dependencies": {
-		"@hapi/hapi": "^20.1.0"
+		"@hapi/hapi": "^20.1.0",
+		"axios": "^0.21.1"
 	},
 	"devDependencies": {
 		"@hapi/lab": "^24.1.0",

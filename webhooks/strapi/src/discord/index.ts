@@ -1,13 +1,39 @@
 import type { ServerRoute, Lifecycle } from '@hapi/hapi';
-import { create } from 'domain';
 import type { IStrapiEvent } from '../../types/strapi';
 
-const createMessage = (id: number, event: string, model: string, record: 'entry' | 'media') => {
-	return `A ${record} with id - ${id}
-    was _**${event}d**_ for \`${model.toUpperCase()}\``;
+import axios from 'axios';
+
+const DISCORD_URL =
+	'https://discord.com/api/webhooks/804725715726762014/krWGYE8OgkzL2OXqVIKlGmgdwyAC4wDWpAQ1M8rOZRMJNLgvZTJl9BxFHztSVIk6DJpL';
+
+const createMessage = (event: string, entry: IStrapiEvent['entry'], model: string): string => {
+	if (Array.isArray(entry)) {
+		const idsArray = entry.map((e) => e.id);
+
+		return `Many entries with ids - \`${idsArray.toString()}\`
+        were _**${event}d**_ for **\`${model.toUpperCase()}\`**`;
+	}
+
+	return `An entry with id - \`${entry.id}\`
+    was _**${event}d**_ for **\`${model.toUpperCase()}\`**`;
 };
 
-const whatHappened = (ev: IStrapiEvent) => {
+const createMediaMessage = (event: string, media: IStrapiEvent['media']) => {
+	if (Array.isArray(media)) {
+		const mimesArray = media.map((m) => m.mime.split('/')[0]);
+		const idsArray = media.map((m) => m.id);
+		const urlsArray = media.map((m) => m.url);
+
+		return `Many *${mimesArray.toString()}* was ${event}d with ida - \`${idsArray.toString()}\`.
+        They can be found here - **${urlsArray.toString()}**`;
+	}
+
+	const mime = media?.mime.split('/')[0];
+	return `An *${mime.toUpperCase()}* was ${event}d with id - \`${media.id}\`.
+    It can be found here - **${media.url}**`;
+};
+
+const whatHappened = (ev: IStrapiEvent): string => {
 	console.log('the event was', ev);
 	switch (ev.event) {
 		case 'trigger-test':
@@ -20,19 +46,27 @@ const whatHappened = (ev: IStrapiEvent) => {
 		case 'entry.unpublish':
 		case 'entry.delete': {
 			const event = ev.event.split('.')[1];
-			return createMessage(ev.entry?.id, event, ev.model, 'entry');
+
+			return createMessage(event, ev.entry, ev.model);
 		}
 
 		case 'media.create':
 		case 'media.update':
 		case 'media.delete': {
-			const event = ev.event.split('.')[0];
-			return createMessage(ev.entry?.id, event, ev.model, 'media');
+			const event = ev.event.split('.')[1];
+			return createMediaMessage(event, ev.media);
 		}
 
 		default:
 			return `A unknown event was triggered - ${ev.event}`;
 	}
+};
+
+const sendToDiscordChannel = (message: string): void => {
+	const data = {
+		content: message,
+	};
+	axios.post(DISCORD_URL, data);
 };
 
 const handler: Lifecycle.Method = (req) => {
@@ -42,6 +76,7 @@ const handler: Lifecycle.Method = (req) => {
 	}
 	const m = whatHappened(payload);
 	console.log(m);
+	sendToDiscordChannel(m);
 
 	return { done: true };
 };
