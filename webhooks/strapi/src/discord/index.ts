@@ -1,5 +1,6 @@
 import type { ServerRoute, Lifecycle } from '@hapi/hapi';
 import type { IStrapiEvent } from '../../types/strapi';
+import type { IDiscordData } from '../../types/discord';
 
 import axios from 'axios';
 
@@ -34,7 +35,6 @@ const createMediaMessage = (event: string, media: IStrapiEvent['media']) => {
 };
 
 const whatHappened = (ev: IStrapiEvent): string => {
-	console.log('the event was', ev);
 	switch (ev.event) {
 		case 'trigger-test':
 			return `Webhook is working 🎉
@@ -63,7 +63,7 @@ const whatHappened = (ev: IStrapiEvent): string => {
 };
 
 const sendToDiscordChannel = (message: string): void => {
-	const data = {
+	const data: IDiscordData = {
 		content: message,
 	};
 	axios.post(DISCORD_URL, data);
@@ -74,9 +74,9 @@ const handler: Lifecycle.Method = (req) => {
 	if (!payload) {
 		return { done: false };
 	}
-	const m = whatHappened(payload);
-	console.log(m);
-	sendToDiscordChannel(m);
+
+	const message = whatHappened(payload);
+	sendToDiscordChannel(message);
 
 	return { done: true };
 };

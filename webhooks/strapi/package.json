@@ -7,7 +7,7 @@
 		"build": "gulp build",
 		"start": "node build/main.js || node build/src/index.js",
 		"tsc": "tsc",
-		"dev": "NODE_ENV=development ts-node-dev --watch src/**/.ts src/index.ts",
+		"dev": "NODE_ENV=development ts-node-dev --watch src/**/*.ts src/index.ts",
 		"test": "lab --sourcemaps --transform node_modules/lab-transform-typescript **/*.test.ts --timeout 1000",
 		"testw": "gulp testWatch"
 	},

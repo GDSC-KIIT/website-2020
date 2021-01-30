@@ -7,7 +7,7 @@ const routes: ServerRoute[] = [indexRoute, ...discordRoutes];
 
 async function start() {
 	await server.start();
-
+	console.log(`Starting ${process.env.NODE_ENV} server ...`);
 	server.route(routes);
 	return server;
 }
