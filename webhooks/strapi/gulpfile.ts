@@ -77,5 +77,6 @@ export function testWatch() {
 	runTest();
 	gulp.watch('**/*.*', () => {
 		runTest();
+		return Promise.resolve();
 	});
 }

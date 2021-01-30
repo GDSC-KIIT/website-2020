@@ -1,5 +1,7 @@
 import * as Lab from '@hapi/lab';
-import { expect } from '@hapi/code';
+// import { expect } from 'chai';
+import * as chai from 'chai';
+const expect = chai.expect;
 
 const lab = Lab.script();
 const { describe, it, before, beforeEach, afterEach } = lab;
@@ -12,3 +14,5 @@ describe('experiment', () => {
 		expect(1).to.equal(1);
 	});
 });
+
+// describe('server can bootstrap', () => {});
