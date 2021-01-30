@@ -4,8 +4,7 @@ import type { IDiscordData } from '../../types/discord';
 
 import axios from 'axios';
 
-const DISCORD_URL =
-	'https://discord.com/api/webhooks/804725715726762014/krWGYE8OgkzL2OXqVIKlGmgdwyAC4wDWpAQ1M8rOZRMJNLgvZTJl9BxFHztSVIk6DJpL';
+const DISCORD_URL = process.env.DISCORD_URL;
 
 const createMessage = (event: string, entry: IStrapiEvent['entry'], model: string): string => {
 	if (Array.isArray(entry)) {
@@ -46,7 +45,6 @@ const whatHappened = (ev: IStrapiEvent): string => {
 		case 'entry.unpublish':
 		case 'entry.delete': {
 			const event = ev.event.split('.')[1];
-
 			return createMessage(event, ev.entry, ev.model);
 		}
 
