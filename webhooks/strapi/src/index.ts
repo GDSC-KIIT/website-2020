@@ -1,21 +1,14 @@
-import { ServerRoute } from '@hapi/hapi';
-import server, { indexRoute } from './bootstrap';
+import type { ServerRoute } from '@hapi/hapi';
 
-const routes: ServerRoute[] = [indexRoute];
+import server, { indexRoute } from './bootstrap';
+import { discordRoutes } from './discord';
+
+const routes: ServerRoute[] = [indexRoute, ...discordRoutes];
 
 async function start() {
 	await server.start();
 
-	server.route({
-		path: '/discord',
-		method: 'POST',
-		handler: (req, h) => {
-			console.log('the request was', req.info);
-
-			console.log('the header was', req.headers);
-			return { message: 'working' };
-		},
-	});
+	server.route(routes);
 	return server;
 }
 
