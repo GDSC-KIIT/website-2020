@@ -88,5 +88,10 @@ export const discordRoutes: ServerRoute[] = [
 ];
 
 function instanceOfStrapiEvent(obj: any): obj is IStrapiEvent {
-	return obj && typeof obj === 'object' && 'event' in obj && ('entry' in obj || 'media' in obj);
+	return (
+		obj &&
+		typeof obj === 'object' &&
+		'event' in obj &&
+		('entry' in obj || 'media' in obj || obj.event === 'trigger-test')
+	);
 }
