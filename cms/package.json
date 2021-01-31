@@ -21,9 +21,6 @@
 		"sqlite3": "^5.0.0"
 	},
 	"dependencies": {
-		"dotenv": "^8.2.0",
-		"find-config": "^1.0.0",
-		"firebase-admin": "^9.4.2",
 		"knex": "<0.20.0",
 		"pg": "^8.5.1",
 		"pg-connection-string": "^2.4.0",
