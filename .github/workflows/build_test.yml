@@ -201,6 +201,8 @@ jobs:
 
     test_webhook_hapi:
         runs-on: ubuntu-latest
+        needs:
+            - install_webhook_hapi
         env:
             NODE_ENV: PRODUCTION
 
