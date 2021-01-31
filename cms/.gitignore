@@ -1,6 +1,6 @@
 firebase-env.json
 /env/
-api/
+extensions/users-permissions/config/jwt.js
 
 ############################
 # OS X
