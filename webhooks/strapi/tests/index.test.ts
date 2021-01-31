@@ -1,11 +1,18 @@
 import * as Lab from '@hapi/lab';
 import { expect } from 'chai';
-import sinon, { SinonSpy, SinonStub } from 'sinon';
+import sinon, { SinonStub } from 'sinon';
 
 import axios from 'axios';
+import { ServerInjectResponse } from '@hapi/hapi';
 import server, { indexRoute } from '../src/bootstrap';
 import { discordRoutes } from '../src/discord';
-import { strapiEntryPayload, strapiMediaPayload } from './utils';
+import {
+	strapiEntryPayload,
+	strapiMediaPayload,
+	strapiEntryPayloadMany,
+	strapiMediaPayloadMany,
+	isWordInString,
+} from './utils';
 
 const lab = Lab.script();
 const { describe, it, before, beforeEach, afterEach } = lab;
@@ -39,7 +46,6 @@ describe('server can bootstrap', () => {
 });
 
 describe('discord webhook functions', () => {
-	let spy: SinonSpy;
 	let stub: SinonStub;
 	beforeEach(() => {
 		stub = sinon.stub(axios, 'post');
@@ -67,12 +73,13 @@ describe('discord webhook functions', () => {
 			const payload = JSON.parse(res.payload);
 
 			expect(payload).to.have.property('done');
-			expect(payload.done).to.false;
+			expect(payload.done).to.be.false;
 		});
 
 		it('event is missing', async () => {
 			const payload = { ...strapiEntryPayload };
 			delete payload.event;
+
 			const res = await server.inject({
 				url: '/discord',
 				method: 'POST',
@@ -85,6 +92,7 @@ describe('discord webhook functions', () => {
 		it('entry is missing', async () => {
 			const payload = { ...strapiEntryPayload };
 			delete payload.entry;
+
 			const res = await server.inject({
 				url: '/discord',
 				method: 'POST',
@@ -97,6 +105,7 @@ describe('discord webhook functions', () => {
 		it('media is missing', async () => {
 			const payload = { ...strapiMediaPayload };
 			delete payload.media;
+
 			const res = await server.inject({
 				url: '/discord',
 				method: 'POST',
@@ -108,26 +117,87 @@ describe('discord webhook functions', () => {
 	});
 
 	describe('entry payload', () => {
-		it('responds with 200', async () => {
-			const res = await server.inject({
+		let res: ServerInjectResponse;
+		beforeEach(async () => {
+			res = await server.inject({
 				url: '/discord',
 				method: 'POST',
 				payload: { ...strapiEntryPayload },
 			});
+		});
+
+		it('responds with 200', () => {
+			expect(res.statusCode).to.eq(200);
+		});
+
+		it('has done-true', () => {
+			const resp = JSON.parse(res.payload);
+			expect(resp.done).to.be.true;
+		});
+
+		it('handles many entries action', async () => {
+			const res = await server.inject({
+				url: '/discord',
+				method: 'POST',
+				payload: { ...strapiEntryPayloadMany },
+			});
 
 			expect(res.statusCode).to.eq(200);
+		});
+
+		it('sends a request to discord webhook', () => {
+			expect(stub.called).to.be.true;
+		});
+
+		it('the request to discord webhook has the correct message', () => {
+			const messageArgument = stub.getCall(0).args[1];
+			expect(messageArgument).to.have.property('content');
+			const { content } = messageArgument;
+			expect(isWordInString('entry', content)).to.be.true;
+			expect(isWordInString('create', content)).to.be.true;
 		});
 	});
 
 	describe('media payload', () => {
-		it('responds with 200', async () => {
-			const res = await server.inject({
+		let res: ServerInjectResponse;
+
+		beforeEach(async () => {
+			res = await server.inject({
 				url: '/discord',
 				method: 'POST',
 				payload: { ...strapiMediaPayload },
 			});
+		});
+
+		it('responds with 200', () => {
+			expect(res.statusCode).to.eq(200);
+		});
+
+		it('responds with 200', () => {
+			const resp = JSON.parse(res.payload);
+			expect(resp.done).to.be.true;
+		});
+
+		it('handles many media action', async () => {
+			const res = await server.inject({
+				url: '/discord',
+				method: 'POST',
+				payload: { ...strapiMediaPayloadMany },
+			});
 
 			expect(res.statusCode).to.eq(200);
+		});
+
+		it('sends a request to discord webhook', () => {
+			expect(stub.called).to.be.true;
+		});
+
+		it('the request to discord webhook has the correct message', () => {
+			const messageArgument = stub.getCall(0).args[1];
+			expect(messageArgument).to.have.property('content');
+			const { content } = messageArgument;
+			expect(isWordInString('image', content)).to.be.true;
+			expect(isWordInString('delete', content)).to.be.true;
 		});
 	});
 });
