@@ -29,13 +29,17 @@ jobs:
                   path: ./*
                   key: ${{ runner.os }}-cms-${{ hashFiles('**/package-lock.json') }}
 
+            - name: show cache status
+              run: |
+                  echo ${{steps.cache.outputs.cache-hit}}
+
             - name: Get Node
               uses: actions/setup-node@v2
-              if: steps.cache.outputs.cache-hit == 'false'
+              if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Install dependencies
               run: npm ci
-              if: steps.cache.outputs.cache-hit == 'false'
+              if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Cache all of the above
               uses: actions/cache@v2
