@@ -38,7 +38,7 @@ jobs:
 
             - name: Install dependencies
               run: npm ci
-              if: steps.cache.outputs.cache-hit != 'true'
+              if: steps.cache.outputs.cache-hit == 'false'
 
             - name: Cache all of the above
               uses: actions/cache@v2
@@ -108,18 +108,18 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-dis2-${{ hashFiles('**/package.json') }}
+                  key: ${{ runner.os }}-dis3-${{ hashFiles('**/package.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2
 
             - name: Install dependencies
               run: npm ci
-              if: steps.cache.outputs.cache-hit == 'false'
+              if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Install cms
               run: npm ci --prefix cms
-              if: steps.cache.outputs.cache-hit == 'false'
+              if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Cache all of the above
               uses: actions/cache@v2
