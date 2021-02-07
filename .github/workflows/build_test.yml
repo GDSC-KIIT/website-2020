@@ -108,7 +108,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-dis1-${{ hashFiles('**/package.json') }}
+                  key: ${{ runner.os }}-dis2-${{ hashFiles('**/package.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2
