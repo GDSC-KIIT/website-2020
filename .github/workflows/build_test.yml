@@ -38,7 +38,7 @@ jobs:
 
             - name: Install dependencies
               run: npm ci
-              if: steps.cache.outputs.cache-hit != 'false' # if cache could not be found, output will be blank
+              if: steps.cache.outputs.cache-hit != 'true' # if cache could not be found, output will be blank
 
             - name: Cache all of the above
               uses: actions/cache@v2
