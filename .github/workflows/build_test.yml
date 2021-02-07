@@ -27,7 +27,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-cms1-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-cms2-${{ hashFiles('**/package-lock.json') }}
 
             - name: show cache status
               run: |
