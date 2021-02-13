@@ -1,15 +1,14 @@
 {
 	"name": "dsc-kiit-website-backend",
 	"private": true,
-	"version": "2.1.1",
+	"version": "2.6.0",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
-		"dev": "strapi develop",
+		"devf": "cross-env FAST=TRUE strapi develop",
 		"start": "strapi start",
 		"build": "strapi build --clean",
 		"strapi": "strapi",
 		"postinstall": "node env-Decrypter.js",
-		"devf": "cross-env FAST=TRUE strapi develop",
 		"ci:build": "cross-env FAST=TRUE strapi build",
 		"server:testing": "cross-env TESTING=TRUE npm start",
 		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"
@@ -22,9 +21,6 @@
 		"sqlite3": "^5.0.0"
 	},
 	"dependencies": {
-		"dotenv": "^8.2.0",
-		"find-config": "^1.0.0",
-		"firebase-admin": "^9.4.2",
 		"knex": "<0.20.0",
 		"pg": "^8.5.1",
 		"pg-connection-string": "^2.4.0",

@@ -10,8 +10,6 @@
  * See more details here: https://strapi.io/documentation/developer-docs/latest/concepts/configurations.html#bootstrap
  */
 
-require('dotenv').config({ path: require('find-config')('.env') });
-
 async function updatePermissionsTestConfig() {
 	const orm = strapi.query('permission', 'users-permissions');
 	const perms = await orm.find({ type: 'application' });
