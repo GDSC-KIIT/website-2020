@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+    db:
+        container_name: pgdb
+        image: postgres:12-alpine
+        restart: always
+        environment:
+            POSTGRES_DB: cmspgdb
+            POSTGRES_USER: postgresuser
+            POSTGRES_PASSWORD: postgrespass
+        ports:
+            - 5432:5432
+        networks:
+            - backend-network
+
+    cms:
+        container_name: cmsbackend
+        build: ./cms
+        depends_on:
+            - db
+        ports:
+            - 9000:9000
+        restart: always
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -U postgresuser']
+            interval: 10s
+            timeout: 5s
+            retries: 5
+        networks:
+            - backend-network
+
+    webhook:
+        container_name: strapi_webhook
+        build: ./webhooks/strapi
+        environment:
+            - DISCORD_URL=CORRECT DISCORD URL
+        ports:
+            - 9001:9001
+
+networks:
+    backend-network: {}

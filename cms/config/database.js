@@ -1,6 +1,9 @@
 const productionConfig = ({ env }) => {
 	const dbUriParse = require('pg-connection-string').parse;
-	const dbConfig = dbUriParse(env('DATABASE_URL'));
+
+	const dbConfig = dbUriParse(process.env.DB_URL_PG);
+
+	console.log(require('util').inspect(dbConfig, false, null, true));
 
 	return {
 		defaultConnection: 'default',
