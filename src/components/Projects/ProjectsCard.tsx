@@ -11,7 +11,7 @@ import {
 	Button,
 } from '@material-ui/core';
 import { GitHub as GitHubIcon, Person as PersonIcon } from '@material-ui/icons';
-import MoreIcon from '@material-ui/icons/More';
+/* import MoreIcon from '@material-ui/icons/More'; */
 import { getStrapiMediaProject } from '../../lib/media';
 declare global {
 	namespace JSX {
