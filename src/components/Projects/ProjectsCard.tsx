@@ -11,7 +11,7 @@ import {
 	Button,
 } from '@material-ui/core';
 import { GitHub as GitHubIcon, Person as PersonIcon } from '@material-ui/icons';
-import MoreIcon from '@material-ui/icons/More';
+// import MoreIcon from '@material-ui/icons/More';
 import { getStrapiMediaProject } from '../../lib/media';
 declare global {
 	namespace JSX {
@@ -65,16 +65,16 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 							variant="outlined"
 							color="primary"
 							startIcon={<GitHubIcon />}
-							href="https://github.com">
+							href={projectInfo.Github}>
 							GitHub
 						</Button>
-						<Button
+						{/* <Button
 							variant="outlined"
 							color="primary"
 							startIcon={<MoreIcon />}
 							href="https://github.com">
 							Know More
-						</Button>
+						</Button> */}
 					</CardActions>
 				</Card>
 			</Grid>
