@@ -4,12 +4,12 @@
 	"version": "2.6.0",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
-		"devf": "cross-env FAST=TRUE strapi develop",
+		"dev": "strapi develop",
 		"start": "strapi start",
 		"build": "strapi build --clean",
 		"strapi": "strapi",
 		"postinstall": "node env-Decrypter.js",
-		"ci:build": "cross-env FAST=TRUE strapi build",
+		"ci:build": "strapi build",
 		"server:testing": "cross-env TESTING=TRUE npm start",
 		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit"
 	},
