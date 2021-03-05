@@ -8,6 +8,7 @@
 		"build": "strapi build --clean",
 		"postinstall": "node env-Decrypter.js",
 		"pm2": "pm2",
+		"prestart": "sh ../scripts/cms_prod_setup.sh",
 		"start": "pm2 start ecosystem.config.js --wait-ready",
 		"poststart": "pm2 monit",
 		"server:testing": "cross-env TESTING=TRUE npm start",
