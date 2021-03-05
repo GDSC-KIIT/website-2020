@@ -3,7 +3,10 @@ module.exports = ({ env }) => ({
 	port: env.int('PORT', 9000),
 	admin: {
 		auth: {
-			secret: env('ADMIN_JWT_SECRET'),
+			secret:
+				process.env.NODE_ENV === 'production'
+					? require('crypto').randomFillSync(Buffer.alloc(100)).toString('hex')
+					: 'DEV ADMIN JWT',
 		},
 	},
 });
