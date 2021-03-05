@@ -7,14 +7,15 @@ module.exports = {
 			exec_mode: 'cluster',
 			restart_delay: 3000,
 			listen_timeout: 4500,
-			error_file: '../LOGS/err.log', // create this LOGS folder after install
+			error_file: '../LOGS/err.log',
 			out_file: '../LOGS/out.log',
 			log_file: '../LOGS/combined.log',
 			max_memory_restart: '990M',
 			source_map_support: true,
 			env: {
 				NODE_ENV: 'production',
-				STRAPI_DEBUG_LEVEL: 'DEBUG', // get the correct variable name
+				STRAPI_LOG_LEVEL: 'info',
+				STRAPI_LOG_TIMESTAMP: true,
 			},
 		},
 	],
