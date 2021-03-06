@@ -11,6 +11,7 @@ sh tools/dev_setup.sh
 ```
 
 Otherwise, you can manually run the commands in [this script](./tools/dev_setup.sh) file one by one to complete your setup.
+_(You have to do `SKIP_DECR=TRUE npm install` when running `npm install` on the cms folder)_
 
 ## PRODUCTION SETUP
 

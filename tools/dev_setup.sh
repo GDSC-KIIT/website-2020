@@ -9,7 +9,7 @@ rm -rfv node_modules/ .cache/ build/ .strapi-updater.json
 
 export NODE_ENV=development
 
-npm install
+SKIP_DECR=TRUE npm install # skip .env files
 
 # frontend setup
 
