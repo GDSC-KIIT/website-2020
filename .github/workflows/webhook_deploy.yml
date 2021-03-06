@@ -1,11 +1,11 @@
 name: Hapi Strapi Webhook Deploy
 
 on:
-    push
-    # branches:
-    #   - main
-    # paths:
-    #   - 'webhooks/**'
+    push:
+        branches:
+            - main
+        paths:
+            - 'webhooks/**'
 
 jobs:
     heroku_deploy:
