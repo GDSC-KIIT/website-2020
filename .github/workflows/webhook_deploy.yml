@@ -17,7 +17,6 @@ jobs:
                   heroku_api_key: ${{secrets.HEROKU_WEBHOOK_API_KEY}}
                   heroku_app_name: ${{secrets.HEROKU_WEBHOOK_APP_NAME}}
                   heroku_email: ${{secrets.HEROKU_WEBHOOK_EMAIL}}
-                  branch: main
                   appdir: webhooks/strapi
                   dontuseforce: false
                   dontautocreate: false
