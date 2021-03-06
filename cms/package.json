@@ -10,7 +10,7 @@
 		"pm2": "pm2",
 		"start": "pm2 start ecosystem.config.js --wait-ready",
 		"poststart": "pm2 monit",
-		"server:testing": "cross-env TESTING=TRUE npm start",
+		"server:testing": "cross-env TESTING=TRUE strapi start",
 		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit",
 		"strapi": "strapi"
 	},
