@@ -21,6 +21,7 @@ export SKIP_DECR=FALSE
 printf "\n\n=================================================================\n\n"
 echo "Make sure you have set the PROD_DECR TO THE CORRECT SECRET"
 
+# ---EDIT THIS VARIABLE---
 export PROD_DECR=#correct env secret
 
 echo "PROD_DECR is $PROD_DECR"
