@@ -37,7 +37,7 @@ jobs:
               uses: actions/setup-node@v2
 
             - name: Install dependencies
-              run: npm install
+              run: npm install # do npm install because there are local npm packages
               if: steps.cache.outputs.cache-hit != 'true' # if cache could not be found, output will be blank
 
             - name: Cache all of the above
@@ -108,7 +108,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-dis3-${{ hashFiles('**/package.json') }}
+                  key: ${{ runner.os }}-dis4-${{ hashFiles('**/package.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2
@@ -118,7 +118,7 @@ jobs:
               if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Install cms
-              run: npm ci --prefix cms
+              run: npm install --prefix cms
               if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Cache all of the above
