@@ -14,7 +14,6 @@ jobs:
         env:
             NODE_ENV: PRODUCTION
             SKIP_DECR: 'TRUE'
-            FAST: 'TRUE'
 
         steps:
             - name: Checkout
@@ -53,7 +52,6 @@ jobs:
         env:
             NODE_ENV: PRODUCTION
             SKIP_DECR: 'TRUE'
-            FAST: 'TRUE'
 
         defaults:
             run:
@@ -68,7 +66,7 @@ jobs:
                   key: cms-${{github.sha}}
 
             - name: build cms dashboard
-              run: npm run ci:build
+              run: npm run build
 
     # test_cms:
     #     runs-on: ubuntu-latest
@@ -95,7 +93,6 @@ jobs:
         env:
             NODE_ENV: PRODUCTION
             SKIP_DECR: 'TRUE'
-            FAST: 'TRUE'
 
         steps:
             - name: Checkout
