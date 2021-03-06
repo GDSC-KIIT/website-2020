@@ -1,4 +1,4 @@
-name: Backend Deploy
+name: Hapi Strapi Webhook Deploy
 
 on:
     push
@@ -8,7 +8,7 @@ on:
     #   - 'webhooks/**'
 
 jobs:
-    backendDeploy:
+    heroku_deploy:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -19,6 +19,8 @@ jobs:
                   heroku_email: ${{secrets.HEROKU_WEBHOOK_EMAIL}}
                   branch: main
                   appdir: webhooks/strapi
+                  dontuseforce: false
+                  dontautocreate: false
               env:
                   HD_DISCORD_URL: ${{secrets.WEBHOOK_DISCORD_URL}}
             - run: |
