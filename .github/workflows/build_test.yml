@@ -2,6 +2,7 @@ name: Build and Test
 
 on:
     - pull_request
+    - push
 
 jobs:
     install_cms:
@@ -26,7 +27,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-cms2-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-cms3-${{ hashFiles('**/package-lock.json') }}
 
             - name: show cache status
               run: |
