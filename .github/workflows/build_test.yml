@@ -2,7 +2,6 @@ name: Build and Test
 
 on:
     - pull_request
-    - push
 
 jobs:
     install_cms:
@@ -36,7 +35,7 @@ jobs:
               uses: actions/setup-node@v2
 
             - name: Install dependencies
-              run: npm install # do npm install because there are local npm packages
+              run: npm install # do not do npm ci because there are local npm packages
               if: steps.cache.outputs.cache-hit != 'true' # if cache could not be found, output will be blank
 
             - name: Cache all of the above
