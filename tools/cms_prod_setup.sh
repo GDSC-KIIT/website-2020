@@ -1,12 +1,10 @@
-# in the root folder
+# in the cms folder
+
+cd cms/
 
 rm -rfv LOGS/
 
 mkdir LOGS/ # create the LOGS folder in the project root
-
-# in the cms folder
-
-cd cms/
 
 rm -rfv node_modules/ # remove existing node_modules if any
 
