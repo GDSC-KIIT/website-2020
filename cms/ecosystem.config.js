@@ -14,8 +14,7 @@ module.exports = {
 			source_map_support: true,
 			env: {
 				NODE_ENV: 'production',
-				STRAPI_LOG_LEVEL: 'info',
-				STRAPI_LOG_TIMESTAMP: true,
+				STRAPI_LOG_TIMESTAMP: false,
 			},
 		},
 	],
