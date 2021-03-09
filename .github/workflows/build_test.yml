@@ -12,7 +12,6 @@ jobs:
             run:
                 working-directory: cms
         env:
-            NODE_ENV: production
             SKIP_DECR: 'TRUE'
 
         steps:
@@ -91,7 +90,6 @@ jobs:
         runs-on: ubuntu-latest
 
         env:
-            NODE_ENV: production
             SKIP_DECR: 'TRUE'
 
         steps:
@@ -188,8 +186,6 @@ jobs:
 
     install_webhook_hapi:
         runs-on: ubuntu-latest
-        env:
-            NODE_ENV: production
 
         defaults:
             run:
