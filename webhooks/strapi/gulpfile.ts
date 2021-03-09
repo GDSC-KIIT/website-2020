@@ -28,6 +28,8 @@ function _getFileLocations() {
 }
 
 function minifyJS() {
+	console.log('====\nSKIPPING MINIFY\n====');
+	return Promise.resolve();
 	const options = {
 		mangle: true,
 		compress: {

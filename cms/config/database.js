@@ -1,4 +1,6 @@
-const productionConfig = ({ env }) => {
+// RECOMMENDED ONLY IF A REMOTE DATABASE CONNECTION IS RECEIVED
+// THE INTENDED DATABASE TO BE USED AS REMOTE DB HERE IS POSTGRES
+const remoteDBConfig = ({ env }) => {
 	const dbUriParse = require('pg-connection-string').parse;
 	const dbConfig = dbUriParse(env('DATABASE_URL'));
 
@@ -8,7 +10,7 @@ const productionConfig = ({ env }) => {
 			default: {
 				connector: 'bookshelf',
 				settings: {
-					client: 'postgres',
+					client: 'the database client to use',
 					database: dbConfig.database,
 					host: dbConfig.host,
 					port: dbConfig.port,
@@ -63,10 +65,10 @@ const testingConfig = () => ({
 });
 
 const config =
-	process.env.FAST === 'TRUE'
-		? fastConfig
+	process.env.REMOTE_DB === 'TRUE'
+		? remoteDBConfig
 		: process.env.TESTING === 'TRUE'
 		? testingConfig
-		: productionConfig;
+		: fastConfig;
 
 module.exports = config;

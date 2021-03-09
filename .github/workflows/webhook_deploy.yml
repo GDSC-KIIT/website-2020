@@ -1,0 +1,26 @@
+name: Hapi Strapi Webhook Deploy
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'webhooks/**'
+
+jobs:
+    heroku_deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.12.12
+              with:
+                  heroku_api_key: ${{secrets.HEROKU_WEBHOOK_API_KEY}}
+                  heroku_app_name: ${{secrets.HEROKU_WEBHOOK_APP_NAME}}
+                  heroku_email: ${{secrets.HEROKU_WEBHOOK_EMAIL}}
+                  appdir: webhooks/strapi
+                  dontuseforce: false
+                  dontautocreate: false
+              env:
+                  HD_DISCORD_URL: ${{secrets.WEBHOOK_DISCORD_URL}}
+            - run: |
+                  echo "deployed hapi strapi webhook"

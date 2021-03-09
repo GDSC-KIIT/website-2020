@@ -50,12 +50,14 @@
 async function addBadge(limit, badge) {
 	const knex = strapi.connections.default;
 
+	/**@type {Array<any>} */
+	const queriedUsers = await knex('scores')
+		.where('currentPoints', '>=', limit)
+		.select('users_permissions_user as userId');
+
 	/**getting all users who have currentPoints greater than limit
 	 * @type {Array<{userId:number}>} */
-	const receivingUsers = await knex('scores')
-		.where('currentPoints', '>=', limit)
-		.select('users_permissions_user as userId')
-		.map(({ userId }) => userId);
+	const receivingUsers = queriedUsers.map(({ userId }) => userId);
 
 	const usersORM = strapi.query('user', 'users-permissions');
 
@@ -81,6 +83,7 @@ module.exports = {
 			if (!result.limit || !result.badge) {
 				return strapi.log.error('either limit or badge were missing');
 			}
+
 			await addBadge(result.limit, result.badge);
 			strapi.log.info('updated all corresponding scores');
 		},

@@ -1,4 +1,4 @@
-import type { ServerRoute, Server } from '@hapi/hapi';
+import type { ServerRoute } from '@hapi/hapi';
 
 import server, { indexRoute } from './bootstrap';
 import { discordRoutes } from './discord';

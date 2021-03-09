@@ -11,9 +11,8 @@ jobs:
             run:
                 working-directory: cms
         env:
-            NODE_ENV: PRODUCTION
+            NODE_ENV: production
             SKIP_DECR: 'TRUE'
-            FAST: 'TRUE'
 
         steps:
             - name: Checkout
@@ -26,7 +25,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-cms2-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-cms5-${{ hashFiles('**/package-lock.json') }}
 
             - name: show cache status
               run: |
@@ -36,7 +35,7 @@ jobs:
               uses: actions/setup-node@v2
 
             - name: Install dependencies
-              run: npm ci
+              run: npm install # do not do npm ci because there are local npm packages
               if: steps.cache.outputs.cache-hit != 'true' # if cache could not be found, output will be blank
 
             - name: Cache all of the above
@@ -50,9 +49,8 @@ jobs:
         runs-on: ubuntu-latest
         needs: install_cms
         env:
-            NODE_ENV: PRODUCTION
+            NODE_ENV: production
             SKIP_DECR: 'TRUE'
-            FAST: 'TRUE'
 
         defaults:
             run:
@@ -67,7 +65,7 @@ jobs:
                   key: cms-${{github.sha}}
 
             - name: build cms dashboard
-              run: npm run ci:build
+              run: npm run build
 
     # test_cms:
     #     runs-on: ubuntu-latest
@@ -92,9 +90,8 @@ jobs:
         runs-on: ubuntu-latest
 
         env:
-            NODE_ENV: PRODUCTION
+            NODE_ENV: production
             SKIP_DECR: 'TRUE'
-            FAST: 'TRUE'
 
         steps:
             - name: Checkout
@@ -107,7 +104,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-dis3-${{ hashFiles('**/package.json') }}
+                  key: ${{ runner.os }}-dis4-${{ hashFiles('**/package.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2
@@ -117,7 +114,7 @@ jobs:
               if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Install cms
-              run: npm ci --prefix cms
+              run: npm install --prefix cms
               if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Cache all of the above
@@ -191,7 +188,7 @@ jobs:
     install_webhook_hapi:
         runs-on: ubuntu-latest
         env:
-            NODE_ENV: PRODUCTION
+            NODE_ENV: production
 
         defaults:
             run:
@@ -229,7 +226,7 @@ jobs:
         needs:
             - install_webhook_hapi
         env:
-            NODE_ENV: PRODUCTION
+            NODE_ENV: production
 
         defaults:
             run:

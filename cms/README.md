@@ -1,11 +1,11 @@
 # Backend as CMS
 
 CMS - Strapi
-Database - PostgreSQL
+Database - SQLite3
 
 ## Skip Env Variables
 
-Set **`SKIP_DEC`** to `TRUE`.
+Set **`SKIP_DECR`** to `TRUE`.
 
 # Production
 
