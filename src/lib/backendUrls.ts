@@ -1,26 +1,15 @@
-// change to PRODUCTION url during deployment
-
-type backendUrls =
-	| 'http://localhost:9000/auth/google/callback?access_token='
-	| 'http://localhost:9000/users/me'
-	| 'http://localhost:9000/events'
-	| 'http://localhost:9000/banners'
-	| 'http://localhost:9000/connect/google'
-	| 'http://localhost:9000/scores'
-	| 'http://localhost:9000/season-score'
-	| 'http://localhost:9000/badges';
-
+const CMS_STRAPI_URL = process.env.CMS_STRAPI ?? 'http://localhost:9000';
 interface IBackendUrls {
-	[key: string]: backendUrls;
+	[key: string]: string;
 }
 
 export const backendUrls: IBackendUrls = {
-	auth_callback: 'http://localhost:9000/auth/google/callback?access_token=',
-	login_google: 'http://localhost:9000/connect/google',
-	user_info: 'http://localhost:9000/users/me',
-	user_score: 'http://localhost:9000/scores',
-	all_events: 'http://localhost:9000/events',
-	all_banners: 'http://localhost:9000/banners',
-	badges: 'http://localhost:9000/badges',
-	season_score: 'http://localhost:9000/season-score',
+	auth_callback: CMS_STRAPI_URL + '/auth/google/callback?access_token=',
+	login_google: CMS_STRAPI_URL + '/connect/google',
+	user_info: CMS_STRAPI_URL + '/users/me',
+	user_score: CMS_STRAPI_URL + '/scores',
+	all_events: CMS_STRAPI_URL + '/events',
+	all_banners: CMS_STRAPI_URL + '/banners',
+	badges: CMS_STRAPI_URL + '/badges',
+	season_score: CMS_STRAPI_URL + '/season-score',
 };
