@@ -36,7 +36,6 @@ jobs:
 
             - name: Install dependencies
               run: npm install # do not do npm ci because there are local npm packages
-              if: steps.cache.outputs.cache-hit != 'true' # if cache could not be found, output will be blank
 
             - name: Cache all of the above
               uses: actions/cache@v2
@@ -111,11 +110,9 @@ jobs:
 
             - name: Install dependencies
               run: npm ci
-              if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Install cms
               run: npm install --prefix cms
-              if: steps.cache.outputs.cache-hit != 'true'
 
             - name: Cache all of the above
               uses: actions/cache@v2
@@ -211,8 +208,7 @@ jobs:
               uses: actions/setup-node@v2
 
             - name: Install dependencies
-              run: npm ci
-              if: steps.cache.outputs.cache-hit != 'true'
+              run: npm install
 
             - name: Cache all of the above
               uses: actions/cache@v2
