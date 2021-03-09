@@ -25,7 +25,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-cms6-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-cms7-${{ hashFiles('**/package-lock.json') }}
 
             - name: show cache status
               run: |
@@ -103,7 +103,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-dis5-${{ hashFiles('**/package.json') }}
+                  key: ${{ runner.os }}-dis6-${{ hashFiles('**/package.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2
@@ -202,7 +202,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-hapi2-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-hapi3-${{ hashFiles('**/package-lock.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2
