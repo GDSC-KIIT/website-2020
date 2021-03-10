@@ -33,7 +33,6 @@ export default function Home({ allProjectsData }: any) {
 		order = -1;
 	});
 	const classes = useStyles();
-	console.log(allProjectsData);
 
 	return (
 		<>
@@ -109,5 +108,6 @@ export const getStaticProps: GetStaticProps = async () => {
 	const allProjectsData = await fetchAPIProjects('/projects');
 	return {
 		props: { allProjectsData },
+		revalidate: 60,
 	};
 };
