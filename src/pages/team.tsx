@@ -61,5 +61,6 @@ export const getStaticProps: GetStaticProps = async () => {
 	const allMembersData = await fetchAPI('/members');
 	return {
 		props: { allMembersData },
+		revalidate: 60,
 	};
 };
