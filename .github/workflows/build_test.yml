@@ -2,6 +2,7 @@ name: Build and Test
 
 on:
     - pull_request
+    - push
 
 jobs:
     install_cms:
@@ -11,7 +12,6 @@ jobs:
             run:
                 working-directory: cms
         env:
-            NODE_ENV: production
             SKIP_DECR: 'TRUE'
 
         steps:
@@ -25,7 +25,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-cms5-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-cms7-${{ hashFiles('**/package-lock.json') }}
 
             - name: show cache status
               run: |
@@ -90,7 +90,6 @@ jobs:
         runs-on: ubuntu-latest
 
         env:
-            NODE_ENV: production
             SKIP_DECR: 'TRUE'
 
         steps:
@@ -104,7 +103,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-dis4-${{ hashFiles('**/package.json') }}
+                  key: ${{ runner.os }}-dis6-${{ hashFiles('**/package.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2
@@ -187,8 +186,6 @@ jobs:
 
     install_webhook_hapi:
         runs-on: ubuntu-latest
-        env:
-            NODE_ENV: production
 
         defaults:
             run:
@@ -205,7 +202,7 @@ jobs:
               id: cache
               with:
                   path: ./*
-                  key: ${{ runner.os }}-hapi1-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-hapi3-${{ hashFiles('**/package-lock.json') }}
 
             - name: Get Node
               uses: actions/setup-node@v2

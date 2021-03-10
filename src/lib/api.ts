@@ -1,5 +1,5 @@
 export function getStrapiURL(path = '') {
-	return `${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:9000'}${path}`;
+	return `${process.env.CMS_STRAPI || 'http://localhost:9000'}${path}`;
 }
 
 // Helper to make GET requests to Strapi
