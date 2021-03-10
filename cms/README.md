@@ -10,6 +10,7 @@ Set **`SKIP_DECR`** to `TRUE`.
 # Production
 
 Set **`PROD_DECR`** to the correct env secret.
+Set **`ABSOLUTE_PRODUCTION_URL`** to the domain where it is hosted.
 
 ### Authenticated Endpoints
 
