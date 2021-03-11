@@ -15,6 +15,7 @@ module.exports = {
 			env: {
 				NODE_ENV: 'production',
 				STRAPI_LOG_TIMESTAMP: false,
+				ABSOLUTE_PRODUCTION_URL: 'https://admin.dsckiit.tech',
 			},
 		},
 	],
