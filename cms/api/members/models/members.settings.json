@@ -8,7 +8,7 @@
 	"options": {
 		"increments": true,
 		"timestamps": true,
-		"draftAndPublish": true
+		"draftAndPublish": false
 	},
 	"attributes": {
 		"Name": {
@@ -41,16 +41,20 @@
 			"required": false
 		},
 		"github": {
-			"type": "string"
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		},
 		"twitter": {
-			"type": "string"
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		},
 		"linkedin": {
-			"type": "string"
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		},
 		"facebook": {
-			"type": "string"
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		}
 	}
 }

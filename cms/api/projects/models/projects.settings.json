@@ -8,7 +8,7 @@
 	"options": {
 		"increments": true,
 		"timestamps": true,
-		"draftAndPublish": true
+		"draftAndPublish": false
 	},
 	"attributes": {
 		"Name": {
@@ -26,7 +26,8 @@
 		"Repository": {
 			"type": "string",
 			"unique": true,
-			"minLength": 1
+			"minLength": 1,
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		},
 		"Members": {
 			"type": "string",
