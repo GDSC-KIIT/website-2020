@@ -56,6 +56,16 @@ export type BannerType = {
 	link: string;
 };
 
+type ImagePropertiesType = {
+	id: number;
+	url: string;
+	width: number;
+	height: number;
+	hash: string;
+	caption: string;
+	alternativeText: string;
+};
+
 export type DataImageType = {
 	image: {
 		id: number;
@@ -67,3 +77,16 @@ export type DataImageType = {
 		alternativeText: string;
 	};
 };
+
+export type MemberDataType = {
+	id: number;
+	name: string;
+	image: ImagePropertiesType;
+	domain: string;
+	github?: string;
+	twitter?: string;
+	linkedin?: string;
+	facebook?: string;
+};
+
+export type GroupedMemberType = Record<string, Array<MemberDataType>>;

@@ -12,4 +12,5 @@ export const backendUrls: IBackendUrls = {
 	all_banners: CMS_STRAPI_URL + '/banners',
 	badges: CMS_STRAPI_URL + '/badges',
 	season_score: CMS_STRAPI_URL + '/season-score',
+	members: CMS_STRAPI_URL + '/members',
 };
