@@ -1,9 +1,6 @@
 const CMS_STRAPI_URL = process.env.NEXT_PUBLIC_CMS_STRAPI ?? 'http://localhost:9000';
-interface IBackendUrls {
-	[key: string]: string;
-}
 
-export const backendUrls: IBackendUrls = {
+export const backendUrls = {
 	auth_callback: CMS_STRAPI_URL + '/auth/google/callback?access_token=',
 	login_google: CMS_STRAPI_URL + '/connect/google',
 	user_info: CMS_STRAPI_URL + '/users/me',
@@ -13,4 +10,5 @@ export const backendUrls: IBackendUrls = {
 	badges: CMS_STRAPI_URL + '/badges',
 	season_score: CMS_STRAPI_URL + '/season-score',
 	members: CMS_STRAPI_URL + '/members',
+	projects: CMS_STRAPI_URL + '/projects',
 };

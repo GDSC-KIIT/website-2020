@@ -1,14 +1,12 @@
-import Layout from '@/components/Layout';
-import ProjectsCard from '@/components/Projects/ProjectsCard';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import { GetStaticProps } from 'next';
-import { fetchAPIProjects } from '../lib/api';
-import { useEffect } from 'react';
-import styles from '@/styles/projects.module.css';
+import type { GetStaticProps } from 'next';
 
-let order = -1;
-let displayHeader = false;
+import { makeStyles, Grid } from '@material-ui/core';
+
+import Layout from '@/components/Layout';
+import ProjectsCard, { IProjects } from '@/components/Projects/ProjectsCard';
+import fetchProjects from '@/lib/staticData/projects';
+
+import styles from '@/styles/projects.module.css';
 
 const useStyles = makeStyles({
 	root: {
@@ -29,10 +27,7 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function Home({ allProjectsData }: any) {
-	useEffect(() => {
-		order = -1;
-	});
+export default function Home({ projects }: IProjects) {
 	const classes = useStyles();
 
 	return (
@@ -77,26 +72,9 @@ export default function Home({ allProjectsData }: any) {
 
 				<div className="row margin">
 					<Grid container spacing={4} className={classes.gridContainer}>
-						{allProjectsData &&
-							allProjectsData.map(({ ...project }) => {
-								{
-									console.log(order);
-								}
-								if (project.order > order) {
-									order = project.order;
-									displayHeader = true;
-								} else {
-									displayHeader = false;
-								}
-								return (
-									<ProjectsCard
-										projectInfo={project}
-										key={project.id}
-										displayHeader={displayHeader}
-									/>
-								);
-							})}
-						{/* </Grid> */}
+						{projects.map((project) => (
+							<ProjectsCard project={project} key={project.id} />
+						))}
 					</Grid>
 				</div>
 			</Layout>
@@ -104,11 +82,10 @@ export default function Home({ allProjectsData }: any) {
 	);
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-	// Run API calls in parallel
-	const allProjectsData = await fetchAPIProjects('/projects');
+export const getStaticProps: GetStaticProps<IProjects> = async () => {
+	const projects = await fetchProjects();
 	return {
-		props: { allProjectsData },
+		props: { projects },
 		revalidate: 60,
 	};
 };
