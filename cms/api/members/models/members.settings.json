@@ -8,36 +8,49 @@
 	"options": {
 		"increments": true,
 		"timestamps": true,
-		"draftAndPublish": false
+		"draftAndPublish": true
 	},
 	"attributes": {
-		"name": {
+		"Name": {
+			"type": "string",
+			"required": true,
+			"minLength": 1
+		},
+		"into": {
+			"type": "enumeration",
+			"enum": [
+				"DSC_KIIT_Lead",
+				"Web_Development",
+				"Machine_Learning",
+				"Flutter",
+				"Cloud",
+				"Ethical_Hacking",
+				"Android",
+				"ThreeD_Modelling",
+				"Content_Writing",
+				"UI_UX_and_Design",
+				"Photography_and_Editing"
+			],
+			"required": true
+		},
+		"image": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images"],
+			"plugin": "upload",
+			"required": false
+		},
+		"github": {
 			"type": "string"
 		},
 		"twitter": {
 			"type": "string"
 		},
-		"position": {
-			"type": "string"
-		},
-		"github": {
+		"linkedin": {
 			"type": "string"
 		},
 		"facebook": {
 			"type": "string"
-		},
-		"linkedIn": {
-			"type": "string"
-		},
-		"order": {
-			"type": "integer"
-		},
-		"image_path": {
-			"model": "file",
-			"via": "related",
-			"allowedTypes": ["images", "files", "videos"],
-			"plugin": "upload",
-			"required": false
 		}
 	}
 }
