@@ -1,4 +1,4 @@
-import Member from '@/components/member-template/members';
+import Member from '@/components/Members/members';
 import TeamIntro from '@/components/Intro';
 import Layout from '@/components/Layout';
 import { GetStaticProps } from 'next';

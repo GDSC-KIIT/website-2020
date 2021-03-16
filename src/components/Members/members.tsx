@@ -1,9 +1,13 @@
-import styles from './members.module.css';
 import { getStrapiMedia } from '../../lib/media';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import GitHubIcon from '@material-ui/icons/GitHub';
+
+import {
+	Facebook as FacebookIcon,
+	LinkedIn as LinkedInIcon,
+	Twitter as TwitterIcon,
+	GitHub as GitHubIcon,
+} from '@material-ui/icons';
+
+import styles from '@/styles/members.module.css';
 
 const positionHeading: string[] = [
 	'DSC KIIT LEAD',
@@ -17,13 +21,7 @@ const positionHeading: string[] = [
 	'Content Writing',
 	'3D Modelling',
 ];
-declare global {
-	namespace JSX {
-		interface IntrinsicElements {
-			center: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-		}
-	}
-}
+
 type member = {
 	id: string;
 	name: string;

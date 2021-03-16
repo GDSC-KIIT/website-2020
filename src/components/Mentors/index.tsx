@@ -1,6 +1,6 @@
-import styles from './members.module.css';
+import styles from '@/styles/members.module.css';
 
-function Mentors() {
+export default function Mentors() {
 	return (
 		<>
 			<div className={`${styles.member} `}>
@@ -36,7 +36,7 @@ function Mentors() {
 				</div>
 				<div className={styles.teamInfo}>
 					<h3>Dr. Abhishek Ray</h3>
-					<span>Associate Dean (T&P)</span>
+					<span>Associate Dean (T{'&'}P)</span>
 				</div>
 			</div>
 			<div className={`${styles.member} `}>
@@ -54,5 +54,3 @@ function Mentors() {
 		</>
 	);
 }
-
-export default Mentors;

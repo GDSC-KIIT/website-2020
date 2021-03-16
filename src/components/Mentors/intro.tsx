@@ -1,6 +1,7 @@
-import styles from './intro.module.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { Grid, makeStyles } from '@material-ui/core';
+
+import styles from '@/components/Intro/intro.module.css';
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
