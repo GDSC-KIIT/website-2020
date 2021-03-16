@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import useSWR from 'swr';
 
 import { getUserScore } from '@/lib/dynamicData/userScore';
 import useUser from '@/hooks/useUser';
 import { getSeasonScore } from '@/lib/dynamicData/seasonScore';
 import { getUserBadgesFromArray } from '@/lib/dynamicData/badges';
+import type { BadgeDataType } from '@/types/index';
 
 import { Container, Grid, Box, Avatar, Typography, Paper, ButtonBase } from '@material-ui/core';
 import useStyles from './styles';
@@ -43,46 +44,14 @@ export default function Dashboard() {
 		return null;
 	}, [user]);
 
-	const badgesDisplay = useMemo(
-		() =>
-			userBadges?.map((badge) => (
-				<div className={classes.badge} key={badge.id}>
-					<Paper className={classes.paper}>
-						<Grid container direction="row" spacing={2}>
-							<Grid item>
-								<ButtonBase className={classes.image}>
-									<img
-										className={classes.imge}
-										alt={badge.name}
-										src={badge.image}
-									/>
-								</ButtonBase>
-							</Grid>
-							<Grid item xs={10} sm container>
-								<Grid item xs container direction="column" spacing={2}>
-									<Grid item xs>
-										<Typography
-											style={{ marginTop: 45 }}
-											gutterBottom
-											variant="h5">
-											{badge.name.toUpperCase()}
-										</Typography>
-									</Grid>
-								</Grid>
-							</Grid>
-						</Grid>
-					</Paper>
-				</div>
-			)),
-		[userBadges]
-	);
+	const badgesDisplay = useMemo(() => displayBadges(userBadges, classes), [userBadges]);
 
 	return (
 		<div>
 			<Container maxWidth="sm" className={classes.container}>
 				<Box className={classes.header}>
 					<img
-						src="	/images/dashboard/dscdash.png"
+						src="/images/dashboard/dscdash.png"
 						className={classes.img}
 						alt="coverImage"></img>
 				</Box>
@@ -150,4 +119,29 @@ export default function Dashboard() {
 			</Container>
 		</div>
 	);
+}
+
+function displayBadges(userBadges: BadgeDataType[] | null | undefined, classes: any): ReactNode {
+	return userBadges?.map((badge) => (
+		<div className={classes.badge} key={badge.id}>
+			<Paper className={classes.paper}>
+				<Grid container direction="row" spacing={2}>
+					<Grid item>
+						<ButtonBase className={classes.image}>
+							<img className={classes.imge} alt={badge.name} src={badge.image.url} />
+						</ButtonBase>
+					</Grid>
+					<Grid item xs={10} sm container>
+						<Grid item xs container direction="column" spacing={2}>
+							<Grid item xs>
+								<Typography style={{ marginTop: 45 }} gutterBottom variant="h5">
+									{badge.name.toUpperCase()}
+								</Typography>
+							</Grid>
+						</Grid>
+					</Grid>
+				</Grid>
+			</Paper>
+		</div>
+	));
 }

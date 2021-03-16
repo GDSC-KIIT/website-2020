@@ -45,18 +45,19 @@ export type SeasonScoreDataType = {
 export type BadgeDataType = {
 	id: number;
 	name: string;
-	image: string;
+	image: DataImageType;
 };
 
-export type BannerType = {
+export type BannerDataType = {
 	id: number;
 	eye_catcher: string;
 	title: string;
-	image: string;
+	image: DataImageType;
 	link: string;
 };
 
-type ImagePropertiesType = {
+// each model which is having an image associated will have this type of image
+export type DataImageType = {
 	id: number;
 	url: string;
 	width: number;
@@ -66,22 +67,10 @@ type ImagePropertiesType = {
 	alternativeText: string;
 };
 
-export type DataImageType = {
-	image: {
-		id: number;
-		url: string;
-		width: number;
-		height: number;
-		hash: string;
-		caption: string;
-		alternativeText: string;
-	};
-};
-
 export type MemberDataType = {
 	id: number;
 	name: string;
-	image: ImagePropertiesType;
+	image: DataImageType;
 	domain: string;
 	github?: string;
 	twitter?: string;
