@@ -1,0 +1,41 @@
+{
+	"kind": "collectionType",
+	"collectionName": "projects",
+	"info": {
+		"name": "projects",
+		"description": ""
+	},
+	"options": {
+		"increments": true,
+		"timestamps": true,
+		"draftAndPublish": true
+	},
+	"attributes": {
+		"Name": {
+			"type": "string",
+			"required": true,
+			"minLength": 1
+		},
+		"logo": {
+			"model": "file",
+			"via": "related",
+			"allowedTypes": ["images"],
+			"plugin": "upload",
+			"required": false
+		},
+		"Repository": {
+			"type": "string",
+			"unique": true,
+			"minLength": 1
+		},
+		"Members": {
+			"type": "string",
+			"required": false,
+			"default": "(comma , seperated values)"
+		},
+		"Description": {
+			"type": "text",
+			"minLength": 5
+		}
+	}
+}
