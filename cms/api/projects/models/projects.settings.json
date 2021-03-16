@@ -11,7 +11,7 @@
 		"draftAndPublish": false
 	},
 	"attributes": {
-		"Name": {
+		"name": {
 			"type": "string",
 			"required": true,
 			"minLength": 1
@@ -23,18 +23,18 @@
 			"plugin": "upload",
 			"required": false
 		},
-		"Repository": {
+		"repository": {
 			"type": "string",
 			"unique": true,
 			"minLength": 1,
 			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		},
-		"Members": {
+		"members": {
 			"type": "string",
 			"required": false,
 			"default": "(comma , seperated values)"
 		},
-		"Description": {
+		"description": {
 			"type": "text",
 			"minLength": 5
 		}
