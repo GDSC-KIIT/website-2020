@@ -16,7 +16,7 @@
 			"required": true,
 			"minLength": 1
 		},
-		"into": {
+		"domain": {
 			"type": "enumeration",
 			"enum": [
 				"DSC_KIIT_Lead",
@@ -38,7 +38,7 @@
 			"via": "related",
 			"allowedTypes": ["images"],
 			"plugin": "upload",
-			"required": false
+			"required": true
 		},
 		"github": {
 			"type": "string",
@@ -53,6 +53,10 @@
 			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		},
 		"facebook": {
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
+		},
+		"website": {
 			"type": "string",
 			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		}
