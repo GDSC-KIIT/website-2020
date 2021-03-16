@@ -1,6 +1,6 @@
 import { Grid, makeStyles } from '@material-ui/core';
 
-import styles from '@/components/Intro/intro.module.css';
+import styles from '@/styles/intro.module.css';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

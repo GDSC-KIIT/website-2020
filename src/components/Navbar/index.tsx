@@ -2,7 +2,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
-import styles from './navbar.module.css';
+import styles from '@/styles/navbar.module.css';
+
 import {
 	makeStyles,
 	AppBar,

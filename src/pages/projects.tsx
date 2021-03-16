@@ -1,11 +1,12 @@
 import Layout from '@/components/Layout';
-import styles from '../components/Projects/projects.module.css';
 import ProjectsCard from '@/components/Projects/ProjectsCard';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { GetStaticProps } from 'next';
 import { fetchAPIProjects } from '../lib/api';
 import { useEffect } from 'react';
+import styles from '@/styles/projects.module.css';
+
 let order = -1;
 let displayHeader = false;
 
