@@ -11,7 +11,7 @@ jobs:
             run:
                 working-directory: cms
         env:
-            SKIP_DECR: 'TRUE'
+            UNSKIP_DECR: 'false' # do not decrypt the .env files
 
         steps:
             - name: Checkout
@@ -49,7 +49,7 @@ jobs:
         needs: install_cms
         env:
             NODE_ENV: production
-            SKIP_DECR: 'TRUE'
+            UNSKIP_DECR: 'false'
 
         defaults:
             run:
@@ -89,7 +89,7 @@ jobs:
         runs-on: ubuntu-latest
 
         env:
-            SKIP_DECR: 'TRUE'
+            UNSKIP_DECR: 'false'
 
         steps:
             - name: Checkout
