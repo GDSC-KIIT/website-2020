@@ -31,6 +31,7 @@
 		"nookies": "^2.5.0",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
+		"react-toastify": "^7.0.3",
 		"react-twitter-widgets": "^1.9.5",
 		"swr": "^0.4.0"
 	},

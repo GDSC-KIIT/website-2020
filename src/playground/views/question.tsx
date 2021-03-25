@@ -7,6 +7,7 @@ import md from '@/lib/markdown';
 import { hasUserAlreadySubmitted, fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
 import useUser from '@/hooks/useUser';
 import Layout from './layout';
+import { ToastInjector, showToast } from '@/playground/components/toast';
 
 import {
 	makeStyles,
@@ -310,6 +311,10 @@ export default function Q() {
 			<span style={{ display: 'none' }} data-testid="snack-message">
 				{snack.message}
 			</span>
+			<Button onClick={() => showToast({ text: 'show standard toast', type: 'error' })}>
+				Activate Toast
+			</Button>
+			<ToastInjector />
 		</Layout>
 	);
 }

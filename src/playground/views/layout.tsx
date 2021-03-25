@@ -12,7 +12,10 @@ import {
 	createMuiTheme,
 	ThemeProvider,
 } from '@material-ui/core';
+
+// third-party stylesheets
 import 'highlight.js/styles/github.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
 	footer: {
@@ -35,10 +38,6 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 		<>
 			<Head key="Playground">
 				<title>PlayGround ⚡🏆 {pn}</title>
-				<link
-					rel="stylesheet"
-					href="https://highlightjs.org/static/demo/styles/railscasts.css"
-				/>
 			</Head>
 			<CssBaseline />
 			<ThemeProvider theme={theme}>
