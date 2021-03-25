@@ -1,7 +1,7 @@
-import { ToastContainer, toast, ToastOptions } from 'react-toastify';
+import { ToastContainer, toast, Flip, ToastOptions } from 'react-toastify';
 
 const defaultOptions = {
-	autoClose: 4000,
+	autoClose: 4500,
 	hideProgressBar: false,
 	newestOnTop: true,
 	closeOnClick: true,
@@ -10,22 +10,59 @@ const defaultOptions = {
 	draggable: true,
 	pauseOnHover: true,
 	limit: 5,
+	closeButton: false,
+	transition: Flip,
 };
 
 export function ToastInjector({ options = {} }: IToastInjectorProps) {
 	const applyingOptions = { ...defaultOptions, ...options };
 	return (
-		<div>
+		<div data-testid="snack-message">
 			<ToastContainer {...applyingOptions} />
 		</div>
 	);
 }
 
-let timer: ReturnType<typeof setTimeout>;
-export function showToast({ text, type, position = 'top-left', options = {} }: IShowToastOptions) {
-	timer = setTimeout(() => console.log(), 1000);
+export function showToast({
+	text,
+	type,
+	position = 'top-right',
+	duration = 4500,
+	closeButton = false,
+	delay = 0,
+	options = {},
+}: IShowToastOptions) {
+	toast(text, {
+		position,
+		type,
+		closeButton,
+		autoClose: closeButton ? false : duration,
+		delay,
+		...options,
+	});
+}
 
-	toast(text, { position, type, ...options });
+export function showSuccessToast(msg: string) {
+	showToast({ text: msg, type: 'error', position: 'top-right' });
+}
+
+export function showErrorToast(msg: string) {
+	showToast({ text: msg, type: 'error', position: 'top-right' });
+}
+
+export function showWarningToast(msg: string) {
+	showToast({ text: msg, type: 'warning', position: 'top-right', closeButton: true });
+}
+
+export function showCurrentPointToast(points: number) {
+	showToast({
+		text: `Current Points : ${points}`,
+		type: 'info',
+		position: 'top-left',
+		closeButton: true,
+		delay: 2000,
+		duration: 6500,
+	});
 }
 
 interface IToastInjectorProps {
@@ -34,7 +71,10 @@ interface IToastInjectorProps {
 
 interface IShowToastOptions {
 	text: string;
-	type: 'error' | 'success' | 'info';
+	type: 'error' | 'success' | 'info' | 'warning';
 	position?: 'top-right' | 'top-left';
+	duration?: number;
+	closeButton?: boolean;
+	delay?: number;
 	options?: ToastOptions;
 }
