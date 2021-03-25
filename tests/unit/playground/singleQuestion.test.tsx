@@ -233,7 +233,7 @@ describe('user interaction', () => {
 		});
 
 		await waitFor(() => {
-			expect(screen.getByTestId('snack-message')).toHaveTextContent(/correct answer/gi);
+			expect(screen.getByTestId('toast-message')).toHaveTextContent(/correct answer/gi);
 		});
 	});
 
@@ -251,7 +251,7 @@ describe('user interaction', () => {
 		});
 
 		await waitFor(() => {
-			expect(screen.getByTestId('snack-message')).toHaveTextContent(/wrong answer/gi);
+			expect(screen.getByTestId('toast-message')).toHaveTextContent(/wrong answer/gi);
 		});
 	});
 });

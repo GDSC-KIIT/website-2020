@@ -17,7 +17,7 @@ const defaultOptions = {
 export function ToastInjector({ options = {} }: IToastInjectorProps) {
 	const applyingOptions = { ...defaultOptions, ...options };
 	return (
-		<div data-testid="snack-message">
+		<div data-testid="toast-message">
 			<ToastContainer {...applyingOptions} />
 		</div>
 	);
