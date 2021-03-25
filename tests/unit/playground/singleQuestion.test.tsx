@@ -5,7 +5,7 @@ import { logger, testUtils } from '../../utils';
 import { mocked } from 'ts-jest/utils';
 
 import mockAxios, { AxiosRequestConfig } from 'axios';
-import Question from '@/playground/components/question';
+import Question from '@/playground/views/question';
 
 jest.mock('axios', () => jest.requireActual('../../mocks/axios'));
 jest.mock('next/link', () => ({ children }: { children: ReactNode }) => children);

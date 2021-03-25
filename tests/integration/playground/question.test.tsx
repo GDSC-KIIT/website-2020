@@ -1,7 +1,7 @@
 import { screen, waitFor, render, cleanup } from '@testing-library/react';
 import { api, logger, testUtils } from '../../utils';
 
-import Question from '@/playground/components/question';
+import Question from '@/playground/views/question';
 
 jest.mock('@/lib/user/session');
 
