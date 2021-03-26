@@ -2,7 +2,7 @@ import type { UserInfoType } from '@/types/index';
 
 import axios from 'axios';
 
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 import { getSessionAuthToken } from '@/lib/user/session';
 
 export async function getUserInfo(): Promise<UserInfoType> {

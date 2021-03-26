@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 import type { ProjectDataType } from '@/types/index';
 
 export default function fetchProjects(): Promise<Array<ProjectDataType>> {

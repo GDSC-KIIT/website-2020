@@ -3,10 +3,19 @@ import { useRouter } from 'next/router';
 import { useMemo, useCallback, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import useSWR from 'swr';
 
+import { internalUrls } from '@/lib/urls';
 import md from '@/lib/markdown';
 import { hasUserAlreadySubmitted, fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
 import useUser from '@/hooks/useUser';
 import Layout from './layout';
+import {
+	ToastInjector,
+	showToast,
+	showCurrentPointToast,
+	showErrorToast,
+	showSuccessToast,
+	showWarningToast,
+} from '@/playground/components/toast';
 
 import {
 	makeStyles,
@@ -21,10 +30,8 @@ import {
 	Paper,
 	Backdrop,
 	CircularProgress,
-	Snackbar,
-	Slide,
 } from '@material-ui/core';
-import { Skeleton, Alert, AlertProps } from '@material-ui/lab';
+import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
 	paper1: {
@@ -76,32 +83,6 @@ export default function Q() {
 	const [checksForAllow, setChecksForAllow] = useState(0);
 
 	/**
-	 * Snack Display Messages
-	 */
-
-	const [snack, setSnack] = useState<ISnack>({
-		message: '',
-	});
-	const showSnack = useCallback(
-		(
-			message: string,
-			severity: AlertProps['severity'],
-			duration?: number,
-			vertical: VerticalPosType = 'top',
-			horizontal: HorizontalPosType = 'right'
-		) => {
-			if (duration) {
-				setTimeout(() => {
-					setSnack({ message, severity, vertical, horizontal });
-				}, duration);
-			} else {
-				setSnack({ message, severity, vertical, horizontal });
-			}
-		},
-		[setSnack]
-	);
-
-	/**
 	 * Fetching of question
 	 * Live update of question
 	 */
@@ -142,7 +123,7 @@ export default function Q() {
 					setChecksForAllow((prev) => prev + 1);
 				} else if (subm === true) {
 					setChecksForAllow((prev) => prev + 3);
-					showSnack('Buddy, you have already done this question', 'warning');
+					showWarningToast('Buddy, you have already done this question');
 				}
 			});
 		} else if (user && user.score === null) {
@@ -165,7 +146,7 @@ export default function Q() {
 				</>
 			);
 		} else if (error) {
-			showSnack(error.message || 'An unknown error occurred', 'error');
+			showErrorToast(error.message || 'An unknown error occurred');
 			return <Skeleton variant="rect" width={700} height={200} />;
 		}
 		return (
@@ -199,33 +180,29 @@ export default function Q() {
 				submitAnswer(parseInt(qid, 10), parseInt(selectedOption, 10))
 					.then(({ correct, message, points, created, updated }) => {
 						if (correct) {
-							showSnack(message.toUpperCase(), 'success');
+							showSuccessToast(message.toUpperCase());
 						} else {
-							showSnack(message.toUpperCase(), 'error');
+							showErrorToast(message.toUpperCase());
 						}
 
 						if (created) {
-							showSnack(
-								'We are now storing these points in your account',
-								'success',
-								4000,
-								'top',
-								'left'
-							);
-							showSnack(`Current Points : ${points}`, 'info', 6500, 'top', 'left');
+							showToast({
+								text: 'We are now storing these points in your account',
+								type: 'success',
+								position: 'top-left',
+							});
+							showCurrentPointToast(points);
 						} else if (updated) {
-							showSnack(
-								'We have updated the points in your account',
-								'info',
-								4000,
-								'top',
-								'left'
-							);
-							showSnack(`Current Points : ${points}`, 'info', 6500, 'top', 'left');
+							showToast({
+								text: 'We have updated the points in your account',
+								type: 'info',
+								position: 'top-left',
+							});
+							showCurrentPointToast(points);
 						}
 					})
 					.catch((err: Error) => {
-						showSnack(err.message, 'error');
+						showErrorToast(err.message);
 					});
 			}
 		},
@@ -249,7 +226,7 @@ export default function Q() {
 				<Grid container spacing={0} justify="center">
 					<Grid item xs={12} sm={8} md={9}>
 						<Paper className={classes.paper1}>
-							<NextLink href="/playground">
+							<NextLink href={internalUrls.playground}>
 								<Typography
 									variant="h6"
 									style={{ cursor: 'pointer', marginLeft: '.4em' }}
@@ -289,39 +266,9 @@ export default function Q() {
 					</Grid>
 				</Grid>
 			</form>
-			<Snackbar
-				TransitionComponent={(props) => <Slide {...props} direction="up" />}
-				anchorOrigin={{
-					vertical: snack.vertical || 'top',
-					horizontal: snack.horizontal || 'center',
-				}}
-				autoHideDuration={4000}
-				disableWindowBlurListener={true}
-				onClose={() => setSnack({ message: '' })}
-				open={snack.message.length > 0}>
-				<Alert
-					elevation={6}
-					variant="standard"
-					onClose={() => setSnack({ message: '' })}
-					severity={snack.severity}>
-					{snack.message}
-				</Alert>
-			</Snackbar>
-			<span style={{ display: 'none' }} data-testid="snack-message">
-				{snack.message}
-			</span>
+			<ToastInjector />
 		</Layout>
 	);
 }
 
 type optionTypes = '1' | '2' | '3' | '4' | '5' | '6' | string | null;
-
-type VerticalPosType = 'top' | 'bottom';
-
-type HorizontalPosType = 'center' | 'left' | 'right';
-interface ISnack {
-	message: string;
-	severity?: AlertProps['severity'];
-	vertical?: VerticalPosType;
-	horizontal?: HorizontalPosType;
-}

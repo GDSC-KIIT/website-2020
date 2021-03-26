@@ -88,3 +88,21 @@ export type ProjectDataType = {
 	description: string;
 	logo: DataImageType;
 };
+
+export type BlogPostType = {
+	author: string;
+	categories: string[];
+	link: string;
+	image: string;
+	title: string;
+	date: string;
+};
+
+export type BlogPostDataType = {
+	author: string;
+	categories: string[];
+	link: string;
+	image: string;
+	title: string;
+	date: Date;
+};

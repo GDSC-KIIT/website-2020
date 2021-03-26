@@ -2,7 +2,7 @@ import { waitFor, render, cleanup } from '@testing-library/react';
 import { mocked } from 'ts-jest/utils';
 import { api, logger, testUtils } from '../../utils';
 
-import Questions from '@/playground/components/allQuestions';
+import Questions from '@/playground/views/allQuestions';
 
 import { getSessionAuthToken } from '@/lib/user/session';
 jest.mock('@/lib/user/session');

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useUser from '@/hooks/useUser';
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls, internalUrls } from '@/lib/urls';
 import { Link, CircularProgress, Typography, Menu, MenuItem, Fade } from '@material-ui/core';
 import NextLink from 'next/link';
 
@@ -54,10 +54,10 @@ export function GoogleAuthLogin() {
 						open={open}
 						onClose={handleClose}
 						TransitionComponent={Fade}>
-						<NextLink href="/dashboard">
+						<NextLink href={internalUrls.profile}>
 							<MenuItem onClick={handleClose}>My account</MenuItem>
 						</NextLink>
-						<NextLink href="/auth/logout">
+						<NextLink href={internalUrls.logOut}>
 							<MenuItem onClick={handleClose}>Sign Out</MenuItem>
 						</NextLink>
 					</Menu>

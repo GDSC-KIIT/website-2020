@@ -3,7 +3,7 @@
 	"description": "Our new website!",
 	"author": "Developer Student Club - KIIT",
 	"license": "MIT",
-	"version": "2.7.0",
+	"version": "2.2.0-v2",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port=3333",
@@ -31,7 +31,9 @@
 		"nookies": "^2.5.0",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
+		"react-toastify": "^7.0.3",
 		"react-twitter-widgets": "^1.9.5",
+		"sass": "^1.32.8",
 		"swr": "^0.4.0"
 	},
 	"devDependencies": {
@@ -56,6 +58,10 @@
 		"ts-node": "^9.1.1",
 		"typescript": "^4.0.5",
 		"winston": "^3.3.3"
+	},
+	"engines": {
+		"node": ">=14.0.0 <=14.x.x",
+		"npm": "^7.0.0"
 	},
 	"husky": {
 		"hooks": {

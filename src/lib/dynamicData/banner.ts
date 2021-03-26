@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import type { BannerDataType } from '@/types/index';
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 
 export function fetchAllBanners(): Promise<BannerDataType[]> {
 	return axios

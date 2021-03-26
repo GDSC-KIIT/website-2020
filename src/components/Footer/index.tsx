@@ -1,18 +1,25 @@
 import { Timeline } from 'react-twitter-widgets';
 import styles from './Footer.module.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
+import { makeStyles, Grid } from '@material-ui/core';
+
+import {
+	Facebook as FacebookIcon,
+	Twitter as TwitterIcon,
+	LinkedIn as LinkedInIcon,
+	Instagram as InstagramIcon,
+	LocationOnOutlined as LocationOnOutlinedIcon,
+	EmailOutlined as EmailOutlinedIcon,
+	PhoneEnabled as PhoneEnabledIcon,
+} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
+	},
+	alongIcon: {
+		margin: theme.spacing(1.5, 0),
+		display: 'flex',
+		flexDirection: 'row',
 	},
 }));
 
@@ -97,26 +104,24 @@ export default function Home() {
 								</h3>
 
 								<ul className={styles.dsc_info}>
-									<li>
+									<li className={classes.alongIcon}>
 										<LocationOnOutlinedIcon style={{ fontSize: 20 }} />
 										&nbsp; School of Computer Engineering, KIIT University,
 										Bhubaneswar, 751024
 									</li>
-									<li>
-										<EmailOutlinedIcon style={{ fontSize: 20 }} /> &nbsp;Email:{' '}
-										<a href="mailto:info@dsckiit.in">info@dsckiit.in</a>
-									</li>
-									<li>
-										<EmailOutlinedIcon style={{ fontSize: 20 }} />
-										&nbsp; Alt.:{' '}
+									<li className={classes.alongIcon}>
+										<EmailOutlinedIcon style={{ fontSize: 20 }} />{' '}
+										&nbsp;Email:&nbsp;
 										<a href="mailto:dsckiit@gmail.com">dsckiit@gmail.com</a>
 									</li>
-									<li>
-										<PhoneEnabledIcon style={{ fontSize: 20 }} />
-										&nbsp; Phone: <a href="tel:+91-7504417023">
-											+917504417023
-										</a>{' '}
-										(Manzar Hasnain)
+									<li className={classes.alongIcon}>
+										<PhoneEnabledIcon style={{ fontSize: 20 }} />{' '}
+										&nbsp;Phone:&nbsp;
+										<div>
+											<a href="tel:+91-9956876609">+919956876609</a>
+											<br />
+											(Praddyum Verma)
+										</div>
 									</li>
 								</ul>
 								<div className={styles.f_social_icon}>

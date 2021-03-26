@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import type { SeasonScoreDataType } from '@/types/index';
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 
 export function getSeasonScore(): Promise<number | null> {
 	return axios
