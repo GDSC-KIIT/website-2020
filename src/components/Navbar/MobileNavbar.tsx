@@ -2,6 +2,7 @@ import NextLink from 'next/link';
 import { useState } from 'react';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
+import { externalUrls } from '@/lib/externalUrls';
 
 import {
 	makeStyles,
@@ -74,7 +75,11 @@ export default function MobileNavbar() {
 						<DrawerItem label="Blogs" icon={<BookIcon />} link="/blogs" />
 					</div>
 					<div className={classes.backHover}>
-						<DrawerItem label="Events" icon={<EmojiEventsIcon />} link="/events" />
+						<DrawerItem
+							label="Events"
+							icon={<EmojiEventsIcon />}
+							link={externalUrls.events_page}
+						/>
 					</div>
 					<div className={classes.backHover}>
 						<DrawerItem label="Teams" icon={<GroupIcon />} link="/team" />

@@ -2,8 +2,9 @@ import NextLink from 'next/link';
 import NextImage from 'next/image';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
+import { externalUrls } from '@/lib/externalUrls';
 
-import { makeStyles, Typography, Box, Grid, Divider } from '@material-ui/core';
+import { makeStyles, Typography, Box, Grid, Divider, Link } from '@material-ui/core';
 import styles from '@/styles/navbar.module.css';
 
 const backHoverStyles = {
@@ -70,11 +71,11 @@ export default function LaptopNavbar() {
 					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<NextLink href="https://dsc.community.dev/kalinga-institute-of-industrial-technology-bhubaneswar/">
+					<Link href={externalUrls.events_page}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Events
 						</Typography>
-					</NextLink>
+					</Link>
 				</Grid>
 				<Grid item className={classes.backHover}>
 					<NextLink href="/playground">
