@@ -33,6 +33,12 @@ import {
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
 
+const backHoverStyles = {
+	backgroundColor: '#d9d9d9',
+	borderRadius: '0.75rem',
+	transition: 'all 0.04s linear',
+};
+
 const useStyles = makeStyles((theme) => ({
 	navToggle: {
 		display: 'none',
@@ -41,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	divider: {
-		'& hr': {
-			margin: theme.spacing(0, 0.5),
-		},
+		margin: theme.spacing(0, 0.75),
+	},
+	backHover: {
+		'&:hover': backHoverStyles,
+		'&:focus': backHoverStyles,
 	},
 }));
 
@@ -63,24 +71,46 @@ const Navbar = () => {
 					</IconButton>
 					<Drawer anchor="left" open={navState} onClose={() => navToggle(false)}>
 						<List>
-							<ListItem>
+							<ListItem className={classes.backHover}>
 								<Typography variant="h6" style={{ fontWeight: 'bolder' }}>
 									DSC KIIT
 									<GoogleAuthLogin />
 								</Typography>
 							</ListItem>
 
-							<DrawerItem label="Home" icon={<HomeIcon />} link="/" />
-							<DrawerItem
-								label="Projects"
-								icon={<LibraryBooksIcon />}
-								link="/projects"
-							/>
-							<DrawerItem label="Blogs" icon={<BookIcon />} link="/blogs" />
-							<DrawerItem label="Events" icon={<EmojiEventsIcon />} link="/events" />
-							<DrawerItem label="Teams" icon={<GroupIcon />} link="/team" />
-							<DrawerItem label="Mentors" icon={<ContactsIcon />} link="/mentors" />
-							<DrawerItem label="Contact" icon={<InfoIcon />} link="#contact" />
+							<div className={classes.backHover}>
+								<DrawerItem label="Home" icon={<HomeIcon />} link="/" />
+							</div>
+							<div className={classes.backHover}>
+								<DrawerItem
+									label="Projects"
+									icon={<LibraryBooksIcon />}
+									link="/projects"
+								/>
+							</div>
+							<div className={classes.backHover}>
+								<DrawerItem label="Blogs" icon={<BookIcon />} link="/blogs" />
+							</div>
+							<div className={classes.backHover}>
+								<DrawerItem
+									label="Events"
+									icon={<EmojiEventsIcon />}
+									link="/events"
+								/>
+							</div>
+							<div className={classes.backHover}>
+								<DrawerItem label="Teams" icon={<GroupIcon />} link="/team" />
+							</div>
+							<div className={classes.backHover}>
+								<DrawerItem
+									label="Mentors"
+									icon={<ContactsIcon />}
+									link="/mentors"
+								/>
+							</div>
+							<div className={classes.backHover}>
+								<DrawerItem label="Contact" icon={<InfoIcon />} link="#contact" />
+							</div>
 						</List>
 					</Drawer>
 				</Box>
@@ -108,49 +138,49 @@ const Navbar = () => {
 						spacing={3}
 						justify="flex-end"
 						className={styles.nav}>
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<Link href="/team">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Team
 								</Typography>
 							</Link>
 						</Grid>
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<Link href="/projects">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Projects
 								</Typography>
 							</Link>
 						</Grid>
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<Link href="https://dsc.community.dev/kalinga-institute-of-industrial-technology-bhubaneswar/">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Events
 								</Typography>
 							</Link>
 						</Grid>
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<Link href="/playground">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Quiz
 								</Typography>
 							</Link>
 						</Grid>
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<Link href="/blog">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Blogs
 								</Typography>
 							</Link>
 						</Grid>
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<Link href="/mentors">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Mentors
 								</Typography>
 							</Link>
 						</Grid>
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<Link href="#contact">
 								<Typography variant="body2" style={{ cursor: 'pointer' }}>
 									Contact
@@ -158,7 +188,7 @@ const Navbar = () => {
 							</Link>
 						</Grid>
 						<Divider className={classes.divider} orientation="vertical" flexItem />
-						<Grid item>
+						<Grid item className={classes.backHover}>
 							<GoogleAuthLogin />
 						</Grid>
 					</Grid>
