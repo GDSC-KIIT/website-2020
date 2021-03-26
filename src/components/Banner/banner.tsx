@@ -29,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function MainFeaturedPost(props: BannerPropsType) {
+export default function Banner(props: BannerPropsType) {
 	const classes = useStyles();
 	const { title, link, eye_catcher, image } = props;
 
 	return (
-		<Container maxWidth="lg" style={{ marginTop: '2rem' }}>
+		<Container maxWidth="lg" style={{ marginTop: '1.5rem' }}>
 			<Paper
 				className={classes.mainFeaturedPost}
 				style={{ backgroundImage: `url(${image.url})` }}>
