@@ -1,5 +1,4 @@
 LOGS/
-firebase-env.json
 /env/
 extensions/users-permissions/config/jwt.js
 

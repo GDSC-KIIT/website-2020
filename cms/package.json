@@ -1,7 +1,7 @@
 {
 	"name": "dsc-kiit-website-backend",
 	"private": true,
-	"version": "2.2.0-v2",
+	"version": "2.2.1-v2",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
 		"dev": "strapi develop",
@@ -32,7 +32,7 @@
 		"strapi-plugin-email": "3.5.4",
 		"strapi-plugin-upload": "3.5.4",
 		"strapi-plugin-users-permissions": "3.5.4",
-		"strapi-provider-upload-firebase": "file:./providers/strapi-provider-upload-firebase",
+		"strapi-provider-upload-cloudinary": "^3.5.4",
 		"strapi-utils": "3.5.4"
 	},
 	"author": {

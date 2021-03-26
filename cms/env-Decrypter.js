@@ -4,11 +4,7 @@ const crypto = require('crypto');
 var cryptoSecret = '';
 
 function getPassword() {
-	console.log(
-		'\x1b[31m',
-		'Now, trying to decrypt backend.env and firebase-env for env variables',
-		'\x1b[0m \n'
-	);
+	console.log('\x1b[31m', 'Now, trying to decrypt backend.env for env variables', '\x1b[0m \n');
 
 	if (process.env.UNSKIP_DECR === 'true') {
 		const rl = require('readline').createInterface({
@@ -28,7 +24,6 @@ function getPassword() {
 			rl.close();
 
 			dotEnvDecrypter();
-			firebaseEnvDecrypter();
 		});
 	} else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'PRODUCTION') {
 		console.log(
@@ -41,7 +36,6 @@ function getPassword() {
 		cryptoSecret = process.env.PROD_DECR;
 
 		dotEnvDecrypter();
-		firebaseEnvDecrypter();
 	} else {
 		console.log('\x1b[45m Using examples env for .env files\x1b[0m');
 		createEnvFromExamples();
@@ -70,35 +64,9 @@ function dotEnvDecrypter() {
 	console.log('\x1b[43m', '.env file created', '\x1b[0m \n');
 }
 
-function firebaseEnvDecrypter() {
-	const fileContent = fs.readFileSync('firebase-env', { encoding: 'utf8' });
-
-	// decrypt this using cryptojs
-
-	const secret = cryptoSecret;
-	const algo = 'aes-192-cbc';
-	const key = crypto.scryptSync(secret, 'salt', 24);
-	const iv = Buffer.alloc(16, 0);
-
-	const decipher = crypto.createDecipheriv(algo, key, iv);
-	let decryptedText = decipher.update(fileContent, 'base64', 'utf8');
-	decryptedText += decipher.final('utf8');
-
-	// make the file
-
-	fs.writeFileSync('firebase-env.json', decryptedText, { encoding: 'utf8' });
-
-	console.log('\x1b[43m', 'firebase-env.json file created', '\x1b[0m \n');
-}
-
 function createEnvFromExamples() {
 	const envExamplesContent = fs.readFileSync('.env.example', { encoding: 'utf-8' });
 	fs.writeFileSync('.env', envExamplesContent);
-
-	const fireBaseEnvExamplesContent = fs.readFileSync('firebase-env.example.json', {
-		encoding: 'utf-8',
-	});
-	fs.writeFileSync('firebase-env.json', fireBaseEnvExamplesContent, { encoding: 'utf8' });
 }
 
 getPassword();

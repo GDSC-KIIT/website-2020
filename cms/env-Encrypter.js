@@ -10,7 +10,7 @@ var cryptSecret = '';
 function setPassword() {
 	console.log(
 		'\x1b[31m',
-		'You are setting new for env variables\n You will be prompted to enter a password for the encryption \n This includes - \t .env \t firebase-env.json',
+		'You are setting new for env variables\n You will be prompted to enter a password for the encryption \n This includes - \t .env\t',
 		'\x1b[0m \n'
 	);
 
@@ -26,7 +26,6 @@ function setPassword() {
 			rl.close();
 
 			dotEnvEncrypter();
-			firebaseEnvEncrypter();
 		});
 	}
 }
@@ -50,27 +49,6 @@ function dotEnvEncrypter() {
 	fs.writeFileSync('backend.env', encryptedText, { encoding: 'utf8' });
 
 	console.log('\x1b[43m', 'backend.env file created', '\x1b[0m \n');
-}
-
-function firebaseEnvEncrypter() {
-	const fileContent = fs.readFileSync('firebase-env.json', { encoding: 'utf8' });
-
-	// encrypt this using crypto
-
-	const secret = cryptSecret;
-	const algo = 'aes-192-cbc';
-	const key = crypto.scryptSync(secret, 'salt', 24);
-	const iv = Buffer.alloc(16, 0);
-
-	const cipher = crypto.createCipheriv(algo, key, iv);
-	let encryptedText = cipher.update(fileContent, 'utf8', 'base64');
-	encryptedText += cipher.final('base64');
-
-	// make the file
-
-	fs.writeFileSync('firebase-env', encryptedText, { encoding: 'utf8' });
-
-	console.log('\x1b[43m', 'firebase-env file created', '\x1b[0m \n');
 }
 
 setPassword();
