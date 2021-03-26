@@ -1,21 +1,13 @@
 import axios from 'axios';
 import { externalUrls } from '@/lib/externalUrls';
+import type { BlogPostDataType } from '@/types/index';
 
-export interface IBlogPost {
-	author: string;
-	categories: [];
-	link: string;
-	image: string;
-	title: string;
-	date: string;
-}
-
-export function fetchMediumBlogPosts(): Promise<Array<IBlogPost>> {
+export function fetchMediumBlogPosts(): Promise<Array<BlogPostDataType>> {
 	return axios
 		.get(externalUrls['blogs_medium'])
 		.then((response) => response.data)
 		.then((data) => {
-			const blogposts: Array<IBlogPost> = [];
+			const blogposts: Array<BlogPostDataType> = [];
 			if (!data || !data.items) return [];
 			for (const medm of data.items) {
 				blogposts.push({
@@ -24,7 +16,7 @@ export function fetchMediumBlogPosts(): Promise<Array<IBlogPost>> {
 					link: medm.link,
 					image: medm.thumbnail,
 					title: medm.title,
-					date: medm.pubDate,
+					date: getDateFromString(medm.pubDate),
 				});
 			}
 			return blogposts;
@@ -35,12 +27,12 @@ export function fetchMediumBlogPosts(): Promise<Array<IBlogPost>> {
 		});
 }
 
-export function fetchDevtoBlogPosts(): Promise<Array<IBlogPost>> {
+export function fetchDevtoBlogPosts(): Promise<Array<BlogPostDataType>> {
 	return axios
 		.get(externalUrls['blogs_devto'])
 		.then((response) => response.data)
 		.then((data) => {
-			const blogposts: Array<IBlogPost> = [];
+			const blogposts: Array<BlogPostDataType> = [];
 			if (!data || !Array.isArray(data)) return [];
 			for (const dvt of data) {
 				blogposts.push({
@@ -49,7 +41,7 @@ export function fetchDevtoBlogPosts(): Promise<Array<IBlogPost>> {
 					link: dvt.url,
 					image: dvt.cover_image,
 					title: dvt.title,
-					date: dvt.published_at,
+					date: getDateFromString(dvt.published_at),
 				});
 			}
 			return blogposts;
@@ -58,4 +50,8 @@ export function fetchDevtoBlogPosts(): Promise<Array<IBlogPost>> {
 			console.log('error while fetching dev.to posts', err);
 			return [];
 		});
+}
+
+function getDateFromString(str: string) {
+	return new Date(str);
 }
