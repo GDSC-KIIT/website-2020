@@ -12,7 +12,6 @@ export default function Banners() {
 	if (banners.length > 0) {
 		return (
 			<>
-				<span style={{ marginTop: '2rem' }} />
 				{banners.map((banner) => (
 					<Banner
 						key={banner.id}

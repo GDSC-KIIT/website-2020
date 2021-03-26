@@ -1,17 +1,15 @@
-import NextImage from 'next/image';
-
 import type { BannerDataType } from '@/types/index';
 
-import { makeStyles, Paper, Typography, Grid, Link } from '@material-ui/core';
+import { makeStyles, Container, Paper, Typography, Grid, Link } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-	bannerMain: {
+	mainFeaturedPost: {
 		position: 'relative',
-		backgroundColor: 'grey',
-		color: 'white',
-		marginBottom: '1rem',
-		marginTop: '1rem',
-		height: '40vh',
+		color: theme.palette.common.white,
+		marginBottom: theme.spacing(4),
+		backgroundSize: 'cover',
+		backgroundRepeat: 'no-repeat',
+		backgroundPosition: 'center',
 	},
 	overlay: {
 		position: 'absolute',
@@ -19,43 +17,45 @@ const useStyles = makeStyles((theme) => ({
 		bottom: 0,
 		right: 0,
 		left: 0,
-		backgroundColor: 'rgba(0,0,0,0.3)',
+		backgroundColor: 'rgba(0,0,0,.3)',
 	},
-	bannerContent: {
+	mainFeaturedPostContent: {
 		position: 'relative',
-		padding: '2rem',
+		padding: theme.spacing(3),
+		[theme.breakpoints.up('md')]: {
+			padding: theme.spacing(6),
+			paddingRight: 0,
+		},
 	},
 }));
 
-export default function Banner({ title, image, eye_catcher, link }: Omit<BannerDataType, 'id'>) {
+export default function MainFeaturedPost(props: BannerPropsType) {
 	const classes = useStyles();
+	const { title, link, eye_catcher, image } = props;
 
 	return (
-		<Paper className={classes.bannerMain}>
-			{image ? (
-				<NextImage
-					src={image.url}
-					alt={image.alternativeText ?? 'Banner'}
-					layout="fill"
-					objectFit="cover"
-				/>
-			) : null}
-			<div className={classes.overlay} />
-			<Grid container>
-				<Grid item md={6}>
-					<div className={classes.bannerContent}>
-						<Typography component="h1" variant="h3" color="inherit" gutterBottom>
-							{title}
-						</Typography>
-						<Typography variant="h5" color="inherit" paragraph>
-							{eye_catcher}
-						</Typography>
-						<Link variant="subtitle1" href={link}>
-							Check this out now
-						</Link>
-					</div>
+		<Container maxWidth="lg" style={{ marginTop: '2rem' }}>
+			<Paper
+				className={classes.mainFeaturedPost}
+				style={{ backgroundImage: `url(${image.url})` }}>
+				<div className={classes.overlay} />
+				<Grid container>
+					<Grid item md={6}>
+						<div className={classes.mainFeaturedPostContent}>
+							<Typography component="h1" variant="h2" color="inherit" gutterBottom>
+								{title}
+							</Typography>
+							<Typography variant="h5" color="inherit" paragraph>
+								{eye_catcher}
+							</Typography>
+							<Link variant="subtitle1" href={link} target="_blank" rel="noopener">
+								Find More About This Here
+							</Link>
+						</div>
+					</Grid>
 				</Grid>
-			</Grid>
-		</Paper>
+			</Paper>
+		</Container>
 	);
 }
+type BannerPropsType = Omit<BannerDataType, 'id'>;
