@@ -1,8 +1,9 @@
-import Link from 'next/link';
+import NextLink from 'next/link';
+import NextImage from 'next/image';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
 
-import { makeStyles, Typography, Grid, Divider } from '@material-ui/core';
+import { makeStyles, Typography, Box, Grid, Divider } from '@material-ui/core';
 import styles from '@/styles/navbar.module.css';
 
 const backHoverStyles = {
@@ -19,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
 		'&:hover': backHoverStyles,
 		'&:focus': backHoverStyles,
 	},
+	logoBox: {
+		display: 'flex',
+	},
+	logoText: {
+		marginLeft: '10px',
+	},
 }));
 
 export default function LaptopNavbar() {
@@ -27,18 +34,17 @@ export default function LaptopNavbar() {
 	return (
 		<Grid container>
 			<Grid item xs={12} sm={5} style={{ display: 'flex', alignItems: 'center' }}>
-				<Link href="/">
+				<NextLink href="/">
 					<Typography
 						variant="h6"
 						style={{ cursor: 'pointer', marginLeft: '.4em' }}
 						noWrap>
-						<img
-							src="/images/playground/dsc.svg"
-							style={{ marginRight: '10px', width: '1.5em' }}
-						/>
-						DSC KIIT
+						<Box className={classes.logoBox}>
+							<NextImage width="30" height="30" src="/images/playground/dsc.svg" />
+							<Box className={classes.logoText}>DSC KIIT</Box>
+						</Box>
 					</Typography>
-				</Link>
+				</NextLink>
 			</Grid>
 
 			<Grid
@@ -50,53 +56,53 @@ export default function LaptopNavbar() {
 				justify="flex-end"
 				className={styles.nav}>
 				<Grid item className={classes.backHover}>
-					<Link href="/team">
+					<NextLink href="/team">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Team
 						</Typography>
-					</Link>
+					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<Link href="/projects">
+					<NextLink href="/projects">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Projects
 						</Typography>
-					</Link>
+					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<Link href="https://dsc.community.dev/kalinga-institute-of-industrial-technology-bhubaneswar/">
+					<NextLink href="https://dsc.community.dev/kalinga-institute-of-industrial-technology-bhubaneswar/">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Events
 						</Typography>
-					</Link>
+					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<Link href="/playground">
+					<NextLink href="/playground">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Quiz
 						</Typography>
-					</Link>
+					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<Link href="/blog">
+					<NextLink href="/blog">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Blogs
 						</Typography>
-					</Link>
+					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<Link href="/mentors">
+					<NextLink href="/mentors">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Mentors
 						</Typography>
-					</Link>
+					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<Link href="#contact">
+					<NextLink href="#contact">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Contact
 						</Typography>
-					</Link>
+					</NextLink>
 				</Grid>
 				<Divider className={classes.divider} orientation="vertical" flexItem />
 				<Grid item className={classes.backHover}>
