@@ -24,16 +24,16 @@
 		"knex": "0.21.18",
 		"pm2": "^4.5.5",
 		"sqlite3": "5.0.0",
-		"strapi": "3.5.2",
-		"strapi-admin": "3.5.2",
-		"strapi-connector-bookshelf": "3.5.2",
-		"strapi-plugin-content-manager": "3.5.2",
-		"strapi-plugin-content-type-builder": "3.5.2",
-		"strapi-plugin-email": "3.5.2",
-		"strapi-plugin-upload": "3.5.2",
-		"strapi-plugin-users-permissions": "3.5.2",
+		"strapi": "3.5.4",
+		"strapi-admin": "3.5.4",
+		"strapi-connector-bookshelf": "3.5.4",
+		"strapi-plugin-content-manager": "3.5.4",
+		"strapi-plugin-content-type-builder": "3.5.4",
+		"strapi-plugin-email": "3.5.4",
+		"strapi-plugin-upload": "3.5.4",
+		"strapi-plugin-users-permissions": "3.5.4",
 		"strapi-provider-upload-firebase": "file:./providers/strapi-provider-upload-firebase",
-		"strapi-utils": "3.5.2"
+		"strapi-utils": "3.5.4"
 	},
 	"author": {
 		"name": "aditya-mitra"
