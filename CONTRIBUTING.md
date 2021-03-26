@@ -19,15 +19,17 @@ npm install
 ```
 
 2. Start the _nextjs_ development server
+
 ```
 npm run dev
 ```
 
-### To Setup the *Hapi Strapi* Webhook
+### To Setup the _Hapi Strapi_ Webhook
 
 **It is not necessary to set this up and start running, if you are not looking to make contributions here**
 
 1. Install the dependencies
+
 ```
 npm install
 ```
@@ -53,12 +55,14 @@ If you are writing tests, you would need to check if your tests are working prop
 
 You will need a cms server running in `TEST` mode.
 You can do this by:
+
 ```sh
 # in the cms folder
 npm run server:testing
 ```
 
 Now, start the the jest test server by running:
+
 ```sh
 # in the root folder of the project
 npm run testw

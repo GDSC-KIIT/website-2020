@@ -52,4 +52,3 @@ In you **`.env.example`** file, copy the **client id** and the **client secret**
 (Check the below image for the same)
 
 ![google oauth credentials](https://user-images.githubusercontent.com/55396651/112699272-7cdac600-8eb1-11eb-80bf-dc7befbccd32.png)
-

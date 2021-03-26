@@ -4,14 +4,7 @@
 
 ## DEVELOPMENT SETUP
 
-If you are working on a unix enviroment, you can easily setup up the dev enviroment by runnning:
-
-```sh
-sh tools/dev_setup.sh
-```
-
-Otherwise, you can manually run the commands in [this script](./tools/dev_setup.sh) file one by one to complete your setup.
-_(You have to do `SKIP_DECR=TRUE npm install` when running `npm install` on the cms folder)_
+Please refer [here](./CONTRIBUTING.md) for setting up the development environment.
 
 ## PRODUCTION SETUP
 
@@ -38,3 +31,20 @@ npm run build
 
 npm start
 ```
+
+## Production Runs _(For CMS Backend)_
+
+### Checking the Console Server Output
+
+To check the status, memory and other get logs from the application when the server is running in _production_, run `npm run pm2 monit`.
+
+### Stopping the Server
+
+To stop the server, run `npm run pm2 kill`. This will stop all the running processes for the cms.
+If still some node processes are left, run `killall node`.
+
+### Checking Error Logs
+
+If the **application has stopped** or you want to **check for errors**, visit the `cms` folder and then visit the `LOGS` folder.
+
+You will find the different server log files, and you can open and then check for the log.
