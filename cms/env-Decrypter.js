@@ -43,7 +43,8 @@ function getPassword() {
 		dotEnvDecrypter();
 		firebaseEnvDecrypter();
 	} else {
-		console.log('\x1b[45m skipping env variables \x1b[0m');
+		console.log('\x1b[45m Using examples env for .env files\x1b[0m');
+		createEnvFromExamples();
 		return;
 	}
 }
@@ -88,6 +89,16 @@ function firebaseEnvDecrypter() {
 	fs.writeFileSync('firebase-env.json', decryptedText, { encoding: 'utf8' });
 
 	console.log('\x1b[43m', 'firebase-env.json file created', '\x1b[0m \n');
+}
+
+function createEnvFromExamples() {
+	const envExamplesContent = fs.readFileSync('.env.example', { encoding: 'utf-8' });
+	fs.writeFileSync('.env', envExamplesContent);
+
+	const fireBaseEnvExamplesContent = fs.readFileSync('firebase-env.example.json', {
+		encoding: 'utf-8',
+	});
+	fs.writeFileSync('firebase-env.json', fireBaseEnvExamplesContent, { encoding: 'utf8' });
 }
 
 getPassword();
