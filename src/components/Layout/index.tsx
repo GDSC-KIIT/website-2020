@@ -26,12 +26,12 @@ export default function Layout({ children, pageName }: IProps) {
 			</Head>
 			<ThemeProvider theme={theme}>
 				<Navbar />
-				<div style={{ position: 'relative' }}>
-					{children}
-					<PaperParticles />
-				</div>
+				{children}
 				<Readytotalk />
-				<Footer />
+				<div style={{ position: 'relative' }}>
+					<PaperParticles />
+					<Footer />
+				</div>
 			</ThemeProvider>
 		</>
 	);
