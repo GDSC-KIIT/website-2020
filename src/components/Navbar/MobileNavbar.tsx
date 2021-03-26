@@ -2,7 +2,7 @@ import NextLink from 'next/link';
 import { useState } from 'react';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
-import { externalUrls } from '@/lib/externalUrls';
+import { externalUrls } from '@/lib/urls';
 
 import {
 	makeStyles,

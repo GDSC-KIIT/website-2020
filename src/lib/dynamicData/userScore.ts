@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import type { ScoreDataType } from '@/types/index';
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 
 export function getUserScore(scoreId: number): Promise<ScoreDataType | null> {
 	return axios

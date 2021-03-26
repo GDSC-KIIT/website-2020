@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import axios from 'axios';
 
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 import { storeUserWithToken } from '@/lib/user/session';
 import performLogout from '@/lib/user/performLogout';
 

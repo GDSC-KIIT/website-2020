@@ -2,7 +2,7 @@ import NextLink from 'next/link';
 import NextImage from 'next/image';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
-import { externalUrls } from '@/lib/externalUrls';
+import { externalUrls } from '@/lib/urls';
 
 import { makeStyles, Typography, Box, Grid, Divider, Link } from '@material-ui/core';
 import styles from '@/styles/navbar.module.css';
@@ -71,7 +71,7 @@ export default function LaptopNavbar() {
 					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<Link href={externalUrls.events_page}>
+					<Link href={externalUrls.events_page} target="_blank" rel="noopener noreferrer">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Events
 						</Typography>

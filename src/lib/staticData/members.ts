@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 import type { MemberDataType, GroupedMemberType } from '@/types/index';
 
 export default function fetchMembers(): Promise<GroupedMemberType> {

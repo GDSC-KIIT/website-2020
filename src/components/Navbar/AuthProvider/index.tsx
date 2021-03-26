@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import useUser from '@/hooks/useUser';
-import { backendUrls } from '@/lib/backendUrls';
+import { backendUrls } from '@/lib/urls';
 import { Link, CircularProgress, Typography, Menu, MenuItem, Fade } from '@material-ui/core';
 import NextLink from 'next/link';
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { externalUrls } from '@/lib/externalUrls';
+import { externalUrls } from '@/lib/urls';
 import type { BlogPostDataType, BlogPostType } from '@/types/index';
 
 export default async function fetchAllBlogPosts(): Promise<BlogPostType[]> {
