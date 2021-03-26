@@ -59,6 +59,10 @@
 		"typescript": "^4.0.5",
 		"winston": "^3.3.3"
 	},
+	"engines": {
+		"node": ">=14.0.0 <=14.x.x",
+		"npm": "^7.0.0"
+	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "pretty-quick --staged --ignore-path=.prettierignore --verbose"
