@@ -4,7 +4,7 @@ import useSWR from 'swr';
 
 import { fetchAllQuestions } from '@/playground/lib/api';
 import useUser from '@/hooks/useUser';
-import { GoogleLoginLink } from '@/components/AuthProvider';
+import { GoogleLoginLink } from '@/components/Navbar/AuthProvider';
 import Layout from './layout';
 
 import {

@@ -31,7 +31,7 @@ import {
 	EmojiEvents as EmojiEventsIcon,
 } from '@material-ui/icons';
 
-import { GoogleAuthLogin } from '@/components/AuthProvider';
+import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
 
 const useStyles = makeStyles((theme) => ({
 	navToggle: {
