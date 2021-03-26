@@ -12,32 +12,53 @@
 	},
 	"attributes": {
 		"name": {
-			"type": "string"
+			"type": "string",
+			"required": true,
+			"minLength": 1
 		},
-		"twitter": {
-			"type": "string"
+		"domain": {
+			"type": "enumeration",
+			"enum": [
+				"DSC_KIIT_Lead",
+				"Web_Development",
+				"Machine_Learning",
+				"Flutter",
+				"Cloud",
+				"Ethical_Hacking",
+				"Android",
+				"ThreeD_Modelling",
+				"Content_Writing",
+				"UI_UX_and_Design",
+				"Photography_and_Editing"
+			],
+			"required": true
 		},
-		"position": {
-			"type": "string"
-		},
-		"github": {
-			"type": "string"
-		},
-		"facebook": {
-			"type": "string"
-		},
-		"linkedIn": {
-			"type": "string"
-		},
-		"order": {
-			"type": "integer"
-		},
-		"image_path": {
+		"image": {
 			"model": "file",
 			"via": "related",
-			"allowedTypes": ["images", "files", "videos"],
+			"allowedTypes": ["images"],
 			"plugin": "upload",
-			"required": false
+			"required": true
+		},
+		"github": {
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
+		},
+		"twitter": {
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
+		},
+		"linkedin": {
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
+		},
+		"facebook": {
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
+		},
+		"website": {
+			"type": "string",
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		}
 	}
 }

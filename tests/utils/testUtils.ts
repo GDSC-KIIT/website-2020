@@ -4,7 +4,18 @@ import {
 	SubmitReponseType,
 	UserInfoType,
 	BadgeDataType,
+	DataImageType,
 } from '@/types/index';
+
+const mockImageData: DataImageType = {
+	id: 1,
+	height: 100,
+	width: 100,
+	caption: 'caption of mocked',
+	alternativeText: 'alt mocked',
+	hash: 'abc123mock',
+	url: 'cool-badge.jpg',
+};
 
 export const createdUser = {
 	id: 1,
@@ -91,7 +102,7 @@ export const mockScoreData: ScoreDataType = {
 export const mockBadgeData: BadgeDataType = {
 	id: 3,
 	name: 'cool badge',
-	image: 'cool-badge.jpg',
+	image: mockImageData,
 };
 
 export const mockUser: UserInfoType = {

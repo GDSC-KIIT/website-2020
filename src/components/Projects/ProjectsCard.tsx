@@ -1,6 +1,5 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
+	makeStyles,
 	Grid,
 	Card,
 	CardActionArea,
@@ -11,15 +10,9 @@ import {
 	Button,
 } from '@material-ui/core';
 import { GitHub as GitHubIcon, Person as PersonIcon } from '@material-ui/icons';
-// import MoreIcon from '@material-ui/icons/More';
-import { getStrapiMediaProject } from '../../lib/media';
-declare global {
-	namespace JSX {
-		interface IntrinsicElements {
-			center: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-		}
-	}
-}
+
+import type { ProjectDataType } from '@/types/index';
+
 const useStyles = makeStyles({
 	root: {
 		maxWidth: 345,
@@ -29,24 +22,22 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function ProjectsCard({ projectInfo, displayHeader }: any) {
-	const imageUrl = getStrapiMediaProject(projectInfo.project_logo);
+export default function ProjectsCard({ project }: IProject) {
 	const classes = useStyles();
 
 	return (
 		<>
-			{console.log(projectInfo, displayHeader)}
 			<Grid item xs={12} sm={6} md={3}>
 				<Card className={classes.root} raised={true}>
 					<CardActionArea>
 						<CardMedia
 							className={classes.media}
-							image={imageUrl}
+							image={project.logo.url}
 							title="DSC KIIT projects"
 						/>
 						<CardContent>
 							<Typography gutterBottom variant="h5" component="h2">
-								{projectInfo.name}
+								{project.name}
 							</Typography>
 							<div
 								style={{
@@ -56,7 +47,7 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 									marginTop: 10,
 								}}>
 								<PersonIcon style={{ marginRight: 10 }} />
-								<Typography>{projectInfo.members.names}</Typography>
+								<Typography>{displayProjectMembers(project.members)}</Typography>
 							</div>
 						</CardContent>
 					</CardActionArea>
@@ -65,19 +56,27 @@ export default function ProjectsCard({ projectInfo, displayHeader }: any) {
 							variant="outlined"
 							color="primary"
 							startIcon={<GitHubIcon />}
-							href={projectInfo.Github}>
+							href={project.repository}>
 							GitHub
 						</Button>
-						{/* <Button
-							variant="outlined"
-							color="primary"
-							startIcon={<MoreIcon />}
-							href="https://github.com">
-							Know More
-						</Button> */}
 					</CardActions>
 				</Card>
 			</Grid>
 		</>
 	);
+}
+
+function displayProjectMembers(members: string): string {
+	return members
+		.split(',')
+		.map((member) => member.trim())
+		.join(', ');
+}
+
+export interface IProjects {
+	projects: Array<ProjectDataType>;
+}
+
+interface IProject {
+	project: ProjectDataType;
 }

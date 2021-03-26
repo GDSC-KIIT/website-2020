@@ -1,6 +1,6 @@
 import NextImage from 'next/image';
 
-import type { BannerType } from '@/types/index';
+import type { BannerDataType } from '@/types/index';
 
 import { makeStyles, Paper, Typography, Grid, Link } from '@material-ui/core';
 
@@ -27,12 +27,19 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Banner({ title, image, eye_catcher, link }: Omit<BannerType, 'id'>) {
+export default function Banner({ title, image, eye_catcher, link }: Omit<BannerDataType, 'id'>) {
 	const classes = useStyles();
 
 	return (
 		<Paper className={classes.bannerMain}>
-			{image ? <NextImage src={image} layout="fill" objectFit="cover" /> : null}
+			{image ? (
+				<NextImage
+					src={image.url}
+					alt={image.alternativeText ?? 'Banner'}
+					layout="fill"
+					objectFit="cover"
+				/>
+			) : null}
 			<div className={classes.overlay} />
 			<Grid container>
 				<Grid item md={6}>

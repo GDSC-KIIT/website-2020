@@ -10,22 +10,7 @@ function getPassword() {
 		'\x1b[0m \n'
 	);
 
-	if (process.env.SKIP_DECR === 'TRUE') {
-		console.log('\x1b[45m skipping env variables \x1b[0m');
-		return;
-	} else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'PRODUCTION') {
-		console.log(
-			'\n \x1b[34m',
-			'\x1b[45m',
-			'trying now to DECRYPT .env with production passphrase',
-			'\x1b[0m \n'
-		);
-
-		cryptoSecret = process.env.PROD_DECR;
-
-		dotEnvDecrypter();
-		firebaseEnvDecrypter();
-	} else {
+	if (process.env.UNSKIP_DECR === 'true') {
 		const rl = require('readline').createInterface({
 			input: process.stdin,
 			output: process.stdout,
@@ -45,6 +30,21 @@ function getPassword() {
 			dotEnvDecrypter();
 			firebaseEnvDecrypter();
 		});
+	} else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'PRODUCTION') {
+		console.log(
+			'\n \x1b[34m',
+			'\x1b[45m',
+			'trying now to DECRYPT .env with production passphrase',
+			'\x1b[0m \n'
+		);
+
+		cryptoSecret = process.env.PROD_DECR;
+
+		dotEnvDecrypter();
+		firebaseEnvDecrypter();
+	} else {
+		console.log('\x1b[45m skipping env variables \x1b[0m');
+		return;
 	}
 }
 

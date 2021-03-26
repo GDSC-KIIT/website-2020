@@ -8,39 +8,35 @@
 	"options": {
 		"increments": true,
 		"timestamps": true,
-		"draftAndPublish": true
+		"draftAndPublish": false
 	},
 	"attributes": {
 		"name": {
 			"type": "string",
-			"required": true
+			"required": true,
+			"minLength": 1
 		},
-		"description": {
-			"type": "richtext",
-			"private": false,
-			"required": true
-		},
-		"ongoing": {
-			"type": "boolean"
-		},
-		"date": {
-			"type": "date"
-		},
-		"members": {
-			"type": "json"
-		},
-		"project_logo": {
+		"logo": {
 			"model": "file",
 			"via": "related",
-			"allowedTypes": ["images", "files", "videos"],
+			"allowedTypes": ["images"],
 			"plugin": "upload",
 			"required": false
 		},
-		"order": {
-			"type": "integer"
+		"repository": {
+			"type": "string",
+			"unique": true,
+			"minLength": 1,
+			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
 		},
-		"Github": {
-			"type": "string"
+		"members": {
+			"type": "string",
+			"required": false,
+			"default": "(comma , seperated values)"
+		},
+		"description": {
+			"type": "text",
+			"minLength": 5
 		}
 	}
 }

@@ -13,7 +13,8 @@ import {
 	Container,
 	Button,
 } from '@material-ui/core';
-import styles from './landing.module.css';
+
+import styles from '@/styles/landing.module.css';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

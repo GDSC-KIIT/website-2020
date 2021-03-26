@@ -1,4 +1,5 @@
-import classes from './programming.module.css';
+import classes from '@/styles/programming.module.css';
+
 export default function Programming() {
 	return (
 		<div>

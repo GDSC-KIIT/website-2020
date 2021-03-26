@@ -34,7 +34,7 @@ export default function AdminHomePage() {
 						We are currently looking for suggestions to put <em>something</em> here
 					</h3>
 					<a
-						href="https://github.com/DSC-KIIT/dsckiit-website-2.0/issues/"
+						href="https://github.com/DSC-KIIT/dsckiit-website-2.0/issues/95"
 						target="_blank"
 						rel="noopener noreferrer">
 						<h4>You can help us by putting your suggestions here</h4>
