@@ -6,7 +6,7 @@ function ColorParticles() {
 	for (let i = 0; i < 30; i++) {
 		particles.push(<div className={styles.particle} key={i} />);
 	}
-	return <div id="colourful-particle-container">{particles}</div>;
+	return <div id="colourful-particles-container">{particles}</div>;
 }
 
 export default memo(ColorParticles);

@@ -5,6 +5,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Navbar from '@/components/Navbar';
 import Readytotalk from '@/components/ReadyToTalk';
 import Footer from '@/components/Footer';
+import PaperParticles from '@/components/Particles/Papers';
 
 interface IProps {
 	children: ReactNode;
@@ -25,7 +26,10 @@ export default function Layout({ children, pageName }: IProps) {
 			</Head>
 			<ThemeProvider theme={theme}>
 				<Navbar />
-				{children}
+				<div style={{ position: 'relative' }}>
+					{children}
+					<PaperParticles />
+				</div>
 				<Readytotalk />
 				<Footer />
 			</ThemeProvider>

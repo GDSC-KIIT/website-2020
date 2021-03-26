@@ -1,14 +1,16 @@
 import { Timeline } from 'react-twitter-widgets';
 import styles from './Footer.module.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import LocationOnOutlinedIcon from '@material-ui/icons/LocationOnOutlined';
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-import PhoneEnabledIcon from '@material-ui/icons/PhoneEnabled';
+import { makeStyles, Grid } from '@material-ui/core';
+
+import {
+	Facebook as FacebookIcon,
+	Twitter as TwitterIcon,
+	LinkedIn as LinkedInIcon,
+	Instagram as InstagramIcon,
+	LocationOnOutlined as LocationOnOutlinedIcon,
+	EmailOutlined as EmailOutlinedIcon,
+	PhoneEnabled as PhoneEnabledIcon,
+} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
