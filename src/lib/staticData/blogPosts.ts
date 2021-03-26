@@ -1,8 +1,21 @@
 import axios from 'axios';
 import { externalUrls } from '@/lib/externalUrls';
-import type { BlogPostDataType } from '@/types/index';
+import type { BlogPostDataType, BlogPostType } from '@/types/index';
 
-export function fetchMediumBlogPosts(): Promise<Array<BlogPostDataType>> {
+export default async function fetchAllBlogPosts(): Promise<BlogPostType[]> {
+	const blogPostsData = await Promise.all([
+		fetchMediumBlogPosts(),
+		fetchDevtoBlogPosts(),
+	]).then((arr) => [...arr[0], ...arr[1]]);
+
+	const blogPosts = blogPostsData.sort(sortPosts).map((bp) => ({
+		...bp,
+		date: getReadableDate(bp.date),
+	}));
+	return blogPosts;
+}
+
+function fetchMediumBlogPosts(): Promise<Array<BlogPostDataType>> {
 	return axios
 		.get(externalUrls['blogs_medium'])
 		.then((response) => response.data)
@@ -27,7 +40,7 @@ export function fetchMediumBlogPosts(): Promise<Array<BlogPostDataType>> {
 		});
 }
 
-export function fetchDevtoBlogPosts(): Promise<Array<BlogPostDataType>> {
+function fetchDevtoBlogPosts(): Promise<Array<BlogPostDataType>> {
 	return axios
 		.get(externalUrls['blogs_devto'])
 		.then((response) => response.data)
@@ -50,6 +63,35 @@ export function fetchDevtoBlogPosts(): Promise<Array<BlogPostDataType>> {
 			console.log('error while fetching dev.to posts', err);
 			return [];
 		});
+}
+
+function getReadableDate(d: Date): string {
+	const monthShortname = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec',
+	];
+
+	const month = monthShortname[d.getMonth()];
+
+	const readableDate = `${d.getDate()} ${month}, ${d.getFullYear()}`;
+
+	return readableDate;
+}
+
+function sortPosts(a: BlogPostDataType, b: BlogPostDataType) {
+	if (a.date < b.date) return 1;
+	else if (a.date > b.date) return -1;
+	return 0;
 }
 
 function getDateFromString(str: string) {
