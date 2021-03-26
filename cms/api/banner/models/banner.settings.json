@@ -11,15 +11,18 @@
 		"draftAndPublish": false
 	},
 	"attributes": {
-		"eye_catcher": {
-			"type": "string"
-		},
 		"title": {
-			"type": "string"
+			"type": "string",
+			"required": true,
+			"default": "<Update on this data will be live. You can check it as soon as you save it>"
+		},
+		"eye_catcher": {
+			"type": "string",
+			"default": "<try to keep this field a little long (but not too long). you can check and save it to see if the banner looks proper on the website>"
 		},
 		"link": {
 			"type": "string",
-			"regex": "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)"
+			"default": "<the image will have more focus on its center>"
 		},
 		"image": {
 			"model": "file",
