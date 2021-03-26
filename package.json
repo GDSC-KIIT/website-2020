@@ -3,7 +3,7 @@
 	"description": "Our new website!",
 	"author": "Developer Student Club - KIIT",
 	"license": "MIT",
-	"version": "2.7.0",
+	"version": "2.v-2",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port=3333",
