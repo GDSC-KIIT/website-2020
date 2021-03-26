@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 import NextLink from 'next/link';
 import Head from 'next/head';
 
+import { internalUrls } from '@/lib/urls';
+
 import {
 	AppBar,
 	CssBaseline,
@@ -42,7 +44,7 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 			<CssBaseline />
 			<ThemeProvider theme={theme}>
 				<AppBar position="relative">
-					<NextLink href="/">
+					<NextLink href={internalUrls.home}>
 						<Toolbar style={{ cursor: 'pointer' }}>
 							<Typography variant="h6" color="inherit" noWrap>
 								DSC KIIT
@@ -52,7 +54,7 @@ export default function Layout({ qname, children }: { qname?: string; children: 
 				</AppBar>
 				<main>{children}</main>
 				<footer className={classes.footer}>
-					<NextLink href="/playground">
+					<NextLink href={internalUrls.playground}>
 						<Typography
 							variant="h5"
 							align="left"

@@ -2,7 +2,7 @@ import NextLink from 'next/link';
 import NextImage from 'next/image';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
-import { externalUrls } from '@/lib/urls';
+import { externalUrls, internalUrls } from '@/lib/urls';
 
 import { makeStyles, Typography, Box, Grid, Divider, Link } from '@material-ui/core';
 import styles from '@/styles/navbar.module.css';
@@ -35,7 +35,7 @@ export default function LaptopNavbar() {
 	return (
 		<Grid container>
 			<Grid item xs={12} sm={5} style={{ display: 'flex', alignItems: 'center' }}>
-				<NextLink href="/">
+				<NextLink href={internalUrls.home}>
 					<Typography
 						variant="h6"
 						style={{ cursor: 'pointer', marginLeft: '.4em' }}
@@ -57,14 +57,14 @@ export default function LaptopNavbar() {
 				justify="flex-end"
 				className={styles.nav}>
 				<Grid item className={classes.backHover}>
-					<NextLink href="/team">
+					<NextLink href={internalUrls.team}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Team
 						</Typography>
 					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<NextLink href="/projects">
+					<NextLink href={internalUrls.projects}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Projects
 						</Typography>
@@ -78,28 +78,28 @@ export default function LaptopNavbar() {
 					</Link>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<NextLink href="/playground">
+					<NextLink href={internalUrls.playground}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Quiz
 						</Typography>
 					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<NextLink href="/blog">
+					<NextLink href={internalUrls.blogs}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Blogs
 						</Typography>
 					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<NextLink href="/mentors">
+					<NextLink href={internalUrls.mentors}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Mentors
 						</Typography>
 					</NextLink>
 				</Grid>
 				<Grid item className={classes.backHover}>
-					<NextLink href="#contact">
+					<NextLink href={internalUrls.contactUs}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Contact
 						</Typography>

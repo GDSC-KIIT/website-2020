@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useMemo, useCallback, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import useSWR from 'swr';
 
+import { internalUrls } from '@/lib/urls';
 import md from '@/lib/markdown';
 import { hasUserAlreadySubmitted, fetchSingleQuestion, submitAnswer } from '@/playground/lib/api';
 import useUser from '@/hooks/useUser';
@@ -225,7 +226,7 @@ export default function Q() {
 				<Grid container spacing={0} justify="center">
 					<Grid item xs={12} sm={8} md={9}>
 						<Paper className={classes.paper1}>
-							<NextLink href="/playground">
+							<NextLink href={internalUrls.playground}>
 								<Typography
 									variant="h6"
 									style={{ cursor: 'pointer', marginLeft: '.4em' }}

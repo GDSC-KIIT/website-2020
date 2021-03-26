@@ -2,7 +2,7 @@ import NextLink from 'next/link';
 import { useState } from 'react';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
-import { externalUrls } from '@/lib/urls';
+import { externalUrls, internalUrls } from '@/lib/urls';
 
 import {
 	makeStyles,
@@ -66,13 +66,17 @@ export default function MobileNavbar() {
 					</ListItem>
 
 					<div className={classes.backHover}>
-						<DrawerItem label="Home" icon={<HomeIcon />} link="/" />
+						<DrawerItem label="Home" icon={<HomeIcon />} link={internalUrls.home} />
 					</div>
 					<div className={classes.backHover}>
-						<DrawerItem label="Projects" icon={<LibraryBooksIcon />} link="/projects" />
+						<DrawerItem
+							label="Projects"
+							icon={<LibraryBooksIcon />}
+							link={internalUrls.projects}
+						/>
 					</div>
 					<div className={classes.backHover}>
-						<DrawerItem label="Blogs" icon={<BookIcon />} link="/blogs" />
+						<DrawerItem label="Blogs" icon={<BookIcon />} link={internalUrls.blogs} />
 					</div>
 					<div className={classes.backHover}>
 						<DrawerItem
@@ -82,13 +86,21 @@ export default function MobileNavbar() {
 						/>
 					</div>
 					<div className={classes.backHover}>
-						<DrawerItem label="Teams" icon={<GroupIcon />} link="/team" />
+						<DrawerItem label="Teams" icon={<GroupIcon />} link={internalUrls.team} />
 					</div>
 					<div className={classes.backHover}>
-						<DrawerItem label="Mentors" icon={<ContactsIcon />} link="/mentors" />
+						<DrawerItem
+							label="Mentors"
+							icon={<ContactsIcon />}
+							link={internalUrls.mentors}
+						/>
 					</div>
 					<div className={classes.backHover}>
-						<DrawerItem label="Contact" icon={<InfoIcon />} link="#contact" />
+						<DrawerItem
+							label="Contact"
+							icon={<InfoIcon />}
+							link={internalUrls.contactUs}
+						/>
 					</div>
 				</List>
 			</Drawer>
