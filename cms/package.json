@@ -1,7 +1,7 @@
 {
 	"name": "dsc-kiit-website-backend",
 	"private": true,
-	"version": "2.v-2",
+	"version": "2.2.0-v2",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
 		"dev": "strapi develop",
