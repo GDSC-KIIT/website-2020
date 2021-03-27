@@ -2,7 +2,6 @@ name: Build and Test
 
 on:
     - pull_request
-    - push
 
 jobs:
     install_cms:
@@ -150,7 +149,7 @@ jobs:
             - name: run unit tests
               run: npm run test:unit
 
-            - name: save unit code coverage
+            - name: save unit test code coverage
               uses: actions/upload-artifact@v2
               with:
                   name: frontend-unit-test-coverage-${{github.sha}}
@@ -180,7 +179,7 @@ jobs:
             - name: run integration tests
               run: npm run test:integration
 
-            - name: save integration test code coverage
+            - name: save integration tests code coverage
               uses: actions/upload-artifact@v2
               with:
                   name: frontend-integration-test-coverage-${{github.sha}}
