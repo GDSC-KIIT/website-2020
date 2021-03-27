@@ -8,6 +8,6 @@ module.exports = {
 		return config;
 	},
 	images: {
-		domains: ['storage.googleapis.com'],
+		domains: ['res.cloudinary.com'],
 	},
 };
