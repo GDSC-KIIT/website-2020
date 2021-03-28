@@ -125,6 +125,7 @@ const useStyles2 = makeStyles((theme) =>
 		},
 		cover: {
 			width: 225,
+			transform: 'skewX(10deg) translateX(-17.5px)',
 		},
 	})
 );
