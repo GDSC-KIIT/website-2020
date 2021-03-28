@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) =>
 	createStyles({
 		root: {
 			position: 'relative',
-			height: '100vh',
+			height: '90vh',
 			width: '100vw',
 			overflow: 'hidden',
 		},
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) =>
 			position: 'relative',
 			height: '100%',
 			width: '100%',
+			marginTop: theme.spacing(2),
 		},
 	})
 );
