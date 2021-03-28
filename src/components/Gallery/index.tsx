@@ -2,7 +2,7 @@ import useSWR from 'swr';
 
 import ViewCard from './card';
 import DomainsImage from './domainsImage';
-import fetchAllMembers from '@/lib/dynamicData/members';
+import fetchMembersRandomized from '@/lib/dynamicData/members';
 
 import { createStyles, makeStyles, Box } from '@material-ui/core';
 import styles from '@/styles/gallery.module.css';
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function Gallery() {
-	const { data: members, error } = useSWR('all_members', fetchAllMembers, {
+	const { data: members, error } = useSWR('all_members', fetchMembersRandomized, {
 		refreshInterval: 300 * 100,
 	});
 	const classes = useStyles();
