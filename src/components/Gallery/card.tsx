@@ -59,7 +59,7 @@ export default function ViewCard({ name, domain, image, index }: IViewCardProps)
 				<Typography
 					variant="subtitle1"
 					color="textSecondary"
-					style={{ fontFamily: 'Major Mono Display' }}>
+					style={{ fontFamily: 'Heebo' }}>
 					{getReadableNameFromDomainUpperCased(domain)}
 				</Typography>
 			</CardContent>
