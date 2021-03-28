@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) =>
 
 export default function ViewCard({ name, domain, image, index }: IViewCardProps) {
 	const transform =
-		index % 2 === 0 ? 'skewX(-10deg) translateX(-17.5px)' : 'skewX(10deg) translateX(17.5px)';
+		index % 2 === 0 ? 'skewX(-6.5deg) translateX(-15px)' : 'skewX(6.5deg) translateX(15px)';
 	const classes = useStyles();
 
 	const CMedia = () => (

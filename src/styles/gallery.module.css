@@ -38,7 +38,7 @@
 }
 
 .translateContainer .translate {
-	animation: mymove 6s linear infinite;
+	animation: scrollMove 12s linear infinite;
 }
 
 @media (max-width: 576px) {
@@ -50,11 +50,14 @@
 	}
 }
 
-@keyframes mymove {
-	from {
+@keyframes scrollMove {
+	0% {
 		transform: translateY(0);
 	}
-	to {
+	50% {
 		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0);
 	}
 }
