@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Banners = dynamic(() => import('@/components/Banner'));
+const Gallery = dynamic(() => import('@/components/Gallery'));
 
 export default function Landing() {
 	// TODO Replace images with next/image for a faster landing
@@ -131,7 +132,7 @@ export default function Landing() {
 					</Grid>
 				</Container>
 			</div>
-
+			<Gallery />
 			<div>
 				<h1 className={`${styles.about}`}>FREQUENTLY ASKED</h1>
 			</div>

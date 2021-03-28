@@ -1,6 +1,6 @@
 import type { GetStaticProps } from 'next';
 
-import fetchTeamMembers from '@/lib/staticData/members';
+import fetchMembersGrouped from '@/lib/staticData/members';
 
 import Members, { IMembers } from '@/components/Members';
 import TeamIntro from '@/components/Intro';
@@ -28,7 +28,7 @@ export default function Team({ members }: IMembers) {
 }
 
 export const getStaticProps: GetStaticProps<IMembers> = async () => {
-	const members = await fetchTeamMembers();
+	const members = await fetchMembersGrouped();
 
 	return {
 		props: { members },

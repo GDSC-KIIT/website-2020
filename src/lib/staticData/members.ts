@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import { backendUrls } from '@/lib/urls';
 import type { MemberDataType, GroupedMemberType } from '@/types/index';
 
-export default function fetchMembers(): Promise<GroupedMemberType> {
+export default function fetchMembersGrouped(): Promise<GroupedMemberType> {
 	return axios
 		.get(backendUrls['members'])
 		.then((response) => response.data)

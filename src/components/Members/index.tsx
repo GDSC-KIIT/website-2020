@@ -5,6 +5,7 @@ import {
 	GitHub as GitHubIcon,
 } from '@material-ui/icons';
 
+import { getReadableNameFromDomain } from '@/lib/text';
 import type { GroupedMemberType, MemberDataType } from '@/types/index';
 
 import styles from '@/styles/members.module.css';
@@ -68,13 +69,6 @@ function displayMembersUnderDomain(members: Array<MemberDataType>) {
 			</div>
 		</div>
 	));
-}
-
-function getReadableNameFromDomain(domain: string): string {
-	return domain
-		.split('_')
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');
 }
 
 export interface IMembers {
