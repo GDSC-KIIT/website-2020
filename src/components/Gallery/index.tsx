@@ -4,7 +4,7 @@ import ViewCard from './card';
 import DomainsImage from './domainsImage';
 import fetchAllMembers from '@/lib/dynamicData/members';
 
-import { createStyles, makeStyles, Box, Typography } from '@material-ui/core';
+import { createStyles, makeStyles, Box } from '@material-ui/core';
 import styles from '@/styles/gallery.module.css';
 
 const useStyles = makeStyles((theme) =>
@@ -14,10 +14,7 @@ const useStyles = makeStyles((theme) =>
 			height: '90vh',
 			width: '100vw',
 			overflow: 'hidden',
-		},
-		heading: {
-			textAlign: 'center',
-			marginTop: theme.spacing(1),
+			marginBottom: theme.spacing(5),
 		},
 		buildingWith: {
 			position: 'relative',
@@ -55,9 +52,6 @@ export default function Gallery() {
 
 	return (
 		<Box className={classes.root}>
-			<Typography component="h2" variant="h3" className={classes.heading}>
-				What we do
-			</Typography>
 			<Box className={classes.buildingWith}>
 				<DomainsImage />
 				<ViewCards />
