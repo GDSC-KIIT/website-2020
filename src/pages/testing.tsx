@@ -64,6 +64,9 @@ const useStyles3 = makeStyles((theme) =>
 			marginBottom: 0,
 			display: 'flex',
 			position: 'absolute',
+			[theme.breakpoints.down(576)]: {
+				display: 'none',
+			},
 		},
 		cardWrapper: {
 			zIndex: 1,
@@ -85,11 +88,11 @@ function Cta() {
 	return (
 		<Container className={classes.root}>
 			<Grid container>
-				<Grid item xs={12} md={6} className={classes.cardWrapper}>
+				<Grid item className={classes.cardWrapper}>
 					<div className={classes.card}>
 						<div className={classes.cardContent}>
-							<Typography variant="h2" component="h2" gutterBottom>
-								Fill something here
+							<Typography variant="h5" component="h2" gutterBottom>
+								Fill something here like the domains
 							</Typography>
 						</div>
 					</div>
