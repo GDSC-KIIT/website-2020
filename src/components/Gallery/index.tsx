@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) =>
 export default function Gallery() {
 	const { data: members, error } = useSWR('all_members', fetchMembersRandomized, {
 		refreshInterval: 300 * 100,
+		compare: (a, b) => a?.length === b?.length,
+		revalidateOnFocus: false,
 	});
 	const classes = useStyles();
 
