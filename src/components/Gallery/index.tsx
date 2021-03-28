@@ -31,28 +31,25 @@ export default function Gallery() {
 	const { data: members, error } = useSWR('all_members', fetchAllMembers, {
 		refreshInterval: 300 * 100,
 	});
-
 	const classes = useStyles();
 
 	const ViewCards = () => (
-		<>
+		<div className={styles.translateContainer}>
 			{!error &&
 				Array.isArray(members) &&
-				members.map(({ id, image, domain, name }) => (
-					<div className={styles.translateContainer} key={id}>
-						<Box position="relative">
+				members.map(({ id, image, domain, name }, i) => (
+					<Box position="relative" key={id}>
+						<div className={styles.translate}>
+							<ViewCard name={name} domain={domain} image={image} index={i} />
+						</div>
+						<Box position="absolute" top="100%" left="0" right="0">
 							<div className={styles.translate}>
-								<ViewCard name={name} domain={domain} image={image} />
+								<ViewCard name={name} domain={domain} image={image} index={i} />
 							</div>
-							<Box position="absolute" top="100%" left="0" right="0">
-								<div className={styles.translate}>
-									<ViewCard name={name} domain={domain} image={image} />
-								</div>
-							</Box>
 						</Box>
-					</div>
+					</Box>
 				))}
-		</>
+		</div>
 	);
 
 	return (

@@ -11,7 +11,5 @@ export function getReadableNameFromDomain(domain: string): string {
 }
 
 export function getReadableNameFromDomainUpperCased(domain: string): string {
-	const a = domain.toUpperCase().split('_').join(' ');
-	console.log(a, 'was the domain');
-	return a;
+	return domain.toUpperCase().split('_').join(' ');
 }
