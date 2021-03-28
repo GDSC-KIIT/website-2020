@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic';
 import NextImage from 'next/image';
 
-import Programming from '@/components/Programming';
 import Faq from '@/components/Faq';
 
 import {
@@ -132,17 +131,13 @@ export default function Landing() {
 					</Grid>
 				</Container>
 			</div>
-			<div>
-				<h1 className={`${styles.about}`}>TECH STACKS</h1>
-			</div>
-			<Programming />
 
 			<div>
-				<h1 className={`${styles.about}`}>FAQ SECTION</h1>
+				<h1 className={`${styles.about}`}>FREQUENTLY ASKED</h1>
 			</div>
 			<Faq />
 			<div>
-				<h1 className={`${styles.about}`}>JOIN OUR DISCORD</h1>
+				<h1 className={`${styles.about}`}>JOIN US ON DISCORD</h1>
 				<p className={styles.d}>
 					Join our Discord Channel to know more about the Activities, Sessions and other
 					fun stuff.
