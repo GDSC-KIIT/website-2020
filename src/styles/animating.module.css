@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
+.translateContainer {
+	height: 20rem;
+	width: 30rem;
+	position: absolute;
+	top: 15%;
+	right: 0;
+	overflow: hidden;
+	z-index: 10;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.translateContainer:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2rem;
+	background-image: linear-gradient(rgba(247, 245, 244, 1), rgba(247, 245, 244, 0));
+	z-index: 10;
+}
+
+.translateContainer:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 1.5rem;
+	background-image: linear-gradient(rgba(247, 245, 244, 1), rgba(247, 245, 244, 0));
+	z-index: 10;
+}
+
+.translateContainer .translate {
+	animation: mymove 6s linear infinite;
+}
+
+@media (max-width: 576px) {
+	.translateContainer {
+		top: 50%;
+		transform: translateY(-50%);
+		left: auto;
+		right: 0;
+		width: 18rem;
+	}
+
+	.translateContainer:before {
+		background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+		filter: invert(0);
+	}
+}
+
+@keyframes mymove {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(-100%);
+	}
+}
