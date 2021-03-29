@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) =>
 			display: 'flex',
 			margin: theme.spacing(2, 0),
 			width: '100%',
-			height: 250,
+			height: 225,
 			fontStyle: 'Spartan',
 		},
 		details: {
