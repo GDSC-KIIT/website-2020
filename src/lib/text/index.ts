@@ -7,7 +7,7 @@ export function capitalizeEachWord(words: string): string {
 }
 
 export function getReadableNameFromDomain(domain: string): string {
-	return domain.split('_').map(capitalizeWord).join(' ');
+	return domain.split('_').map(capitalizeWord).join(' ').toUpperCase();
 }
 
 export function getReadableNameFromDomainUpperCased(domain: string): string {

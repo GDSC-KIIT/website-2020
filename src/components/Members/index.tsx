@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) =>
 			display: 'block',
 			marginTop: theme.spacing(5),
 			marginBottom: theme.spacing(5),
+			fontFamily: 'Open Sans, sans-serif',
 		},
 	})
 );
