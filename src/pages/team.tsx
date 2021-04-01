@@ -3,7 +3,6 @@ import type { GetStaticProps } from 'next';
 import fetchMembersGrouped from '@/lib/staticData/members';
 
 import Members, { IMembers } from '@/components/Members';
-import TeamIntro from '@/components/Intro';
 import Layout from '@/components/Layout';
 
 export default function Team({ members }: IMembers) {
@@ -14,7 +13,6 @@ export default function Team({ members }: IMembers) {
 				style={{ position: 'fixed', opacity: 0.1, top: 0, height: '100vh' }}
 			/>
 			<Layout pageName="Team">
-				<TeamIntro />
 				<Members members={members} />
 			</Layout>
 		</>

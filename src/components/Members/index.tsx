@@ -1,6 +1,7 @@
-import MembersUnderDomain from './MembersUnderDomain';
 import { getReadableNameFromDomain } from '@/lib/text';
 import type { GroupedMemberType } from '@/types/index';
+import TeamIntro from './TeamIntro';
+import MembersUnderDomain from './MembersUnderDomain';
 
 import { Box, Grid, makeStyles, createStyles, Typography } from '@material-ui/core';
 
@@ -27,23 +28,26 @@ export default function Members({ members }: IMembers) {
 	const domains = Object.keys(members);
 
 	return (
-		<Box className={classes.root}>
-			{domains.map((domain) => (
-				<div key={domain}>
-					<Typography className={classes.heading} variant="h2" component="h2">
-						{getReadableNameFromDomain(domain)}
-					</Typography>
-					<Grid
-						container
-						spacing={10}
-						direction="row"
-						justify="center"
-						alignItems="center">
-						{MembersUnderDomain(members[domain])}
-					</Grid>
-				</div>
-			))}
-		</Box>
+		<>
+			<TeamIntro />
+			<Box className={classes.root}>
+				{domains.map((domain) => (
+					<div key={domain}>
+						<Typography className={classes.heading} variant="h2" component="h2">
+							{getReadableNameFromDomain(domain)}
+						</Typography>
+						<Grid
+							container
+							spacing={10}
+							direction="row"
+							justify="center"
+							alignItems="center">
+							{MembersUnderDomain(members[domain])}
+						</Grid>
+					</div>
+				))}
+			</Box>
+		</>
 	);
 }
 
