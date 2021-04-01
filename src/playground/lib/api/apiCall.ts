@@ -8,7 +8,13 @@ const playgroundUrls: Record<PlaygroundUrlType, string> = {
 	quizzes: backendUrls['quizzes'],
 };
 
-export default async function apiCall({ url, method, config = {}, particularId = '' }: IApiCall) {
+export default async function apiCall({
+	url,
+	method,
+	config = {},
+	particularId = '',
+	throwError = false,
+}: IApiCall) {
 	const authToken = await getSessionAuthToken();
 
 	return axios({
@@ -27,7 +33,9 @@ export default async function apiCall({ url, method, config = {}, particularId =
 				throw new Error(err?.response.data.message);
 			}
 			console.log('There was an error with your response', err);
-			throw new Error('an unknown error occurred');
+			if (throwError) {
+				throw new Error('An unknown error occured. Please check the console.');
+			}
 		});
 }
 
@@ -36,6 +44,7 @@ type PlaygroundUrlType = 'quizzes' | 'scores';
 interface IApiCall {
 	url: PlaygroundUrlType;
 	method: AxiosRequestConfig['method'];
+	throwError?: boolean;
 	config?: AxiosRequestConfig;
 	particularId?: string | number;
 }
