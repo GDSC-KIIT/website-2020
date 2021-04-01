@@ -10,6 +10,9 @@ export const backendUrls = {
 	season_score: proxyUrl + '/season-score',
 	members: proxyUrl + '/members',
 	projects: proxyUrl + '/projects',
+	// playground
+	scores: proxyUrl + '/scores',
+	quizzes: proxyUrl + '/quizzes',
 };
 
 const CMS_STRAPI_URL = process.env.NEXT_PUBLIC_CMS_STRAPI ?? 'http://localhost:9000';
