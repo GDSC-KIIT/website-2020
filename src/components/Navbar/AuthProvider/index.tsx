@@ -1,16 +1,11 @@
 import { useState } from 'react';
 import useUser from '@/hooks/useUser';
-import { backendUrls, internalUrls } from '@/lib/urls';
+import { staticBackendUrls, internalUrls } from '@/lib/urls';
 import { Link, CircularProgress, Typography, Menu, MenuItem, Fade } from '@material-ui/core';
 import NextLink from 'next/link';
 
-interface IPropsCurrentUser {
-	href: string;
-	text: string;
-}
-
 const CurrentUser = ({ href, text }: IPropsCurrentUser) => (
-	<Link underline="none" href={href}>
+	<Link underline="none" onClick={() => goToLink(href)}>
 		<Typography variant="body2" style={{ cursor: 'pointer' }}>
 			{text}
 		</Typography>
@@ -19,7 +14,10 @@ const CurrentUser = ({ href, text }: IPropsCurrentUser) => (
 
 export function GoogleLoginLink() {
 	return (
-		<Link href={backendUrls['login_google']} color="inherit" underline="none">
+		<Link
+			color="inherit"
+			underline="none"
+			onClick={() => goToLink(staticBackendUrls['login_google'])}>
 			Sign In with Google
 		</Link>
 	);
@@ -63,8 +61,21 @@ export function GoogleAuthLogin() {
 					</Menu>
 				</>
 			) : (
-				<CurrentUser href={backendUrls['login_google']} text="Sign In" />
+				<CurrentUser href={staticBackendUrls['login_google']} text="Sign In" />
 			)}
 		</div>
 	);
+}
+
+/**
+ * go to a link without showing the history on the back button or the link on hover
+ * @param url the url to go
+ */
+function goToLink(url: string) {
+	window.location.replace(url);
+}
+
+interface IPropsCurrentUser {
+	href: string;
+	text: string;
 }

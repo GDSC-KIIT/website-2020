@@ -1,11 +1,11 @@
 import axios, { AxiosError } from 'axios';
 
-import { backendUrls } from '@/lib/urls';
+import { staticBackendUrls } from '@/lib/urls';
 import type { MemberDataType, GroupedMemberType } from '@/types/index';
 
 export default function fetchMembersGrouped(): Promise<GroupedMemberType> {
 	return axios
-		.get(backendUrls['members'])
+		.get(staticBackendUrls['members'])
 		.then((response) => response.data)
 		.then((data: Array<MemberDataType>) => groupMembersByDomain(data))
 		.catch((err: AxiosError) => {

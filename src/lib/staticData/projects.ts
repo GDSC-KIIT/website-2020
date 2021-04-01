@@ -1,11 +1,11 @@
 import axios, { AxiosError } from 'axios';
 
-import { backendUrls } from '@/lib/urls';
+import { staticBackendUrls } from '@/lib/urls';
 import type { ProjectDataType } from '@/types/index';
 
 export default function fetchProjects(): Promise<Array<ProjectDataType>> {
 	return axios
-		.get(backendUrls['projects'])
+		.get(staticBackendUrls['projects'])
 		.then((response) => response.data)
 		.then((data: Array<ProjectDataType>) => data)
 		.catch((err: AxiosError) => {
