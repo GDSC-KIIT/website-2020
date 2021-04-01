@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+.item {
+	min-height: 300px;
+}
+.link {
+	all: unset;
+	cursor: pointer;
+}
+.border {
+	height: 369px;
+	width: 290px;
+	background: transparent;
+	border-radius: 10px;
+	transition: border 1s;
+	position: relative;
+}
+.border:hover {
+	border: 1px solid #fff;
+}
+.card {
+	min-height: 379px;
+	width: 300px;
+	border-radius: 10px;
+	transition: background 0.8s;
+	overflow: hidden;
+	background: #000;
+	box-shadow: 0 70px 63px -60px #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	background-color: #808080;
+	background-position-x: center;
+	background-position-y: center;
+	background-repeat: no-repeat;
+	background-size: 300px;
+	background-image: linear-gradient(to right, #bdc3c7, #2c3e50);
+}
+@media screen and (max-width: 600px) {
+	.card {
+		background-size: 600px;
+	}
+	.card .icon {
+		opacity: 1;
+	}
+}
+.card:hover {
+	background-size: 600px;
+}
+.card:hover .icon {
+	opacity: 1;
+}
+.heading {
+	font-family: 'Poiret One', cursive;
+	font-size: 2.5rem;
+	color: #fff;
+	margin: 20px;
+	opacity: 1;
+	transition: opacity 1s;
+}
+.icon {
+	opacity: 0;
+	transition: opacity 1s linear;
+}
+.icons {
+	position: absolute;
+	fill: #fff;
+	color: #fff;
+	height: 130px;
+	top: 226px;
+	width: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}

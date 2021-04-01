@@ -6,8 +6,6 @@ import Members, { IMembers } from '@/components/Members';
 import TeamIntro from '@/components/Intro';
 import Layout from '@/components/Layout';
 
-import styles from '@/styles/members.module.css';
-
 export default function Team({ members }: IMembers) {
 	return (
 		<>
@@ -17,11 +15,7 @@ export default function Team({ members }: IMembers) {
 			/>
 			<Layout pageName="Team">
 				<TeamIntro />
-				<section>
-					<div className={styles.container}>
-						<Members members={members} />
-					</div>
-				</section>
+				<Members members={members} />
 			</Layout>
 		</>
 	);
