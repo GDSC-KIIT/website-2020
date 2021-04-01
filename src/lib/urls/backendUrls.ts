@@ -1,4 +1,4 @@
-const proxyUrl = '/backend';
+const proxyUrl = process.env.NODE_ENV === 'test' ? 'http://localhost:9000' : '/backend';
 // can be proxied in the browser
 export const backendUrls = {
 	auth_callback: proxyUrl + '/auth/google/callback?access_token=',
