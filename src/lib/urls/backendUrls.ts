@@ -1,4 +1,4 @@
-const CMS_STRAPI_URL = process.env.NEXT_PUBLIC_CMS_STRAPI ?? 'http://localhost:9000';
+const CMS_STRAPI_URL = '/backend';
 
 export const backendUrls = {
 	auth_callback: CMS_STRAPI_URL + '/auth/google/callback?access_token=',
