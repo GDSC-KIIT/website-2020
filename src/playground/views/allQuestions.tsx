@@ -63,6 +63,11 @@ const useStyles = makeStyles((theme: Theme) =>
 		cardContent: {
 			flexGrow: 1,
 		},
+		flexCenter: {
+			display: 'flex',
+			alignItems: 'center',
+			justifyContent: 'center',
+		},
 	})
 );
 
@@ -83,13 +88,13 @@ export default function AllQs() {
 					md={4}
 					data-testid={`question-${question.id}`}>
 					<Card className={classes.card}>
-						<center>
+						<div className={classes.flexCenter}>
 							<CardContent className={classes.cardContent}>
 								<Typography variant="h5" component="h2">
 									{question.qname}
 								</Typography>
 							</CardContent>
-						</center>
+						</div>
 						<CardActions>
 							<NextLink href={`/playground/${question.id}`}>
 								<Button
