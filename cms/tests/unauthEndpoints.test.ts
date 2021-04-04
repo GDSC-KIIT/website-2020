@@ -18,3 +18,19 @@ describe('[BANNER]', () => {
 			.expect(200);
 	});
 });
+
+describe('[MEMBERS]', () => {
+	it('should return 200 response', async () => {
+		await request((strapi as any).server)
+			.get('/members')
+			.expect(200);
+	});
+});
+
+describe('[PROJECTS]', () => {
+	it('should return 200 response', async () => {
+		await request((strapi as any).server)
+			.get('/projects')
+			.expect(200);
+	});
+});
