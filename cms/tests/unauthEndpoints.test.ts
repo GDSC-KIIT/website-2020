@@ -1,13 +1,13 @@
 import request from 'supertest';
 
-import { setUpStrapi, teardownDatabase } from './helpers/strapi';
+import { setUpServer, tearDownServer } from './helpers';
 
 beforeAll(() => {
-	return setUpStrapi();
+	return setUpServer();
 }, 15000);
 
 afterAll((done) => {
-	teardownDatabase();
+	tearDownServer();
 	done(); // explicitly use done because the above is a callback and not just a inline/linear function like inside it
 });
 
