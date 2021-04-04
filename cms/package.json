@@ -12,11 +12,13 @@
 		"poststart": "pm2 monit",
 		"server:testing": "cross-env TESTING=TRUE strapi start",
 		"test": "cross-env TESTING=TRUE jest",
+		"testw": "cross-env TESTING=TRUE jest --watch",
 		"strapi": "strapi"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.22",
 		"@types/node": "^14.14.37",
+		"@types/supertest": "^2.0.11",
 		"cross-env": "^7.0.3",
 		"jest": "^26.6.3",
 		"supertest": "^6.1.3",
