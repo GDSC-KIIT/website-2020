@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-import { setUpServer, tearDownServer } from './helpers';
+import { setUpServer, tearDownServer } from './lib';
 
 beforeAll(() => {
 	return setUpServer();
