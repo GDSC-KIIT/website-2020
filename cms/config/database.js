@@ -67,7 +67,7 @@ const testingConfig = () => ({
 const config =
 	process.env.REMOTE_DB === 'TRUE'
 		? remoteDBConfig
-		: process.env.TESTING === 'TRUE'
+		: process.env.TESTING === 'TRUE' || process.env.NODE_ENV === 'testing'
 		? testingConfig
 		: fastConfig;
 

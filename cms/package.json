@@ -11,8 +11,8 @@
 		"start": "pm2 start ecosystem.config.js --wait-ready",
 		"poststart": "pm2 monit",
 		"server:testing": "cross-env TESTING=TRUE strapi start",
-		"test": "cross-env TESTING=TRUE jest",
-		"testw": "cross-env TESTING=TRUE jest --watch",
+		"test": "jest",
+		"testw": "jest --watch",
 		"strapi": "strapi"
 	},
 	"devDependencies": {
