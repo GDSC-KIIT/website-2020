@@ -2,6 +2,9 @@ LOGS/
 /env/
 extensions/users-permissions/config/jwt.js
 
+.tmp-test/
+db/
+
 ############################
 # OS X
 ############################
