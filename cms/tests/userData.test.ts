@@ -50,22 +50,60 @@ describe('[REGISTER USER]', () => {
 });
 
 describe('[USER DATA]', () => {
-	it('should return users data for authenticated user', async () => {
-		const defaultRole = await strapi.query('role', 'users-permissions').findOne({});
+	let defaultRole: Record<string, unknown>;
+	let role: any;
+	let user2: IUserData;
+	let jwt: string;
 
-		const role = defaultRole ? defaultRole.id : null;
+	beforeAll(async () => {
+		defaultRole = await strapi.query('role', 'users-permissions').findOne({});
 
-		const user: IUserData = await strapiUserPlugin.services.user.add({
+		role = defaultRole ? defaultRole.id : null;
+
+		user2 = await strapiUserPlugin.services.user.add({
 			...mockUserData,
 			username: 'strapiUser2',
 			email: 'strapi_user_2@dsc.com',
 			role,
 		});
 
-		const jwt = strapiUserPlugin.services.jwt.issue({
-			id: user.id,
+		jwt = strapiUserPlugin.services.jwt.issue({
+			id: user2.id,
 		});
+	});
 
+	/**
+	 * this data is required for the use user endpoint
+	 */
+	it('contains the required data for the frontend', async () => {
+		await request(strapiServer)
+			.get('/users/me')
+			.set('Authorization', 'Bearer ' + jwt)
+			.then((res) => {
+				const user2ResponseData = res.body;
+				expect(user2ResponseData).toHaveProperty('username');
+				expect(user2ResponseData).toHaveProperty('email');
+				expect(user2ResponseData).toHaveProperty('id');
+				expect(user2ResponseData).toHaveProperty('provider');
+				expect(user2ResponseData).toHaveProperty('created_at');
+				expect(user2ResponseData).toHaveProperty('score');
+				expect(user2ResponseData).toHaveProperty('badges');
+			});
+	});
+
+	it('matches the snapshot', async () => {
+		await request(strapiServer)
+			.get('/users/me')
+			.set('Authorization', 'Bearer ' + jwt)
+			.then((res) => {
+				const user2ResponseData = res.body;
+				delete user2ResponseData['created_at'];
+				delete user2ResponseData['updated_at'];
+				expect(user2ResponseData).toMatchSnapshot('user_2_response_data');
+			});
+	});
+
+	it('should return users data for authenticated user', async () => {
 		await request(strapiServer)
 			.get('/users/me')
 			.set('Authorization', 'Bearer ' + jwt)
@@ -73,9 +111,9 @@ describe('[USER DATA]', () => {
 				expect(res.status).toEqual(200);
 				expect(res.type).toMatch(/json/gi);
 				expect(res.body).toBeDefined();
-				expect(res.body.id).toBe(user.id);
-				expect(res.body.username).toBe(user.username);
-				expect(res.body.email).toBe(user.email);
+				expect(res.body.id).toBe(user2.id);
+				expect(res.body.username).toBe(user2.username);
+				expect(res.body.email).toBe(user2.email);
 			});
 	});
 });

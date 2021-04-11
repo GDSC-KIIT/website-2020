@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[USER DATA] matches the snapshot: user_2_response_data 1`] = `
+Object {
+  "badges": Array [],
+  "blocked": null,
+  "confirmed": true,
+  "email": "strapi_user_2@dsc.com",
+  "id": 2,
+  "provider": "local",
+  "role": Object {
+    "description": "Default role given to authenticated user.",
+    "id": 1,
+    "name": "Authenticated",
+    "type": "authenticated",
+  },
+  "score": null,
+  "username": "strapiUser2",
+}
+`;
