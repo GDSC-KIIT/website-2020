@@ -1,1 +1,1 @@
-export { mockUserData, IUserData } from './user';
+export { mockUserData, IUserData, ICreateUserData } from './user';

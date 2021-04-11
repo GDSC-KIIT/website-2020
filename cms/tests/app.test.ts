@@ -32,9 +32,8 @@ describe('[STRAPI]', () => {
 			done(); // explicitly use done because the above is a callback and not just a inline/linear function like inside it
 		});
 
-		it('strapi is defined', (done) => {
+		it('strapi is defined', () => {
 			expect(strapi).toBeDefined();
-			done();
 		});
 
 		it('server responds', (done) => {
