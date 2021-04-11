@@ -6,7 +6,7 @@ var cryptoSecret = '';
 function getPassword() {
 	console.log('\x1b[31m', 'Now, trying to decrypt backend.env for env variables', '\x1b[0m \n');
 
-	if (process.env.UNSKIP_DECR === 'true') {
+	if (process.env.UNSKIP_DECR?.toUpperCase() === 'TRUE') {
 		const rl = require('readline').createInterface({
 			input: process.stdin,
 			output: process.stdout,
@@ -25,7 +25,7 @@ function getPassword() {
 
 			dotEnvDecrypter();
 		});
-	} else if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'PRODUCTION') {
+	} else if (process.env.NODE_ENV?.toUpperCase() === 'PRODUCTION') {
 		console.log(
 			'\n \x1b[34m',
 			'\x1b[45m',

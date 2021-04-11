@@ -85,7 +85,7 @@ async function updatePermissions() {
 }
 
 module.exports = async () => {
-	if (process.env.TESTING === 'TRUE') {
+	if (process.env.TESTING?.toUpperCase() === 'TRUE') {
 		await updatePermissionsTestConfig();
 	} else {
 		await updatePermissions();

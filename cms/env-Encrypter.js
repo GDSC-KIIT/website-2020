@@ -14,7 +14,7 @@ function setPassword() {
 		'\x1b[0m \n'
 	);
 
-	if (process.env.NODE_ENV !== 'production') {
+	if (process.env.NODE_ENV?.toUpperCase() !== 'PRODUCTION') {
 		rl.question('enter password = ', (pass) => {
 			cryptSecret = pass;
 			console.log(

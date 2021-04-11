@@ -65,9 +65,9 @@ const testingConfig = () => ({
 });
 
 const config =
-	process.env.REMOTE_DB === 'TRUE'
+	process.env.REMOTE_DB?.toUpperCase() === 'TRUE'
 		? remoteDBConfig
-		: process.env.TESTING === 'TRUE' || process.env.NODE_ENV === 'test'
+		: process.env.TESTING?.toUpperCase() === 'TRUE'
 		? testingConfig
 		: fastConfig;
 
