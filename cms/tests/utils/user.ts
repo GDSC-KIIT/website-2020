@@ -6,3 +6,15 @@ export const mockUserData = {
 	confirmed: true,
 	blocked: null,
 };
+
+export interface IUserData {
+	id: number;
+	username: string;
+	password: string;
+	email: string;
+	provider: string;
+	created_at: Date;
+	updated_at: Date;
+	badges: Array<any>;
+	score: null | number;
+}

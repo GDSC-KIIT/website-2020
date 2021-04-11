@@ -55,10 +55,6 @@ const testingConfig = () => ({
 			},
 			options: {
 				useNullAsDefault: true,
-				pool: {
-					min: 0,
-					max: 1,
-				},
 			},
 		},
 	},
