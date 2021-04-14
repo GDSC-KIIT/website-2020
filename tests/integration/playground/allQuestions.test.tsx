@@ -43,7 +43,7 @@ describe('when user is not logged in', () => {
 	});
 });
 
-describe('when user is logged in', () => {
+describe.skip('when user is logged in', () => {
 	const testUser = { token: '' };
 	beforeAll(async () => {
 		[qids.q1, qids.q2, qids.q3] = await Promise.all([
