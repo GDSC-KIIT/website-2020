@@ -15,7 +15,7 @@ export async function getUserCredentials() {
 	if (foundUser) {
 		jwt = (strapi as any).plugins['users-permissions'].services.jwt.issue({ id: foundUser.id });
 	} else {
-		const createdUser = await createMockUser({ ...mockUserData });
+		const createdUser = await createMockUser();
 		jwt = (strapi as any).plugins['users-permissions'].services.jwt.issue({
 			id: createdUser.id,
 		});

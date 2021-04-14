@@ -1,3 +1,7 @@
+/**
+ * *role* key is null
+ *
+ * _can be changed to the default role during creating a new user_ */
 export const mockUserData = {
 	username: 'mocked-user',
 	email: 'mock_user@dsc.com',
@@ -5,6 +9,7 @@ export const mockUserData = {
 	password: 'mock_password',
 	confirmed: true,
 	blocked: null,
+	role: null,
 };
 
 export interface IUserData {

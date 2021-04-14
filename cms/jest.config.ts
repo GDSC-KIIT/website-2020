@@ -15,6 +15,7 @@ const config: Config.InitialOptions = {
 	testTimeout: 5000,
 	verbose: false,
 	collectCoverage: true,
+	collectCoverageFrom: ['api/**/*.{js,ts}', 'config/**/*.{js,ts}'],
 };
 
 export default config;
