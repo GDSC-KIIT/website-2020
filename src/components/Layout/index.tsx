@@ -3,8 +3,8 @@ import Head from 'next/head';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Navbar from '@/components/Navbar';
-import Readytotalk from '@/components/ReadyToTalk';
-import Footer from '@/components/Footer';
+import Readytotalk from '@/components/Layout/ReadyToTalk';
+import Footer from '@/components/Layout/Footer';
 import PaperParticles from '@/components/Particles/Papers';
 
 interface IProps {

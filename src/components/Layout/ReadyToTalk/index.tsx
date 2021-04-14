@@ -25,6 +25,7 @@ export default function ReadyToTalk() {
 					<a
 						href="https://assistant.google.com/services/invoke/uid/0000006c15659a07"
 						target="_blank"
+						rel="noreferrer noopener"
 						className={` ${styles.btn} ${styles.talkDSC}`}
 						style={{ color: 'grey', backgroundColor: 'white' }}>
 						Talk to DSC KIIT
