@@ -9,7 +9,9 @@ import Discord from './Discord';
 import styles from '@/styles/landing.module.css';
 
 const Banners = dynamic(() => import('@/components/Banner'));
-const Gallery = dynamic(() => import('@/components/Gallery'));
+// TODO complete the gallery component or create a new one
+//  labels: enhance, to-be-discussed
+// const Gallery = dynamic(() => import('@/components/Gallery'));
 
 export default function Landing() {
 	// TODO Replace images with next/image for a faster landing
@@ -25,10 +27,6 @@ export default function Landing() {
 				<h1 className={`${styles.about}`}>ABOUT DSC</h1>
 			</div>
 			<About />
-			<div>
-				<h1 className={`${styles.about}`}>WHAT WE DO</h1>
-			</div>
-			<Gallery />
 			<div>
 				<h1 className={`${styles.about}`}>FREQUENTLY ASKED</h1>
 			</div>
