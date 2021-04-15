@@ -1,0 +1,13 @@
+/* https://css-tricks.com/hash-tag-links-padding/ */
+.searchable {
+	padding-top: 400px;
+	margin-top: -400px;
+	display: inline-block;
+}
+.invisible {
+	visibility: hidden;
+	display: none;
+}
+.noStyle {
+	all: unset;
+}
