@@ -1,7 +1,3 @@
-// import ShortenText from '../utils/ShortenText';
-// import ToText from '../utils/ToText';
-// import { faUser, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	makeStyles,
 	Card,
@@ -16,6 +12,7 @@ import {
 import { Person as PersonIcon, CalendarToday as CalendarTodayIcon } from '@material-ui/icons';
 
 import type { BlogPostType } from '@/types/index';
+import Searchable from '@/components/Searchable';
 
 const styles = makeStyles((muiBaseTheme) => ({
 	grid: {
@@ -62,89 +59,67 @@ const styles = makeStyles((muiBaseTheme) => ({
 
 export default function SingleBlogCard({ post }: ISingleBlogPostProps) {
 	const classes = styles();
-	//   const monthShortname = [
-	//     "Jan",
-	//     "Feb",
-	//     "Mar",
-	//     "Apr",
-	//     "May",
-	//     "Jun",
-	//     "Jul",
-	//     "Aug",
-	//     "Sep",
-	//     "Oct",
-	//     "Nov",
-	//     "Dec",
-	//   ];
-	//   const splitDate = props.pubDate.split(" ");
-	//   const date = splitDate[0];
-	//   const splitMonth = date.split("-");
-	//   const finalDate =
-	//     monthShortname[Number(splitMonth[1] - 1)] +
-	//     " " +
-	//     splitMonth[2] +
-	//     "," +
-	//     " " +
-	//     splitMonth[0];
-	//   const d = new Date();
 
 	return (
 		<Grid xs={12} sm={12} lg={4} className={classes.grid}>
-			<Link
-				href={post.link}
-				target="_blank"
-				rel="noopener noreferrer"
-				underline="none"
-				style={{ textDecoration: 'none' }}>
-				<Card className={classes.card}>
-					<CardMedia className={classes.media} image={post.image} />
-					<CardContent
-						className={classes.content}
-						style={{
-							paddingTop: '2.1875rem',
-							minHeight: '120px',
-							paddingBottom: '0',
-						}}>
-						<Typography className={classes.heading} variant={'h5'} gutterBottom>
-							{post.title}
-						</Typography>
-						<Typography className={classes.subheading} variant="body1">
-							{getReadableCategories(post.categories)}
-						</Typography>
-					</CardContent>
-					<Divider className={classes.divider} />
-					<CardActions style={{ paddingLeft: '1.5625rem', paddingRight: '1.5625rem' }}>
-						<Grid container justify="space-between">
-							<Grid item>
-								<PersonIcon />
-								<Typography
-									style={{
-										fontSize: '14px',
-										color: '#212529',
-									}}
-									display="block"
-									variant="body1"
-									gutterBottom>
-									{post.author}
-								</Typography>
+			<Searchable name={post.title}>
+				<Link
+					href={post.link}
+					target="_blank"
+					rel="noopener noreferrer"
+					underline="none"
+					style={{ textDecoration: 'none' }}>
+					<Card className={classes.card}>
+						<CardMedia className={classes.media} image={post.image} />
+						<CardContent
+							className={classes.content}
+							style={{
+								paddingTop: '2.1875rem',
+								minHeight: '120px',
+								paddingBottom: '0',
+							}}>
+							<Typography className={classes.heading} variant={'h5'} gutterBottom>
+								{post.title}
+							</Typography>
+							<Typography className={classes.subheading} variant="body1">
+								{getReadableCategories(post.categories)}
+							</Typography>
+						</CardContent>
+						<Divider className={classes.divider} />
+						<CardActions
+							style={{ paddingLeft: '1.5625rem', paddingRight: '1.5625rem' }}>
+							<Grid container justify="space-between">
+								<Grid item>
+									<PersonIcon />
+									<Typography
+										style={{
+											fontSize: '14px',
+											color: '#212529',
+										}}
+										display="block"
+										variant="body1"
+										gutterBottom>
+										{post.author}
+									</Typography>
+								</Grid>
+								<Grid item>
+									<CalendarTodayIcon />
+									<Typography
+										display="block"
+										variant="body1"
+										style={{
+											fontSize: '14px',
+											color: '#868e96',
+										}}
+										gutterBottom>
+										{post.date}
+									</Typography>
+								</Grid>
 							</Grid>
-							<Grid item>
-								<CalendarTodayIcon />
-								<Typography
-									display="block"
-									variant="body1"
-									style={{
-										fontSize: '14px',
-										color: '#868e96',
-									}}
-									gutterBottom>
-									{post.date}
-								</Typography>
-							</Grid>
-						</Grid>
-					</CardActions>
-				</Card>
-			</Link>
+						</CardActions>
+					</Card>
+				</Link>
+			</Searchable>
 		</Grid>
 	);
 }

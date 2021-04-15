@@ -9,6 +9,7 @@ import {
 	Typography,
 } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
+import Searchable from '../Searchable';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -39,7 +40,11 @@ export default function ControlledAccordions() {
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel1bh-content"
 					id="panel1bh-header">
-					<Typography className={classes.heading}>How can I become a member?</Typography>
+					<Searchable name="frequently asked">
+						<Typography className={classes.heading}>
+							How can I become a member?
+						</Typography>
+					</Searchable>
 				</AccordionSummary>
 				<AccordionDetails>
 					<Typography>
@@ -53,9 +58,11 @@ export default function ControlledAccordions() {
 					expandIcon={<ExpandMoreIcon />}
 					aria-controls="panel2bh-content"
 					id="panel2bh-header">
-					<Typography className={classes.heading}>
-						How can I hear about the events that you will do in future?
-					</Typography>
+					<Searchable name="frequently asked">
+						<Typography className={classes.heading}>
+							How can I hear about the events that you will do in future?
+						</Typography>
+					</Searchable>
 				</AccordionSummary>
 				<AccordionDetails>
 					<Typography>

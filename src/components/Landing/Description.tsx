@@ -1,5 +1,6 @@
 import { makeStyles, Grid } from '@material-ui/core';
 
+import Searchable from '@/components/Searchable';
 import styles from '@/styles/landing.module.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,13 +22,15 @@ export default function Description() {
 		<Grid container className={classes.root}>
 			<Grid item md={6} xs={12} className={styles.container}>
 				<img src="/images/landing/logo.png" className={styles.header} />
-				<p className={styles.dsc_description}>
-					Google collaborates with university students who are enthusiastic about growing
-					developer communities and supports them with commencing student clubs on their
-					campuses. Developer Student Clubs is a program that recognizes and supports
-					university students who are excited about growing developer communities that
-					cultivate learning, sharing, and collaboration.
-				</p>
+				<Searchable name="what is dsc">
+					<p className={styles.dsc_description}>
+						Google collaborates with university students who are enthusiastic about
+						growing developer communities and supports them with commencing student
+						clubs on their campuses. Developer Student Clubs is a program that
+						recognizes and supports university students who are excited about growing
+						developer communities that cultivate learning, sharing, and collaboration.
+					</p>
+				</Searchable>
 			</Grid>
 			<Grid item md={6} className={styles.introImg}>
 				<img
