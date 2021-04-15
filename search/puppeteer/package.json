@@ -1,0 +1,32 @@
+{
+	"name": "puppeteer",
+	"version": "2.2.0-v2",
+	"description": "indexes the site for searching",
+	"main": "index.js",
+	"scripts": {
+		"start": "ts-node main.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DSC-KIIT/dsckiit-website-2.0.git"
+	},
+	"keywords": [
+		"puppeteer",
+		"search",
+		"indexing"
+	],
+	"author": "aditya-mitra",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/DSC-KIIT/dsckiit-website-2.0/issues"
+	},
+	"homepage": "https://github.com/DSC-KIIT/dsckiit-website-2.0#readme",
+	"dependencies": {
+		"puppeteer": "^8.0.0",
+		"ts-node": "^9.1.1",
+		"ts-node-dev": "^1.1.6"
+	},
+	"devDependencies": {
+		"typescript": "^4.2.4"
+	}
+}
