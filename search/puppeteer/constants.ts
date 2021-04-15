@@ -5,3 +5,7 @@ export const baseURL = isProduction ? 'http://dsckiit.tech' : 'http://localhost:
 export const isDev = !isProduction;
 
 export const isHeadless = isProduction;
+
+export const searchablePages = ['/', '/team', '/mentors', '/blog'];
+
+export const searchableSelector = 'div[data-search]';
