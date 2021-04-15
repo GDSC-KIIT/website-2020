@@ -12,6 +12,7 @@ import {
 } from '@material-ui/icons';
 
 import styles from '@/styles/memberCard.module.css';
+import Searchable from '../Searchable';
 
 const IconMap: IconMapType = {
 	github: <GitHubIcon style={{ color: 'black' }} />,
@@ -24,7 +25,9 @@ const IconMap: IconMapType = {
 export default function MembersUnderDomain(members: Array<MemberDataType>) {
 	return members.map((member) => (
 		<Grid item key={member.id}>
-			<Card member={member} key={member.id} />
+			<Searchable name={member.name}>
+				<Card member={member} key={member.id} />
+			</Searchable>
 		</Grid>
 	));
 }
