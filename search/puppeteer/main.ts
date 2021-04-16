@@ -14,21 +14,29 @@ async function getSearchableInPage(
 	currentSearchablePage: string
 ): Promise<IScrappedData[]> {
 	await page.goto(baseURL + currentSearchablePage);
-	const foundContent = await page.$$eval(searchableSelector, (scontents, currentSearchablePage) =>
-		scontents.map((sc) => ({
-			pageName: (currentSearchablePage as string) ?? '',
-			name: (sc as HTMLElement).dataset.search ?? '',
-			text: (sc as HTMLElement).innerText ?? '',
-		}))
+	const extractedNamesandTexts: Pick<IScrappedData, 'name' | 'text'>[] = await page.$$eval(
+		searchableSelector,
+		(scontents) =>
+			scontents.map((sc) => ({
+				name: (sc as HTMLElement).dataset.search ?? '',
+				text: (sc as HTMLElement).innerText ?? '',
+			}))
 	);
+
+	const foundContent: IScrappedData[] = extractedNamesandTexts.map((e) => ({
+		...e,
+		pageName: currentSearchablePage,
+	}));
 
 	return foundContent;
 }
 
-function createIndexFile(scrappedData: IScrappedData[]) {
-	const options = { keys: ['name', 'text'] };
-	const indexer = Fuse.createIndex(options.keys, scrappedData);
-	fs.writeFileSync('indexer.json', JSON.stringify(indexer.toJSON(), null, '\t'));
+function createFiles(scrappedData: IScrappedData[]) {
+	const extracted = { scrapped: scrappedData };
+	fs.writeFileSync('../cloudfare/src/extracted.json', JSON.stringify(extracted, null, '\t'));
+
+	const indexer = Fuse.createIndex(['name', 'text'], scrappedData);
+	fs.writeFileSync('../cloudfare/src/indexed.json', JSON.stringify(indexer.toJSON(), null, '\t'));
 }
 
 async function createSearchIndex() {
@@ -42,7 +50,7 @@ async function createSearchIndex() {
 		scrappedData.push(...found);
 	}
 
-	createIndexFile(scrappedData);
+	createFiles(scrappedData);
 
 	await browser.close();
 }
