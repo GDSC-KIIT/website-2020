@@ -2,7 +2,7 @@
 	"name": "puppeteer",
 	"version": "2.2.0-v2",
 	"description": "indexes the site for searching",
-	"main": "index.js",
+	"main": "main.js",
 	"scripts": {
 		"start": "ts-node main.ts",
 		"dev": "ts-node-dev main.ts"
