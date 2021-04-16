@@ -1,7 +1,7 @@
 {
 	"name": "dsc-kiit-website-backend",
 	"private": true,
-	"version": "2.2.0-v2",
+	"version": "2.2.2-v2",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
 		"dev": "strapi develop",
@@ -11,14 +11,20 @@
 		"start": "pm2 start ecosystem.config.js --wait-ready",
 		"poststart": "pm2 monit",
 		"server:testing": "cross-env TESTING=TRUE strapi start",
-		"test": "cross-env TESTING=TRUE NODE_ENV=TEST mocha tests/**/*.test.js --timeout 10000 --exit",
+		"test": "cross-env NODE_ENV=test jest --runInBand",
+		"testw": "npm run test -- --watch",
 		"strapi": "strapi"
 	},
 	"devDependencies": {
-		"chai": "^4.2.0",
-		"chai-http": "^4.3.0",
+		"@types/jest": "^26.0.22",
+		"@types/node": "^14.14.37",
+		"@types/supertest": "^2.0.11",
 		"cross-env": "^7.0.3",
-		"mocha": "^8.2.1"
+		"jest": "^26.6.3",
+		"supertest": "^6.1.3",
+		"ts-jest": "^26.5.4",
+		"ts-node": "^9.1.1",
+		"typescript": "^4.2.3"
 	},
 	"dependencies": {
 		"knex": "0.21.18",
@@ -32,7 +38,7 @@
 		"strapi-plugin-email": "3.5.4",
 		"strapi-plugin-upload": "3.5.4",
 		"strapi-plugin-users-permissions": "3.5.4",
-		"strapi-provider-upload-firebase": "file:./providers/strapi-provider-upload-firebase",
+		"strapi-provider-upload-cloudinary": "^3.5.4",
 		"strapi-utils": "3.5.4"
 	},
 	"author": {

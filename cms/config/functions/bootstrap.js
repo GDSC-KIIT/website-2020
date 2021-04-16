@@ -60,6 +60,12 @@ async function updatePermissions() {
 	const orm = strapi.query('permission', 'users-permissions');
 	const perms = await orm.find({ type: 'application' });
 
+	const strapiLoggerInfo = strapi.log.info;
+
+	if (process.env.NODE_ENV?.toUpperCase() === 'TEST') {
+		strapi.log.info = (a) => a; // stub logger
+	}
+
 	for (const perm of perms) {
 		const isReadEndpoint = ['find', 'findone', 'count'].includes(perm.action);
 		const restrictedToPublic = ['quiz', 'score'].includes(perm.controller);
@@ -82,10 +88,12 @@ async function updatePermissions() {
 			orm.update({ id: perm.id }, { ...perm, enabled: true });
 		}
 	}
+
+	strapi.log.info = strapiLoggerInfo; // restore logger
 }
 
 module.exports = async () => {
-	if (process.env.TESTING === 'TRUE') {
+	if (process.env.TESTING?.toUpperCase() === 'TRUE') {
 		await updatePermissionsTestConfig();
 	} else {
 		await updatePermissions();

@@ -3,15 +3,15 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import axios from 'axios';
 
-import { backendUrls } from '@/lib/urls';
+import { staticBackendUrls } from '@/lib/urls';
 import { storeUserWithToken } from '@/lib/user/session';
 import performLogout from '@/lib/user/performLogout';
 
 import { CircularProgress, Grid } from '@material-ui/core';
 
-function _getUserToken(access_token: string | string[] | undefined) {
+function getUserToken(access_token: string | string[] | undefined) {
 	return axios
-		.get(backendUrls['auth_callback'] + access_token)
+		.get(staticBackendUrls['auth_callback'] + access_token)
 		.then((response) => response.data)
 		.then((data: IData) => data.jwt)
 		.catch((err) => {
@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		};
 	}
 
-	const jwt = await _getUserToken(query.access_token);
+	const jwt = await getUserToken(query.access_token);
 	storeUserWithToken(ctx, jwt);
 
 	return {

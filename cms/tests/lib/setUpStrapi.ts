@@ -1,17 +1,17 @@
-const Strapi = require('strapi');
-const http = require('http');
+import Strapi from 'strapi';
+import http from 'http';
 
-let instance;
+let instance: any;
 
-async function setupStrapi() {
+export async function setUpStrapiServerAndDatabase() {
 	if (!instance) {
-		await Strapi().load();
-
+		const st = await (Strapi as any)();
+		await st.load(); // load the database
 		instance = strapi;
 		await instance.app.use(instance.router.routes()).use(instance.router.allowedMethods());
 
 		instance.server = http.createServer(instance.app.callback());
 	}
+
 	return instance;
 }
-module.exports = { setupStrapi };

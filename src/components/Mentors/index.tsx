@@ -1,4 +1,4 @@
-import styles from '@/styles/members.module.css';
+import styles from '@/styles/mentors.module.css';
 
 export default function Mentors() {
 	return (

@@ -1,3 +1,4 @@
+import NextImage from 'next/image';
 import styles from '@/styles/intro.module.css';
 
 import { Grid, makeStyles } from '@material-ui/core';
@@ -32,10 +33,15 @@ export default function Intro() {
 					</p>
 				</Grid>
 				<Grid item md={6} className={styles.introImg}>
-					<img src="https://i.imgur.com/lgc8yo3.png" className={styles.intro_image} />
+					<NextImage
+						height="400"
+						width="450"
+						src="/images/members/team_intro.png"
+						className={styles.intro_image}
+					/>
 				</Grid>
 			</Grid>
-			<div className={`${styles.our_team} mt-5`}>
+			<div className={styles.our_team}>
 				<h1 className={styles.header}>Our Team</h1>
 			</div>
 

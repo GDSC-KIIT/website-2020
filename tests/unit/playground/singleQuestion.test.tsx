@@ -6,6 +6,7 @@ import { mocked } from 'ts-jest/utils';
 
 import mockAxios, { AxiosRequestConfig } from 'axios';
 import Question from '@/playground/views/question';
+import { backendUrls } from '@/lib/urls';
 
 jest.mock('axios', () => jest.requireActual('../../mocks/axios'));
 jest.mock('next/link', () => ({ children }: { children: ReactNode }) => children);
@@ -28,16 +29,16 @@ beforeEach(() => {
 			const rqConfig: AxiosRequestConfig = config;
 
 			// url for http://localhost:9000/quizzes/10
-			if (rqConfig.url === '/quizzes/10') {
+			if (rqConfig.url === backendUrls['quizzes'] + '/10') {
 				logger('info', 'quizzes/10 was called');
 				return Promise.resolve({ data: testUtils.mockedQuestion1 });
 			}
 			// url for http://localhost:9000/scores/5
-			else if (rqConfig.url === '/5') {
+			else if (rqConfig.url === backendUrls['scores'] + '/5') {
 				logger('info', 'scores/5 was called');
 				return Promise.resolve({ data: testUtils.mockScoreData });
 			} else if (
-				rqConfig.url === 'http://localhost:9000/scores' &&
+				rqConfig.url === backendUrls['scores'] + '/' &&
 				rqConfig.method === 'POST' &&
 				rqConfig.data
 			) {
@@ -61,7 +62,7 @@ beforeEach(() => {
 	);
 
 	mocked(mockAxios.get).mockImplementation((url, config) => {
-		if (url === 'http://localhost:9000/users/me') {
+		if (url === backendUrls['user_info']) {
 			logger('info', 'users/me was called');
 			return Promise.resolve({ data: testUtils.mockUser });
 		} else if (url === '/api/session') {
@@ -126,7 +127,7 @@ describe('options are present', () => {
 	it('options are disabled if question is not accepting responses', async () => {
 		mocked(mockAxios).mockImplementation(
 			(config: any): Promise<any> => {
-				if (config.url === '/quizzes/10') {
+				if (config.url === backendUrls['quizzes'] + '/10') {
 					return Promise.resolve({
 						data: { ...testUtils.mockedQuestion1, accepting: false },
 					});
@@ -145,13 +146,16 @@ describe('options are present', () => {
 	it('options are disabled if user has already solved the question', async () => {
 		mocked(mockAxios).mockImplementation(
 			(config: any): Promise<any> => {
-				if (config.url === '/5') {
+				console.log('the bak was', config.url);
+				if (config.url === backendUrls['quizzes'] + '/5') {
 					return Promise.resolve({
 						data: {
 							...testUtils.mockScoreData,
 							quizzes: [testUtils.mockSolvedQuestion3, testUtils.mockedQuestion1],
 						},
 					});
+				} else if (config.url === backendUrls['scores'] + '/5') {
+					return Promise.resolve({ data: testUtils.mockScoreData });
 				}
 				return Promise.resolve();
 			}

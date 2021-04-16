@@ -35,7 +35,7 @@ const fastConfig = () => ({
 			connector: 'bookshelf',
 			settings: {
 				client: 'sqlite',
-				filename: '.tmp/data.db',
+				filename: 'db/data.db',
 			},
 			options: {
 				useNullAsDefault: true,
@@ -51,23 +51,20 @@ const testingConfig = () => ({
 			connector: 'bookshelf',
 			settings: {
 				client: 'sqlite',
-				filename: '.tmp/test.db',
+				filename: '.tmp-test/test.db',
 			},
 			options: {
 				useNullAsDefault: true,
-				pool: {
-					min: 0,
-					max: 1,
-				},
 			},
 		},
 	},
 });
 
 const config =
-	process.env.REMOTE_DB === 'TRUE'
+	process.env.REMOTE_DB?.toUpperCase() === 'TRUE'
 		? remoteDBConfig
-		: process.env.TESTING === 'TRUE'
+		: process.env.TESTING?.toUpperCase() === 'TRUE' ||
+		  process.env.NODE_ENV?.toUpperCase() === 'TEST'
 		? testingConfig
 		: fastConfig;
 

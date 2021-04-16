@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`3- [ALL QUESTIONS] matches snapshot 1`] = `
+Array [
+  Object {
+    "accepting": true,
+    "qname": "can we ask",
+  },
+  Object {
+    "accepting": true,
+    "qname": "can we ask",
+  },
+  Object {
+    "accepting": true,
+    "qname": "biology",
+  },
+]
+`;
+
+exports[`4- [SINGLE QUESTION] matches snapshot 1`] = `
+Object {
+  "accepting": true,
+  "option_1": "animal",
+  "option_2": "plant",
+  "option_3": "micobe",
+  "option_4": "all of these",
+  "option_5": null,
+  "option_6": null,
+  "qname": "biology",
+  "question": "*what is biology?*",
+  "score": null,
+}
+`;

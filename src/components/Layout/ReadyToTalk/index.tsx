@@ -1,11 +1,5 @@
 import styles from './readyToTalk.module.css';
-declare global {
-	namespace JSX {
-		interface IntrinsicElements {
-			center: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
-		}
-	}
-}
+
 export default function ReadyToTalk() {
 	return (
 		<>
@@ -31,6 +25,7 @@ export default function ReadyToTalk() {
 					<a
 						href="https://assistant.google.com/services/invoke/uid/0000006c15659a07"
 						target="_blank"
+						rel="noreferrer noopener"
 						className={` ${styles.btn} ${styles.talkDSC}`}
 						style={{ color: 'grey', backgroundColor: 'white' }}>
 						Talk to DSC KIIT
@@ -38,14 +33,14 @@ export default function ReadyToTalk() {
 					<br />
 					<br />
 
-					<center>
+					<div className={styles.centered}>
 						<a
 							href="#contact"
 							className={`${styles.btn} ${styles.contactAssist}`}
 							style={{ color: 'grey', backgroundColor: 'white' }}>
 							Contact
 						</a>
-					</center>
+					</div>
 				</div>
 			</section>
 		</>

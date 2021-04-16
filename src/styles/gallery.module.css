@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@800&family=Spartan:wght@300&display=swap');
+
+.translateContainer {
+	height: 40rem;
+	width: 30rem;
+	position: absolute;
+	right: 0;
+	overflow: hidden;
+	z-index: 10;
+	padding: 0 0.5rem;
+	padding-right: 3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.translateContainer:before {
+	content: '';
+	margin-bottom: 30rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2rem;
+	width: 27.5rem;
+	background-image: linear-gradient(rgba(247, 245, 244, 1), rgba(247, 245, 244, 0));
+	z-index: 10;
+}
+
+.translateContainer:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 2rem;
+	width: 27.5rem;
+	background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+	z-index: 10;
+}
+
+.translateContainer .translate {
+	--scrollEnd: -200%;
+	--scrollDuration: 12s;
+	animation: scrollMove var(--scrollDuration) linear infinite;
+}
+
+@media (max-width: 576px) {
+	.translateContainer {
+		display: block;
+		margin: 0 auto;
+		width: 100%;
+		padding: 1rem;
+	}
+}
+
+@keyframes scrollMove {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(var(--scrollEnd)); /*take special care with the height of this*/
+	}
+	100% {
+		transform: translateY(0);
+	}
+}

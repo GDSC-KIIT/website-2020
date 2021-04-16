@@ -76,6 +76,7 @@ export type MemberDataType = {
 	twitter?: string;
 	linkedin?: string;
 	facebook?: string;
+	website?: string;
 };
 
 export type GroupedMemberType = Record<string, Array<MemberDataType>>;

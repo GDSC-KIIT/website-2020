@@ -1,6 +1,4 @@
-import fetchAllQuestions from './questions/fetchAllQuestions';
-import fetchSingleQuestion from './questions/fetchSingleQuestion';
-import submitAnswer from './score/submit';
-import hasUserAlreadySubmitted from './score/checkSubmission';
-
-export { fetchAllQuestions, fetchSingleQuestion, submitAnswer, hasUserAlreadySubmitted };
+export { default as fetchAllQuestions } from './questions/fetchAllQuestions';
+export { default as fetchSingleQuestion } from './questions/fetchSingleQuestion';
+export { default as submitAnswer } from './score/submit';
+export { default as hasUserAlreadySubmitted } from './score/checkSubmission';

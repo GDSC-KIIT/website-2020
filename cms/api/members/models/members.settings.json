@@ -20,7 +20,7 @@
 			"type": "enumeration",
 			"enum": [
 				"DSC_KIIT_Lead",
-				"Web_Development",
+				"Web",
 				"Machine_Learning",
 				"Flutter",
 				"Cloud",

@@ -1,80 +1,55 @@
-import {
-	Facebook as FacebookIcon,
-	LinkedIn as LinkedInIcon,
-	Twitter as TwitterIcon,
-	GitHub as GitHubIcon,
-} from '@material-ui/icons';
+import { getReadableNameFromDomain } from '@/lib/text';
+import type { GroupedMemberType } from '@/types/index';
+import TeamIntro from './TeamIntro';
+import MembersUnderDomain from './MembersUnderDomain';
 
-import type { GroupedMemberType, MemberDataType } from '@/types/index';
+import { Box, Grid, makeStyles, createStyles, Typography } from '@material-ui/core';
 
-import styles from '@/styles/members.module.css';
+const useStyles = makeStyles((theme) =>
+	createStyles({
+		root: {
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
+			alignItems: 'center',
+			width: '100vw',
+		},
+		heading: {
+			textAlign: 'center',
+			display: 'block',
+			marginTop: theme.spacing(5),
+			marginBottom: theme.spacing(5),
+			fontFamily: 'Open Sans, sans-serif',
+		},
+	})
+);
 
 export default function Members({ members }: IMembers) {
+	const classes = useStyles();
 	const domains = Object.keys(members);
 
 	return (
 		<>
-			{domains.map((domain) => (
-				<div key={domain}>
-					{
-						<>
-							<center className={styles.techDesc}>
-								<h3>{getReadableNameFromDomain(domain)}</h3>
-							</center>
-							{displayMembersUnderDomain(members[domain])}
-						</>
-					}
-				</div>
-			))}
+			<TeamIntro />
+			<Box className={classes.root}>
+				{domains.map((domain) => (
+					<div key={domain}>
+						<Typography className={classes.heading} variant="h2" component="h2">
+							{getReadableNameFromDomain(domain)}
+						</Typography>
+						<Grid
+							container
+							spacing={10}
+							direction="row"
+							justify="center"
+							alignItems="center">
+							{MembersUnderDomain(members[domain])}
+						</Grid>
+					</div>
+				))}
+			</Box>
 		</>
 	);
-}
-
-function displayMembersUnderDomain(members: Array<MemberDataType>) {
-	return members.map((member) => (
-		<div className={`${styles.member} `} key={member.id}>
-			<div className={styles.imageWrap}>
-				<img src={member.image.url} alt="Member photo" />
-			</div>
-			<div className={styles.info}>
-				<span className={styles.school}>{member.name}</span>
-				<span className={styles.state}>
-					{member.twitter ? (
-						<a href={member.twitter} target="_blank">
-							<TwitterIcon className={` ${styles.fa} ${styles.fa_twitter}`} />
-						</a>
-					) : null}
-					<a href={member.github} target="_blank">
-						<GitHubIcon
-							style={{ fontSize: 23 }}
-							className={`${styles.fa} ${styles.fa_github}`}
-						/>
-					</a>
-					{member.facebook ? (
-						<a href={member.facebook} target="_blank">
-							<FacebookIcon className={`${styles.fa} ${styles.fa_facebook}`} />
-						</a>
-					) : null}
-					{member.linkedin ? (
-						<a href={member.linkedin} target="_blank">
-							<LinkedInIcon className={`${styles.fa} ${styles.fa_linkedin_square}`} />
-						</a>
-					) : null}
-				</span>
-			</div>
-			<div className={styles.teamInfo}>
-				<h3>{member.name}</h3>
-				<span>{getReadableNameFromDomain(member.domain)}</span>
-			</div>
-		</div>
-	));
-}
-
-function getReadableNameFromDomain(domain: string): string {
-	return domain
-		.split('_')
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-		.join(' ');
 }
 
 export interface IMembers {
