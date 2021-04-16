@@ -1,23 +1,13 @@
 import { expect } from 'chai';
 import { handleRequest } from '../src/handler';
 
-describe('handler returns response with request method', () => {
-	const methods = [
-		'GET',
-		'HEAD',
-		'POST',
-		'PUT',
-		'DELETE',
-		'CONNECT',
-		'OPTIONS',
-		'TRACE',
-		'PATCH',
-	];
-	methods.forEach((method) => {
-		it(method, async () => {
-			const result = await handleRequest(new Request('/', { method }));
-			const text = await result.text();
-			expect(text).to.include(method);
-		});
+describe('CHECK ALLOWED METHODS', () => {
+	it('GET is allowed', async function () {
+		const resp = await handleRequest(new Request('/?query=dsc', { method: 'GET' }));
+		expect(resp.status).to.equal(400);
+	});
+	it('POST is not allowed', async function () {
+		const resp = await handleRequest(new Request('/?query=dsc', { method: 'POST' }));
+		expect(resp.status).to.equal(404);
 	});
 });

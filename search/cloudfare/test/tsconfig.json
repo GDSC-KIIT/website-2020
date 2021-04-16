@@ -6,7 +6,9 @@
 		"sourceMap": true,
 		"experimentalDecorators": true,
 		"lib": ["esnext", "webworker"],
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"typeRoots": ["../node_modules/@types"],
+		"baseUrl": "."
 	},
 	"include": ["./*.ts", "../node_modules/@cloudflare/workers-types/index.d.ts"]
 }
