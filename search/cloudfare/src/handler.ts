@@ -1,5 +1,10 @@
 import { search } from './search';
 
+const headers = {
+	'content-type': 'application/json;charset=UTF-8',
+	'Access-Control-Allow-Origin': '*',
+};
+
 async function respondBadRequest(
 	message: string = '"query" param not provided'
 ): Promise<Response> {
@@ -7,7 +12,7 @@ async function respondBadRequest(
 	return new Response(json, {
 		status: 400,
 		statusText: 'Bad Request',
-		headers: { 'content-type': 'application/json;charset=UTF-8' },
+		headers: { ...headers },
 	});
 }
 
@@ -17,7 +22,7 @@ async function respondSearchResults(query: string): Promise<Response> {
 	return new Response(json, {
 		status: 200,
 		statusText: 'OK',
-		headers: { 'content-type': 'application/json;charset=UTF-8' },
+		headers: { ...headers },
 	});
 }
 

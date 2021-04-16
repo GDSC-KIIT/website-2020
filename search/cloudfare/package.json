@@ -13,7 +13,7 @@
 		"build": "webpack",
 		"dev": "wrangler dev",
 		"dev:build": "NODE_ENV=development npm run build",
-		"publish": "wrangler publish",
+		"deploy": "wrangler publish",
 		"test:clean": "rimraf ./transpiled/src ./transpiled/test",
 		"test": "npm run test:clean && npm run transpile && mocha --require source-map-support/register --recursive transpiled/test",
 		"transpile": "tsc --project ./test",

@@ -1,4 +1,4 @@
-name = "cloudfare"
+name = "search"
 type = "webpack"
 account_id = "1c0882838999e376dea076af19c6e385"
 workers_dev = true

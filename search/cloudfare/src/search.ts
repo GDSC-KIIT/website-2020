@@ -17,12 +17,13 @@ export function search(query: string) {
 			keys: ['name', 'text'],
 			shouldSort: true,
 			isCaseSensitive: false,
+			threshold: 0.7,
 		};
 		const fuse = new Fuse(extracted.scrapped, options, searchIndex);
 		initializedFuse = fuse;
 	}
 	const fuse = initializedFuse;
-	const results: Fuse.FuseResult<IResult>[] = fuse.search(query);
+	const results: Fuse.FuseResult<IResult>[] = fuse.search(query, { limit: 7 });
 	return results;
 }
 
