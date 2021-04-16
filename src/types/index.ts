@@ -107,3 +107,13 @@ export type BlogPostDataType = {
 	title: string;
 	date: Date;
 };
+
+export type SearchResultType = {
+	item: {
+		name: string;
+		text: string;
+		pageName: string;
+		locId: string;
+	};
+	refIndex: number;
+};

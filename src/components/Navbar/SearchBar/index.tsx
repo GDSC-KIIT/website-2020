@@ -38,9 +38,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
 			transition: theme.transitions.create('width'),
 			width: '100%',
-			// NOT WORKING the width should increase on focus
-			'&:focus': {
-				width: '120%',
+			[theme.breakpoints.up('md')]: {
+				width: '20ch',
 			},
 		},
 	})

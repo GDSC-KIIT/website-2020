@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Grid } from '@material-ui/core';
+
+import type { SearchResultType } from '@/types/index';
+import { getSearchResults, cancelOnUnMount } from '@/lib/dynamicData/search';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -9,19 +13,20 @@ const useStyles = makeStyles((theme: Theme) =>
 			backgroundColor: theme.palette.background.paper,
 			padding: theme.spacing(0.5),
 			width: theme.spacing(40),
-			maxHeight: theme.spacing(17),
+			maxHeight: theme.spacing(18),
 			'&:hover': {
-				backgroundColor: theme.palette.action.selected,
+				backgroundColor: theme.palette.grey[200],
 			},
 			'&:focus': {
 				backgroundColor: theme.palette.action.selected,
 			},
 		},
 		heading: {
-			...theme.typography.h5,
+			...theme.typography.subtitle1,
 			color: theme.palette.text.primary,
 			paddingLeft: theme.spacing(0.75),
-			fontWeight: 'bolder',
+			fontWeight: theme.typography.fontWeightBold,
+			lineHeight: theme.spacing(0.15),
 		},
 		text: {
 			...theme.typography.subtitle2,
@@ -42,8 +47,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export function Results({ searchText }: IResultProps) {
 	const classes = useStyles();
+	const [results, setResults] = useState<SearchResultType[]>([]);
 
 	const boxDisplay = searchText.length > 0 ? 'block' : 'none';
+
+	useEffect(() => {
+		return () => cancelOnUnMount();
+	}, []);
+
+	useEffect(() => {
+		getSearchResults(searchText).then((data) => setResults(data));
+	}, [searchText]);
 
 	return (
 		<Box className={classes.dropdown} style={{ display: boxDisplay }}>
@@ -53,17 +67,32 @@ export function Results({ searchText }: IResultProps) {
 				justify="flex-start"
 				alignItems="flex-start"
 				spacing={1}>
-				<Grid item>
-					<Box className={classes.resultBox}>
-						<Typography className={classes.heading}>this is the name</Typography>
-						<div className={classes.text}>this is inside the portal</div>
-					</Box>
-				</Grid>
+				<ResultItems results={results} />
 			</Grid>
 		</Box>
 	);
 }
 
+function ResultItems({ results }: IResultItemProps) {
+	const classes = useStyles();
+	return (
+		<>
+			{results.map((r) => (
+				<Grid item key={r.refIndex}>
+					<Box className={classes.resultBox}>
+						<Typography className={classes.heading}>{r.item.name}</Typography>
+						<div className={classes.text}>{r.item.text}</div>
+					</Box>
+				</Grid>
+			))}
+		</>
+	);
+}
+
 interface IResultProps {
 	searchText: string;
+}
+
+interface IResultItemProps {
+	results: SearchResultType[];
 }
