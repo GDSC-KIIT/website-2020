@@ -12,7 +12,7 @@ async function respondBadRequest(
 	const json = JSON.stringify({ message });
 	return new Response(json, {
 		status: 400,
-		statusText: 'Bad Request',
+		statusText: 'BAD REQUEST',
 		headers: { ...headers },
 	});
 }

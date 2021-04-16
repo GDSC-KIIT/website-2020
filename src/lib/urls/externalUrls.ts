@@ -14,5 +14,6 @@ export const externalUrls: Record<externalName, string> = {
 		'https://dsc.community.dev/kalinga-institute-of-industrial-technology-bhubaneswar/',
 	blogs_medium: 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/dsckiit',
 	blogs_devto: 'https://dev.to/api/articles?username=dsckiitdev',
-	search: 'http://127.0.0.1:8787/',
+	// search: 'http://127.0.0.1:8787/',
+	search: 'https://search.dscprod2.workers.dev/',
 };
