@@ -1,6 +1,5 @@
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import { Box, Container, Typography, Grid } from '@material-ui/core';
-import Navbar from '@/components/Navbar';
+import { Box, Typography, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -32,15 +31,22 @@ const useStyles = makeStyles((theme: Theme) =>
 			overflow: 'hidden',
 			maxHeight: theme.spacing(11),
 		},
+
+		dropdown: {
+			position: 'absolute',
+			marginTop: theme.spacing(1),
+			left: theme.spacing(-1),
+		},
 	})
 );
 
-export default function Variants() {
+export function Results({ searchText }: IResultProps) {
 	const classes = useStyles();
 
+	const boxDisplay = searchText.length > 0 ? 'block' : 'none';
+
 	return (
-		<Container style={{ margin: '1rem' }}>
-			<Navbar />
+		<Box className={classes.dropdown} style={{ display: boxDisplay }}>
 			<Grid
 				container
 				direction="column"
@@ -50,14 +56,14 @@ export default function Variants() {
 				<Grid item>
 					<Box className={classes.resultBox}>
 						<Typography className={classes.heading}>this is the name</Typography>
-						<div className={classes.text}>
-							uam autem dolorum omnis accusantium. Nulla temporibus sint aut nihil
-							mollitia laboriosam ut. Illo praesentium non qui. uam autem dolorum
-							omnis accusant
-						</div>
+						<div className={classes.text}>this is inside the portal</div>
 					</Box>
 				</Grid>
 			</Grid>
-		</Container>
+		</Box>
 	);
+}
+
+interface IResultProps {
+	searchText: string;
 }

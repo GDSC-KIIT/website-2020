@@ -2,6 +2,7 @@ import NextLink from 'next/link';
 import NextImage from 'next/image';
 
 import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
+import SearchBar from '@/components/Navbar/SearchBar';
 import { externalUrls, internalUrls } from '@/lib/urls';
 
 import { makeStyles, Typography, Box, Grid, Divider, Link } from '@material-ui/core';
@@ -46,6 +47,7 @@ export default function LaptopNavbar() {
 						</Box>
 					</Typography>
 				</NextLink>
+				<SearchBar />
 			</Grid>
 
 			<Grid
