@@ -1,5 +1,3 @@
-/**@ts-ignore */
-import indexed from './indexed.json';
 import { search } from './search';
 
 async function respondBadRequest(
@@ -15,8 +13,12 @@ async function respondBadRequest(
 
 async function respondSearchResults(query: string): Promise<Response> {
 	const results = search(query);
-	console.log('the found results were', results[0].item);
-	return new Response(`request method: got`);
+	const json = JSON.stringify(results);
+	return new Response(json, {
+		status: 200,
+		statusText: 'OK',
+		headers: { 'content-type': 'application/json;charset=UTF-8' },
+	});
 }
 
 export async function handleRequest(request: Request): Promise<Response> {
