@@ -2,11 +2,13 @@ import puppeteer from 'puppeteer';
 import Fuse from 'fuse.js';
 import fs from 'fs';
 
-import { baseURL, isHeadless, searchablePages, searchableSelector } from './constants';
+import { baseURL, isHeadless, searchablePages, searchableDivSelector } from './constants';
+
 interface IScrappedData {
 	pageName: string;
 	name: string;
 	text: string;
+	locId: string;
 }
 
 async function getSearchableInPage(
@@ -14,16 +16,18 @@ async function getSearchableInPage(
 	currentSearchablePage: string
 ): Promise<IScrappedData[]> {
 	await page.goto(baseURL + currentSearchablePage);
-	const extractedNamesandTexts: Pick<IScrappedData, 'name' | 'text'>[] = await page.$$eval(
-		searchableSelector,
-		(scontents) =>
-			scontents.map((sc) => ({
-				name: (sc as HTMLElement).dataset.search ?? '',
-				text: (sc as HTMLElement).innerText ?? '',
-			}))
+	const extractedNamesandTexts: Pick<
+		IScrappedData,
+		'name' | 'text' | 'locId'
+	>[] = await page.$$eval('div[data-search]', (scontents) =>
+		scontents.map((sc) => ({
+			name: (sc as HTMLElement).dataset.search ?? '',
+			text: (sc as HTMLElement).innerText ?? '',
+			locId: sc.querySelector('span[data-search-span]')?.id ?? '',
+		}))
 	);
 
-	const foundContent: IScrappedData[] = extractedNamesandTexts.map((e) => ({
+	const foundContent: IScrappedData[] = extractedNamesandTexts.map((e, i) => ({
 		...e,
 		pageName: currentSearchablePage,
 	}));

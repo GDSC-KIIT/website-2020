@@ -8,4 +8,6 @@ export const isHeadless = isProduction;
 
 export const searchablePages = ['/', '/team', '/mentors', '/blog'];
 
-export const searchableSelector = 'div[data-search]';
+export const searchableDivSelector = 'div[data-search]';
+
+export const searchableSpanSelector = 'span[data-search-span]';

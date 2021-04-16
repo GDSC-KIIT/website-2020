@@ -7,7 +7,7 @@ export default function Searchable({ children, name }: ISearchableProps) {
 	return (
 		<>
 			<div data-search={name} className={styles.noStyle}>
-				<span id={encodeURI(name)} className={styles.searchable} />
+				<span data-search-span id={encodeURI(name)} className={styles.searchable} />
 				{children}
 			</div>
 		</>
