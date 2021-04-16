@@ -33,6 +33,6 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true
 	},
-	"exclude": ["node_modules", "build", "scripts", ".next", "cms", "webhooks"],
+	"exclude": ["node_modules", "build", "scripts", ".next", "cms", "webhooks", "search"],
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tests/*"]
 }
