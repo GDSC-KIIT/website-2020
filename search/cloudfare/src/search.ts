@@ -31,6 +31,7 @@ interface IResult {
 		name: string;
 		text: string;
 		pageName: string;
+		locId: string;
 	};
 	refIndex: number;
 }
