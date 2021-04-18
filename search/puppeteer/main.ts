@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 import Fuse from 'fuse.js';
 import fs from 'fs';
 
-import { baseURL, isHeadless, searchablePages, searchableDivSelector } from './constants';
+import { baseURL, isHeadless, searchablePages } from './constants';
 
 interface IScrappedData {
 	pageName: string;
