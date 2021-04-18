@@ -6,6 +6,7 @@ import type { SearchResultType } from '@/types/index';
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		resultBox: {
+			cursor: 'pointer',
 			boxShadow: theme.shadows[1],
 			borderRadius: theme.shape.borderRadius,
 			backgroundColor: theme.palette.background.paper,
