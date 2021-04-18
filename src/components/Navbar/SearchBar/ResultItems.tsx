@@ -42,12 +42,13 @@ export default function ResultItems({ results }: IResultItemProps) {
 	const classes = useStyles();
 	return (
 		<>
-			{results.map((r) => (
+			{results.map((r, i) => (
 				<NextLink
+					key={r.refIndex}
 					href={r.item.pageName + '#' + r.item.locId}
 					prefetch={false}
 					scroll={false}>
-					<Grid item key={r.refIndex}>
+					<Grid item>
 						<Box className={classes.resultBox}>
 							<Typography className={classes.heading}>{r.item.name}</Typography>
 							<div className={classes.text}>{r.item.text}</div>
