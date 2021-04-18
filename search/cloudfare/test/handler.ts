@@ -86,5 +86,14 @@ describe('SEARCH', () => {
 				expect(obj.item.locId).to.be.a('string');
 			});
 		});
+		it('pageName should start with /', async function () {
+			const json = await (
+				await handleRequest(new Request('/?query=dsc', { method: 'GET' }))
+			).json();
+			(json as []).forEach((obj: Record<string, any>) => {
+				const pageNameStarting = obj.item.pageName.split('')[0];
+				expect(pageNameStarting).to.equal('/');
+			});
+		});
 	});
 });

@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { useEffect, useState } from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Grid } from '@material-ui/core';
@@ -78,12 +79,17 @@ function ResultItems({ results }: IResultItemProps) {
 	return (
 		<>
 			{results.map((r) => (
-				<Grid item key={r.refIndex}>
-					<Box className={classes.resultBox}>
-						<Typography className={classes.heading}>{r.item.name}</Typography>
-						<div className={classes.text}>{r.item.text}</div>
-					</Box>
-				</Grid>
+				<NextLink
+					href={r.item.pageName + '#' + r.item.locId}
+					prefetch={false}
+					scroll={false}>
+					<Grid item key={r.refIndex}>
+						<Box className={classes.resultBox}>
+							<Typography className={classes.heading}>{r.item.name}</Typography>
+							<div className={classes.text}>{r.item.text}</div>
+						</Box>
+					</Grid>
+				</NextLink>
 			))}
 		</>
 	);

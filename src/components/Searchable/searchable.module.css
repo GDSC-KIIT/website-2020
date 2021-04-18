@@ -1,8 +1,8 @@
 /* https://css-tricks.com/hash-tag-links-padding/ */
 .searchable {
-	padding-top: 400px;
-	margin-top: -400px;
-	display: inline-block;
+	/* providing a little offset so that components such as navbar can be compensated */
+	position: absolute;
+	margin-top: -90px;
 }
 .invisible {
 	visibility: hidden;
