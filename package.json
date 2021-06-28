@@ -1,40 +1,46 @@
 {
-  "name": "tree",
-  "version": "2.2.0",
-  "description": "the new website of DSC KIIT",
-  "main": ".",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "boots": "lerna bootstrap",
-    "postinstall": "npm run boots",
-    "diff": "lerna diff",
-    "clean": "lerna clean -y",
-    "version": "lerna version --no-changelog -m \"chore: RELEASE %s\" --no-push",
-    "preformat": "prettier --write --find-config-path .prettierrc",
-    "format": "prettier --config .prettierrc --ignore-path .prettierignore --write cms/** site/** search/** webhooks/**"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DSC-KIIT/dsckiit-website-2.0.git"
-  },
-  "keywords": [
-    "strapi",
-    "next",
-    "cloudfare",
-    "puppeter",
-    "hapi"
-  ],
-  "author": "aditya-mitra, akashgp09, yashvi2001, marpit19",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/DSC-KIIT/dsckiit-website-2.0/issues"
-  },
-  "homepage": "https://github.com/DSC-KIIT/dsckiit-website-2.0#readme",
-  "dependencies": {
-    "husky": "^4.3.8",
-    "lerna": "^4.0.0",
-    "prettier": "^2.3.2"
-  }
+	"name": "tree",
+	"version": "2.2.0",
+	"description": "the new website of DSC KIIT",
+	"main": ".",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"postinstall": "npm run bootstrap",
+		"bootstrap": "lerna bootstrap",
+		"diff": "lerna diff",
+		"clean": "lerna clean -y",
+		"version": "lerna version --no-changelog -m \"chore: RELEASE %s\" --no-push",
+		"preformat": "prettier --write --find-config-path .prettierrc",
+		"format": "prettier --config .prettierrc --ignore-path .prettierignore --write cms/** site/** search/** webhooks/**"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DSC-KIIT/dsckiit-website-2.0.git"
+	},
+	"keywords": [
+		"strapi",
+		"next",
+		"cloudfare",
+		"puppeter",
+		"hapi"
+	],
+	"author": "aditya-mitra, akashgp09, yashvi2001, marpit19",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/DSC-KIIT/dsckiit-website-2.0/issues"
+	},
+	"homepage": "https://github.com/DSC-KIIT/dsckiit-website-2.0#readme",
+	"dependencies": {
+		"husky": "^4.3.8",
+		"lerna": "^4.0.0",
+		"prettier": "^2.3.2",
+		"pretty-quick": "^3.1.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged --ignore-path=.prettierignore --verbose"
+		}
+	}
 }

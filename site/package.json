@@ -6,7 +6,6 @@
 		"build": "next build",
 		"ci:build": "start-server-and-test server:testing http://localhost:9000 build",
 		"start": "next start --port=3333",
-		"format:prettier": "prettier --write .",
 		"server:testing": "npm run server:testing --prefix cms",
 		"test": "jest",
 		"test:unit": "npm run test -- tests/unit",
@@ -43,11 +42,8 @@
 		"@types/node": "^14.14.6",
 		"@types/react": "^16.9.56",
 		"babel-jest": "^26.6.3",
-		"husky": "^4.3.6",
 		"jest": "^26.6.3",
 		"jest-css-modules": "^2.1.0",
-		"prettier": "^2.2.1",
-		"pretty-quick": "^3.1.0",
 		"react-test-renderer": "^17.0.1",
 		"start-server-and-test": "^1.11.7",
 		"ts-jest": "^26.4.4",
@@ -58,10 +54,5 @@
 	"engines": {
 		"node": ">=14.0.0 <=14.x.x",
 		"npm": "^7.0.0"
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged --ignore-path=.prettierignore --verbose"
-		}
 	}
 }
