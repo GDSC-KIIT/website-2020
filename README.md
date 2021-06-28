@@ -48,3 +48,16 @@ If still some node processes are left, run `killall node`.
 If the **application has stopped** or you want to **check for errors**, visit the `cms` folder and then visit the `LOGS` folder.
 
 You will find the different server log files, and you can open and then check for the log.
+
+# Updating Packages
+
+Since we are using [**yarn**](https://yarnpkg.com/) for installing packages, we need to install the latest yarn packages for the same.
+
+**_It is necessary and important to update the packages when there is major release (or at least every 6 months)_.**
+For example, there can be major release of [next.js](https://github.com/vercel/next.js/releases) every year and you will need to update the version
+
+Refer the following for upgrading the package(s):
+
+-   https://yarnpkg.com/lang/en/docs/cli/upgrade/
+-   https://classic.yarnpkg.com/en/docs/cli/upgrade-interactive/
+-   https://yarnpkg.com/package/yarn-upgrade-all
