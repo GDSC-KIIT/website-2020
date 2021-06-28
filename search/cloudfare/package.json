@@ -5,18 +5,14 @@
 	"main": "index.js",
 	"author": "aditya-mitra",
 	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/DSC-KIIT/dsckiit-website-2.0.git"
-	},
 	"scripts": {
 		"build": "webpack",
-		"dev": "wrangler dev",
+		"dev": "wrangler dev --port 5000",
 		"dev:build": "NODE_ENV=development npm run build",
 		"deploy": "wrangler publish",
+		"transpile": "tsc --project ./test",
 		"test:clean": "rimraf ./transpiled/src ./transpiled/test",
 		"test": "npm run test:clean && npm run transpile && mocha --require source-map-support/register --recursive transpiled/test",
-		"transpile": "tsc --project ./test",
 		"wrangler": "wrangler"
 	},
 	"devDependencies": {
@@ -27,7 +23,7 @@
 		"mocha": "^9.0.1",
 		"rimraf": "^3.0.2",
 		"service-worker-mock": "^2.0.5",
-		"ts-loader": "^9.2.2",
+		"ts-loader": "^8.3.0",
 		"typescript": "^4.3.2",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.0"
