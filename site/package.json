@@ -1,9 +1,5 @@
 {
-	"name": "dsckiit-website-2.0",
-	"description": "Our new website!",
-	"author": "Developer Student Club - KIIT",
-	"license": "MIT",
-	"version": "2.2.1-v2",
+	"name": "site",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port=3333",

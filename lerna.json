@@ -1,0 +1,11 @@
+{
+  "npmClient": "npm",
+  "packages": [
+    "site/**",
+    "cms/**",
+    "search/cloudfare/**",
+    "search/puppeteer/**",
+    "webhooks/strapi/**"
+  ],
+  "version": "2.2.0"
+}
