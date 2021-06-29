@@ -16,19 +16,19 @@
 		"strapi": "strapi"
 	},
 	"devDependencies": {
-		"@types/jest": "^26.0.22",
-		"@types/node": "^14.14.37",
+		"@types/jest": "^26.0.23",
+		"@types/node": "^15.12.5",
 		"@types/supertest": "^2.0.11",
 		"cross-env": "^7.0.3",
-		"jest": "^26.6.3",
+		"jest": "^27.0.6",
 		"supertest": "^6.1.3",
-		"ts-jest": "^26.5.4",
-		"ts-node": "^9.1.1",
-		"typescript": "^4.2.3"
+		"ts-jest": "^27.0.3",
+		"ts-node": "^10.0.0",
+		"typescript": "^4.3.4"
 	},
 	"dependencies": {
 		"knex": "0.21.18",
-		"pm2": "^4.5.5",
+		"pm2": "^5.1.0",
 		"sqlite3": "5.0.0",
 		"strapi": "3.6.5",
 		"strapi-admin": "3.6.5",
