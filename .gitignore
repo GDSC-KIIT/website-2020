@@ -5,7 +5,7 @@ node_modules
 package-lock.json
 
 # testing
-/coverage/
+coverage
 
 # misc
 .DS_Store
@@ -26,5 +26,6 @@ yarn-error.log*
 .vercel
 
 # development
-/.vscode/
+.vscode/
 .vs/
+.idea/
