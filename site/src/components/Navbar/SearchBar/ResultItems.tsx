@@ -41,7 +41,7 @@ export default function ResultItems({ results }: IResultItemProps) {
 	const classes = useStyles();
 	return (
 		<>
-			{results.map((r, i) => (
+			{results.map((r) => (
 				<NextLink
 					key={r.refIndex}
 					href={r.item.pageName + '#' + r.item.locId}
