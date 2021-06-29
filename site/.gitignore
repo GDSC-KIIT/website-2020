@@ -4,3 +4,7 @@
 
 # production
 /build
+
+# sitemaps
+public/sitemap.xml
+public/robots.txt

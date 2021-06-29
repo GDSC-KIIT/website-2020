@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev": "next dev --port=3333",
 		"build": "next build",
+		"postbuild": "next-sitemap --config next-sitemap.js",
 		"ci:build": "start-server-and-test server:testing http://localhost:9000 build",
 		"start": "next start --port=3333",
 		"server:testing": "npm run server:testing --prefix cms",
@@ -42,6 +43,7 @@
 		"babel-jest": "^27.0.6",
 		"jest": "^27.0.6",
 		"jest-css-modules": "^2.1.0",
+		"next-sitemap": "^1.6.124",
 		"react-test-renderer": "^17.0.2",
 		"start-server-and-test": "^1.12.5",
 		"ts-jest": "^27.0.3",
