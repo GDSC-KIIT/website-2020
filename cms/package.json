@@ -3,17 +3,17 @@
 	"version": "2.3.0",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
+		"postinstall": "node ./tools/post-install.js",
 		"dev": "strapi develop",
+		"boot": "node ./tools/env-Decrypter.js && node ./tools/create-local-db.js",
 		"build": "strapi build --clean",
-		"postinstall": "node ./tools/env-Decrypter.js",
 		"pm2": "pm2",
 		"start": "pm2 start ecosystem.config.js --wait-ready",
 		"poststart": "pm2 monit",
 		"server:testing": "cross-env TESTING=TRUE strapi start",
 		"test": "cross-env NODE_ENV=test jest --runInBand --forceExit",
 		"testw": "npm run test -- --watch",
-		"strapi": "strapi",
-		"backup": "node ./tools/local-backup.js"
+		"strapi": "strapi"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.23",
