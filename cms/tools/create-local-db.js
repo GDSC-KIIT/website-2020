@@ -2,8 +2,7 @@ const fs = require('fs');
 const https = require('https');
 
 const FILE_LOCATION = './db/data.db';
-const DOWNLOAD_URL =
-	'https://github.com/aditya-mitra/dsckiit-website-2.0/releases/download/v2.2/data.db';
+const DOWNLOAD_URL = 'https://github.com/DSC-KIIT/website/releases/download/v2/data.db';
 
 function showProgress(current, totalFileSize, totalFileSizeInMB) {
 	process.stdout.clearLine();
