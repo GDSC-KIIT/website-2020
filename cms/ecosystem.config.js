@@ -2,7 +2,7 @@ module.exports = {
 	apps: [
 		{
 			name: 'main cms',
-			script: './prod_server.js',
+			script: './prod-server.js',
 			instances: 'max',
 			exec_mode: 'cluster',
 			restart_delay: 3000,
@@ -15,7 +15,7 @@ module.exports = {
 			env: {
 				NODE_ENV: 'production',
 				STRAPI_LOG_TIMESTAMP: false,
-				ABSOLUTE_PRODUCTION_URL: 'https://admin.dsckiit.tech',
+				ABSOLUTE_PRODUCTION_URL: 'https://admin.dsckiit.in',
 			},
 		},
 	],
