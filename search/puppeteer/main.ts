@@ -2,8 +2,7 @@ import puppeteer from 'puppeteer';
 import Fuse from 'fuse.js';
 import fs from 'fs';
 
-import { baseURL, isHeadless, searchablePages } from './constants';
-
+import { getSearchablePages, isHeadless, baseURL } from './helper';
 interface IScrappedData {
 	pageName: string;
 	name: string;
@@ -16,18 +15,16 @@ async function getSearchableInPage(
 	currentSearchablePage: string
 ): Promise<IScrappedData[]> {
 	await page.goto(baseURL + currentSearchablePage);
-	const extractedNamesandTexts: Pick<
-		IScrappedData,
-		'name' | 'text' | 'locId'
-	>[] = await page.$$eval('div[data-search]', (scontents) =>
-		scontents.map((sc) => ({
-			name: (sc as HTMLElement).dataset.search ?? '',
-			text: (sc as HTMLElement).innerText ?? '',
-			locId: sc.querySelector('span[data-search-span]')?.id ?? '',
-		}))
-	);
+	const extractedNamesandTexts: Pick<IScrappedData, 'name' | 'text' | 'locId'>[] =
+		await page.$$eval('div[data-search]', (scontents) =>
+			scontents.map((sc) => ({
+				name: (sc as HTMLElement).dataset.search ?? '',
+				text: (sc as HTMLElement).innerText ?? '',
+				locId: sc.querySelector('span[data-search-span]')?.id ?? '',
+			}))
+		);
 
-	const foundContent: IScrappedData[] = extractedNamesandTexts.map((e, i) => ({
+	const foundContent: IScrappedData[] = extractedNamesandTexts.map((e) => ({
 		...e,
 		pageName: currentSearchablePage,
 	}));
@@ -46,11 +43,11 @@ function createFiles(scrappedData: IScrappedData[]) {
 async function createSearchIndex() {
 	const browser = await puppeteer.launch({ headless: isHeadless });
 	const page = await browser.newPage();
-	await page.goto(baseURL);
+	const searchablePages = await getSearchablePages(page);
 
 	const scrappedData: IScrappedData[] = [];
-	for (const s of searchablePages) {
-		const found = await getSearchableInPage(page, s);
+	for (const searchablePage of searchablePages) {
+		const found = await getSearchableInPage(page, searchablePage as any);
 		scrappedData.push(...found);
 	}
 

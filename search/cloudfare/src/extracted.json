@@ -19,40 +19,10 @@
 			"pageName": "/"
 		},
 		{
-			"name": "Pradyuum Verma",
-			"text": "Pradyuum Verma",
-			"locId": "Pradyuum%20Verma",
-			"pageName": "/team"
-		},
-		{
-			"name": "Aditya Mitra",
-			"text": "Aditya Mitra",
-			"locId": "Aditya%20Mitra",
-			"pageName": "/team"
-		},
-		{
-			"name": "Prof. Kumar Devdutta",
-			"text": "Prof. Kumar Devdutta\nAssistant Professor",
-			"locId": "Prof.%20Kumar%20Devdutta",
-			"pageName": "/mentors"
-		},
-		{
-			"name": "Dr. Kumar Mohanty",
-			"text": "Dr. Kumar Mohanty\nDirector (Corporate Relations)",
-			"locId": "Dr.%20Kumar%20Mohanty",
-			"pageName": "/mentors"
-		},
-		{
-			"name": "Dr. Abhishek Ray",
-			"text": "Dr. Abhishek Ray\nAssociate Dean (T&P)",
-			"locId": "Dr.%20Abhishek%20Ray",
-			"pageName": "/mentors"
-		},
-		{
-			"name": "Dr. Prachet Bhuyan",
-			"text": "Dr. Prachet Bhuyan\nAssociate Dean (T&P)",
-			"locId": "Dr.%20Prachet%20Bhuyan",
-			"pageName": "/mentors"
+			"name": "How to cache JSON data in Redis",
+			"text": "How to cache JSON data in Redis\n\nCache, Redis, Json, Nodejs, Express\n\nSayan Nath\n\n28 May, 2021",
+			"locId": "How%20to%20cache%20JSON%20data%20in%20Redis",
+			"pageName": "/blog"
 		},
 		{
 			"name": "Apple v Facebook, and Our Privacy",
@@ -127,12 +97,6 @@
 			"pageName": "/blog"
 		},
 		{
-			"name": "super vs super(props) in React.",
-			"text": "super vs super(props) in React.\n\nReact, Programming, Web-development, Reactjs, Javascript\n\nAkash Gupta\n\n18 Feb, 2021",
-			"locId": "super%20vs%20super(props)%20in%20React.",
-			"pageName": "/blog"
-		},
-		{
 			"name": "Build a gRPC server in Go",
 			"text": "Build a gRPC server in Go\n\ngo, grpc, microservices, webdev\n\nSaswata Mukherjee\n\n6 Dec, 2020",
 			"locId": "Build%20a%20gRPC%20server%20in%20Go",
@@ -173,6 +137,60 @@
 			"text": "React Context+Hooks API=> Ideal State Management\n\nreact, webdev, javascript, html\n\nSaswata Mukherjee\n\n7 May, 2020",
 			"locId": "React%20Context+Hooks%20API=%3E%20Ideal%20State%20Management",
 			"pageName": "/blog"
+		},
+		{
+			"name": "Prof. Kumar Devdutta",
+			"text": "Prof. Kumar Devdutta\nAssistant Professor",
+			"locId": "Prof.%20Kumar%20Devdutta",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Dr. Kumar Mohanty",
+			"text": "Dr. Kumar Mohanty\nDirector (Corporate Relations)",
+			"locId": "Dr.%20Kumar%20Mohanty",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Dr. Abhishek Ray",
+			"text": "Dr. Abhishek Ray\nAssociate Dean (T&P)",
+			"locId": "Dr.%20Abhishek%20Ray",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Dr. Prachet Bhuyan",
+			"text": "Dr. Prachet Bhuyan\nAssociate Dean (T&P)",
+			"locId": "Dr.%20Prachet%20Bhuyan",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Praddyum Verma",
+			"text": "Praddyum Verma",
+			"locId": "Praddyum%20Verma",
+			"pageName": "/team"
+		},
+		{
+			"name": "Aditya",
+			"text": "Aditya",
+			"locId": "Aditya",
+			"pageName": "/team"
+		},
+		{
+			"name": "Akash Gupta",
+			"text": "Akash Gupta",
+			"locId": "Akash%20Gupta",
+			"pageName": "/team"
+		},
+		{
+			"name": "Biswaroop Bhattacharjee",
+			"text": "Biswaroop Bhattacharjee",
+			"locId": "Biswaroop%20Bhattacharjee",
+			"pageName": "/team"
+		},
+		{
+			"name": "Priyansi Singh",
+			"text": "Priyansi Singh",
+			"locId": "Priyansi%20Singh",
+			"pageName": "/team"
 		}
 	]
 }
