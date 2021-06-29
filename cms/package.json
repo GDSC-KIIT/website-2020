@@ -6,21 +6,24 @@
 	"scripts": {
 		"dev": "strapi develop",
 		"build": "strapi build --clean",
-		"postinstall": "node env-Decrypter.js",
+		"postinstall": "node ./tools/env-Decrypter.js",
 		"pm2": "pm2",
 		"start": "pm2 start ecosystem.config.js --wait-ready",
 		"poststart": "pm2 monit",
 		"server:testing": "cross-env TESTING=TRUE strapi start",
 		"test": "cross-env NODE_ENV=test jest --runInBand --forceExit",
 		"testw": "npm run test -- --watch",
-		"strapi": "strapi"
+		"strapi": "strapi",
+		"backup": "node ./tools/local-backup.js"
 	},
 	"devDependencies": {
 		"@types/jest": "^26.0.23",
 		"@types/node": "^15.12.5",
+		"@types/sqlite3": "^3.1.7",
 		"@types/supertest": "^2.0.11",
 		"cross-env": "^7.0.3",
 		"jest": "^27.0.6",
+		"sqlite-to-json": "^0.1.3",
 		"supertest": "^6.1.3",
 		"ts-jest": "^27.0.3",
 		"ts-node": "^10.0.0",
