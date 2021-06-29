@@ -69,7 +69,7 @@ export default function Home({ projects }: IProjects) {
 				<h5 style={{ textAlign: 'center', color: 'grey' }}>
 					These are the amazing projects made by DSC KIIT Team
 				</h5>
-
+				<br />
 				<div className="row margin">
 					<Grid container spacing={4} className={classes.gridContainer}>
 						{projects.map((project) => (

@@ -30,10 +30,7 @@ export default function Description() {
 				</p>
 			</Grid>
 			<Grid item md={6} className={styles.introImg}>
-				<img
-					src="https://image.freepik.com/free-vector/modern-isometric-illustration-work-from-home_145666-793.jpg"
-					className={styles.intro_image}
-				/>
+				<img src="/images/landing/prog.gif" className={styles.intro_image} />
 			</Grid>
 		</Grid>
 	);

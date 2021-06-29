@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import NextImage from 'next/image';
 
 import Description from './Description';
 import About from './About';
@@ -18,9 +17,6 @@ export default function Landing() {
 	//  labels: enhance, landing
 	return (
 		<>
-			<div className={styles.background_img}>
-				<NextImage src="/images/landing/background.jpg" layout="fill" objectFit="cover" />
-			</div>
 			<Banners />
 			<Description />
 			<div>
