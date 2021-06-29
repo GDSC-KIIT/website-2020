@@ -35,20 +35,26 @@ const useStyles = makeStyles((theme: Theme) => ({
 		overflow: 'hidden',
 		maxHeight: theme.spacing(11),
 	},
+	isActive: {
+		backgroundColor: theme.palette.grey[200],
+	},
 }));
 
-export default function ResultItems({ results }: IResultItemProps) {
+export default function ResultItems({ results, cursor }: IResultItemProps) {
 	const classes = useStyles();
 	return (
 		<>
-			{results.map((r) => (
+			{results.map((r: SearchResultType, i: number) => (
 				<NextLink
 					key={r.refIndex}
 					href={r.item.pageName + '#' + r.item.locId}
 					prefetch={false}
 					scroll={false}>
 					<Grid item>
-						<div className={classes.resultBox}>
+						<div
+							className={`${classes.resultBox} ${
+								cursor === i ? classes.isActive : ''
+							}`}>
 							<p className={classes.heading}>{r.item.name}</p>
 							<div className={classes.text}>{r.item.text}</div>
 						</div>
@@ -61,4 +67,5 @@ export default function ResultItems({ results }: IResultItemProps) {
 
 interface IResultItemProps {
 	results: SearchResultType[];
+	cursor: number;
 }
