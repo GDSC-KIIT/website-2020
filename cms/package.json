@@ -30,16 +30,17 @@
 		"knex": "0.21.18",
 		"pm2": "^4.5.5",
 		"sqlite3": "5.0.0",
-		"strapi": "3.5.4",
-		"strapi-admin": "3.5.4",
-		"strapi-connector-bookshelf": "3.5.4",
-		"strapi-plugin-content-manager": "3.5.4",
-		"strapi-plugin-content-type-builder": "3.5.4",
-		"strapi-plugin-email": "3.5.4",
-		"strapi-plugin-upload": "3.5.4",
-		"strapi-plugin-users-permissions": "3.5.4",
-		"strapi-provider-upload-cloudinary": "^3.5.4",
-		"strapi-utils": "3.5.4"
+		"strapi": "3.6.5",
+		"strapi-admin": "3.6.5",
+		"strapi-connector-bookshelf": "3.6.5",
+		"strapi-plugin-content-manager": "3.6.5",
+		"strapi-plugin-content-type-builder": "3.6.5",
+		"strapi-plugin-email": "3.6.5",
+		"strapi-plugin-i18n": "3.6.5",
+		"strapi-plugin-upload": "3.6.5",
+		"strapi-plugin-users-permissions": "3.6.5",
+		"strapi-provider-upload-cloudinary": "^3.6.5",
+		"strapi-utils": "3.6.5"
 	},
 	"author": {
 		"name": "aditya-mitra"
@@ -50,6 +51,5 @@
 	"engines": {
 		"node": ">=14.0.0 <=14.x.x",
 		"npm": "^7.0.0"
-	},
-	"license": "MIT"
+	}
 }
