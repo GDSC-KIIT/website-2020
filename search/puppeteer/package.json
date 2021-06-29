@@ -1,6 +1,6 @@
 {
 	"name": "puppeteer",
-	"version": "2.2.0-v2",
+	"version": "2.3.0",
 	"description": "indexes the site for searching",
 	"main": "main.js",
 	"scripts": {

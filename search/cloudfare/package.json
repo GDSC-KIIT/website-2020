@@ -1,6 +1,6 @@
 {
 	"name": "search",
-	"version": "2.2.0-v2",
+	"version": "2.3.0",
 	"description": "searches the indexed file",
 	"main": "index.js",
 	"author": "aditya-mitra",
