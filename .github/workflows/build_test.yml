@@ -2,9 +2,10 @@ name: Build and Test
 
 on:
     - pull_request
+    - push
 
 jobs:
-    install_cms:
+    install_full_workspace:
         runs-on: ubuntu-latest
 
         defaults:
@@ -19,40 +20,41 @@ jobs:
               with:
                   persist-credentials: false
 
-            - name: Get CMS modules
-              uses: actions/cache@v2
-              id: cache
-              with:
-                  path: ./*
-                  key: ${{ runner.os }}-cms8-${{ hashFiles('**/package-lock.json') }}
-
-            - name: show cache status
-              run: |
-                  echo ${{steps.cache.outputs.cache-hit}}
-
-            - name: Get Node
+            - name: Setup Node
               uses: actions/setup-node@v2
               with:
-                  node-version: 14.x
+                  node-version: '14'
 
-            - name: Use npm version 7
-              run: |
-                  npm install -g npm@7
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              run: echo "::set-output name=dir::$(yarn cache dir)"
 
-            - name: Install dependencies
-              run: npm install # do not do npm ci because there are local npm packages
-              if: steps.cache.outputs.cache-hit != 'true' # if cache could not be found, output will be blank
-
-            - name: Cache all of the above
+            - name: Restore Yarn Cache
+              id: root-yarn-cache
               uses: actions/cache@v2
-              id: cache-cms
               with:
-                  path: ./*
-                  key: cms-${{github.sha}}
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+
+            - name: Install All Dependencies
+              run: yarn install
+
+            - name: Bootstrap CMS Database
+              run: yarn boot
+              working-directory: cms
+
+            - name: Cache CMS Folder
+              uses: actions/cache@v2
+              id: cms-dir-cache
+              with:
+                  path: cms/
+                  key: cms-${{github.sha}}-v2
 
     build_cms:
         runs-on: ubuntu-latest
-        needs: install_cms
+        needs: install_full_workspace
         env:
             NODE_ENV: production
             UNSKIP_DECR: 'false'
@@ -66,11 +68,11 @@ jobs:
               uses: actions/cache@v2
               id: restore-cms-build
               with:
-                  path: ./*
-                  key: cms-${{github.sha}}
+                  path: cms/
+                  key: cms-${{github.sha}}-v2
 
             - name: build cms dashboard
-              run: npm run build
+              run: yarn build
 
     test_cms:
         runs-on: ubuntu-latest
@@ -84,10 +86,11 @@ jobs:
               uses: actions/cache@v2
               id: restore-cms-test
               with:
-                  path: ./*
-                  key: cms-${{github.sha}}
-            - name: api tests
-              run: npm run test
+                  path: cms/
+                  key: cms-${{github.sha}}-v2
+
+            - name: API Tests
+              run: yarn test
 
             - name: save tests code coverage
               uses: actions/upload-artifact@v2
@@ -95,69 +98,69 @@ jobs:
                   name: backend-integration-test-coverage-${{github.sha}}
                   path: coverage
 
-    install_dis:
-        runs-on: ubuntu-latest
+    # install_dis:
+    #     runs-on: ubuntu-latest
 
-        env:
-            UNSKIP_DECR: 'false'
+    #     env:
+    #         UNSKIP_DECR: 'false'
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-              with:
-                  persist-credentials: false
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v2
+    #           with:
+    #               persist-credentials: false
 
-            - name: Get DIS modules
-              uses: actions/cache@v2
-              id: cache
-              with:
-                  path: ./*
-                  key: ${{ runner.os }}-dis6-${{ hashFiles('**/package.json') }}
+    #         - name: Get DIS modules
+    #           uses: actions/cache@v2
+    #           id: cache
+    #           with:
+    #               path: ./*
+    #               key: ${{ runner.os }}-dis6-${{ hashFiles('**/package.json') }}
 
-            - name: Get Node
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 14.x
+    #         - name: Get Node
+    #           uses: actions/setup-node@v2
+    #           with:
+    #               node-version: 14.x
 
-            - name: Use npm version 7
-              run: |
-                  npm install -g npm@7
+    #         - name: Use npm version 7
+    #           run: |
+    #               npm install -g npm@7
 
-            - name: Install dependencies
-              run: npm ci
-              if: steps.cache.outputs.cache-hit != 'true'
+    #         - name: Install dependencies
+    #           run: npm ci
+    #           if: steps.cache.outputs.cache-hit != 'true'
 
-            - name: Install cms
-              run: npm install --prefix cms
-              if: steps.cache.outputs.cache-hit != 'true'
+    #         - name: Install cms
+    #           run: npm install --prefix cms
+    #           if: steps.cache.outputs.cache-hit != 'true'
 
-            - name: Cache all of the above
-              uses: actions/cache@v2
-              id: cache-dis
-              with:
-                  path: ./*
-                  key: dis-${{github.sha}}
+    #         - name: Cache all of the above
+    #           uses: actions/cache@v2
+    #           id: cache-dis
+    #           with:
+    #               path: ./*
+    #               key: dis-${{github.sha}}
 
-    test_dis_unit:
-        runs-on: ubuntu-latest
-        needs: install_dis
+    # test_dis_unit:
+    #     runs-on: ubuntu-latest
+    #     needs: install_dis
 
-        steps:
-            - name: restore cache
-              uses: actions/cache@v2
-              id: restore-dis-test-unit
-              with:
-                  path: ./*
-                  key: dis-${{github.sha}}
+    #     steps:
+    #         - name: restore cache
+    #           uses: actions/cache@v2
+    #           id: restore-dis-test-unit
+    #           with:
+    #               path: ./*
+    #               key: dis-${{github.sha}}
 
-            - name: run unit tests
-              run: npm run test:unit
+    #         - name: run unit tests
+    #           run: npm run test:unit
 
-            - name: save unit test code coverage
-              uses: actions/upload-artifact@v2
-              with:
-                  name: frontend-unit-test-coverage-${{github.sha}}
-                  path: coverage
+    #         - name: save unit test code coverage
+    #           uses: actions/upload-artifact@v2
+    #           with:
+    #               name: frontend-unit-test-coverage-${{github.sha}}
+    #               path: coverage
 
     # test_dis_integration:
     #     runs-on: ubuntu-latest
@@ -189,86 +192,86 @@ jobs:
     #               name: frontend-integration-test-coverage-${{github.sha}}
     #               path: coverage
 
-    build_dis:
-        runs-on: ubuntu-latest
-        needs:
-            - install_dis
+    # build_dis:
+    #     runs-on: ubuntu-latest
+    #     needs:
+    #         - install_dis
 
-        steps:
-            - name: restore dis cache
-              uses: actions/cache@v2
-              id: restore-dis-test-integration
-              with:
-                  path: ./*
-                  key: dis-${{github.sha}}
+    #     steps:
+    #         - name: restore dis cache
+    #           uses: actions/cache@v2
+    #           id: restore-dis-test-integration
+    #           with:
+    #               path: ./*
+    #               key: dis-${{github.sha}}
 
-            - name: list everything
-              run: |
-                  ls -a .
-                  ls cms/
+    #         - name: list everything
+    #           run: |
+    #               ls -a .
+    #               ls cms/
 
-            - name: Build NextJS
-              run: |
-                  npm run server:testing & npm run build
+    #         - name: Build NextJS
+    #           run: |
+    #               npm run server:testing & npm run build
 
-    install_webhook_hapi:
-        runs-on: ubuntu-latest
+    # install_webhook_hapi:
+    #     runs-on: ubuntu-latest
 
-        defaults:
-            run:
-                working-directory: webhooks/strapi
+    #     defaults:
+    #         run:
+    #             working-directory: webhooks/strapi
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-              with:
-                  persist-credentials: false
+    #     steps:
+    #         - name: Checkout
+    #           uses: actions/checkout@v2
+    #           with:
+    #               persist-credentials: false
 
-            - name: Get HAPI modules
-              uses: actions/cache@v2
-              id: cache
-              with:
-                  path: ./*
-                  key: ${{ runner.os }}-hapi3-${{ hashFiles('**/package-lock.json') }}
+    #         - name: Get HAPI modules
+    #           uses: actions/cache@v2
+    #           id: cache
+    #           with:
+    #               path: ./*
+    #               key: ${{ runner.os }}-hapi3-${{ hashFiles('**/package-lock.json') }}
 
-            - name: Get Node
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 14.x
+    #         - name: Get Node
+    #           uses: actions/setup-node@v2
+    #           with:
+    #               node-version: 14.x
 
-            - name: Use npm version 7
-              run: |
-                  npm install -g npm@7
+    #         - name: Use npm version 7
+    #           run: |
+    #               npm install -g npm@7
 
-            - name: Install dependencies
-              run: npm ci
-              if: steps.cache.outputs.cache-hit != 'true'
+    #         - name: Install dependencies
+    #           run: npm ci
+    #           if: steps.cache.outputs.cache-hit != 'true'
 
-            - name: Cache all of the above
-              uses: actions/cache@v2
-              id: cache-hapi
-              with:
-                  path: ./*
-                  key: hapi-${{github.sha}}
+    #         - name: Cache all of the above
+    #           uses: actions/cache@v2
+    #           id: cache-hapi
+    #           with:
+    #               path: ./*
+    #               key: hapi-${{github.sha}}
 
-    test_webhook_hapi:
-        runs-on: ubuntu-latest
-        needs:
-            - install_webhook_hapi
-        env:
-            NODE_ENV: production
+    # test_webhook_hapi:
+    #     runs-on: ubuntu-latest
+    #     needs:
+    #         - install_webhook_hapi
+    #     env:
+    #         NODE_ENV: production
 
-        defaults:
-            run:
-                working-directory: webhooks/strapi
+    #     defaults:
+    #         run:
+    #             working-directory: webhooks/strapi
 
-        steps:
-            - name: restore hapi cache
-              uses: actions/cache@v2
-              id: restore-hapi
-              with:
-                  path: ./*
-                  key: hapi-${{github.sha}}
+    #     steps:
+    #         - name: restore hapi cache
+    #           uses: actions/cache@v2
+    #           id: restore-hapi
+    #           with:
+    #               path: ./*
+    #               key: hapi-${{github.sha}}
 
-            - name: test hapi
-              run: npm test
+    #         - name: test hapi
+    #           run: npm test
