@@ -38,8 +38,11 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-
 
-            - name: Install All Dependencies
-              run: yarn install
+            - name: Install Root (Lerna) Dependencies
+              run: yarn install --ignore-scripts
+
+            - name: Install Packages Dependencies
+              run: yarn bootstrap --frozen-lockfile
 
             - name: Bootstrap CMS Database
               run: yarn boot
