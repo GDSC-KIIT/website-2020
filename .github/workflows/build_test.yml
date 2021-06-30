@@ -35,7 +35,7 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-
 
-            - name: Restore Node_Modules
+            - name: Restore Node_Modules # this step improves the yarn installation of node_modules by a significant amount
               id: restore-node-modules
               uses: actions/cache@v2
               with:
@@ -50,7 +50,7 @@ jobs:
               run: yarn install --ignore-scripts
 
             - name: Install Packages Dependencies
-              run: yarn bootstrap --ignore puppeteer
+              run: yarn bootstrap
               env:
                   PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true' # not working
             #
