@@ -119,7 +119,7 @@ jobs:
               uses: actions/cache@v2
               id: restore-webhook-strapi-build
               with:
-                  path: webhooks/strapi/
+                  path: webhooks/strapi
                   key: webhooks-strapi-${{github.sha}}
 
             - name: Build Hapi
