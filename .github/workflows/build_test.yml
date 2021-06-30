@@ -52,6 +52,13 @@ jobs:
                   path: cms/
                   key: cms-${{github.sha}}-v2
 
+            - name: Cache webhooks/strapi
+              uses: actions/cache@v2
+              id: strapi-dir-cache
+              with:
+                  path: webhooks/strapi
+                  key: webhooks-strapi-${{github.sha}}
+
     build_cms:
         runs-on: ubuntu-latest
         needs: install_full_workspace
@@ -96,8 +103,50 @@ jobs:
               uses: actions/upload-artifact@v2
               with:
                   name: backend-integration-test-coverage-${{github.sha}}
-                  path: coverage
+                  path: cms/coverage
+
+    build_webhook_hapi:
+        runs-on: ubuntu-latest
+        needs: install_full_workspace
+        env:
+            NODE_ENV: production
+        defaults:
+            run:
+                working-directory: webhooks/strapi
+
+        steps:
+            - name: Restore webhooks/strapi cache
+              uses: actions/cache@v2
+              id: restore-webhook-strapi-build
+              with:
+                  path: webhooks/strapi/
+                  key: webhooks-strapi-${{github.sha}}
+
+            - name: Build Hapi
+              run: yarn build
+
+    test_webhook_hapi:
+        runs-on: ubuntu-latest
+        needs:
+            - install_full_workspace
+        env:
+            NODE_ENV: production
+        defaults:
+            run:
+                working-directory: webhooks/strapi
+        steps:
+            - name: Restore webhooks/strapi cache
+              uses: actions/cache@v2
+              id: restore-webhook-strapi-test
+              with:
+                  path: webhooks/strapi
+                  key: webhooks-strapi-${{github.sha}}
+
+            - name: Test Hapi
+              run: yarn test
+
     # install_dis:
+
     #     runs-on: ubuntu-latest
     #     env:
     #         UNSKIP_DECR: 'false'
@@ -191,53 +240,3 @@ jobs:
     #         - name: Build NextJS
     #           run: |
     #               npm run server:testing & npm run build
-    # install_webhook_hapi:
-    #     runs-on: ubuntu-latest
-    #     defaults:
-    #         run:
-    #             working-directory: webhooks/strapi
-    #     steps:
-    #         - name: Checkout
-    #           uses: actions/checkout@v2
-    #           with:
-    #               persist-credentials: false
-    #         - name: Get HAPI modules
-    #           uses: actions/cache@v2
-    #           id: cache
-    #           with:
-    #               path: ./*
-    #               key: ${{ runner.os }}-hapi3-${{ hashFiles('**/package-lock.json') }}
-    #         - name: Get Node
-    #           uses: actions/setup-node@v2
-    #           with:
-    #               node-version: 14.x
-    #         - name: Use npm version 7
-    #           run: |
-    #               npm install -g npm@7
-    #         - name: Install dependencies
-    #           run: npm ci
-    #           if: steps.cache.outputs.cache-hit != 'true'
-    #         - name: Cache all of the above
-    #           uses: actions/cache@v2
-    #           id: cache-hapi
-    #           with:
-    #               path: ./*
-    #               key: hapi-${{github.sha}}
-    # test_webhook_hapi:
-    #     runs-on: ubuntu-latest
-    #     needs:
-    #         - install_webhook_hapi
-    #     env:
-    #         NODE_ENV: production
-    #     defaults:
-    #         run:
-    #             working-directory: webhooks/strapi
-    #     steps:
-    #         - name: restore hapi cache
-    #           uses: actions/cache@v2
-    #           id: restore-hapi
-    #           with:
-    #               path: ./*
-    #               key: hapi-${{github.sha}}
-    #         - name: test hapi
-    #           run: npm test
