@@ -1,4 +1,4 @@
-import styles from '@/styles/mentors.module.css';
+import styles from '@/styles/members.module.css';
 import Searchable from '@/components/Searchable';
 
 export default function Mentors() {

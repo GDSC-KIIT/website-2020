@@ -52,9 +52,9 @@ export default function Intro() {
 				<div className={`${styles.green} ${styles.ball}`}></div>
 			</div>
 
-			<h5 style={{ textAlign: 'center', color: 'grey' }}>
+			<h4 style={{ textAlign: 'center', color: 'grey' }}>
 				Meet the amazing team of DSC KiiT
-			</h5>
+			</h4>
 		</>
 	);
 }

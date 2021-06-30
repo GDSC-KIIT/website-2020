@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout';
 import MentorIntro from '@/components/Mentors/intro';
 import Mentors from '@/components/Mentors';
-import styles from '@/styles/mentors.module.css';
+import styles from '@/styles/members.module.css';
 
 export default function Mentor() {
 	return (
