@@ -50,9 +50,9 @@ jobs:
               run: yarn install --ignore-scripts
 
             - name: Install Packages Dependencies
-              run: yarn bootstrap
+              run: yarn bootstrap --ignore puppeteer
               env:
-                  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true' # not working
+                  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true' # recheck working
             #
             - name: Bootstrap CMS Database
               run: yarn boot
