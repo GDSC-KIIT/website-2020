@@ -47,8 +47,9 @@ jobs:
                   yarn bootstrap --frozen-lockfile
             #
             - name: Bootstrap CMS Database
-              run: yarn boot
-              working-directory: cms
+              run: |
+                  cd cms/
+                  yarn boot
 
             - name: Cache CMS Folder
               uses: actions/cache@v2
