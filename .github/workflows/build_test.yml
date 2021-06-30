@@ -41,7 +41,7 @@ jobs:
             - name: Install Packages Dependencies
               run: yarn bootstrap
               env:
-                  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'false'
+                  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true'
             #
             - name: Bootstrap CMS Database
               run: yarn boot
