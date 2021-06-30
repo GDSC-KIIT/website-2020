@@ -1,12 +1,14 @@
 const fs = require('fs');
 const https = require('https');
+const readline = require('readline');
 
 const FILE_LOCATION = './db/data.db';
 const DOWNLOAD_URL = 'https://github.com/DSC-KIIT/website/releases/download/v2/data.db';
 
 function showProgress(current, totalFileSize, totalFileSizeInMB) {
-	process.stdout.clearLine();
-	process.stdout.cursorTo(0);
+	readline.clearLine(process.stdout);
+	readline.cursorTo(process.stdout, 0);
+
 	const writeLine =
 		'\x1b[33m\x1b[1m Downloading the file -- \x1b[43m\x1b[37m' +
 		((100.0 * current) / totalFileSize).toFixed(2) +
