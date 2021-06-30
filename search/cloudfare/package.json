@@ -17,6 +17,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^2.2.2",
+		"@cloudflare/wrangler": "^1.17.0",
 		"@types/chai": "^4.2.19",
 		"@types/mocha": "^8.2.2",
 		"chai": "^4.3.4",

@@ -40,6 +40,8 @@ jobs:
 
             - name: Install Packages Dependencies
               run: yarn bootstrap
+              env:
+                  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'false'
             #
             - name: Bootstrap CMS Database
               run: yarn boot
@@ -58,6 +60,13 @@ jobs:
               with:
                   path: webhooks/strapi
                   key: webhooks-strapi-${{github.sha}}
+
+            - name: Cache search/cloudfare
+              uses: actions/cache@v2
+              id: search-cloudfare-cache
+              with:
+                  path: search/cloudfare
+                  key: search-cloudfare-${{github.sha}}
 
     build_cms:
         runs-on: ubuntu-latest
@@ -104,6 +113,26 @@ jobs:
               with:
                   name: backend-integration-test-coverage-${{github.sha}}
                   path: cms/coverage
+
+    build_search_cloudfare:
+        runs-on: ubuntu-latest
+        needs: install_full_workspace
+        env:
+            NODE_ENV: production
+        defaults:
+            run:
+                working-directory: search/cloudfare
+
+        steps:
+            - name: Restore search/cloudfare
+              uses: actions/cache@v2
+              id: restore-search-cloudfare-build
+              with:
+                  path: search/cloudfare
+                  key: search-cloudfare-${{github.sha}}
+
+            - name: Build worker.js
+              run: yarn build
 
     build_webhook_hapi:
         runs-on: ubuntu-latest
