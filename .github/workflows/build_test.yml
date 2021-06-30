@@ -8,9 +8,6 @@ jobs:
     install_full_workspace:
         runs-on: ubuntu-latest
 
-        defaults:
-            run:
-                working-directory: cms
         env:
             UNSKIP_DECR: 'false' # do not decrypt the .env files
 
@@ -41,20 +38,12 @@ jobs:
             - name: Install Root (Lerna) Dependencies
               run: yarn install --ignore-scripts
 
-            - name: where am i
-              run: |
-                  pwd
-                  ls
-
             - name: Install Packages Dependencies
-              run: |
-                  cd ..
-                  yarn bootstrap --frozen-lockfile
+              run: yarn bootstrap --frozen-lockfile
             #
             - name: Bootstrap CMS Database
-              run: |
-                  cd cms/
-                  yarn boot
+              run: yarn boot
+              working-directory: cms
 
             - name: Cache CMS Folder
               uses: actions/cache@v2
