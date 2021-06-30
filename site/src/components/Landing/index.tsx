@@ -4,7 +4,6 @@ import NextImage from 'next/image';
 import Description from './Description';
 import About from './About';
 import Faq from './Faq';
-import Discord from './Discord';
 
 import styles from '@/styles/landing.module.css';
 
@@ -31,8 +30,6 @@ export default function Landing() {
 				<h1 className={`${styles.about}`}>FREQUENTLY ASKED</h1>
 			</div>
 			<Faq />
-			<h1 className={`${styles.about}`}>JOIN US ON DISCORD</h1>
-			<Discord />
 		</>
 	);
 }

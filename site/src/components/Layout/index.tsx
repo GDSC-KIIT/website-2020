@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import Navbar from '@/components/Navbar';
-import Readytotalk from '@/components/Layout/ReadyToTalk';
+import DiscordSection from '@/components/Layout/DiscordSection';
 import Footer from '@/components/Layout/Footer';
 import PaperParticles from '@/components/Particles/Papers';
 
@@ -29,7 +29,7 @@ export default function Layout({ children, pageName }: IProps) {
 			<ThemeProvider theme={theme}>
 				<Navbar />
 				{children}
-				<Readytotalk />
+				<DiscordSection />
 				<div style={{ position: 'relative' }}>
 					<PaperParticles />
 					<Footer />
