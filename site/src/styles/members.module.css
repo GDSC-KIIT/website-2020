@@ -205,6 +205,9 @@
 .fa_github:hover {
 	color: #111;
 }
+.fa_website_square:hover {
+	color: #2b4452;
+}
 
 .techDesc {
 	width: 100%;
