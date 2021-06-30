@@ -42,7 +42,7 @@ jobs:
               run: yarn install --ignore-scripts
 
             - name: Install Packages Dependencies
-              run: yarn bootstrap --frozen-lockfile
+              run: ls && pwd && yarn bootstrap --frozen-lockfile
 
             - name: Bootstrap CMS Database
               run: yarn boot
