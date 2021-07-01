@@ -64,7 +64,7 @@ jobs:
               id: cms-dir-cache
               with:
                   path: cms
-                  key: cms-${{github.sha}}-v2
+                  key: cms-${{github.sha}}
 
             - name: Cache site Folder
               uses: actions/cache@v2
@@ -104,7 +104,7 @@ jobs:
               id: restore-cms-build
               with:
                   path: cms
-                  key: cms-${{github.sha}}-v2
+                  key: cms-${{github.sha}}
 
             - name: build cms dashboard
               run: yarn build
@@ -122,7 +122,7 @@ jobs:
               id: restore-cms-test
               with:
                   path: cms
-                  key: cms-${{github.sha}}-v2
+                  key: cms-${{github.sha}}
 
             - name: API Tests
               run: yarn test
@@ -153,7 +153,7 @@ jobs:
               id: restore-cms
               with:
                   path: cms
-                  key: cms-${{githb.sha}}
+                  key: cms-${{github.sha}}
 
             - name: start cms server
               run: |
