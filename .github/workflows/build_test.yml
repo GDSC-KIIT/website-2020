@@ -2,7 +2,6 @@ name: Build and Test
 
 on:
     - pull_request
-    - push
 
 jobs:
     install_full_workspace:
@@ -149,8 +148,11 @@ jobs:
                   path: site/
                   key: site-${{github.sha}}
 
-            - name: Unit Tests
-              run: yarn test:unit
+            - uses: mattallty/jest-github-action@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  test-command: 'yarn test:unit'
 
             - name: save tests code coverage
               uses: actions/upload-artifact@v2
