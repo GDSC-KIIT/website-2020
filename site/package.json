@@ -7,10 +7,10 @@
 		"postbuild": "next-sitemap --config next-sitemap.js",
 		"ci:build": "start-server-and-test server:testing http://localhost:9000 build",
 		"start": "next start --port=3333",
-		"server:testing": "npm run server:testing --prefix cms",
+		"server:testing": "yarn server:testing --prefix cms",
 		"test": "jest",
-		"test:unit": "npm run test -- tests/unit",
-		"test:i": "npm run test -- tests/integration",
+		"test:unit": "yarn test tests/unit",
+		"test:i": "yarn test tests/integration",
 		"testw": "jest --watch"
 	},
 	"dependencies": {
