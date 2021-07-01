@@ -138,9 +138,6 @@ jobs:
     build_site:
         runs-on: ubuntu-latest
         needs: install_full_workspace
-        defaults:
-            run:
-                working-directory: site
 
         steps:
             - name: restore site cache
