@@ -21,19 +21,6 @@ jobs:
               with:
                   node-version: '14'
 
-            - name: Get yarn cache directory path
-              id: yarn-cache-dir-path
-              run: echo "::set-output name=dir::$(yarn cache dir)"
-
-            - name: Restore Yarn Cache
-              id: root-yarn-cache
-              uses: actions/cache@v2
-              with:
-                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-v2.3
-                  restore-keys: |
-                      ${{ runner.os }}-yarn-
-
             - name: Restore Node_Modules # this step improves the yarn installation of node_modules by a significant amount
               id: restore-node-modules
               uses: actions/cache@v2
@@ -46,6 +33,21 @@ jobs:
                       webhooks/strapi/node_modules
                   restore-keys: |
                       ${{ runner.os }}-node-modules-
+
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              if: steps.restore-node-modules.outputs.cache-hit != 'true'
+              run: echo "::set-output name=dir::$(yarn cache dir)"
+
+            - name: Restore Yarn Cache
+              id: root-yarn-cache
+              if: steps.restore-node-modules.outputs.cache-hit != 'true'
+              uses: actions/cache@v2
+              with:
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-v2.3
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
 
             - name: Install Root (Lerna) Dependencies
               run: yarn install --ignore-scripts
