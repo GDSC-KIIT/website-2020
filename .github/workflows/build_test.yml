@@ -63,14 +63,14 @@ jobs:
               uses: actions/cache@v2
               id: cms-dir-cache
               with:
-                  path: cms/
+                  path: cms
                   key: cms-${{github.sha}}-v2
 
             - name: Cache site Folder
               uses: actions/cache@v2
               id: site-dir-cache
               with:
-                  path: site/
+                  path: site
                   key: site-${{github.sha}}
 
             - name: Cache webhooks/strapi
@@ -103,7 +103,7 @@ jobs:
               uses: actions/cache@v2
               id: restore-cms-build
               with:
-                  path: cms/
+                  path: cms
                   key: cms-${{github.sha}}-v2
 
             - name: build cms dashboard
@@ -121,7 +121,7 @@ jobs:
               uses: actions/cache@v2
               id: restore-cms-test
               with:
-                  path: cms/
+                  path: cms
                   key: cms-${{github.sha}}-v2
 
             - name: API Tests
@@ -132,6 +132,38 @@ jobs:
               with:
                   name: backend-integration-test-coverage-${{github.sha}}
                   path: cms/coverage
+
+    build_site:
+        runs-on: ubuntu-latest
+        needs: install_full_workspace
+        defaults:
+            run:
+                working-directory: site
+
+        steps:
+            - name: restore site cache
+              uses: actions/cache@v2
+              id: restore-site-build
+              with:
+                  path: site
+                  key: site-${{github.sha}}
+
+            - name: restore cms cache
+              uses: actions/cache@v2
+              id: restore-cms
+              with:
+                  path: cms
+                  key: cms-${{githb.sha}}
+
+            - name: start cms server
+              run: |
+                  cd cms/
+                  yarn pm2 start "yarn strapi start"
+
+            - name: build nextjs site
+              run: |
+                  cd site/
+                  yarn build
 
     test_unit_site:
         runs-on: ubuntu-latest
@@ -145,7 +177,7 @@ jobs:
               uses: actions/cache@v2
               id: restore-site-unit-test
               with:
-                  path: site/
+                  path: site
                   key: site-${{github.sha}}
 
             - uses: mattallty/jest-github-action@v1

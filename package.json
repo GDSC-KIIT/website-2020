@@ -10,7 +10,10 @@
 		"clean": "lerna clean -y",
 		"ver": "lerna version --no-changelog -m \"chore: RELEASE %s\" --no-push",
 		"preformat": "prettier --write --find-config-path .prettierrc",
-		"format": "prettier --config .prettierrc --ignore-path .prettierignore --write cms/** site/** search/** webhooks/**"
+		"format": "prettier --config .prettierrc --ignore-path .prettierignore --write cms/** site/** search/** webhooks/**",
+		"pm2": "pm2",
+		"start-apps": "pm2 start ecosystem.config.js",
+		"stop-apps": "pm2 delete ecosystem.config.js"
 	},
 	"repository": {
 		"type": "git",
@@ -32,6 +35,7 @@
 	"dependencies": {
 		"husky": "^4.3.8",
 		"lerna": "^4.0.0",
+		"pm2": "^5.1.0",
 		"prettier": "^2.3.2",
 		"pretty-quick": "^3.1.1"
 	},
