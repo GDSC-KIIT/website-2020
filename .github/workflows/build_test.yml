@@ -65,6 +65,13 @@ jobs:
                   path: cms/
                   key: cms-${{github.sha}}-v2
 
+            - name: restore site
+              uses: actions/cache@v2
+              id: site-dir-cache
+              with:
+                  path: site/
+                  key: site-${{github.sha}}
+
             - name: Cache webhooks/strapi
               uses: actions/cache@v2
               id: strapi-dir-cache
@@ -74,7 +81,7 @@ jobs:
 
             - name: Cache search/cloudfare
               uses: actions/cache@v2
-              id: search-cloudfare-cache
+              id: search-cloudfare-dir-cache
               with:
                   path: search/cloudfare
                   key: search-cloudfare-${{github.sha}}
@@ -124,6 +131,30 @@ jobs:
               with:
                   name: backend-integration-test-coverage-${{github.sha}}
                   path: cms/coverage
+
+    test_site:
+        runs-on: ubuntu-latest
+        needs: install_full_workspace
+        defaults:
+            run:
+                working-directory: site
+
+        steps:
+            - name: restore site
+              uses: actions/cache@v2
+              id: restore-site-unit-test
+              with:
+                  path: site/
+                  key: site-${{github.sha}}
+
+            - name: Unit Tests
+              run: yarn test:unit
+
+            - name: save tests code coverage
+              uses: actions/upload-artifact@v2
+              with:
+                  name: site-unit-test-coverage-${{github.sha}}
+                  path: site/coverage
 
     build_search_cloudfare:
         runs-on: ubuntu-latest
