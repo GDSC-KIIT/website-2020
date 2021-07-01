@@ -127,7 +127,7 @@ jobs:
                   key: cms-${{github.sha}}
 
             - name: API Tests
-              run: yarn test
+              run: yarn test --ci --coverage --coverageReporters="text-summary"
 
             - name: save tests code coverage
               uses: actions/upload-artifact@v2
@@ -179,17 +179,8 @@ jobs:
                   path: site
                   key: site-${{github.sha}}
 
-            - uses: mattallty/jest-github-action@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              with:
-                  test-command: 'yarn test:unit'
-
-            - name: save tests code coverage
-              uses: actions/upload-artifact@v2
-              with:
-                  name: site-unit-test-coverage-${{github.sha}}
-                  path: site/coverage
+            - name: Run Unit Tests
+              run: yarn test:unit --ci --coverage --coverageReporters="text-summary"
 
     build_search_cloudfare:
         runs-on: ubuntu-latest
