@@ -39,7 +39,10 @@ jobs:
               working-directory: search/puppeteer
 
             - name: Build Cloudfare Worker
-              run: yarn build
+              run: |
+                  cd search/cloudfare
+                  ls
+                  yarn build
               working-directory: search/cloudfare
 
             - name: Publish to Cloudfare
