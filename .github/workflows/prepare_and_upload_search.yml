@@ -11,7 +11,7 @@ on:
         - cron: '0 23 * * 0,3' # every sunday and wednesday at 11:00 pm'
     push:
         branches:
-            - 'main'
+            - 'refactor/entire-project'
 
 jobs:
     scrape_index_deploy:
@@ -22,20 +22,35 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Restore cache
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              if: steps.restore-node-modules.outputs.cache-hit != 'true'
+              run: echo "::set-output name=dir::$(yarn cache dir)"
+
+            - name: Restore Yarn Cache
+              id: root-yarn-cache
+              if: steps.restore-node-modules.outputs.cache-hit != 'true'
               uses: actions/cache@v2
-              id: restore-puppeteer-node-modules
               with:
-                  key: ${{runner.os}}-node-modules-v2.2-${{hashFiles('search/**/yarn.lock')}}
-                  path: |
-                      search/puppeteer/node_modules
-                      search/cloudfare/node_modules
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('search/**/yarn.lock') }}
                   restore-keys: |
-                      ${{runner.os}}-node-modules-v2
-                      ${{runner.os}}-node-modules-
+                      ${{ runner.os }}-yarn-
+
+            # - name: Restore cache
+            #   uses: actions/cache@v2
+            #   id: restore-puppeteer-node-modules
+            #   with:
+            #       key: ${{runner.os}}-node-modules-v2.2-${{hashFiles('search/**/yarn.lock')}}
+            #       path: |
+            #           search/puppeteer/node_modules
+            #           search/cloudfare/node_modules
+            #       restore-keys: |
+            #           ${{runner.os}}-node-modules-v2
+            #           ${{runner.os}}-node-modules-
 
             - name: Install search/puppeteer node modules
-              run: yarn install # not doing frozen lockfile because node_modules are already present
+              run: yarn install --frozen-lockfile # not doing frozen lockfile because node_modules are already present
               working-directory: search/puppeteer
               env:
                   NODE_ENV: development
@@ -45,7 +60,7 @@ jobs:
                   echo "Dispatch Name: ${{ github.event.inputs.dispatch_name }} By ${{ github.actor }}"
 
             - name: Install search/cloudfare node modules
-              run: yarn install
+              run: yarn install --frozen-lockfile
               working-directory: search/cloudfare
               env:
                   NODE_ENV: development # do not skip devDependencies
@@ -59,7 +74,7 @@ jobs:
               working-directory: search/cloudfare
             - name: Publish to Cloudfare
               run: |
-                  yarn global add @cloudfare/wrangler
+                  yarn global add @cloudflare/wrangler
                   yarn deploy
               env:
                   CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
