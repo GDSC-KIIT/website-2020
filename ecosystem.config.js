@@ -12,7 +12,7 @@ module.exports = {
 		},
 		{
 			name: 'search_worker',
-			script: 'yarn --cwd ./search/cloudfare dev',
+			script: 'yarn --cwd ./search/cloudflare dev',
 			env: {
 				NODE_ENV: 'production',
 			},

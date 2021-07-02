@@ -22,7 +22,7 @@
 	"keywords": [
 		"strapi",
 		"next",
-		"cloudfare",
+		"cloudflare",
 		"puppeter",
 		"hapi"
 	],

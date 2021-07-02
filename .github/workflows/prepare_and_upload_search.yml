@@ -1,4 +1,4 @@
-name: Scrape, Index and Upload to Cloudfare
+name: Scrape, Index and Upload to Cloudflare
 
 on:
     workflow_dispatch:
@@ -47,9 +47,9 @@ jobs:
               run: |
                   echo "Dispatch Name: ${{ github.event.inputs.dispatch_name }} By ${{ github.actor }}"
 
-            - name: Install search/cloudfare node modules
+            - name: Install search/cloudflare node modules
               run: yarn install --frozen-lockfile
-              working-directory: search/cloudfare
+              working-directory: search/cloudflare
               env:
                   NODE_ENV: development # do not skip devDependencies
 
@@ -57,16 +57,16 @@ jobs:
               run: yarn start
               working-directory: search/puppeteer
 
-            - name: Build Cloudfare Worker
+            - name: Build Cloudlfare Worker
               run: yarn build
-              working-directory: search/cloudfare
-            - name: Publish to Cloudfare
+              working-directory: search/cloudflare
+            - name: Publish to Cloudlfare
               run: |
                   yarn deploy
               env:
                   CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
                   CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
-              working-directory: search/cloudfare
+              working-directory: search/cloudflare
 
             - name: Upload Artifacts
               uses: actions/upload-artifact@v2
