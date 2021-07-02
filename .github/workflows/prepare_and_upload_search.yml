@@ -1,9 +1,8 @@
 name: Scrape, Index and Upload to Cloudfare
 
 on:
-    push:
     schedule:
-        - cron: '7 13 * * FRI'
+        - cron: '* * * * *'
     #   - cron: '0 23 * * SUN'
 
 jobs:
@@ -47,7 +46,9 @@ jobs:
               run: yarn build
               working-directory: search/cloudfare
             - name: Publish to Cloudfare
-              run: yarn deploy
+              run: |
+                  yarn global add @cloudfare/wrangler
+                  yarn deploy
               env:
                   CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
                   CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
