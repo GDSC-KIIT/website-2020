@@ -14,17 +14,17 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v2
 
-            - name: Restore cache
-              uses: actions/cache@v2
-              id: restore-puppeteer-node-modules
-              with:
-                  key: ${{runner.os}}-node-modules-v2.2-${{hashFiles('search/**/yarn.lock')}}
-                  path: |
-                      search/puppeteer/node_modules
-                      search/cloudfare/node_modules
-                  #   restore-keys: |
-                  #       ${{runner.os}}-node-modules-v2
-                  #       ${{runner.os}}-node-modules-
+            # - name: Restore cache
+            #   uses: actions/cache@v2
+            #   id: restore-puppeteer-node-modules
+            #   with:
+            #       key: ${{runner.os}}-node-modules-v2.2-${{hashFiles('search/**/yarn.lock')}}
+            #       path: |
+            #           search/puppeteer/node_modules
+            #           search/cloudfare/node_modules
+            #   restore-keys: |
+            #       ${{runner.os}}-node-modules-v2
+            #       ${{runner.os}}-node-modules-
 
             # - name: Install search/puppeteer node modules
             #   run: yarn install # not doing frozen lockfile because node_modules are already present
@@ -45,6 +45,8 @@ jobs:
                   rm -rf node_modules/
                   yarn install --force
                   yarn build
+              env:
+                  NODE_ENV: development
             #   working-directory: search/cloudfare
             - name: Publish to Cloudfare
               run: yarn deploy
