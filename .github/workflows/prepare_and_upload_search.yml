@@ -35,22 +35,10 @@ jobs:
                   path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
                   key: ${{ runner.os }}-yarn-${{ hashFiles('search/**/yarn.lock') }}
                   restore-keys: |
-                      ${{ runner.os }}-yarn-
-
-            # - name: Restore cache
-            #   uses: actions/cache@v2
-            #   id: restore-puppeteer-node-modules
-            #   with:
-            #       key: ${{runner.os}}-node-modules-v2.2-${{hashFiles('search/**/yarn.lock')}}
-            #       path: |
-            #           search/puppeteer/node_modules
-            #           search/cloudfare/node_modules
-            #       restore-keys: |
-            #           ${{runner.os}}-node-modules-v2
-            #           ${{runner.os}}-node-modules-
+                      ${{ runner.os }}-yarn-=
 
             - name: Install search/puppeteer node modules
-              run: yarn install --frozen-lockfile # not doing frozen lockfile because node_modules are already present
+              run: yarn install --frozen-lockfile
               working-directory: search/puppeteer
               env:
                   NODE_ENV: development
@@ -74,7 +62,6 @@ jobs:
               working-directory: search/cloudfare
             - name: Publish to Cloudfare
               run: |
-                  yarn global add @cloudflare/wrangler
                   yarn deploy
               env:
                   CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}

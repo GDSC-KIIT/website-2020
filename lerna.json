@@ -3,7 +3,7 @@
 	"packages": [
 		"site/**",
 		"cms/**",
-		"search/cloudfare/**",
+		"search/cloudflare/**",
 		"search/puppeteer/**",
 		"webhooks/strapi/**"
 	],
