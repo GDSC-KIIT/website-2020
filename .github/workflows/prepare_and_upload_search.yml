@@ -8,8 +8,10 @@ on:
                 required: true
                 default: '<enter any reason for manual dispatch>'
     schedule:
-        - cron: '48,54,58 13 * * FRI'
-    #   - cron: '0 23 * * SUN'
+        - cron: '0 23 * * 0,3' # every sunday and wednesday at 11:00 pm'
+    push:
+        branches:
+            - 'main'
 
 jobs:
     scrape_index_deploy:
