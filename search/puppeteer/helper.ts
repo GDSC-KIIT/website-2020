@@ -16,12 +16,27 @@ export const searchableSpanSelector = 'span[data-search-span]';
 export async function getSearchablePages(page: Page): Promise<string[]> {
 	const xmlJSON = await page
 		.goto(baseURL + '/sitemap.xml')
-		.then((response) => response.text())
+		.then((response) => {
+			if (response.status() !== 200) {
+				throw new Error(
+					`The /sitemap.xml page could not be found and had a response status ${response.status()}`
+				);
+			}
+			return response.text();
+		})
 		.then((text) => xml2json(text))
-		.then((json) => JSON.parse(json));
+		.then((json) => JSON.parse(json))
+		.catch((e: Error) => {
+			console.error(' ===========\n', e.message, '\n ===========');
+			return null;
+		});
+
+	if (!xmlJSON) {
+		return fallBackPages;
+	}
 
 	const siteMap = xmlJSON.elements[0].elements;
-	const availablePages = siteMap.map((s: any) => s.elements[0].elements[0].text);
+	const availablePages: string[] = siteMap.map((s: any) => s.elements[0].elements[0].text);
 
 	if (availablePages.length >= fallBackPages.length) {
 		return availablePages.map((availablePage: string) => {
