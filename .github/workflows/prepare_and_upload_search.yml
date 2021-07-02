@@ -1,6 +1,12 @@
 name: Scrape, Index and Upload to Cloudfare
 
 on:
+    workflow_dispatch:
+        inputs:
+            dispatch_name:
+                description: 'Dispatch Name'
+                required: true
+                default: 'on 2nd July for indexing'
     schedule:
         - cron: '* * * * *'
     #   - cron: '0 23 * * SUN'
@@ -31,6 +37,10 @@ jobs:
               working-directory: search/puppeteer
               env:
                   NODE_ENV: development
+
+            - name: Show Trigger Dispatch
+              run: |
+                  echo "Dispatch Name: ${{ github.event.inputs.dispatch_name }}"
 
             - name: Install search/cloudfare node modules
               run: yarn install
