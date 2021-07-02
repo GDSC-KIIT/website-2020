@@ -42,7 +42,8 @@ jobs:
               run: |
                   cd search/cloudfare
                   ls
-                  yarn add webpack
+                  rm -rf node_modules/
+                  yarn install
                   yarn build
             #   working-directory: search/cloudfare
             - name: Publish to Cloudfare
