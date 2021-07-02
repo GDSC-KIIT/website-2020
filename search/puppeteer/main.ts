@@ -38,10 +38,10 @@ async function getSearchableInPage(
 
 function createFiles(scrappedData: IScrappedData[]) {
 	const extracted = { scrapped: scrappedData };
-	// fs.writeFileSync('../cloudfare/src/extracted.json', JSON.stringify(extracted, null, '\t'));
+	fs.writeFileSync('../cloudfare/src/extracted.json', JSON.stringify(extracted, null, '\t'));
 
 	const indexer = Fuse.createIndex(['name', 'text'], scrappedData);
-	// fs.writeFileSync('../cloudfare/src/indexed.json', JSON.stringify(indexer.toJSON(), null, '\t'));
+	fs.writeFileSync('../cloudfare/src/indexed.json', JSON.stringify(indexer.toJSON(), null, '\t'));
 
 	// also write in the artifacts folder
 	if (!fs.existsSync('./artifact')) {
