@@ -9,9 +9,6 @@ on:
                 default: '<enter any reason for manual dispatch>'
     schedule:
         - cron: '0 23 * * 0,3' # every sunday and wednesday at 11:00 pm'
-    push:
-        branches:
-            - 'refactor/entire-project'
 
 jobs:
     scrape_index_deploy:
