@@ -57,10 +57,10 @@ jobs:
               run: yarn start
               working-directory: search/puppeteer
 
-            - name: Build Cloudlfare Worker
+            - name: Build Cloudflare Worker
               run: yarn build
               working-directory: search/cloudflare
-            - name: Publish to Cloudlfare
+            - name: Publish to Cloudflare
               run: |
                   yarn deploy
               env:
