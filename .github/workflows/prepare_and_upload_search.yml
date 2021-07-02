@@ -8,7 +8,7 @@ on:
                 required: true
                 default: '<enter any reason for manual dispatch>'
     schedule:
-        - cron: '48 13 * * FRI'
+        - cron: '48,54,58 13 * * FRI'
     #   - cron: '0 23 * * SUN'
 
 jobs:
@@ -40,7 +40,7 @@ jobs:
 
             - name: Show Trigger Dispatch
               run: |
-                  echo "Dispatch Name: ${{ github.event.inputs.dispatch_name }}"
+                  echo "Dispatch Name: ${{ github.event.inputs.dispatch_name }} By ${{ github.actor }}"
 
             - name: Install search/cloudfare node modules
               run: yarn install
