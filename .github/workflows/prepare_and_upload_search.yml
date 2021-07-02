@@ -2,10 +2,8 @@ name: Scrape, Index and Upload to Cloudfare
 
 on:
     push:
-        branches:
-            - main
     schedule:
-        - cron: '0 13 * * FRI'
+        - cron: '7 13 * * FRI'
     #   - cron: '0 23 * * SUN'
 
 jobs:
