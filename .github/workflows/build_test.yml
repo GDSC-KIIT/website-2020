@@ -51,11 +51,14 @@ jobs:
 
             - name: Install Root (Lerna) Dependencies
               run: yarn install --ignore-scripts
+              env:
+                  NODE_ENV: development # otherwise dev dependencies are skipped
 
             - name: Install Packages Dependencies
               run: yarn bootstrap --ignore puppeteer
               env:
                   PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true' # recheck working
+                  NODE_ENV: development
             #
             - name: Bootstrap CMS Database
               run: yarn boot

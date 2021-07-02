@@ -22,32 +22,29 @@ jobs:
                   path: |
                       search/puppeteer/node_modules
                       search/cloudfare/node_modules
-            #   restore-keys: |
-            #       ${{runner.os}}-node-modules-v2
-            #       ${{runner.os}}-node-modules-
+                  restore-keys: |
+                      ${{runner.os}}-node-modules-v2
+                      ${{runner.os}}-node-modules-
 
-            # - name: Install search/puppeteer node modules
-            #   run: yarn install # not doing frozen lockfile because node_modules are already present
-            #   working-directory: search/puppeteer
+            - name: Install search/puppeteer node modules
+              run: yarn install # not doing frozen lockfile because node_modules are already present
+              working-directory: search/puppeteer
+              env:
+                  NODE_ENV: development
 
-            # - name: Install search/cloudfare node modules
-            #   run: yarn install
-            #   working-directory: search/cloudfare
+            - name: Install search/cloudfare node modules
+              run: yarn install
+              working-directory: search/cloudfare
+              env:
+                  NODE_ENV: development # do not skip devDependencies
 
-            # - name: Index and Scrape
-            #   run: yarn start
-            #   working-directory: search/puppeteer
+            - name: Index and Scrape
+              run: yarn start
+              working-directory: search/puppeteer
 
             - name: Build Cloudfare Worker
-              run: |
-                  cd search/cloudfare
-                  ls
-                  rm -rf node_modules/
-                  yarn install --force
-                  yarn build
-            #   env:
-            #       NODE_ENV: development
-            #   working-directory: search/cloudfare
+              run: yarn build
+              working-directory: search/cloudfare
             - name: Publish to Cloudfare
               run: yarn deploy
               env:
