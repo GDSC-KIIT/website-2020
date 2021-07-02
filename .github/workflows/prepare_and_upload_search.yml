@@ -24,18 +24,16 @@ jobs:
 
             - name: Get yarn cache directory path
               id: yarn-cache-dir-path
-              if: steps.restore-node-modules.outputs.cache-hit != 'true'
               run: echo "::set-output name=dir::$(yarn cache dir)"
 
             - name: Restore Yarn Cache
               id: root-yarn-cache
-              if: steps.restore-node-modules.outputs.cache-hit != 'true'
               uses: actions/cache@v2
               with:
                   path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-                  key: ${{ runner.os }}-yarn-${{ hashFiles('search/**/yarn.lock') }}
+                  key: ${{ runner.os }}-search-dir-yarn-${{ hashFiles('search/**/yarn.lock') }}
                   restore-keys: |
-                      ${{ runner.os }}-yarn-=
+                      ${{ runner.os }}-search-dir-yarn-
 
             - name: Install search/puppeteer node modules
               run: yarn install --frozen-lockfile
