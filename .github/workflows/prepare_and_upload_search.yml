@@ -43,8 +43,7 @@ jobs:
                   cd search/cloudfare
                   ls
                   yarn build
-              working-directory: search/cloudfare
-
+            #   working-directory: search/cloudfare
             - name: Publish to Cloudfare
               run: yarn deploy
               env:
