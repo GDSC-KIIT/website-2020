@@ -14,7 +14,11 @@ async function getSearchableInPage(
 	page: puppeteer.Page,
 	currentSearchablePage: string
 ): Promise<IScrappedData[]> {
-	await page.goto(baseURL + currentSearchablePage);
+	const url = baseURL + currentSearchablePage;
+	await page.goto(url);
+
+	console.log('\x1b[1m\x1b[33mScrapping : \x1b[0m\x1b[1m\x1b[46m\x1b[37m', url, '\x1b[0m');
+
 	const extractedNamesandTexts: Pick<IScrappedData, 'name' | 'text' | 'locId'>[] =
 		await page.$$eval('div[data-search]', (scontents) =>
 			scontents.map((sc) => ({
