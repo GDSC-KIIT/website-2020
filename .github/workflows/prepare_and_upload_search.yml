@@ -26,11 +26,11 @@ jobs:
                       ${{runner.os}}-node-modules-
 
             - name: Install search/puppeteer node modules
-              run: yarn install --frozen-lockfile
+              run: yarn install # not doing frozen lockfile because node_modules are already present
               working-directory: search/puppeteer
 
             - name: Install search/cloudfare node modules
-              run: yarn install --frozen-lockfile
+              run: yarn install
               working-directory: search/cloudfare
 
             - name: Index and Scrape
