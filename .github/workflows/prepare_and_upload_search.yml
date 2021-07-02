@@ -18,12 +18,13 @@ jobs:
               uses: actions/cache@v2
               id: restore-puppeteer-node-modules
               with:
-                  key: ${{runner.os}}-node-modules-${{hashFiles('search/**/yarn.lock')}}
+                  key: ${{runner.os}}-node-modules-v2.2-${{hashFiles('search/**/yarn.lock')}}
                   path: |
                       search/puppeteer/node_modules
                       search/cloudfare/node_modules
-                  restore-keys: |
-                      ${{runner.os}}-node-modules-
+                  #   restore-keys: |
+                  #       ${{runner.os}}-node-modules-v2
+                  #       ${{runner.os}}-node-modules-
 
             - name: Install search/puppeteer node modules
               run: yarn install # not doing frozen lockfile because node_modules are already present
