@@ -45,8 +45,8 @@ jobs:
                   rm -rf node_modules/
                   yarn install --force
                   yarn build
-              env:
-                  NODE_ENV: development
+            #   env:
+            #       NODE_ENV: development
             #   working-directory: search/cloudfare
             - name: Publish to Cloudfare
               run: yarn deploy
@@ -54,6 +54,7 @@ jobs:
                   CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
                   CF_API_TOKEN: 'VASFDSAFfasfasdf'
                   # CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
+              working-directory: search/cloudfare
 
             - name: Upload Artifacts
               uses: actions/upload-artifact@v2
