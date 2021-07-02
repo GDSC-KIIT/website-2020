@@ -30,9 +30,9 @@ jobs:
             #   run: yarn install # not doing frozen lockfile because node_modules are already present
             #   working-directory: search/puppeteer
 
-            - name: Install search/cloudfare node modules
-              run: yarn install
-              working-directory: search/cloudfare
+            # - name: Install search/cloudfare node modules
+            #   run: yarn install
+            #   working-directory: search/cloudfare
 
             # - name: Index and Scrape
             #   run: yarn start
@@ -43,7 +43,7 @@ jobs:
                   cd search/cloudfare
                   ls
                   rm -rf node_modules/
-                  yarn install
+                  yarn install --force
                   yarn build
             #   working-directory: search/cloudfare
             - name: Publish to Cloudfare
