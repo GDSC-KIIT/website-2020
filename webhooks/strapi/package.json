@@ -1,6 +1,6 @@
 {
 	"name": "strapi-webhook",
-	"version": "2.3.0",
+	"version": "2.4.0",
 	"description": "A webhook-router for outgoing requests from strapi webhook",
 	"main": "index.js",
 	"scripts": {

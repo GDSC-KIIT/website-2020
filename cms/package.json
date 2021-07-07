@@ -1,6 +1,6 @@
 {
 	"name": "dsc-kiit-website-backend",
-	"version": "2.3.0",
+	"version": "2.4.0",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
 		"postinstall": "node ./scripts/post-install.js",
