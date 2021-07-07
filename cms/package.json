@@ -3,9 +3,9 @@
 	"version": "2.3.0",
 	"description": "Strapi supported CMS and Backend",
 	"scripts": {
-		"postinstall": "node ./tools/post-install.js",
+		"postinstall": "node ./scripts/post-install.js",
 		"dev": "strapi develop",
-		"boot": "node ./tools/env-Decrypter.js && node ./tools/create-local-db.js",
+		"bootstrap": "node ./scripts/env-Decrypter.js && node ./scripts/create-local-db.js",
 		"build": "strapi build --clean",
 		"pm2": "pm2",
 		"start": "pm2 start ecosystem.config.js --wait-ready",
@@ -28,6 +28,7 @@
 	},
 	"dependencies": {
 		"knex": "0.21.18",
+		"pg": "^8.6.0",
 		"pm2": "^5.1.0",
 		"sqlite3": "5.0.0",
 		"strapi": "3.6.5",

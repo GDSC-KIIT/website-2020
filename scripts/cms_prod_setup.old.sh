@@ -1,3 +1,7 @@
+# --------
+# OUTDATED
+# ---------
+
 # in the cms folder
 
 cd cms/

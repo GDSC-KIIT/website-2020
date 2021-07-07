@@ -1,21 +1,16 @@
-// RECOMMENDED ONLY IF A REMOTE DATABASE CONNECTION IS RECEIVED
-// THE INTENDED DATABASE TO BE USED AS REMOTE DB HERE IS POSTGRES
 const remoteDBConfig = ({ env }) => {
-	const dbUriParse = require('pg-connection-string').parse;
-	const dbConfig = dbUriParse(env('DATABASE_URL'));
-
 	return {
 		defaultConnection: 'default',
 		connections: {
 			default: {
 				connector: 'bookshelf',
 				settings: {
-					client: 'the database client to use',
-					database: dbConfig.database,
-					host: dbConfig.host,
-					port: dbConfig.port,
-					username: dbConfig.user,
-					password: dbConfig.password,
+					client: 'postgres',
+					database: 'strapi-db-2021',
+					host: '127.0.0.1',
+					port: 5432,
+					username: 'strapi-user-2021',
+					password: env('DATABASE_PASSWORD', 'internal-database-password'),
 					ssl: {
 						rejectUnauthorized: false,
 					},

@@ -61,7 +61,7 @@ jobs:
                   NODE_ENV: development
             #
             - name: Bootstrap CMS Database
-              run: yarn boot
+              run: yarn bootstrap
               working-directory: cms
 
             - name: Cache cms Folder

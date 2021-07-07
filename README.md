@@ -8,14 +8,27 @@ Please refer [here](./CONTRIBUTING.md) for setting up the development environmen
 
 ## PRODUCTION SETUP
 
-### CMS FOLDER
+### CMS Backend
 
-Edit the variable name `PROD_DECR` [tools/cms_prod_setup.sh](./tools/cms_prod_setup.sh) with the **correct decryption password**.
+Install and setup **PostgreSQL** with **(version >= 10)**.
 
-Then run:
+Also, install **nodejs** with **version >= 14 and < 15**.
+
+Then, switch to postgres user by running `sudo su postgres`.
+As postgres user, run `sh scripts/postgres_db_init.sh`.
+
+Inside the **cms** folder, run the following commmands in order.
 
 ```sh
-sh tools/cms_prod_setup.sh
+npm install -g yarn
+
+yarn install
+
+UNSKIP_DECR=TRUE node scripts/env-Decrypter.sh
+
+yarn build
+
+yarn start
 ```
 
 ### WEBHOOKS/STRAPI FOLDER
