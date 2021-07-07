@@ -7,7 +7,7 @@ import { externalUrls, internalUrls } from '@/lib/urls';
 
 import { makeStyles, Typography, Box, Grid, Divider, Link } from '@material-ui/core';
 import styles from '@/styles/navbar.module.css';
-
+import CallMadeIcon from '@material-ui/icons/CallMade';
 const SearchBar = dynamic(() => import('@/components/Navbar/SearchBar'), { ssr: false });
 
 const backHoverStyles = {
@@ -78,6 +78,7 @@ export default function LaptopNavbar() {
 					<Link href={externalUrls.events_page} target="_blank" rel="noopener noreferrer">
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Events
+							<CallMadeIcon style={{ height: '13px' }} />
 						</Typography>
 					</Link>
 				</Grid>

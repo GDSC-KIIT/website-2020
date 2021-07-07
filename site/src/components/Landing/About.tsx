@@ -24,7 +24,9 @@ export default function About() {
 							<Typography variant="body2" color="textSecondary" component="p">
 								The DSC program is a grassroots channel through which Google
 								provides development skills, mobile and web development skills for
-								students, towards employability.
+								students, towards employability and helps to improve social skills
+								for working in teams.
+								<br />
 							</Typography>
 						</CardContent>
 					</Card>
