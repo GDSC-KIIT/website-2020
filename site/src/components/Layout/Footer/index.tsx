@@ -37,7 +37,7 @@ export default function Home() {
 								className={`${styles.f_widget} ${styles.company_widget} ${styles.wow} ${styles.fadeInLeft}`}
 								data-wow-delay="0.2s">
 								<img
-									src="https://ik.imagekit.io/xvvhd5ujib/dsckiit_logo_colour_EB_wc01at.svg"
+									src="/images/landing/dsckiit_logo.svg"
 									className={styles.dsc_logo}
 									alt="DSC Logo"
 								/>

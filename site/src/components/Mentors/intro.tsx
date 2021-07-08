@@ -32,10 +32,7 @@ export default function Intro() {
 					</p>
 				</Grid>
 				<Grid item md={6} className={styles.introImg}>
-					<img
-						src="https://image.freepik.com/free-vector/internship-job-illustration_52683-50829.jpg"
-						className={styles.intro_image}
-					/>
+					<img src="/images/mentors/intro.jpg" className={styles.intro_image} />
 				</Grid>
 			</Grid>
 

@@ -9,7 +9,7 @@ export default function Team({ members }: IMembers) {
 	return (
 		<>
 			<img
-				src="/images/mentors/background.png"
+				src="/images/landing/background2.png"
 				style={{ position: 'fixed', opacity: 0.1, top: 0, height: '100vh' }}
 			/>
 			<Layout pageName="Team">
