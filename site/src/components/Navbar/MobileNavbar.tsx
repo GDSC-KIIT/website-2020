@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import { useState } from 'react';
 
-import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
+// import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
 import { externalUrls, internalUrls } from '@/lib/urls';
 
 import {
@@ -61,7 +61,7 @@ export default function MobileNavbar() {
 					<ListItem className={classes.backHover}>
 						<Typography variant="h6" style={{ fontWeight: 'bolder' }}>
 							DSC KIIT
-							<GoogleAuthLogin />
+							{/* <GoogleAuthLogin /> */}
 						</Typography>
 					</ListItem>
 

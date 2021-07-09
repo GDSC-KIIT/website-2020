@@ -2,10 +2,10 @@ import NextLink from 'next/link';
 import NextImage from 'next/image';
 import dynamic from 'next/dynamic';
 
-import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
+// import { GoogleAuthLogin } from '@/components/Navbar/AuthProvider';
 import { externalUrls, internalUrls } from '@/lib/urls';
 
-import { makeStyles, Typography, Box, Grid, Divider, Link } from '@material-ui/core';
+import { makeStyles, Typography, Box, Grid, Link } from '@material-ui/core';
 import styles from '@/styles/navbar.module.css';
 import CallMadeIcon from '@material-ui/icons/CallMade';
 const SearchBar = dynamic(() => import('@/components/Navbar/SearchBar'), { ssr: false });
@@ -82,13 +82,16 @@ export default function LaptopNavbar() {
 						</Typography>
 					</Link>
 				</Grid>
+				{/* // TODO the quiz page
+					//  labels: to-be-discussed
 				<Grid item className={classes.backHover}>
 					<NextLink href={internalUrls.playground}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
 							Quiz
 						</Typography>
 					</NextLink>
-				</Grid>
+				</Grid> 
+				*/}
 				<Grid item className={classes.backHover}>
 					<NextLink href={internalUrls.blogs}>
 						<Typography variant="body2" style={{ cursor: 'pointer' }}>
@@ -110,10 +113,10 @@ export default function LaptopNavbar() {
 						</Typography>
 					</NextLink>
 				</Grid>
-				<Divider className={classes.divider} orientation="vertical" flexItem />
+				{/* <Divider className={classes.divider} orientation="vertical" flexItem />
 				<Grid item className={classes.backHover}>
 					<GoogleAuthLogin />
-				</Grid>
+				</Grid> */}
 			</Grid>
 		</Grid>
 	);
