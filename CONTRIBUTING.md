@@ -2,7 +2,10 @@
 
 It is highly recommeded to use **Linux** for Development. However, **Windows** is still supported for you to contribute.
 
-Also the please use **`node version>=14,<15`**, and **`npm version>=7,<8`**.
+Also the please use **`node version as 14`**.
+
+The project uses [yarn](https://yarnpkg.com/) as the package manager.
+Please install yarn v1.
 
 _If you are on a linux enviroment, you can simply run `sh tools/dev_setup.sh`_
 
@@ -15,13 +18,13 @@ Please [click here](https://github.com/DSC-KIIT/dsckiit-website-2.0/tree/main/cm
 1. Install the dependencies
 
 ```
-npm install
+yarn install
 ```
 
 2. Start the _nextjs_ development server
 
 ```
-npm run dev
+yarn dev
 ```
 
 ### To Setup the _Hapi Strapi_ Webhook

@@ -1,0 +1,218 @@
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.container div {
+	flex-basis: 290px;
+	height: auto;
+	/* flex-grow: 1; */
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: flex-start;
+}
+.backgroundImg {
+	position: fixed;
+	opacity: 0.1;
+}
+.imageWrap {
+	max-width: 250px;
+	z-index: 1;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 0.5em;
+	border-radius: 50%;
+	overflow: hidden;
+	width: auto;
+	line-height: 0;
+}
+.imageWrap {
+	border: 10px solid #cbc0c2;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+	display: inline-block;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.imageWrap img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 50%;
+	transition: 0.3s !important;
+}
+.imageWrap img:hover {
+	transform: scale(1.15);
+}
+.member {
+	margin: auto;
+	width: 50%;
+	/* border: 3px solid green; */
+	padding: 10px;
+	margin-bottom: 3rem;
+}
+.imageWrap {
+	background: grey;
+}
+.imageWrap img {
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+.member {
+	list-style: none;
+	float: left;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	cursor: pointer;
+}
+
+.member:hover .school {
+	left: 0;
+	margin-left: 0;
+}
+.member:hover .state {
+	left: 0;
+	margin-right: 0;
+}
+.member:hover img {
+	opacity: 0.4;
+}
+.info {
+	text-align: center;
+	font-size: 0.75em;
+	color: white;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 40%;
+}
+.school {
+	font-weight: bold;
+	display: block;
+	transition-property: all;
+	transition-duration: 0.6s;
+	margin-left: -200%;
+	font-size: 1rem;
+}
+.member:nth-child(2) .school {
+	margin-left: 0;
+	margin-top: -100%;
+}
+.member:nth-child(2):hover .school {
+	margin-top: 0;
+}
+.member:nth-child(3) .school {
+	margin-left: 0;
+	margin-top: 200%;
+}
+.member:nth-child(3):hover .school {
+	margin-top: 0;
+}
+.member:nth-child(4) .school {
+	margin-left: 0;
+	margin-top: -200%;
+}
+.member:nth-child(4):hover .school {
+	margin-top: 0;
+}
+.state {
+	opacity: 0.8;
+	display: block;
+	transition-property: all;
+	transition-duration: 0.6s;
+	margin-right: -200%;
+}
+.member:nth-child(2) .state {
+	margin-right: 0;
+	margin-top: 199%;
+}
+.member:nth-child(2):hover .state {
+	margin-top: 0;
+}
+.member:nth-child(3) .state {
+	margin-right: 0;
+	margin-top: 100%;
+}
+.member:nth-child(3):hover .state {
+	margin-top: 0;
+}
+.member:nth-child(4) .state {
+	margin-top: -100%;
+}
+.member:nth-child(4):hover .state {
+	margin-top: 0;
+}
+.member:hover .state {
+	margin-top: 0;
+}
+.anchor {
+	position: absolute;
+	top: 20%;
+	left: 0;
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	font-weight: light;
+	font-size: 0.75rem;
+	transition-property: all;
+	transition-duration: 0.6s;
+}
+.member:hover .anchor {
+	opacity: 0;
+}
+
+.teamInfo {
+	background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+	padding: 10px 15px;
+	border-radius: 75px;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+	margin: auto;
+	max-width: 275px;
+
+	padding: 10px;
+}
+.teamInfo h3 {
+	font-size: 18px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	color: #ffffff;
+}
+.teamInfo:hover {
+	border-radius: 0;
+}
+.teamInfo span {
+	color: #ffffff;
+	font-size: 13px;
+}
+.fa {
+	font-size: 1.2rem;
+	cursor: pointer;
+	margin-right: 6px;
+	transition: all 0.3s linear;
+}
+.fa_twitter:hover {
+	color: #3b5998;
+}
+.fa_facebook:hover {
+	color: #3b5998;
+}
+.fa_linkedin_square:hover {
+	color: #0077b5;
+}
+.fa_github:hover {
+	color: #111;
+}
+.fa_website_square:hover {
+	color: #2b4452;
+}
+
+.techDesc {
+	width: 100%;
+
+	margin: 30px 0;
+
+	color: grey;
+}

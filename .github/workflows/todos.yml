@@ -1,6 +1,6 @@
 name: Remaining to Do
 
-on: push
+on: registry_package
 
 jobs:
     todos:

@@ -4,12 +4,9 @@ on:
     - pull_request
 
 jobs:
-    install_cms:
+    install_full_workspace:
         runs-on: ubuntu-latest
 
-        defaults:
-            run:
-                working-directory: cms
         env:
             UNSKIP_DECR: 'false' # do not decrypt the .env files
 
@@ -19,40 +16,85 @@ jobs:
               with:
                   persist-credentials: false
 
-            - name: Get CMS modules
-              uses: actions/cache@v2
-              id: cache
-              with:
-                  path: ./*
-                  key: ${{ runner.os }}-cms8-${{ hashFiles('**/package-lock.json') }}
-
-            - name: show cache status
-              run: |
-                  echo ${{steps.cache.outputs.cache-hit}}
-
-            - name: Get Node
+            - name: Setup Node
               uses: actions/setup-node@v2
               with:
-                  node-version: 14.x
+                  node-version: '14'
 
-            - name: Use npm version 7
-              run: |
-                  npm install -g npm@7
-
-            - name: Install dependencies
-              run: npm install # do not do npm ci because there are local npm packages
-              if: steps.cache.outputs.cache-hit != 'true' # if cache could not be found, output will be blank
-
-            - name: Cache all of the above
+            - name: Restore Node_Modules # this step improves the yarn installation of node_modules by a significant amount
+              id: restore-node-modules
               uses: actions/cache@v2
-              id: cache-cms
               with:
-                  path: ./*
+                  key: ${{runner.os}}-node-modules-${{hashFiles('**/package.json')}}
+                  path: |
+                      cms/node_modules
+                      site/node_modules
+                      search/cloudflare/node_modules
+                      webhooks/strapi/node_modules
+                  restore-keys: |
+                      ${{ runner.os }}-node-modules-
+
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              if: steps.restore-node-modules.outputs.cache-hit != 'true'
+              run: echo "::set-output name=dir::$(yarn cache dir)"
+
+            - name: Restore Yarn Cache
+              id: root-yarn-cache
+              if: steps.restore-node-modules.outputs.cache-hit != 'true'
+              uses: actions/cache@v2
+              with:
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}-v2.3
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+
+            - name: Install Root (Lerna) Dependencies
+              run: yarn install --ignore-scripts
+              env:
+                  NODE_ENV: development # otherwise dev dependencies are skipped
+
+            - name: Install Packages Dependencies
+              run: yarn bootstrap --ignore puppeteer
+              env:
+                  PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: 'true' # recheck working
+                  NODE_ENV: development
+            #
+            - name: Bootstrap CMS Database
+              run: yarn bootstrap
+              working-directory: cms
+
+            - name: Cache cms Folder
+              uses: actions/cache@v2
+              id: cms-dir-cache
+              with:
+                  path: cms
                   key: cms-${{github.sha}}
+
+            - name: Cache site Folder
+              uses: actions/cache@v2
+              id: site-dir-cache
+              with:
+                  path: site
+                  key: site-${{github.sha}}
+
+            - name: Cache webhooks/strapi
+              uses: actions/cache@v2
+              id: strapi-dir-cache
+              with:
+                  path: webhooks/strapi
+                  key: webhooks-strapi-${{github.sha}}
+
+            - name: Cache search/cloudflare
+              uses: actions/cache@v2
+              id: search-cloudflare-dir-cache
+              with:
+                  path: search/cloudflare
+                  key: search-cloudflare-${{github.sha}}
 
     build_cms:
         runs-on: ubuntu-latest
-        needs: install_cms
+        needs: install_full_workspace
         env:
             NODE_ENV: production
             UNSKIP_DECR: 'false'
@@ -66,15 +108,15 @@ jobs:
               uses: actions/cache@v2
               id: restore-cms-build
               with:
-                  path: ./*
+                  path: cms
                   key: cms-${{github.sha}}
 
             - name: build cms dashboard
-              run: npm run build
+              run: yarn build
 
     test_cms:
         runs-on: ubuntu-latest
-        needs: install_cms
+        needs: install_full_workspace
 
         defaults:
             run:
@@ -84,191 +126,141 @@ jobs:
               uses: actions/cache@v2
               id: restore-cms-test
               with:
-                  path: ./*
+                  path: cms
                   key: cms-${{github.sha}}
-            - name: api tests
-              run: npm run test
+
+            - name: API Tests
+              run: yarn test --ci --coverage --coverageReporters="text-summary"
 
             - name: save tests code coverage
               uses: actions/upload-artifact@v2
               with:
                   name: backend-integration-test-coverage-${{github.sha}}
-                  path: coverage
+                  path: cms/coverage
 
-    install_dis:
+    build_site:
         runs-on: ubuntu-latest
+        needs: install_full_workspace
 
+        steps:
+            - name: restore site cache
+              uses: actions/cache@v2
+              id: restore-site-build
+              with:
+                  path: site
+                  key: site-${{github.sha}}
+
+            - name: restore cms cache
+              uses: actions/cache@v2
+              id: restore-cms
+              with:
+                  path: cms
+                  key: cms-${{github.sha}}
+
+            - name: start cms server
+              run: |
+                  cd cms/
+                  yarn pm2 start "yarn strapi start"
+
+            - name: build nextjs site
+              run: |
+                  cd site/
+                  yarn build
+
+    test_unit_site:
+        runs-on: ubuntu-latest
+        needs: install_full_workspace
+        defaults:
+            run:
+                working-directory: site
+
+        steps:
+            - name: restore site
+              uses: actions/cache@v2
+              id: restore-site-unit-test
+              with:
+                  path: site
+                  key: site-${{github.sha}}
+
+            - name: Run Unit Tests
+              run: yarn test:unit --ci --coverage --coverageReporters="text-summary"
+
+    build_search_cloudflare:
+        runs-on: ubuntu-latest
+        needs: install_full_workspace
         env:
-            UNSKIP_DECR: 'false'
+            NODE_ENV: production
+        defaults:
+            run:
+                working-directory: search/cloudflare
 
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-              with:
-                  persist-credentials: false
-
-            - name: Get DIS modules
+            - name: Restore search/cloudflare
               uses: actions/cache@v2
-              id: cache
+              id: restore-search-cloudflare-build
               with:
-                  path: ./*
-                  key: ${{ runner.os }}-dis6-${{ hashFiles('**/package.json') }}
+                  path: search/cloudflare
+                  key: search-cloudflare-${{github.sha}}
 
-            - name: Get Node
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 14.x
+            - name: Build worker.js
+              run: yarn build
 
-            - name: Use npm version 7
-              run: |
-                  npm install -g npm@7
-
-            - name: Install dependencies
-              run: npm ci
-              if: steps.cache.outputs.cache-hit != 'true'
-
-            - name: Install cms
-              run: npm install --prefix cms
-              if: steps.cache.outputs.cache-hit != 'true'
-
-            - name: Cache all of the above
-              uses: actions/cache@v2
-              id: cache-dis
-              with:
-                  path: ./*
-                  key: dis-${{github.sha}}
-
-    test_dis_unit:
+    test_search_cloudflare:
         runs-on: ubuntu-latest
-        needs: install_dis
+        needs: install_full_workspace
+        env:
+            NODE_ENV: production
+        defaults:
+            run:
+                working-directory: search/cloudflare
 
         steps:
-            - name: restore cache
+            - name: Restore search/cloudflare
               uses: actions/cache@v2
-              id: restore-dis-test-unit
+              id: restore-search-cloudflare-test
               with:
-                  path: ./*
-                  key: dis-${{github.sha}}
+                  path: search/cloudflare
+                  key: search-cloudflare-${{github.sha}}
 
-            - name: run unit tests
-              run: npm run test:unit
+            - name: Test Cloudflare Worker
+              run: yarn test
 
-            - name: save unit test code coverage
-              uses: actions/upload-artifact@v2
-              with:
-                  name: frontend-unit-test-coverage-${{github.sha}}
-                  path: coverage
-
-    # test_dis_integration:
-    #     runs-on: ubuntu-latest
-    #     needs:
-    #         - install_dis
-    #         - install_cms
-
-    #     steps:
-    #         - name: restore dis cache
-    #           uses: actions/cache@v2
-    #           id: restore-dis-test-integration
-    #           with:
-    #               path: ./*
-    #               key: dis-${{github.sha}}
-
-    #         - name: restore cms cache
-    #           uses: actions/cache@v2
-    #           id: restore-cms-dis-test
-    #           with:
-    #               path: cms
-    #               key: cms
-
-    #         - name: run integration tests
-    #           run: npm run test:integration
-
-    #         - name: save integration tests code coverage
-    #           uses: actions/upload-artifact@v2
-    #           with:
-    #               name: frontend-integration-test-coverage-${{github.sha}}
-    #               path: coverage
-
-    build_dis:
+    build_webhook_hapi:
         runs-on: ubuntu-latest
-        needs:
-            - install_dis
-
-        steps:
-            - name: restore dis cache
-              uses: actions/cache@v2
-              id: restore-dis-test-integration
-              with:
-                  path: ./*
-                  key: dis-${{github.sha}}
-
-            - name: list everything
-              run: |
-                  ls -a .
-                  ls cms/
-
-            - name: Build NextJS
-              run: |
-                  npm run server:testing & npm run build
-
-    install_webhook_hapi:
-        runs-on: ubuntu-latest
-
+        needs: install_full_workspace
+        env:
+            NODE_ENV: production
         defaults:
             run:
                 working-directory: webhooks/strapi
 
         steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-              with:
-                  persist-credentials: false
-
-            - name: Get HAPI modules
+            - name: Restore webhooks/strapi cache
               uses: actions/cache@v2
-              id: cache
+              id: restore-webhook-strapi-build
               with:
-                  path: ./*
-                  key: ${{ runner.os }}-hapi3-${{ hashFiles('**/package-lock.json') }}
+                  path: webhooks/strapi
+                  key: webhooks-strapi-${{github.sha}}
 
-            - name: Get Node
-              uses: actions/setup-node@v2
-              with:
-                  node-version: 14.x
-
-            - name: Use npm version 7
-              run: |
-                  npm install -g npm@7
-
-            - name: Install dependencies
-              run: npm ci
-              if: steps.cache.outputs.cache-hit != 'true'
-
-            - name: Cache all of the above
-              uses: actions/cache@v2
-              id: cache-hapi
-              with:
-                  path: ./*
-                  key: hapi-${{github.sha}}
+            - name: Build Hapi
+              run: yarn build
 
     test_webhook_hapi:
         runs-on: ubuntu-latest
         needs:
-            - install_webhook_hapi
+            - install_full_workspace
         env:
             NODE_ENV: production
-
         defaults:
             run:
                 working-directory: webhooks/strapi
-
         steps:
-            - name: restore hapi cache
+            - name: Restore webhooks/strapi cache
               uses: actions/cache@v2
-              id: restore-hapi
+              id: restore-webhook-strapi-test
               with:
-                  path: ./*
-                  key: hapi-${{github.sha}}
+                  path: webhooks/strapi
+                  key: webhooks-strapi-${{github.sha}}
 
-            - name: test hapi
-              run: npm test
+            - name: Test Hapi
+              run: yarn test

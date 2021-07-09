@@ -1,0 +1,69 @@
+name: Scrape, Index and Upload to Cloudflare
+
+on:
+    workflow_dispatch:
+        inputs:
+            dispatch_name:
+                description: 'Dispatch Name'
+                required: true
+                default: '<enter any reason for manual dispatch>'
+    schedule:
+        - cron: '0 23 * * 0,3' # every sunday and wednesday at 11:00 pm'
+
+jobs:
+    scrape_index_deploy:
+        runs-on: ubuntu-latest
+        env:
+            NODE_ENV: production
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              run: echo "::set-output name=dir::$(yarn cache dir)"
+
+            - name: Restore Yarn Cache
+              id: root-yarn-cache
+              uses: actions/cache@v2
+              with:
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-search-dir-yarn-${{ hashFiles('search/**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-search-dir-yarn-
+
+            - name: Install search/puppeteer node modules
+              run: yarn install --frozen-lockfile
+              working-directory: search/puppeteer
+              env:
+                  NODE_ENV: development
+
+            - name: Show Trigger Dispatch
+              run: |
+                  echo "Dispatch Name: ${{ github.event.inputs.dispatch_name }} By ${{ github.actor }}"
+
+            - name: Install search/cloudflare node modules
+              run: yarn install --frozen-lockfile
+              working-directory: search/cloudflare
+              env:
+                  NODE_ENV: development # do not skip devDependencies
+
+            - name: Index and Scrape
+              run: yarn start
+              working-directory: search/puppeteer
+
+            - name: Build Cloudflare Worker
+              run: yarn build
+              working-directory: search/cloudflare
+            - name: Publish to Cloudflare
+              run: |
+                  yarn deploy
+              env:
+                  CF_ACCOUNT_ID: ${{secrets.CF_ACCOUNT_ID}}
+                  CF_API_TOKEN: ${{secrets.CF_API_TOKEN}}
+              working-directory: search/cloudflare
+
+            - name: Upload Artifacts
+              uses: actions/upload-artifact@v2
+              with:
+                  path: search/puppeteer/artifact

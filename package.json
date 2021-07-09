@@ -1,67 +1,43 @@
 {
-	"name": "dsckiit-website-2.0",
-	"description": "Our new website!",
-	"author": "Developer Student Club - KIIT",
-	"license": "MIT",
-	"version": "2.2.1-v2",
-	"private": true,
+	"name": "tree",
+	"version": "2.4.0",
+	"description": "the new website of DSC KIIT",
+	"main": ".",
 	"scripts": {
-		"dev": "next dev --port=3333",
-		"build": "next build",
-		"ci:build": "start-server-and-test server:testing http://localhost:9000 build",
-		"start": "next start --port=3333",
-		"format:prettier": "prettier --write .",
-		"server:testing": "npm run server:testing --prefix cms",
-		"test": "jest",
-		"test:unit": "npm run test -- tests/unit",
-		"test:i": "npm run test -- tests/integration",
-		"test:integration": "start-server-and-test server:testing http://localhost:9000 test:i",
-		"test:full": "start-server-and-test server:testing http://localhost:9000 test",
-		"testw": "jest --watch"
+		"postinstall": "yarn bootstrap",
+		"bootstrap": "lerna bootstrap",
+		"diff": "lerna diff",
+		"clean": "lerna clean -y",
+		"ver": "lerna version --no-changelog -m \"chore: RELEASE %s\" --no-push",
+		"preformat": "prettier --write --find-config-path .prettierrc",
+		"format": "prettier --config .prettierrc --ignore-path .prettierignore --write cms/** site/** search/** webhooks/**",
+		"pm2": "pm2",
+		"start-apps": "pm2 start ecosystem.config.js",
+		"stop-apps": "pm2 delete ecosystem.config.js"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DSC-KIIT/dsckiit-website-2.0.git"
+	},
+	"keywords": [
+		"strapi",
+		"next",
+		"cloudflare",
+		"puppeter",
+		"hapi"
+	],
+	"author": "aditya-mitra, akashgp09, yashvi2001, marpit19",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/DSC-KIIT/dsckiit-website-2.0/issues"
+	},
+	"homepage": "https://github.com/DSC-KIIT/dsckiit-website-2.0#readme",
 	"dependencies": {
-		"@material-ui/core": "^4.11.2",
-		"@material-ui/icons": "^4.11.2",
-		"@material-ui/lab": "^4.0.0-alpha.57",
-		"axios": "^0.21.1",
-		"dompurify": "^2.2.6",
-		"highlight.js": "^10.5.0",
-		"marked": "^1.2.7",
-		"next": "^10.0.5",
-		"nookies": "^2.5.0",
-		"react": "^17.0.1",
-		"react-dom": "^17.0.1",
-		"react-toastify": "^7.0.3",
-		"react-twitter-widgets": "^1.9.5",
-		"sass": "^1.32.8",
-		"swr": "^0.4.0"
-	},
-	"devDependencies": {
-		"@testing-library/jest-dom": "^5.11.9",
-		"@testing-library/react": "^11.2.3",
-		"@testing-library/react-hooks": "^4.0.1",
-		"@testing-library/user-event": "^12.6.0",
-		"@types/dompurify": "^2.2.1",
-		"@types/jest": "^26.0.20",
-		"@types/marked": "^1.2.1",
-		"@types/node": "^14.14.6",
-		"@types/react": "^16.9.56",
-		"babel-jest": "^26.6.3",
-		"husky": "^4.3.6",
-		"jest": "^26.6.3",
-		"jest-css-modules": "^2.1.0",
-		"prettier": "^2.2.1",
-		"pretty-quick": "^3.1.0",
-		"react-test-renderer": "^17.0.1",
-		"start-server-and-test": "^1.11.7",
-		"ts-jest": "^26.4.4",
-		"ts-node": "^9.1.1",
-		"typescript": "^4.0.5",
-		"winston": "^3.3.3"
-	},
-	"engines": {
-		"node": ">=14.0.0 <=14.x.x",
-		"npm": "^7.0.0"
+		"husky": "^4.3.8",
+		"lerna": "^4.0.0",
+		"pm2": "^5.1.0",
+		"prettier": "^2.3.2",
+		"pretty-quick": "^3.1.1"
 	},
 	"husky": {
 		"hooks": {

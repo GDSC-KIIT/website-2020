@@ -1,0 +1,434 @@
+{
+	"keys": [
+		{
+			"path": ["name"],
+			"id": "name",
+			"weight": 1,
+			"src": "name"
+		},
+		{
+			"path": ["text"],
+			"id": "text",
+			"weight": 1,
+			"src": "text"
+		}
+	],
+	"records": [
+		{
+			"i": 0,
+			"$": {
+				"0": {
+					"v": "what is dsc",
+					"n": 0.577
+				},
+				"1": {
+					"v": "Google collaborates with university students who are enthusiastic about growing developer communities and supports them with commencing student clubs on their campuses. Developer Student Clubs is a program that recognizes and supports university students who are excited about growing developer communities that cultivate learning, sharing, and collaboration.",
+					"n": 0.146
+				}
+			}
+		},
+		{
+			"i": 1,
+			"$": {
+				"0": {
+					"v": "frequently asked",
+					"n": 0.707
+				},
+				"1": {
+					"v": "How can I become a member?",
+					"n": 0.408
+				}
+			}
+		},
+		{
+			"i": 2,
+			"$": {
+				"0": {
+					"v": "frequently asked",
+					"n": 0.707
+				},
+				"1": {
+					"v": "How can I hear about the events that you will do in future?",
+					"n": 0.277
+				}
+			}
+		},
+		{
+			"i": 3,
+			"$": {
+				"0": {
+					"v": "How to cache JSON data in Redis",
+					"n": 0.378
+				},
+				"1": {
+					"v": "How to cache JSON data in Redis\n\nCache, Redis, Json, Nodejs, Express\n\nSayan Nath\n\n28 May, 2021",
+					"n": 0.267
+				}
+			}
+		},
+		{
+			"i": 4,
+			"$": {
+				"0": {
+					"v": "Apple v Facebook, and Our Privacy",
+					"n": 0.408
+				},
+				"1": {
+					"v": "Apple v Facebook, and Our Privacy\n\nFacebook, Advertising, Privacy, Apple, Internet\n\nAnshuman Pati\n\n10 Mar, 2021",
+					"n": 0.277
+				}
+			}
+		},
+		{
+			"i": 5,
+			"$": {
+				"0": {
+					"v": "How to use Tail Call Optimization",
+					"n": 0.408
+				},
+				"1": {
+					"v": "How to use Tail Call Optimization\n\nCompetitive-programming, Java, Coding, Kotlin, Recursion\n\nArpit Mohapatra\n\n8 Mar, 2021",
+					"n": 0.277
+				}
+			}
+		},
+		{
+			"i": 6,
+			"$": {
+				"0": {
+					"v": "Ethical Hacking 101: Getting started with Nmap",
+					"n": 0.378
+				},
+				"1": {
+					"v": "Ethical Hacking 101: Getting started with Nmap\n\nPenetration-testing, Nmap, Ethical-hacking\n\nAbhishek Raj\n\n7 Mar, 2021",
+					"n": 0.289
+				}
+			}
+		},
+		{
+			"i": 7,
+			"$": {
+				"0": {
+					"v": "Build a Sudoku Solver using Backtracking",
+					"n": 0.408
+				},
+				"1": {
+					"v": "Build a Sudoku Solver using Backtracking\n\nBacktracking, Python, Algorithms, Pygame\n\nArpit Mohapatra\n\n6 Mar, 2021",
+					"n": 0.289
+				}
+			}
+		},
+		{
+			"i": 8,
+			"$": {
+				"0": {
+					"v": "Why should you use TypeScript over JavaScript?",
+					"n": 0.378
+				},
+				"1": {
+					"v": "Why should you use TypeScript over JavaScript?\n\nJavascript, Web-development, Programming, Coding, Typescript\n\nAkash Gupta\n\n6 Mar, 2021",
+					"n": 0.267
+				}
+			}
+		},
+		{
+			"i": 9,
+			"$": {
+				"0": {
+					"v": "Ethical Hacking 101: Enumerating Secrets",
+					"n": 0.447
+				},
+				"1": {
+					"v": "Ethical Hacking 101: Enumerating Secrets\n\nCybersecurity, Ethical-hacking, Ctf, Enumeration, Learning\n\nPraddyum Verma\n\n5 Mar, 2021",
+					"n": 0.289
+				}
+			}
+		},
+		{
+			"i": 10,
+			"$": {
+				"0": {
+					"v": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 3",
+					"n": 0.302
+				},
+				"1": {
+					"v": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 3\n\ngraphql, react, typescript, webdev\n\nSaswata Mukherjee\n\n28 Feb, 2021",
+					"n": 0.243
+				}
+			}
+		},
+		{
+			"i": 11,
+			"$": {
+				"0": {
+					"v": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 2",
+					"n": 0.302
+				},
+				"1": {
+					"v": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 2\n\ngraphql, react, typescript, webdev\n\nSaswata Mukherjee\n\n28 Feb, 2021",
+					"n": 0.243
+				}
+			}
+		},
+		{
+			"i": 12,
+			"$": {
+				"0": {
+					"v": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 1",
+					"n": 0.302
+				},
+				"1": {
+					"v": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 1\n\ngraphql, react, typescript, webdev\n\nSaswata Mukherjee\n\n28 Feb, 2021",
+					"n": 0.243
+				}
+			}
+		},
+		{
+			"i": 13,
+			"$": {
+				"0": {
+					"v": "Ethical Hacking 101: Getting Started",
+					"n": 0.447
+				},
+				"1": {
+					"v": "Ethical Hacking 101: Getting Started\n\nEthical-hacking, Hacking, Ctf, Networking, Linux\n\nAnirban Sinha\n\n27 Feb, 2021",
+					"n": 0.289
+				}
+			}
+		},
+		{
+			"i": 14,
+			"$": {
+				"0": {
+					"v": "All about K-Nearest Neighbors",
+					"n": 0.5
+				},
+				"1": {
+					"v": "All about K-Nearest Neighbors\n\nRegression, Knn-algorithm, Supervised-learning, Machine-learning, Classification-algorithms\n\nAnoushka Nandan\n\n27 Feb, 2021",
+					"n": 0.302
+				}
+			}
+		},
+		{
+			"i": 15,
+			"$": {
+				"0": {
+					"v": "Make your own online compiler in React ⚛️",
+					"n": 0.354
+				},
+				"1": {
+					"v": "Make your own online compiler in React ⚛️\n\nCompilers, Open-source, Online-compiler, React, Online-judge\n\nAkash Gupta\n\n18 Feb, 2021",
+					"n": 0.258
+				}
+			}
+		},
+		{
+			"i": 16,
+			"$": {
+				"0": {
+					"v": "Build a gRPC server in Go",
+					"n": 0.408
+				},
+				"1": {
+					"v": "Build a gRPC server in Go\n\ngo, grpc, microservices, webdev\n\nSaswata Mukherjee\n\n6 Dec, 2020",
+					"n": 0.289
+				}
+			}
+		},
+		{
+			"i": 17,
+			"$": {
+				"0": {
+					"v": "Protocol Buffers in Go",
+					"n": 0.5
+				},
+				"1": {
+					"v": "Protocol Buffers in Go\n\ngo, protobuf, webdev, tutorial\n\nSaswata Mukherjee\n\n5 Aug, 2020",
+					"n": 0.316
+				}
+			}
+		},
+		{
+			"i": 18,
+			"$": {
+				"0": {
+					"v": "Dynamic Pages using React Router",
+					"n": 0.447
+				},
+				"1": {
+					"v": "Dynamic Pages using React Router\n\nreact, javascript, webdev, tutorial\n\nSaswata Mukherjee\n\n3 Jul, 2020",
+					"n": 0.302
+				}
+			}
+		},
+		{
+			"i": 19,
+			"$": {
+				"0": {
+					"v": "Discuss: What's your preferred way of creating a React app?",
+					"n": 0.316
+				},
+				"1": {
+					"v": "Discuss: What's your preferred way of creating a React app?\n\ndiscuss, javascript, react, webdev\n\nSaswata Mukherjee\n\n11 Jun, 2020",
+					"n": 0.25
+				}
+			}
+		},
+		{
+			"i": 20,
+			"$": {
+				"0": {
+					"v": "How To Write Better Python Code?",
+					"n": 0.408
+				},
+				"1": {
+					"v": "How To Write Better Python Code?\n\npython, beginners, 100daysofcode, productivity\n\nPriyansi\n\n20 May, 2020",
+					"n": 0.302
+				}
+			}
+		},
+		{
+			"i": 21,
+			"$": {
+				"0": {
+					"v": "Write your first API with Deno",
+					"n": 0.408
+				},
+				"1": {
+					"v": "Write your first API with Deno\n\ndeno, node, javascript, webdev\n\nSaswata Mukherjee\n\n19 May, 2020",
+					"n": 0.289
+				}
+			}
+		},
+		{
+			"i": 22,
+			"$": {
+				"0": {
+					"v": "React Context+Hooks API=> Ideal State Management",
+					"n": 0.408
+				},
+				"1": {
+					"v": "React Context+Hooks API=> Ideal State Management\n\nreact, webdev, javascript, html\n\nSaswata Mukherjee\n\n7 May, 2020",
+					"n": 0.289
+				}
+			}
+		},
+		{
+			"i": 23,
+			"$": {
+				"0": {
+					"v": "Prof. Kumar Devdutta",
+					"n": 0.577
+				},
+				"1": {
+					"v": "Prof. Kumar Devdutta\nAssistant Professor",
+					"n": 0.5
+				}
+			}
+		},
+		{
+			"i": 24,
+			"$": {
+				"0": {
+					"v": "Dr. Kumar Mohanty",
+					"n": 0.577
+				},
+				"1": {
+					"v": "Dr. Kumar Mohanty\nDirector (Corporate Relations)",
+					"n": 0.447
+				}
+			}
+		},
+		{
+			"i": 25,
+			"$": {
+				"0": {
+					"v": "Dr. Abhishek Ray",
+					"n": 0.577
+				},
+				"1": {
+					"v": "Dr. Abhishek Ray\nAssociate Dean (T&P)",
+					"n": 0.447
+				}
+			}
+		},
+		{
+			"i": 26,
+			"$": {
+				"0": {
+					"v": "Dr. Prachet Bhuyan",
+					"n": 0.577
+				},
+				"1": {
+					"v": "Dr. Prachet Bhuyan\nAssociate Dean (T&P)",
+					"n": 0.447
+				}
+			}
+		},
+		{
+			"i": 27,
+			"$": {
+				"0": {
+					"v": "Praddyum Verma",
+					"n": 0.707
+				},
+				"1": {
+					"v": "Praddyum Verma",
+					"n": 0.707
+				}
+			}
+		},
+		{
+			"i": 28,
+			"$": {
+				"0": {
+					"v": "Aditya",
+					"n": 1
+				},
+				"1": {
+					"v": "Aditya",
+					"n": 1
+				}
+			}
+		},
+		{
+			"i": 29,
+			"$": {
+				"0": {
+					"v": "Akash Gupta",
+					"n": 0.707
+				},
+				"1": {
+					"v": "Akash Gupta",
+					"n": 0.707
+				}
+			}
+		},
+		{
+			"i": 30,
+			"$": {
+				"0": {
+					"v": "Biswaroop Bhattacharjee",
+					"n": 0.707
+				},
+				"1": {
+					"v": "Biswaroop Bhattacharjee",
+					"n": 0.707
+				}
+			}
+		},
+		{
+			"i": 31,
+			"$": {
+				"0": {
+					"v": "Priyansi Singh",
+					"n": 0.707
+				},
+				"1": {
+					"v": "Priyansi Singh",
+					"n": 0.707
+				}
+			}
+		}
+	]
+}

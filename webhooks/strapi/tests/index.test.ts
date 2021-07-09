@@ -33,13 +33,14 @@ beforeEach(() => server.initialize());
 afterEach(() => server.stop());
 
 describe('server can bootstrap', () => {
-	it('responds with 200', async () => {
+	it('responds with 200', { timeout: 2000 }, async () => {
 		const res = await server.inject({
 			url: '/',
 			method: 'GET',
 		});
 		expect(res.statusCode).to.eq(200);
 	});
+
 	it('just happens', () => {
 		expect('tree').to.match(/tree/gi);
 	});

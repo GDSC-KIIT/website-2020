@@ -1,0 +1,35 @@
+{
+	"name": "search",
+	"version": "2.4.0",
+	"description": "searches the indexed file",
+	"main": "index.js",
+	"author": "aditya-mitra",
+	"license": "MIT",
+	"scripts": {
+		"build": "webpack",
+		"dev": "wrangler dev --port 5000",
+		"dev:build": "NODE_ENV=development npm run build",
+		"deploy": "wrangler publish",
+		"transpile": "tsc --project ./test",
+		"test:clean": "rimraf ./transpiled/src ./transpiled/test",
+		"test": "npm run test:clean && npm run transpile && mocha --require source-map-support/register --recursive transpiled/test",
+		"wrangler": "wrangler"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^2.2.2",
+		"@cloudflare/wrangler": "^1.17.0",
+		"@types/chai": "^4.2.19",
+		"@types/mocha": "^8.2.2",
+		"chai": "^4.3.4",
+		"mocha": "^9.0.1",
+		"rimraf": "^3.0.2",
+		"service-worker-mock": "^2.0.5",
+		"ts-loader": "^8.3.0",
+		"typescript": "^4.3.2",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0"
+	},
+	"dependencies": {
+		"fuse.js": "^6.4.6"
+	}
+}

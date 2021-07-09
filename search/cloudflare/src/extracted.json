@@ -1,0 +1,196 @@
+{
+	"scrapped": [
+		{
+			"name": "what is dsc",
+			"text": "Google collaborates with university students who are enthusiastic about growing developer communities and supports them with commencing student clubs on their campuses. Developer Student Clubs is a program that recognizes and supports university students who are excited about growing developer communities that cultivate learning, sharing, and collaboration.",
+			"locId": "what%20is%20dsc",
+			"pageName": "/"
+		},
+		{
+			"name": "frequently asked",
+			"text": "How can I become a member?",
+			"locId": "frequently%20asked",
+			"pageName": "/"
+		},
+		{
+			"name": "frequently asked",
+			"text": "How can I hear about the events that you will do in future?",
+			"locId": "frequently%20asked",
+			"pageName": "/"
+		},
+		{
+			"name": "How to cache JSON data in Redis",
+			"text": "How to cache JSON data in Redis\n\nCache, Redis, Json, Nodejs, Express\n\nSayan Nath\n\n28 May, 2021",
+			"locId": "How%20to%20cache%20JSON%20data%20in%20Redis",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Apple v Facebook, and Our Privacy",
+			"text": "Apple v Facebook, and Our Privacy\n\nFacebook, Advertising, Privacy, Apple, Internet\n\nAnshuman Pati\n\n10 Mar, 2021",
+			"locId": "Apple%20v%20Facebook,%20and%20Our%20Privacy",
+			"pageName": "/blog"
+		},
+		{
+			"name": "How to use Tail Call Optimization",
+			"text": "How to use Tail Call Optimization\n\nCompetitive-programming, Java, Coding, Kotlin, Recursion\n\nArpit Mohapatra\n\n8 Mar, 2021",
+			"locId": "How%20to%20use%20Tail%20Call%20Optimization",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Ethical Hacking 101: Getting started with Nmap",
+			"text": "Ethical Hacking 101: Getting started with Nmap\n\nPenetration-testing, Nmap, Ethical-hacking\n\nAbhishek Raj\n\n7 Mar, 2021",
+			"locId": "Ethical%20Hacking%20101:%20Getting%20started%20with%20Nmap",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Build a Sudoku Solver using Backtracking",
+			"text": "Build a Sudoku Solver using Backtracking\n\nBacktracking, Python, Algorithms, Pygame\n\nArpit Mohapatra\n\n6 Mar, 2021",
+			"locId": "Build%20a%20Sudoku%20Solver%20using%20Backtracking",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Why should you use TypeScript over JavaScript?",
+			"text": "Why should you use TypeScript over JavaScript?\n\nJavascript, Web-development, Programming, Coding, Typescript\n\nAkash Gupta\n\n6 Mar, 2021",
+			"locId": "Why%20should%20you%20use%20TypeScript%20over%20JavaScript?",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Ethical Hacking 101: Enumerating Secrets",
+			"text": "Ethical Hacking 101: Enumerating Secrets\n\nCybersecurity, Ethical-hacking, Ctf, Enumeration, Learning\n\nPraddyum Verma\n\n5 Mar, 2021",
+			"locId": "Ethical%20Hacking%20101:%20Enumerating%20Secrets",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 3",
+			"text": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 3\n\ngraphql, react, typescript, webdev\n\nSaswata Mukherjee\n\n28 Feb, 2021",
+			"locId": "Build%20a%20chat%20app%20with%20GraphQL%20Subscriptions%20&%20TypeScript:%20Part%203",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 2",
+			"text": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 2\n\ngraphql, react, typescript, webdev\n\nSaswata Mukherjee\n\n28 Feb, 2021",
+			"locId": "Build%20a%20chat%20app%20with%20GraphQL%20Subscriptions%20&%20TypeScript:%20Part%202",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 1",
+			"text": "Build a chat app with GraphQL Subscriptions & TypeScript: Part 1\n\ngraphql, react, typescript, webdev\n\nSaswata Mukherjee\n\n28 Feb, 2021",
+			"locId": "Build%20a%20chat%20app%20with%20GraphQL%20Subscriptions%20&%20TypeScript:%20Part%201",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Ethical Hacking 101: Getting Started",
+			"text": "Ethical Hacking 101: Getting Started\n\nEthical-hacking, Hacking, Ctf, Networking, Linux\n\nAnirban Sinha\n\n27 Feb, 2021",
+			"locId": "Ethical%20Hacking%20101:%20Getting%20Started",
+			"pageName": "/blog"
+		},
+		{
+			"name": "All about K-Nearest Neighbors",
+			"text": "All about K-Nearest Neighbors\n\nRegression, Knn-algorithm, Supervised-learning, Machine-learning, Classification-algorithms\n\nAnoushka Nandan\n\n27 Feb, 2021",
+			"locId": "All%20about%20K-Nearest%20Neighbors",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Make your own online compiler in React ⚛️",
+			"text": "Make your own online compiler in React ⚛️\n\nCompilers, Open-source, Online-compiler, React, Online-judge\n\nAkash Gupta\n\n18 Feb, 2021",
+			"locId": "Make%20your%20own%20online%20compiler%20in%20React%20%E2%9A%9B%EF%B8%8F",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Build a gRPC server in Go",
+			"text": "Build a gRPC server in Go\n\ngo, grpc, microservices, webdev\n\nSaswata Mukherjee\n\n6 Dec, 2020",
+			"locId": "Build%20a%20gRPC%20server%20in%20Go",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Protocol Buffers in Go",
+			"text": "Protocol Buffers in Go\n\ngo, protobuf, webdev, tutorial\n\nSaswata Mukherjee\n\n5 Aug, 2020",
+			"locId": "Protocol%20Buffers%20in%20Go",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Dynamic Pages using React Router",
+			"text": "Dynamic Pages using React Router\n\nreact, javascript, webdev, tutorial\n\nSaswata Mukherjee\n\n3 Jul, 2020",
+			"locId": "Dynamic%20Pages%20using%20React%20Router",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Discuss: What's your preferred way of creating a React app?",
+			"text": "Discuss: What's your preferred way of creating a React app?\n\ndiscuss, javascript, react, webdev\n\nSaswata Mukherjee\n\n11 Jun, 2020",
+			"locId": "Discuss:%20What's%20your%20preferred%20way%20of%20creating%20a%20React%20app?",
+			"pageName": "/blog"
+		},
+		{
+			"name": "How To Write Better Python Code?",
+			"text": "How To Write Better Python Code?\n\npython, beginners, 100daysofcode, productivity\n\nPriyansi\n\n20 May, 2020",
+			"locId": "How%20To%20Write%20Better%20Python%20Code?",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Write your first API with Deno",
+			"text": "Write your first API with Deno\n\ndeno, node, javascript, webdev\n\nSaswata Mukherjee\n\n19 May, 2020",
+			"locId": "Write%20your%20first%20API%20with%20Deno",
+			"pageName": "/blog"
+		},
+		{
+			"name": "React Context+Hooks API=> Ideal State Management",
+			"text": "React Context+Hooks API=> Ideal State Management\n\nreact, webdev, javascript, html\n\nSaswata Mukherjee\n\n7 May, 2020",
+			"locId": "React%20Context+Hooks%20API=%3E%20Ideal%20State%20Management",
+			"pageName": "/blog"
+		},
+		{
+			"name": "Prof. Kumar Devdutta",
+			"text": "Prof. Kumar Devdutta\nAssistant Professor",
+			"locId": "Prof.%20Kumar%20Devdutta",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Dr. Kumar Mohanty",
+			"text": "Dr. Kumar Mohanty\nDirector (Corporate Relations)",
+			"locId": "Dr.%20Kumar%20Mohanty",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Dr. Abhishek Ray",
+			"text": "Dr. Abhishek Ray\nAssociate Dean (T&P)",
+			"locId": "Dr.%20Abhishek%20Ray",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Dr. Prachet Bhuyan",
+			"text": "Dr. Prachet Bhuyan\nAssociate Dean (T&P)",
+			"locId": "Dr.%20Prachet%20Bhuyan",
+			"pageName": "/mentors"
+		},
+		{
+			"name": "Praddyum Verma",
+			"text": "Praddyum Verma",
+			"locId": "Praddyum%20Verma",
+			"pageName": "/team"
+		},
+		{
+			"name": "Aditya",
+			"text": "Aditya",
+			"locId": "Aditya",
+			"pageName": "/team"
+		},
+		{
+			"name": "Akash Gupta",
+			"text": "Akash Gupta",
+			"locId": "Akash%20Gupta",
+			"pageName": "/team"
+		},
+		{
+			"name": "Biswaroop Bhattacharjee",
+			"text": "Biswaroop Bhattacharjee",
+			"locId": "Biswaroop%20Bhattacharjee",
+			"pageName": "/team"
+		},
+		{
+			"name": "Priyansi Singh",
+			"text": "Priyansi Singh",
+			"locId": "Priyansi%20Singh",
+			"pageName": "/team"
+		}
+	]
+}
