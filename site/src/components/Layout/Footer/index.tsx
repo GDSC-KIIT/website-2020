@@ -67,7 +67,11 @@ export default function Home() {
 								</h3>
 								<ul className={`${styles.list_unstyled} ${styles.f_list} `}>
 									<li>
-										<a href="#">Code of Conduct</a>
+										<a
+											href="https://opensource.google/docs/releasing/template/CODE_OF_CONDUCT/"
+											target="_blank">
+											Code of Conduct
+										</a>
 									</li>
 								</ul>
 							</div>
@@ -82,13 +86,23 @@ export default function Home() {
 								</h3>
 								<ul className={`${styles.list_unstyled} ${styles.f_list} `}>
 									<li>
-										<a href="#">Google Developers Program</a>
+										<a href="https://developers.google.com/" target="_blank">
+											Google Developers Program
+										</a>
 									</li>
 									<li>
-										<a href="#">Developer Student Clubs</a>
+										<a
+											href="https://developers.google.com/community/dsc"
+											target="_blank">
+											Developer Student Clubs
+										</a>
 									</li>
 									<li>
-										<a href="#">Tech Includes</a>
+										<a
+											href="https://developers.google.com/products/develop"
+											target="_blank">
+											Tech Includes
+										</a>
 									</li>
 								</ul>
 							</div>
